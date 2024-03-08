@@ -8,7 +8,8 @@ module.exports = {
         "airbnb-typescript",
         "airbnb/hooks",
         "plugin:@typescript-eslint/recommended",
-        "plugin:react/recommended"
+        "plugin:react/recommended",
+        'plugin:prettier/recommended'
     ],
     "overrides": [
         {
@@ -30,8 +31,9 @@ module.exports = {
         "project": "./tsconfig.json"
     },
     "plugins": [
+        "react",
         "@typescript-eslint",
-        "react"
+        'prettier'
     ],
     "rules": {
     }
