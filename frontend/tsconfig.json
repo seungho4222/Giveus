@@ -18,7 +18,7 @@
       "@hooks/": ["hooks/*"],
       "@types/": ["types/*"],
       "@utils/": ["utils/*"],
-      "@recoil/": ["recoil/*"],
+      "@recoil/": ["recoil/*"]
     },
 
     /* Bundler mode */
@@ -35,6 +35,6 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src"],
+  "include": ["src", ".eslintrc.cjs"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
