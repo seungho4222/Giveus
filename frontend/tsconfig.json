@@ -18,7 +18,7 @@
       "@hooks/": ["hooks/*"],
       "@types/": ["types/*"],
       "@utils/": ["utils/*"],
-      "@recoil/": ["recoil/*"],
+      "@recoil/": ["recoil/*"]
     },
 
     /* Bundler mode */
