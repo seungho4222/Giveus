@@ -1,13 +1,14 @@
 import { ThemeProvider } from 'styled-components'
-import './App.css'
 import HomePage from '@pages/HomePage'
-import { darkTheme, lightTheme } from './styles/theme'
+import { darkTheme, lightTheme } from '@styles/theme'
+import { GlobalStyle } from '@styles/GlobalStyle'
 
 const App = () => {
   return (
     <>
       <div>
         <ThemeProvider theme={'light' ? lightTheme : darkTheme}>
+          <GlobalStyle />
           <HomePage />
         </ThemeProvider>
       </div>
