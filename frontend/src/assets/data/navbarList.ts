@@ -1,0 +1,42 @@
+export const navbarList = [
+  {
+    imgSrc: '/icon/icon_home_gray.png',
+    activeImgSrc: '/icon/icon_home_blue.png',
+    label: '홈',
+    width: 17.98,
+    height: 20,
+    url: '/',
+  },
+  {
+    imgSrc: '/icon/icon_search_gray.png',
+    activeImgSrc: '/icon/icon_search_blue.png',
+    label: '검색',
+    width: 20.02,
+    height: 20,
+    url: '/search',
+  },
+  {
+    imgSrc: '/icon/icon_funding_gray.png',
+    activeImgSrc: '/icon/icon_funding_blue.png',
+    label: '펀딩',
+    width: 20,
+    height: 20,
+    url: '/funding',
+  },
+  {
+    imgSrc: '/icon/icon_alarm_gray.png',
+    activeImgSrc: '/icon/icon_alarm_blue.png',
+    label: '알림',
+    width: 16.04,
+    height: 20,
+    url: '/alarm',
+  },
+  {
+    imgSrc: '/icon/icon_my_gray.png',
+    activeImgSrc: '/icon/icon_my_blue.png',
+    label: '마이',
+    width: 19.89,
+    height: 20,
+    url: '/mypage',
+  },
+]

@@ -6,6 +6,6 @@ export enum ThemeFlag {
 }
 
 export const themeState = atom<ThemeFlag>({
-  key: 'THEME_SATE',
+  key: 'themeState',
   default: ThemeFlag.light,
 })
