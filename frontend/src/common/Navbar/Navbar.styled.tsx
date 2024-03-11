@@ -31,9 +31,9 @@ export const Item = styled(Link)`
 
 export const Icon = styled.img``
 
-export const Label = styled.div`
+export const Label = styled.div<{ $active: boolean }>`
   font-size: 0.7em;
   font-weight: 700;
   margin-top: 6px;
-  color: ${colors.gray04};
+  color: ${props => (props.$active ? colors.blue01 : colors.gray04)};
 `

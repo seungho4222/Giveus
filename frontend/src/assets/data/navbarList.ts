@@ -1,5 +1,6 @@
 export const navbarList = [
   {
+    name: 'home',
     imgSrc: '/icon/icon_home_gray.png',
     activeImgSrc: '/icon/icon_home_blue.png',
     label: '홈',
@@ -8,6 +9,7 @@ export const navbarList = [
     url: '/',
   },
   {
+    name: 'search',
     imgSrc: '/icon/icon_search_gray.png',
     activeImgSrc: '/icon/icon_search_blue.png',
     label: '검색',
@@ -16,6 +18,7 @@ export const navbarList = [
     url: '/search',
   },
   {
+    name: 'funding',
     imgSrc: '/icon/icon_funding_gray.png',
     activeImgSrc: '/icon/icon_funding_blue.png',
     label: '펀딩',
@@ -24,6 +27,7 @@ export const navbarList = [
     url: '/funding',
   },
   {
+    name: 'alarm',
     imgSrc: '/icon/icon_alarm_gray.png',
     activeImgSrc: '/icon/icon_alarm_blue.png',
     label: '알림',
@@ -32,6 +36,7 @@ export const navbarList = [
     url: '/alarm',
   },
   {
+    name: 'mypage',
     imgSrc: '/icon/icon_my_gray.png',
     activeImgSrc: '/icon/icon_my_blue.png',
     label: '마이',
