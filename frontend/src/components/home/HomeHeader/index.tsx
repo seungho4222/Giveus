@@ -1,6 +1,6 @@
 import * as h from '@components/home/HomeHeader/HomeHeader.styled'
 
-const HomeHeader = () => {
+const Index = () => {
   return (
     <h.Container>
       <h.Wrap>
@@ -10,4 +10,4 @@ const HomeHeader = () => {
   )
 }
 
-export default HomeHeader
+export default Index

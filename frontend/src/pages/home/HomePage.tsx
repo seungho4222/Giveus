@@ -1,10 +1,12 @@
-import HomeHeader from '@components/home/HomeHeader/HomeHeader'
+import Navbar from '@common/Navbar'
+import HomeHeader from '@/components/home/HomeHeader'
 
 const HomePage = () => {
   return (
-    <div>
+    <>
       <HomeHeader />
-    </div>
+      <Navbar />
+    </>
   )
 }
 
