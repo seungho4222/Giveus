@@ -6,8 +6,9 @@ export const GlobalStyle = createGlobalStyle`
     :root {
         font-family: 'Pretendard', Arial, Helvetica, sans-serif;
         font-size: 16px;
-        background: ${({ theme }: { theme: DefaultTheme }) => theme.bgColor};
-        color: ${({ theme }: { theme: DefaultTheme }) => theme.textColor};
+        background: ${({ theme }: { theme: DefaultTheme }) =>
+          theme.color.background};
+        color: ${({ theme }: { theme: DefaultTheme }) => theme.color.text};
     }
     * {
         padding: 0;
