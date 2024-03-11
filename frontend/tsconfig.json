@@ -8,17 +8,16 @@
     "baseUrl": "./src",
     "paths": {
       "@/*": ["*"],
-      "@apis/": ["apis/*"],
-      "@common/": ["common/*"],
-      "@components/": ["components/*"],
-      "@layouts/": ["layouts/*"],
-      "@assets/": ["assets/*"],
+      "@apis/*": ["apis/*"],
+      "@common/*": ["common/*"],
+      "@components/*": ["components/*"],
+      "@assets/*": ["assets/*"],
       "@pages/*": ["pages/*"],
-      "@styles/": ["styles/*"],
-      "@hooks/": ["hooks/*"],
-      "@types/": ["types/*"],
-      "@utils/": ["utils/*"],
-      "@recoil/": ["recoil/*"]
+      "@styles/*": ["styles/*"],
+      "@hooks/*": ["hooks/*"],
+      "@types/*": ["types/*"],
+      "@utils/*": ["utils/*"],
+      "@stores/*": ["stores/*"]
     },
 
     /* Bundler mode */
@@ -35,6 +34,6 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src", ".eslintrc.cjs"],
+  "include": [".eslintrc.cjs", "src"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
