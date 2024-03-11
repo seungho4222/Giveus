@@ -1,7 +1,9 @@
+import HomeHeader from '@components/home/HomeHeader/HomeHeader'
+
 const HomePage = () => {
   return (
     <div>
-      <div>Main page</div>
+      <HomeHeader />
     </div>
   )
 }
