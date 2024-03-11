@@ -1,11 +1,12 @@
 import Navbar from '@common/Navbar'
+import Layout from '@common/Layout'
 
 const MyPage = () => {
   return (
-    <div>
-      mypage
+    <>
+      <Layout>mypage</Layout>
       <Navbar current="mypage" />
-    </div>
+    </>
   )
 }
 

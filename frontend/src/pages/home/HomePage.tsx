@@ -1,10 +1,13 @@
 import Navbar from '@common/Navbar'
 import HomeHeader from '@/components/home/HomeHeader'
+import Layout from '@common/Layout'
 
 const HomePage = () => {
   return (
     <>
-      <HomeHeader />
+      <Layout>
+        <HomeHeader />
+      </Layout>
       <Navbar current="home" />
     </>
   )
