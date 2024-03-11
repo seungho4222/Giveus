@@ -1,4 +1,4 @@
-import Here from "@components/here"
+import Here from "@/pages/here"
 
 function Test () {
   return (

@@ -12,7 +12,10 @@
       "@/*": ["*"],
       "@apis/*": ["apis/*"],
       "@components/*": ["components/*"],
+      "@pages/*": ["pages/*"],
       "@router/*": ["router/*"],
+      "@stores/*": ["stores/*"],
+      "@styles/*": ["styles/*"],
     },
 
     /* Bundler mode */

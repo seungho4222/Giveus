@@ -1,14 +1,11 @@
-import App from '@/App';
+import Test from '@/pages/Test';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<App/>} />
-        {/* <Route path="/gallery" element={<DetailCardPage />}>
-          <Route path=":cardId" element={<DetailCard />} />
-        </Route> */}
+        <Route path="/" element={<Test/>} />
       </Routes>
     </BrowserRouter>
   );
