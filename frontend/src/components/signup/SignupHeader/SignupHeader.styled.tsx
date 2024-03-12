@@ -10,6 +10,7 @@ export const Wrap = styled.div`
   img {
     width: 10px;
     height: 16px;
+    cursor: pointer;
   }
 `
 
@@ -21,7 +22,8 @@ export const Bar = styled.div`
   bottom: 0;
 `
 
-export const CurrentBar = styled.div`
+export const CurrentBar = styled.div<{ $stage: number }>`
+  right: ${props => props.$stage === 1 && 0};
   position: absolute;
   width: 50%;
   height: 100%;
