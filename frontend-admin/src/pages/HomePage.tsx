@@ -1,5 +1,4 @@
-import React from 'react';
-import { ReactComponent as AdminLogo} from '@assets/icons/adminLogo.svg'
+import AdminLogo from '@assets/icons/adminLogo.svg?react'
 
 const HomePage = () => {
     return (
