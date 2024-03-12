@@ -1,5 +1,6 @@
 import { createGlobalStyle, DefaultTheme } from 'styled-components'
 import reset from 'styled-reset'
+import { colors } from './theme'
 
 export const GlobalStyle = createGlobalStyle`
     ${reset}
@@ -49,5 +50,8 @@ export const GlobalStyle = createGlobalStyle`
         border: none;
         cursor: pointer;
         background: none;
+        &:disabled {
+            background-color: #CACFD9;
+        }
     }
 `
