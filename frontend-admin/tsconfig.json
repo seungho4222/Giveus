@@ -12,6 +12,7 @@
       "@/*": ["*"],
       "@apis/*": ["apis/*"],
       "@assets/*": ["assets/*"],
+      "@common/*": ["common/*"],
       "@components/*": ["components/*"],
       "@pages/*": ["pages/*"],
       "@router/*": ["router/*"],
