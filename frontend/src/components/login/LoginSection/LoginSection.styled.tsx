@@ -10,15 +10,16 @@ export const Container = styled.section`
 export const Logo = styled.div`
   color: ${colors.blue01};
   font-weight: 900;
-  font-size: 2.6em;
+  font-size: 3em;
   text-align: center;
+  margin-top: 50%;
 `
 
 export const Desc = styled.div`
   font-size: 1.4em;
   font-weight: 700;
   margin-top: 50px;
-  line-height: 1.2;
+  line-height: 1.4;
   text-align: center;
 `
 
@@ -34,5 +35,5 @@ export const SubDesc = styled.div`
   color: ${colors.gray01};
   font-weight: 600;
   font-size: 0.9em;
-  margin-top: 8px;
+  margin-top: 17px;
 `
