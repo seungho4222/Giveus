@@ -1,5 +1,6 @@
 export const data = [
   {
+    id: '1',
     title: '소아암 6세(남) 펀딩',
     start_date: '2024-03-07',
     end_date: '2024-04-10',
@@ -8,6 +9,7 @@ export const data = [
     target_amount: 1000000,
   },
   {
+    id: '2',
     title: '장염 8세(여) 펀딩',
     start_date: '2024-03-07',
     end_date: '2024-04-10',

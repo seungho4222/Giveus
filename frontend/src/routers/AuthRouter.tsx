@@ -4,6 +4,7 @@ import { Route, Routes } from 'react-router-dom'
 import AlarmPage from '@pages/alarm/AlarmPage'
 import FundingPage from '@pages/funding/FundingPage'
 import MyPage from '@pages/mypage/MyPage'
+import FundingDetailPage from '@/pages/funding/FundingDetailPage'
 
 const AuthRouter = () => {
   return (
@@ -13,6 +14,7 @@ const AuthRouter = () => {
       <Route path="/funding" element={<FundingPage />} />
       <Route path="/alarm" element={<AlarmPage />} />
       <Route path="/mypage" element={<MyPage />} />
+      <Route path="/funding/:id" element={<FundingDetailPage />} />
     </Routes>
   )
 }

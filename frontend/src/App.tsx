@@ -9,7 +9,7 @@ import HomeRouter from '@routers/HomeRouter'
 const App = () => {
   const themeProps = useTheme()
 
-  const user = false
+  const user = true
 
   return (
     <ThemeProvider
