@@ -1,1 +1,1 @@
-PR label webhook test zzz
+PR label webhook test
