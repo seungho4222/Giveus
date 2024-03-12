@@ -44,6 +44,8 @@ export const GlobalStyle = createGlobalStyle`
         cursor: pointer;
     }
     button {
+        font-family: 'Pretendard', Arial, Helvetica, sans-serif;
+        font-size: 16px;
         border: none;
         cursor: pointer;
         background: none;
