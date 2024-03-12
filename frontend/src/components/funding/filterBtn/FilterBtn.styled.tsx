@@ -7,6 +7,7 @@ export const Container = styled.div`
 `
 
 export const Button = styled.button`
+  display: flex;
   border-radius: 20px;
   background-color: ${colors.gray02};
   margin: 5px;
@@ -15,4 +16,10 @@ export const Button = styled.button`
 
 export const Icon = styled.img`
   margin-right: 8px;
+`
+
+export const Label = styled.div`
+  font-size: 0.8em;
+  font-weight: bold;
+
 `
