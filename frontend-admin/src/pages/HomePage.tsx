@@ -2,10 +2,12 @@ import Button from '@common/button/Button';
 import { SimpleInput } from '@common/input/Input';
 import { StyledLabel } from '@common/input/Input.styled';
 import AdminLogo from '@assets/icons/adminLogo.svg?react'
+import Header from '@/components/header/Header';
 
 const HomePage = () => {
     return (
         <div>
+            <Header/>
             <AdminLogo />
             <StyledLabel htmlFor='ID'>아이디</StyledLabel>
             <SimpleInput placeholder={'아이디 입력'} value={''} id='ID'/>
