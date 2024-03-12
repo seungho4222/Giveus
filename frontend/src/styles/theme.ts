@@ -7,6 +7,8 @@ export const colors = {
   gray04: '#959DB1',
   blue01: '#4382FF',
   orange01: '#FF8761',
+  yellow01: '#FEE500',
+  green01: '#02C75A',
 }
 
 export const lightTheme: DefaultTheme = {
