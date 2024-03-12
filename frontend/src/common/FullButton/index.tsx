@@ -1,13 +1,8 @@
 import { FullButtonType } from '@/types/commonType'
 import * as f from '@common/FullButton/FullButton.styled'
-import { useNavigate } from 'react-router-dom'
 
 const Index = (props: FullButtonType) => {
-  const { text, disabled, url } = props
-
-  const navigate = useNavigate()
-
-  const onClick = () => navigate(url)
+  const { text, disabled, onClick } = props
 
   return (
     <f.Button disabled={disabled} onClick={onClick}>

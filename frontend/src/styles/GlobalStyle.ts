@@ -11,6 +11,7 @@ export const GlobalStyle = createGlobalStyle`
     * {
         padding: 0;
         box-sizing: border-box;
+        font-family: 'Pretendard', Arial, Helvetica, sans-serif;
     }
     html, body {
         margin: 0;
@@ -45,13 +46,23 @@ export const GlobalStyle = createGlobalStyle`
         cursor: pointer;
     }
     button {
-        font-family: 'Pretendard', Arial, Helvetica, sans-serif;
         font-size: 16px;
         border: none;
         cursor: pointer;
         background: none;
         &:disabled {
             background-color: #CACFD9;
+        }
+    }
+    input {
+        font-size: 1em;
+        outline: none;
+        &:focus {
+            outline: none;
+        }
+        &::placeholder {
+            color: ${colors.gray04};
+            font-weight: 500;
         }
     }
 `
