@@ -32,7 +32,7 @@ export const SubDesc = styled.div`
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  color: ${colors.gray01};
+  color: ${colors.gray04};
   font-weight: 600;
   font-size: 0.9em;
   margin-top: 17px;
