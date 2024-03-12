@@ -1,6 +1,3 @@
-import React from 'react'
-import styled from 'styled-components'
-
 import AdminLogo from '@assets/icons/adminLogo.svg?react'
 import DashBoard from '@assets/icons/headerDashboardIcon.svg?react'
 import Profile from '@assets/icons/headerProfileIcon.svg?react'
