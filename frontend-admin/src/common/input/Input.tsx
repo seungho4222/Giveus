@@ -1,5 +1,4 @@
 import { useState } from 'react'
-
 import { StyledInput } from './Input.styled'
 
 type InputProps = {

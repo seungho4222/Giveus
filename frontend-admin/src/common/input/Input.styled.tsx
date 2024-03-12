@@ -45,4 +45,4 @@ const StyledLabel = styled.label`
 `
 
 
-export { StyledInput, StyledLabel}
+export { StyledInput, StyledLabel }
