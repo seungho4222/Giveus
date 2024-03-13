@@ -12,9 +12,13 @@ pipeline {
 
   stages {
 
-    //stage('SonarQube') {
-    //
-    //}
+    stage('SonarQube analysis') {
+        steps {
+            withSonarQubeEnv('SonarQube-server') {
+                sh 'mvn sonar:sonar'
+            }
+        }
+    }
 
     stage('Build') {
       steps {
