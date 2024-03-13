@@ -1,3 +1,4 @@
+import BottomButton from '@/common/BottomButton'
 import * as D from '@/components/funding/FundingDetail/DetailMain.styled'
 import { FundingType } from '@/types/fundingType'
 import { percent, dDay } from '@/utils/fundingInfoAdd'
@@ -34,6 +35,7 @@ const MainDesc = (props: { data: FundingType }) => {
         omnis! Optio vitae tempore ipsum assumenda, voluptas debitis dolores
         sunt adipisci?
       </D.DetailDesc>
+      <BottomButton text={"후원하기"} />
     </D.Container>
   )
 }
