@@ -13,6 +13,8 @@ export const ListFalse = styled.div`
 
 export const ListTrue = styled.div`
   padding-bottom: 0.5em;
+  font-size: 0.9em;
+  font-weight: 600;
 `
 
 export const Card = styled.div`
@@ -31,12 +33,13 @@ export const Wrap = styled.div`
 export const Date = styled.div`
   display: flex;
   align-items: center;
-  font-size: 0.8em;
+  font-size: 0.7em;
   color: ${colors.gray05};
 `
 
 export const Desc = styled.div`
   color: ${colors.blue01};
+  font-size: 0.8em;
 `
 
 export const SubWrap = styled.div`
@@ -54,10 +57,12 @@ export const Img = styled.div`
 export const Nickname = styled.div`
   display: flex;
   align-items: center;
+  font-size: 0.8em;
 `
 
 export const Amount = styled.div`
   display: flex;
   align-items: center;
+  font-size: 0.8em;
   font-weight: 600;
 `
