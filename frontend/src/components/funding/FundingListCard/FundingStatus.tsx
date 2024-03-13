@@ -12,9 +12,8 @@ const FundingStatus = (props: { data: FundingType }) => {
     const today = new Date()
     const dday = new Date(data.end_date)
     const gap = dday.getTime() - today.getTime()
-    const result = Math.ceil(gap / (1000 * 60 * 60 * 24))
 
-    return result
+    return Math.ceil(gap / (1000 * 60 * 60 * 24))
   }
 
   return (
@@ -22,11 +21,11 @@ const FundingStatus = (props: { data: FundingType }) => {
       <S.Wrap>
         <S.Text>모금액 {data.total_amount.toLocaleString('ko-KR')}원</S.Text>
         <S.Text>
-          <S.Percent>{percent()}%</S.Percent> D - {dDay()}
+          <S.Percent>{percent()}%</S.Percent> D-{dDay()}
         </S.Text>
       </S.Wrap>
       <S.Progress>
-        <S.ProgressNow $width={`${percent()}%`} />
+        <S.ProgressStatus $width={`${percent()}%`} />
       </S.Progress>
     </S.Container>
   )

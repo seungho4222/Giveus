@@ -7,17 +7,13 @@ const Index = (props: { data: FundingType }) => {
   const { data } = props
   const [tap, setTap] = useState('main')
 
-  const onClickHandler = (choice: string) => {
-    setTap(choice)
-  }
-
   return (
     <D.Container>
       <FundingDetailCommon data={data} />
       <D.Wrap>
-        <D.Tap $active={tap === 'main'} onClick={() =>onClickHandler("main")}>소개하기</D.Tap>
-        <D.Tap $active={tap === 'list'} onClick={() =>onClickHandler("list")}>기부자 명단</D.Tap>
-        <D.Tap $active={tap === 'use'} onClick={() =>onClickHandler("use")}>진료비 사용 내역</D.Tap>
+        <D.Tap $active={tap === 'main'} onClick={() =>setTap("main")}>소개하기</D.Tap>
+        <D.Tap $active={tap === 'list'} onClick={() =>setTap("list")}>기부자 명단</D.Tap>
+        <D.Tap $active={tap === 'medical'} onClick={() =>setTap("medical")}>진료비 사용 내역</D.Tap>
       </D.Wrap>
     </D.Container>
   )
