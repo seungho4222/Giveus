@@ -16,7 +16,10 @@ pipeline {
         steps {
             withSonarQubeEnv('SonarQube-server') {
                 dir('./backend-gateway') {
-                    sh './gradlew sonarqube'
+                    script {
+                        sh "chmod +x ./gradlew"
+                        sh './gradlew sonarqube'
+                    }
                 }
             }
         }
