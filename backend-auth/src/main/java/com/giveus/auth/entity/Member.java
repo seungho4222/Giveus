@@ -42,4 +42,12 @@ public class Member {
     @Column(name = "sns_key")
     private String key;
 
+    public void updateName(String name) {
+        this.name = name;
+    }
+
+    public void updateNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
 }

@@ -46,8 +46,5 @@ spring:
             user-name-attribute: id # Kakao 응답 값 id, connected_at, properties, kakao_account 중 id 지정
 
 redirect:
-  register:
-    url: http://localhost:5173/signup
-  login:
-    success:
-      url: http://localhost:5173/funding
+  success:
+    http://localhost:5173/login/oauth2

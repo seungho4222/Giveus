@@ -32,11 +32,8 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class MyAuthenticationSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
 
-    @Value("${redirect.register.url}")
-    private String registerUrl;
-
-    @Value("${redirect.login.success.url}")
-    private String loginSuccessUrl;
+    @Value("${redirect.success}")
+    private String redirectUrl;
 
     private final JwtUtil jwtUtil;
 
@@ -52,11 +49,12 @@ public class MyAuthenticationSuccessHandler extends SimpleUrlAuthenticationSucce
         boolean isExist = oAuth2User.getAttribute("exist");
         String provider = oAuth2User.getAttribute("provider");
         String key = oAuth2User.getAttribute("key");
+        String email = oAuth2User.getAttribute("email");
 
         // 회원이 존재 x => 임시 회원가입 => 추가 정보 입력받음
         if(!isExist) {
             Member member = Member.builder()
-                    .email(oAuth2User.getAttribute("email"))
+                    .email(email)
                     .name(oAuth2User.getAttribute("name"))
                     .imageUrl(oAuth2User.getAttribute("imageUrl"))
                     .provider(provider)
@@ -65,15 +63,15 @@ public class MyAuthenticationSuccessHandler extends SimpleUrlAuthenticationSucce
             authRepository.save(member);
             log.info("MyAuthenticationSuccessHandler - Temperary register" + member);
 
-            // jwt token 발행 시작
-            AuthTokenRes token = jwtUtil.generateToken(provider, key);
-            log.info("jwtToken = {}", token.getAccessToken());
-            log.info("=============redirect url - {}==============", registerUrl);
+            String targetUrl = UriComponentsBuilder.fromUriString(redirectUrl)
+                    .queryParam("type", "register")
+                    .queryParam("provider", provider)
+                    .queryParam("email", email)
+                    .build()
+                    .encode(StandardCharsets.UTF_8)
+                    .toUriString();
 
-            response.setStatus(HttpServletResponse.SC_OK);
-            response.sendRedirect(registerUrl);
-
-            // 토큰 같이 보내야
+            getRedirectStrategy().sendRedirect(request, response, targetUrl);
         }
         // 회원 존재 => 로그인 처리
         else {
@@ -81,10 +79,14 @@ public class MyAuthenticationSuccessHandler extends SimpleUrlAuthenticationSucce
             AuthTokenRes token = jwtUtil.generateToken(provider, key);
             log.info("jwtToken = {}", token.getAccessToken());
 
-            response.setStatus(HttpServletResponse.SC_OK);
-            response.sendRedirect(loginSuccessUrl);
-            
-            // 토큰 같이 보내야
+            String targetUrl = UriComponentsBuilder.fromUriString(redirectUrl)
+                    .queryParam("type", "login")
+                    .queryParam("accessToken", token.getAccessToken())
+                    .build()
+                    .encode(StandardCharsets.UTF_8)
+                    .toUriString();
+
+            getRedirectStrategy().sendRedirect(request, response, targetUrl);
         }
     }
 

@@ -7,7 +7,9 @@ import lombok.*;
 @ToString
 public class AuthJoinPostReq {
 
-    // userkey 넣어야
+    private String email;
+
+    private String provider;
 
     private String name;
 
