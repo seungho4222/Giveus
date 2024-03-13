@@ -1,5 +1,5 @@
 import * as D from '@/components/funding/FundingDetail/FundingDetail.styled'
-import { FundingType } from '@/types/funding'
+import { FundingType } from '@/types/fundingType'
 import FundingDetailCommon from './FundingDetailCommon'
 import { useState } from 'react'
 

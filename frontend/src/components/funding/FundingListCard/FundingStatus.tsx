@@ -1,5 +1,5 @@
 import * as S from '@/components/funding/FundingListCard/FundingStatus.styled'
-import { FundingType } from '@/types/funding'
+import { FundingType } from '@/types/fundingType'
 
 const FundingStatus = (props: { data: FundingType }) => {
   const { data } = props

@@ -1,6 +1,6 @@
 import FundingDetail from "@/components/funding/FundingDetail";
 import { data } from "@/components/funding/FundingListCard/data";
-import { FundingType } from "@/types/funding";
+import { FundingType } from "@/types/fundingType";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 

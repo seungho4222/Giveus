@@ -5,7 +5,7 @@ export const Container = styled.div`
   position: relative;
   width: 100%;
   height: 300px;
-  background-image: url("/image/image_data.png");
+  background-image: url("/img/img_data.png");
   background-size: cover;
 `
 

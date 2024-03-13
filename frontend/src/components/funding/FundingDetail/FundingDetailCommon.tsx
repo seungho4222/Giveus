@@ -1,5 +1,5 @@
 import * as C from '@/components/funding/FundingDetail/FundingDetailCommon.styled'
-import { FundingType } from '@/types/funding'
+import { FundingType } from '@/types/fundingType'
 import { Link } from 'react-router-dom'
 
 const FundingDetailCommon = (props: { data: FundingType }) => {
