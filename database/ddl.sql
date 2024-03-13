@@ -24,7 +24,7 @@ CREATE TABLE `review` (
 DROP TABLE IF EXISTS `point_ recharge`;
 
 CREATE TABLE `point_ recharge` (
-	`point_no`	INT	NOT NULL,
+	`point_no`	INT	PRIMARY KEY AUTO_INCREMENT,
 	`member_no`	INT	NOT NULL,
 	`amount`	INT	NOT NULL,
 	`created_at`	DATETIME	NOT NULL,
@@ -35,14 +35,14 @@ CREATE TABLE `point_ recharge` (
 DROP TABLE IF EXISTS `file`;
 
 CREATE TABLE `file` (
-	`file_no`	INT	NOT NULL,
+	`file_no`	INT	PRIMARY KEY AUTO_INCREMENT,
 	`url`	VARCHAR(255)	NOT NULL
 );
 
 DROP TABLE IF EXISTS `funding`;
 
 CREATE TABLE `funding` (
-	`funding_no`	INT	NOT NULL,
+	`funding_no`	INT	PRIMARY KEY AUTO_INCREMENT,
 	`issue_number`	VARCHAR(100)	NOT NULL,
 	`registration_number`	VARCHAR(100)	NOT NULL,
 	`patient_name`	VARCHAR(20)	NOT NULL,
@@ -65,7 +65,7 @@ CREATE TABLE `funding` (
 DROP TABLE IF EXISTS `funding_detail`;
 
 CREATE TABLE `funding_detail` (
-	`funding_no`	INT	NOT NULL,
+	`funding_no`	INT	PRIMARY KEY,
 	`content`	TEXT	NULL,
 	`thumbnail_url`	VARCHAR(255)	NOT NULL
 );
@@ -73,7 +73,7 @@ CREATE TABLE `funding_detail` (
 DROP TABLE IF EXISTS `review_file`;
 
 CREATE TABLE `review_file` (
-	`review_file_no`	INT	NOT NULL,
+	`review_file_no`	INT	PRIMARY KEY AUTO_INCREMENT,
 	`review_no`	INT	NOT NULL,
 	`file_no`	INT	NOT NULL
 );
@@ -81,7 +81,7 @@ CREATE TABLE `review_file` (
 DROP TABLE IF EXISTS `admin`;
 
 CREATE TABLE `admin` (
-	`admin_no`	INT	NOT NULL,
+	`admin_no`	INT	PRIMARY KEY AUTO_INCREMENT,
 	`id`	VARCHAR(20)	NOT NULL,
 	`password`	VARCHAR(255)	NOT NULL,
 	`name`	VARCHAR(30)	NOT NULL,
@@ -91,7 +91,7 @@ CREATE TABLE `admin` (
 DROP TABLE IF EXISTS `member-funding`;
 
 CREATE TABLE `member-funding` (
-	`member_funding_no`	INT	NOT NULL,
+	`member_funding_no`	INT	PRIMARY KEY AUTO_INCREMENT,
 	`member_no`	INT	NOT NULL,
 	`funding_no`	INT	NOT NULL,
 	`payment_no`	INT	NULL,
@@ -104,15 +104,15 @@ CREATE TABLE `member-funding` (
 DROP TABLE IF EXISTS `admin-funding`;
 
 CREATE TABLE `admin-funding` (
-	`admin_funding_no`	INT	NOT NULL,
+	`admin_funding_no`	INT	PRIMARY KEY AUTO_INCREMENT,
 	`admin_no`	INT	NOT NULL,
 	`funding_no`	INT	NOT NULL
 );
 
-DROP TABLE IF EXISTS `regular_funding`;
+DROP TABLE IF EXISTS `regular_payment`;
 
-CREATE TABLE `regular_funding` (
-	`regular_funding_no`	INT	NOT NULL,
+CREATE TABLE `regular_payment` (
+	`regular_payment_no`	INT	PRIMARY KEY AUTO_INCREMENT,
 	`member_no`	INT	NOT NULL,
 	`created_at`	DATETIME	NOT NULL,
 	`method`	VARCHAR(20)	NOT NULL,
@@ -122,7 +122,7 @@ CREATE TABLE `regular_funding` (
 DROP TABLE IF EXISTS `payment`;
 
 CREATE TABLE `payment` (
-	`payment_no`	INT	NOT NULL,
+	`payment_no`	INT	PRIMARY KEY AUTO_INCREMENT,
 	`created_at`	DATETIME	NOT NULL,
 	`method`	VARCHAR(20)	NOT NULL,
 	`amount`	INT	NOT NULL
@@ -131,7 +131,7 @@ CREATE TABLE `payment` (
 DROP TABLE IF EXISTS `point_usage`;
 
 CREATE TABLE `point_usage` (
-	`point_no`	INT	NOT NULL,
+	`point_no`	INT	PRIMARY KEY AUTO_INCREMENT,
 	`member_no`	INT	NOT NULL,
 	`amount`	INT	NOT NULL,
 	`created_at`	DATETIME	NOT NULL
@@ -140,7 +140,7 @@ CREATE TABLE `point_usage` (
 DROP TABLE IF EXISTS `usage_history`;
 
 CREATE TABLE `usage_history` (
-	`Key`	INT	NOT NULL,
+	`usage_history_no`	INT	PRIMARY KEY AUTO_INCREMENT,
 	`admin_funding_no`	INT	NOT NULL,
 	`category`	VARCHAR(50)	NOT NULL,
 	`content`	VARCHAR(255)	NOT NULL,
@@ -151,7 +151,7 @@ CREATE TABLE `usage_history` (
 DROP TABLE IF EXISTS `notification`;
 
 CREATE TABLE `notification` (
-	`notification_no`	INT	NOT NULL,
+	`notification_no`	INT	PRIMARY KEY AUTO_INCREMENT,
 	`member_no`	INT	NOT NULL,
 	`category`	VARCHAR(10)	NOT NULL,
 	`content`	VARCHAR(30)	NOT NULL,
@@ -163,7 +163,7 @@ CREATE TABLE `notification` (
 DROP TABLE IF EXISTS `device`;
 
 CREATE TABLE `device` (
-	`device_no`	INT	NOT NULL,
+	`device_no`	INT	PRIMARY KEY AUTO_INCREMENT,
 	`member_no`	INT	NOT NULL,
 	`device_token`	VARCHAR(255)	NOT NULL,
 	`last_login_at`	DATETIME	NOT NULL
@@ -172,91 +172,19 @@ CREATE TABLE `device` (
 DROP TABLE IF EXISTS `notification_setting`;
 
 CREATE TABLE `notification_setting` (
-	`member_no`	INT	NOT NULL,
+	`member_no`	INT	PRIMARY KEY,
 	`funding_review`	TINYINT(1)	NOT NULL,
 	`usage_history`	TINYINT(1)	NOT NULL,
-	`regular_funding`	TINYINT(1)	NOT NULL,
+	`regular_payment`	TINYINT(1)	NOT NULL,
 	`recommend_funding`	TINYINT(1)	NOT NULL
 );
 
 DROP TABLE IF EXISTS `payment_token`;
 
 CREATE TABLE `payment_token` (
-	`member_no`	INT	NOT NULL,
+	`member_no`	INT	PRIMARY KEY,
 	`sid`	VARCHAR(255)	NULL,
 	`billing_key`	VARCHAR(255)	NULL
-);
-
-ALTER TABLE `member` ADD CONSTRAINT `PK_MEMBER` PRIMARY KEY (
-	`member_no`
-);
-
-ALTER TABLE `review` ADD CONSTRAINT `PK_REVIEW` PRIMARY KEY (
-	`review_no`
-);
-
-ALTER TABLE `point_ recharge` ADD CONSTRAINT `PK_POINT_ RECHARGE` PRIMARY KEY (
-	`point_no`
-);
-
-ALTER TABLE `file` ADD CONSTRAINT `PK_FILE` PRIMARY KEY (
-	`file_no`
-);
-
-ALTER TABLE `funding` ADD CONSTRAINT `PK_FUNDING` PRIMARY KEY (
-	`funding_no`
-);
-
-ALTER TABLE `funding_detail` ADD CONSTRAINT `PK_FUNDING_DETAIL` PRIMARY KEY (
-	`funding_no`
-);
-
-ALTER TABLE `review_file` ADD CONSTRAINT `PK_REVIEW_FILE` PRIMARY KEY (
-	`review_file_no`
-);
-
-ALTER TABLE `admin` ADD CONSTRAINT `PK_ADMIN` PRIMARY KEY (
-	`admin_no`
-);
-
-ALTER TABLE `member-funding` ADD CONSTRAINT `PK_MEMBER-FUNDING` PRIMARY KEY (
-	`member_funding_no`
-);
-
-ALTER TABLE `admin-funding` ADD CONSTRAINT `PK_ADMIN-FUNDING` PRIMARY KEY (
-	`admin_funding_no`
-);
-
-ALTER TABLE `regular_funding` ADD CONSTRAINT `PK_REGULAR_FUNDING` PRIMARY KEY (
-	`regular_funding_no`
-);
-
-ALTER TABLE `payment` ADD CONSTRAINT `PK_PAYMENT` PRIMARY KEY (
-	`payment_no`
-);
-
-ALTER TABLE `point_usage` ADD CONSTRAINT `PK_POINT_USAGE` PRIMARY KEY (
-	`point_no`
-);
-
-ALTER TABLE `usage_history` ADD CONSTRAINT `PK_USAGE_HISTORY` PRIMARY KEY (
-	`Key`
-);
-
-ALTER TABLE `notification` ADD CONSTRAINT `PK_NOTIFICATION` PRIMARY KEY (
-	`notification_no`
-);
-
-ALTER TABLE `device` ADD CONSTRAINT `PK_DEVICE` PRIMARY KEY (
-	`device_no`
-);
-
-ALTER TABLE `notification_setting` ADD CONSTRAINT `PK_NOTIFICATION_SETTING` PRIMARY KEY (
-	`member_no`
-);
-
-ALTER TABLE `payment_token` ADD CONSTRAINT `PK_PAYMENT_TOKEN` PRIMARY KEY (
-	`member_no`
 );
 
 ALTER TABLE `review` ADD CONSTRAINT `FK_funding_TO_review_1` FOREIGN KEY (
@@ -265,6 +193,8 @@ ALTER TABLE `review` ADD CONSTRAINT `FK_funding_TO_review_1` FOREIGN KEY (
 REFERENCES `funding` (
 	`funding_no`
 );
+
+select * from funding;
 
 ALTER TABLE `point_ recharge` ADD CONSTRAINT `FK_member_TO_point_ recharge_1` FOREIGN KEY (
 	`member_no`
@@ -336,7 +266,7 @@ REFERENCES `funding` (
 	`funding_no`
 );
 
-ALTER TABLE `regular_funding` ADD CONSTRAINT `FK_member_TO_regular_funding_1` FOREIGN KEY (
+ALTER TABLE `regular_payment` ADD CONSTRAINT `FK_member_TO_regular_payment_1` FOREIGN KEY (
 	`member_no`
 )
 REFERENCES `member` (
