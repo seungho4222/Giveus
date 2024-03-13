@@ -1,6 +1,7 @@
 spring:
   application:
     name: backend-eureka
+
 server:
   port: 8761
 eureka:
