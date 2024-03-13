@@ -1,30 +1,31 @@
-import BottomButton from '@/common/BottomButton'
 import * as D from '@/components/funding/FundingDetail/DetailMain.styled'
-import { FundingType } from '@/types/fundingType'
+import BottomButton from '@/common/BottomButton'
 import { percent, dDay } from '@/utils/fundingInfoAdd'
+import { useRecoilValue } from 'recoil'
+import { fundingDetailState } from '@/recoil/fundingState'
 
-const MainDesc = (props: { data: FundingType }) => {
-  const { data } = props
+const DetailMain = () => {
+  const fundingDetail = useRecoilValue(fundingDetailState)
 
   return (
     <D.Container>
       <D.DetailInfo>
         <D.Period>
-          모금기간 &nbsp;{data.start_date} ~ {data.end_date}
+          모금기간 &nbsp;{fundingDetail.start_date} ~ {fundingDetail.end_date}
         </D.Period>
         <D.Wrap>
           <D.TotalAmount>
-            {data.total_amount.toLocaleString('ko-KR')}원
+            {fundingDetail.total_amount.toLocaleString('ko-KR')}원
           </D.TotalAmount>
-          <D.Dday>{dDay(data)}</D.Dday>
+          <D.Dday>{dDay(fundingDetail)}</D.Dday>
         </D.Wrap>
         <D.Progress>
-          <D.ProgressStatus $width={percent(data)}></D.ProgressStatus>
+          <D.ProgressStatus $width={percent(fundingDetail)}></D.ProgressStatus>
         </D.Progress>
         <D.Wrap>
-          <D.Percent>{percent(data)} 달성</D.Percent>
+          <D.Percent>{percent(fundingDetail)} 달성</D.Percent>
           <D.TargetAmount>
-            {data.target_amount.toLocaleString('ko-KR')}원
+            {fundingDetail.target_amount.toLocaleString('ko-KR')}원
           </D.TargetAmount>
         </D.Wrap>
         <D.Note>* 모금 종료시 전액 일시 전달됩니다</D.Note>
@@ -35,9 +36,9 @@ const MainDesc = (props: { data: FundingType }) => {
         omnis! Optio vitae tempore ipsum assumenda, voluptas debitis dolores
         sunt adipisci?
       </D.DetailDesc>
-      <BottomButton text={"후원하기"} />
+      <BottomButton text={'후원하기'} />
     </D.Container>
   )
 }
 
-export default MainDesc
+export default DetailMain

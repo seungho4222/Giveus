@@ -2,21 +2,28 @@ import * as C from '@/components/funding/FundingListCard/FundingListCard.styled'
 import FundingInfo from './FundingInfo'
 import FundingStatus from './FundingStatus'
 import { FundingType } from '@/types/fundingType'
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
+import { useSetRecoilState } from 'recoil'
+import { fundingDetailState } from '@/recoil/fundingState'
 
 const Index = (props: { data: FundingType }) => {
   const { data } = props
+  const navigate = useNavigate()
+  const setFundingDetail = useSetRecoilState(fundingDetailState)
+
+  const onClickHanlder = () => {
+    setFundingDetail(data)
+    navigate(`/funding/${data.id}/detail-main`)
+  }
 
   return (
-    <Link to={`/funding/${data.id}`}>
-      <C.Container>
-        <C.Img src="/img/img_data.png" alt="" />
-        <C.Wrap>
-          <FundingInfo data={data} />
-          <FundingStatus data={data} />
-        </C.Wrap>
-      </C.Container>
-    </Link>
+    <C.Container onClick={() => onClickHanlder()}>
+      <C.Img src="/img/img_data.png" alt="" />
+      <C.Wrap>
+        <FundingInfo data={data} />
+        <FundingStatus data={data} />
+      </C.Wrap>
+    </C.Container>
   )
 }
 
