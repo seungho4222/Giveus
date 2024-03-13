@@ -5,6 +5,43 @@ spring:
     active: dev
   jpa:
     open-in-view: false
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        show_sql: true
+        dialect: org.hibernate.dialect.MySQLDialect
+  datasource:
+    hikari:
+      connection-test-query: select 1
+      username: root
+      password: 1234
+
 server:
   port: 8082
+  address: localhost
+  servlet:
+    context-path: /funding
+    encoding:
+      charset: utf-8
+      enabled: true
+      force: true
+management:
+  health:
+    refresh:
+      enabled: true
+
+springdoc:
+  packages-to-scan: com.giveus.funding.controller
+  swagger-ui:
+    operations-sorter: alpha
+    path: docs
+
+
+#  springdoc.packagesToScan=com.pawsitive.usergroup.controller, com.pawsitive.auth.controller, com.pawsitive.doggroup.controller, com.pawsitive.contentgroup.controller, com.pawsitive.chatgroup.controller, com.pawsitive.communitygroup.controller,com.pawsitive.questiongroup.controller, com.pawsitive.surveygroup.controller, com.pawsitive.adoptgroup.controller
+#  springdoc.pathsToMatch=/api/v1/**
+#  spring.profiles.include=oauth
+#  springdoc.swagger-ui.operations-sorter=alpha
 
