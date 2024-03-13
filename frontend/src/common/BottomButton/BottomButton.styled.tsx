@@ -6,6 +6,7 @@ export const Container = styled.div`
   position: fixed;
   bottom: 0;
   padding: 1em;
+  background-color: white;
 `
 
 export const Button = styled.button`

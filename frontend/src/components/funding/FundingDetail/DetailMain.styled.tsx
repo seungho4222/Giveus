@@ -72,4 +72,5 @@ export const Note = styled.div`
 // ---------------------------- 하단 ----------------------------
 export const DetailDesc = styled.div`
   padding: 1em;
+  margin-bottom: 80px; // BottomButton 크기 80px
 `
