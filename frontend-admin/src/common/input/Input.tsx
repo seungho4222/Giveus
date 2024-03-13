@@ -2,7 +2,8 @@ import { useState } from 'react'
 import { StyledInput } from './Input.styled'
 
 type InputProps = {
-    id?: string
+    id: string
+    type?: string
     width?: string
     height?: string
     placeholder: string
@@ -20,6 +21,7 @@ const SimpleInput = (props: InputProps) => {
     setInputValue(e.target.value)
     if (props.onInputChange) {
       props.onInputChange(e.target.value)
+      console.log(e.target.value)
     }
   }
 

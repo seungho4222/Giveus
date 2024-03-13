@@ -2,7 +2,8 @@ import styled from "styled-components"
 
 
 type InputProps = {
-    id?: string
+    id: string
+    type?: string
     width?: string
     height?: string
     placeholder: string
@@ -35,7 +36,7 @@ const StyledInput = styled.input<InputProps>`
 `
 
 
-const StyledLabel = styled.label`
+const Label = styled.label`
   color: #b0a9a9;
   font-family: 'Pretendard';
   font-size: 12px;
@@ -45,4 +46,4 @@ const StyledLabel = styled.label`
 `
 
 
-export { StyledInput, StyledLabel }
+export { StyledInput, Label }
