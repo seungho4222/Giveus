@@ -4,11 +4,12 @@ import SignupHeader from '@components/signup/SignupHeader'
 import * as s from '@pages/signup/SignupPage.styled'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { joinUser } from '@/apis/auth'
 
 const SignupPage = () => {
   const [stage, setStage] = useState(0)
   const [name, setName] = useState('')
-  const [nickName, setNickName] = useState('')
+  const [nickname, setNickname] = useState('')
 
   const navigate = useNavigate()
 
@@ -18,7 +19,7 @@ const SignupPage = () => {
   }, [stage])
 
   const singup = () => {
-    console.log(name, nickName)
+    joinUser({ name, nickname })
   }
 
   return (
@@ -34,8 +35,8 @@ const SignupPage = () => {
         )}
         {stage === 1 && (
           <SingupNicknameSection
-            value={nickName}
-            setValue={setNickName}
+            value={nickname}
+            setValue={setNickname}
             onClick={singup}
           />
         )}

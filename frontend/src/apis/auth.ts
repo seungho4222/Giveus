@@ -1,4 +1,5 @@
-import { authRequest } from '@utils/requestMethods'
+import { JoinUserType } from '@/types/reqType'
+import { authRequest, publicRequest } from '@utils/requestMethods'
 
 const url = '/api/auth'
 
@@ -19,4 +20,19 @@ export const loginSuccess = async (res: { accessToken: string }) => {
 
   authRequest.defaults.headers.Authorization = `Bearer ${accessToken}`
   setTimeout(() => refresh(), JWT_EXPIRY_TIME - 5000)
+}
+
+// 회원가입
+export const joinUser = async (req: JoinUserType) => {
+  const storage = localStorage.getItem('register')
+  const email = storage && JSON.parse(storage).email
+  const provider = storage && JSON.parse(storage).provider
+
+  return publicRequest
+    .post(`${url}/join`, {
+      ...req,
+      email: email || '',
+      provider: provider || '',
+    })
+    .then(res => console.log(res.data))
 }
