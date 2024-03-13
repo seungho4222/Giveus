@@ -17,6 +17,10 @@ const SignupPage = () => {
     stage < 0 && navigate('/login', { replace: true })
   }, [stage])
 
+  const singup = () => {
+    console.log(name, nickName)
+  }
+
   return (
     <s.Container>
       <SignupHeader value={stage} setValue={setStage} />
@@ -32,7 +36,7 @@ const SignupPage = () => {
           <SingupNicknameSection
             value={nickName}
             setValue={setNickName}
-            onClick={() => setStage(0)}
+            onClick={singup}
           />
         )}
       </s.Wrap>
