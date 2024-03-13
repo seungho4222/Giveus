@@ -1,5 +1,4 @@
 import { colors } from '@/styles/theme'
-import exp from 'constants'
 import styled from 'styled-components'
 
 export const Container = styled.div`
