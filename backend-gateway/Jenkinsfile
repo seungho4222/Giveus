@@ -15,7 +15,9 @@ pipeline {
     stage('SonarQube analysis') {
         steps {
             withSonarQubeEnv('SonarQube-server') {
-                sh 'mvn sonar:sonar'
+                dir('./backend-gateway') {
+                    sh './gradlew sonarqube'
+                }
             }
         }
     }
