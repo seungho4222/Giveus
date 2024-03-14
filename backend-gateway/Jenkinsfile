@@ -88,7 +88,7 @@ pipeline {
           }
         }
         sh 'docker pull $repository:latest'
-        sh 'docker run --name giveus_backend_gateway -d -p 8081:8080 $repository -e TZ=Asia/Seoul'
+        sh 'docker run --name giveus_backend_gateway -d -p 8081:8081 $repository -e TZ=Asia/Seoul'
 //         sh '$SSH_CMD $DOCKER compose up'
       }
     }
