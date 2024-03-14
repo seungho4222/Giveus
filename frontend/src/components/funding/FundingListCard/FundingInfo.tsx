@@ -1,5 +1,5 @@
 import * as I from '@/components/funding/FundingListCard/FundingInfo.styled'
-import { FundingType } from '@/types/funding'
+import { FundingType } from '@/types/fundingType'
 
 const FundingInfo = (props: { data: FundingType }) => {
   const { data } = props
