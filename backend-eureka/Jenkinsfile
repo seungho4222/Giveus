@@ -4,7 +4,7 @@ pipeline {
 //       AWS_PUBLIC_IP = '172.26.8.148'
 //       SSH_CMD = 'ssh -i /var/jenkins_home/.ssh/id_rsa ubuntu@j10c206.p.ssafy.io'
 //       DOCKER = 'sudo docker'
-      repository = "gudrb4869/giveus_backend_gateway"  //docker hub id와 repository 이름
+      repository = "gudrb4869/giveus_backend_eureka"  //docker hub id와 repository 이름
       DOCKERHUB_CREDENTIALS = credentials('dockerhub') // jenkins에 등록해 놓은 docker hub credentials 이름
       dockerImage = ''
       REPO = "s10-blockchain-contract-sub2/S10P22C206"
@@ -12,22 +12,9 @@ pipeline {
 
   stages {
 
-    stage('SonarQube analysis') {
-        steps {
-            withSonarQubeEnv('SonarQube-server') {
-                dir('./backend-gateway') {
-                    script {
-                        sh "chmod +x ./gradlew"
-                        sh './gradlew sonarqube'
-                    }
-                }
-            }
-        }
-    }
-
     stage('Build') {
       steps {
-        dir('./backend-gateway') {
+        dir('./backend-eureka') {
           script {
             sh "chmod +x ./gradlew"
             sh './gradlew clean build'
@@ -36,21 +23,21 @@ pipeline {
       }
     }
 
-//      stage('SonarQube analysis') {
-//         steps {
-//             withSonarQubeEnv('SonarQube-Server') {
-//                 dir('./backend') {
-//                     sh './gradlew sonarqube'
-//                 }
-//             }
-//         }
-//      }
+     stage('SonarQube analysis') {
+        steps {
+            withSonarQubeEnv('SonarQube-Server') {
+                dir('./backend-eureka') {
+                    sh './gradlew sonarqube'
+                }
+            }
+        }
+     }
 
     stage('Build image') {
       steps {
         script {
           // sh "cp ~/workspace/backend_please/backend/build/libs/backend-0.0.1-SNAPSHOT.jar ~/workspace/backend_please" // jar 파일을 현재 위치로 복사
-          dir('./backend-gateway') {
+          dir('./backend-eureka') {
             dockerImage = docker.build repository
           }
         }
@@ -81,14 +68,14 @@ pipeline {
       steps {
         script {
           try {
-            sh 'docker stop giveus_backend_gateway'
-            sh 'docker rm giveus_backend_gateway'
+            sh 'docker stop giveus_backend_eureka'
+            sh 'docker rm giveus_backend_eureka'
           } catch (e) {
             sh 'echo "fail to stop and remove container"'
           }
         }
         sh 'docker pull $repository:latest'
-        sh 'docker run --name giveus_backend_gateway -d -p 8081:8081 $repository -e TZ=Asia/Seoul'
+        sh 'docker run --name giveus_backend_eureka -d -p 8761:8761 $repository -e TZ=Asia/Seoul'
 //         sh '$SSH_CMD $DOCKER compose up'
       }
     }
