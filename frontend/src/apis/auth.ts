@@ -29,7 +29,7 @@ export const joinUser = async (req: JoinUserType) => {
   const provider = storage && JSON.parse(storage).provider
 
   return publicRequest
-    .post(`${url}/join`, {
+    .put(`${url}/join`, {
       ...req,
       email: email || '',
       provider: provider || '',
