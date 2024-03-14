@@ -30,7 +30,7 @@ export const Progress = styled.div`
   height: 8px;
 `
 
-export const ProgressNow = styled.div<{ $width: string }>`
+export const ProgressStatus = styled.div<{ $width: string }>`
   position: absolute;
   background-color: ${colors.blue01};
   border-radius: 20px;

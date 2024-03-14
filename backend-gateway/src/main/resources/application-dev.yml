@@ -4,25 +4,3 @@ eureka:
     fetch-registry: true
     service-url:
       defaultZone: http://localhost:8761/eureka
-
-spring:
-  cloud:
-    gateway:
-      mvc:
-        routes:
-  #        - id: auth
-  #          uri: lb://MY-FIRST-SERVICE
-  #          predicates:
-  #            - Path=/auth/**
-          - id: funding
-            uri: lb://BACKEND-GATEWAY
-            predicates:
-              - Path=/funding/**
-  #        - id: payment
-  #          uri: http://localhost:8084
-  #          predicates:
-  #            - Path=/payment/**
-  #        - id: notify
-  #          uri: http://localhost:8085
-  #          predicates:
-  #            - Path=/notify/**
