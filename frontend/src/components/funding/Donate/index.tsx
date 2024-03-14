@@ -1,14 +1,18 @@
 import * as d from '@/components/funding/Donate/Donate.styled'
+import AmountSection from './AmountSection'
+import PaymentSection from './PaymentSection'
+import AnonymousSection from './AnonymousSection'
+import FinalAmountSection from './FinalAmountSection'
 
 const Index = () => {
   return (
     <d.Container>
-      <p>amount</p>
-      <p>payment</p>
-      <p>anonymous</p>
-      <p>finalAmount</p>
+      <AmountSection />
+      <PaymentSection />
+      <AnonymousSection />
+      <FinalAmountSection />
     </d.Container>
-  );
-};
+  )
+}
 
-export default Index;
+export default Index
