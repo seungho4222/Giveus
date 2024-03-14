@@ -1,4 +1,4 @@
-package com.giveus.auth.config;
+package com.giveus.auth.common.util;
 
 
 import com.giveus.auth.dto.response.AuthTokenRes;

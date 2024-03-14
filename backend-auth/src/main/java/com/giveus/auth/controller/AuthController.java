@@ -1,8 +1,5 @@
 package com.giveus.auth.controller;
 
-import static org.springframework.http.HttpStatus.OK;
-
-import com.giveus.auth.common.BaseResponseBody;
 import com.giveus.auth.dto.request.AuthJoinPostReq;
 import com.giveus.auth.service.AuthService;
 import lombok.RequiredArgsConstructor;

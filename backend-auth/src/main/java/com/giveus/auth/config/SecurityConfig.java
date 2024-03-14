@@ -41,6 +41,7 @@ public class SecurityConfig {
                 .cors(httpSecurityCorsConfigurer -> httpSecurityCorsConfigurer.disable())
                 .csrf(config -> config.disable())
                 .sessionManagement(config -> config.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .formLogin(config -> config.disable())
                 // 요청에 대한 인증 설정
                 .authorizeHttpRequests(config -> config
                                 .requestMatchers("/**").permitAll()
@@ -53,6 +54,7 @@ public class SecurityConfig {
                 )
                 // OAuth2 로그인 설정
                 .oauth2Login(config -> config
+//                        .loginPage("/api/auth/noAuth")
                         .userInfoEndpoint(config2 -> config2.userService(customOAuth2UserService)) // OAuth2 로그인시 사용자 정보를 가져오는 엔드포인트와 사용자 서비스를 설정
 //                        .failureHandler(oAuth2LoginFailureHandler) // OAuth2 로그인 실패시 처리할 핸들러를 지정
                         .successHandler(oAuth2LoginSuccessHandler) // OAuth2 로그인 성공시 처리할 핸들러를 지정
