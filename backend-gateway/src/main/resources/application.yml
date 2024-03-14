@@ -26,3 +26,6 @@ spring:
   #          uri: http://localhost:8085
   #          predicates:
   #            - Path=/notify/**
+
+jwt:
+  secret: dyAeHubOOc8KaOfYB6XEQoEj1QzRlVgtjNL8PYs1A1tymZvvqkcEU7L1imkKHeDa
