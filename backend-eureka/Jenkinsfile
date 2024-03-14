@@ -12,19 +12,6 @@ pipeline {
 
   stages {
 
-    stage('SonarQube analysis') {
-        steps {
-            withSonarQubeEnv('SonarQube-server') {
-                dir('./backend-eureka') {
-                    script {
-                        sh "chmod +x ./gradlew"
-                        sh './gradlew sonarqube'
-                    }
-                }
-            }
-        }
-    }
-
     stage('Build') {
       steps {
         dir('./backend-eureka') {
@@ -36,15 +23,15 @@ pipeline {
       }
     }
 
-//      stage('SonarQube analysis') {
-//         steps {
-//             withSonarQubeEnv('SonarQube-Server') {
-//                 dir('./backend') {
-//                     sh './gradlew sonarqube'
-//                 }
-//             }
-//         }
-//      }
+     stage('SonarQube analysis') {
+        steps {
+            withSonarQubeEnv('SonarQube-Server') {
+                dir('./backend-eureka') {
+                    sh './gradlew sonarqube'
+                }
+            }
+        }
+     }
 
     stage('Build image') {
       steps {
