@@ -1,8 +1,7 @@
 import { atom } from 'recoil'
 import { data } from '@/components/funding/FundingListCard/data'
-import { FundingType } from '@/types/fundingType'
-import { DonerType } from '@/types/donerType'
-import { MedicalExpenseType } from '@/types/medicalExpenseType'
+import { DonerType, FundingType, MedicalExpenseType } from '@/types/fundingType'
+
 
 export const fundingState = atom<FundingType[]>({
   key: 'fundingState',
