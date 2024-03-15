@@ -1,13 +1,18 @@
+import { mypageMenuList } from '@assets/data/mypageMenuList'
+import * as m from '@components/mypage/MypageMenu/MypageMenu.styled'
+
 const Index = () => {
   return (
-    <div>
-      <ul>
-        <li>포인트 관리</li>
-        <li>정기 결제</li>
-        <li>후원내역</li>
-        <li>설정</li>
-      </ul>
-    </div>
+    <m.Container>
+      <m.Ul>
+        {mypageMenuList.map(item => (
+          <m.li key={item.key}>
+            <img src={item.imgSrc} />
+            <span>{item.name}</span>
+          </m.li>
+        ))}
+      </m.Ul>
+    </m.Container>
   )
 }
 
