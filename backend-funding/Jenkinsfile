@@ -88,7 +88,7 @@ pipeline {
           }
         }
         sh 'docker pull $repository:latest'
-        sh 'docker run --name giveus_backend_funding -d -p 8083:8082 $repository -e TZ=Asia/Seoul'
+        sh 'docker run --name giveus_backend_funding -d -p 8083:8083 $repository -e TZ=Asia/Seoul'
 //         sh '$SSH_CMD $DOCKER compose up'
       }
     }
