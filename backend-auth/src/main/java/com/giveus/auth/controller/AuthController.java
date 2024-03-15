@@ -19,8 +19,15 @@ public class AuthController {
     @PutMapping("/join")
     public ResponseEntity<?> updateMember(@RequestBody AuthJoinPostReq userJoinPostReq) {
         log.info("회원가입 요청 " + userJoinPostReq.toString());
-        authService.updateMember(userJoinPostReq);
 
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(authService.updateMember(userJoinPostReq), HttpStatus.OK);
     }
+
+    @GetMapping("/{memberNo}")
+    public ResponseEntity<?> findByMemberNo(@PathVariable int memberNo) {
+        log.info("회원정보조회 요청 " + memberNo);
+
+        return new ResponseEntity<>(authService.findByMemberNo(memberNo), HttpStatus.OK);
+    }
+
 }

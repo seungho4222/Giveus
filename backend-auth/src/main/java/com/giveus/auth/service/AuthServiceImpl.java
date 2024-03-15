@@ -1,6 +1,7 @@
 package com.giveus.auth.service;
 
 import com.giveus.auth.dto.request.AuthJoinPostReq;
+import com.giveus.auth.dto.response.MemberInfoRes;
 import com.giveus.auth.entity.Member;
 import com.giveus.auth.exception.NoMemberExistException;
 import com.giveus.auth.repository.AuthRepository;
@@ -18,7 +19,7 @@ public class AuthServiceImpl implements AuthService {
     private final AuthRepository authRepository;
 
     @Override
-    public void updateMember(AuthJoinPostReq userJoinPostReq) {
+    public MemberInfoRes updateMember(AuthJoinPostReq userJoinPostReq) {
         String email = userJoinPostReq.getEmail();
         String provider = userJoinPostReq.getProvider();
 
@@ -28,11 +29,21 @@ public class AuthServiceImpl implements AuthService {
         member.updateNickname(userJoinPostReq.getNickname());
 
         authRepository.save(member);
+
+        return MemberInfoRes.from(member);
     }
 
     @Override
     public Optional<Member> findByProviderAndKey(String provider, String key) {
         return authRepository.findByProviderAndKey(provider, key);
+    }
+
+    @Override
+    public MemberInfoRes findByMemberNo(int memberNo) {
+        log.info("=== AuthServiceImpl - findByMemberNum === \n memberNo : {}", memberNo);
+        Member member = authRepository.findByMemberNo(memberNo).orElseThrow(NoMemberExistException::new);
+
+        return MemberInfoRes.from(member);
     }
 
 }
