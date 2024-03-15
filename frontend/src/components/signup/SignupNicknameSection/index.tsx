@@ -1,4 +1,4 @@
-import { SignupInputSectionType } from '@/types/signupType'
+import { SignupInputSectionType } from '@/types/authType'
 import FullButton from '@common/FullButton'
 import * as s from '@components/signup/SignupNicknameSection/SignupNicknameSection.styled'
 import { useState } from 'react'
