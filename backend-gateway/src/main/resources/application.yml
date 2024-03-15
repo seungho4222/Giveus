@@ -17,7 +17,7 @@ spring:
           - id: funding
             uri: lb://BACKEND-FUNDING
             predicates:
-              - Path=/funding/**
+              - Path=/api/v1/funding/**
   #        - id: payment
   #          uri: http://localhost:8084
   #          predicates:

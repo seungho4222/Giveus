@@ -8,6 +8,7 @@ import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.security.SecurityScheme;
 import io.swagger.v3.oas.annotations.servers.Server;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import lombok.RequiredArgsConstructor;
 import org.springdoc.core.models.GroupedOpenApi;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,7 +16,7 @@ import org.springframework.context.annotation.Configuration;
 @OpenAPIDefinition(
         servers = {
                 @Server(url = "https://i10c111.p.ssafy.io", description = "배포 서버 API"),
-                @Server(url = "http://localhost:8080", description = "Localhost API"),
+                @Server(url = "http://localhost:8080", description = "로컬 API"),
         },
         info = @Info(
                 title = "Pawsitive API Document",
@@ -24,26 +25,11 @@ import org.springframework.context.annotation.Configuration;
                 contact = @Contact(name = "yihoney", email = "109622@naver.com")),
         tags = {
                 @Tag(name = "01.User", description = "유저 기능"),
-                @Tag(name = "02.Auth", description = "인증 기능"),
-                @Tag(name = "03.Dog", description = "유기견 기능"),
-                @Tag(name = "04.Content", description = "펫과사전 기능"),
-                @Tag(name = "05.ChatRoom", description = "채팅방 기능"),
-                @Tag(name = "06.Community", description = "커뮤니티 기능"),
-                @Tag(name = "07.Question", description = "오늘의 질문 기능"),
-                @Tag(name = "08.Surveys", description = "설문 기능"),
-                @Tag(name = "09.Member-Adoption", description = "회원 입양 기능"),
-                @Tag(name = "10.Shelter-Adoption", description = "보호소 입양 기능"),
-                @Tag(name = "11.Openvidu", description = "화상채팅 기능")
         }
 )
-@SecurityRequirement(name = "JWT")
-@SecurityScheme(
-        name = "JWT",
-        type = SecuritySchemeType.HTTP,
-        bearerFormat = "JWT",
-        scheme = "bearer"
-)
+
 @Configuration
+@RequiredArgsConstructor
 public class SwaggerConfig {
 
     @Bean
@@ -54,8 +40,5 @@ public class SwaggerConfig {
                 .build();
     }
 
-    public static final String SECURITY_SCHEMA_NAME = "JWT";
-    public static final String AUTHORIZATION_SCOPE_GLOBAL = "global";
-    public static final String AUTHORIZATION_SCOPE_GLOBAL_DESC = "accessEverything";
 
 }
