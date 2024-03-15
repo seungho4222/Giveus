@@ -11,3 +11,8 @@ export type DonatePaymentSectionType = {
   payment: 'toss' | 'kakao'
   setPayment: Dispatch<SetStateAction<'toss' | 'kakao'>>
 }
+
+export type DonateAnonymousSectionType = {
+  isPublic: boolean,
+  setIsPublic: Dispatch<SetStateAction<boolean>>
+}

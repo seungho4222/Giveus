@@ -27,7 +27,6 @@ export const Button = styled.button<{ $active: boolean }>`
 `
 
 export const RadioInut = styled.input`
-  border: none;
   margin-right: 0.5em;
   margin-block: auto;
 `

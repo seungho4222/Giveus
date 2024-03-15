@@ -9,6 +9,7 @@ const Index = () => {
   const [amount, setAmount] = useState(0)
   const [point, setPoint] = useState(0)
   const [payment, setPayment] = useState<'toss' | 'kakao'>('toss')
+  const [isPublic, setIsPublic] = useState(false)
 
   return (
     <d.Container>
@@ -19,7 +20,7 @@ const Index = () => {
         setPoint={setPoint}
       />
       <PaymentSection payment={payment} setPayment={setPayment} />
-      <AnonymousSection />
+      <AnonymousSection isPublic={isPublic} setIsPublic={setIsPublic} />
       <FinalAmountSection />
     </d.Container>
   )
