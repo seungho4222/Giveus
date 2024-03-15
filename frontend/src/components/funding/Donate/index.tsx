@@ -24,7 +24,7 @@ const Index = () => {
       <AnonymousSection isPublic={isPublic} setIsPublic={setIsPublic} />
       <FinalAmountSection amount={amount} point={point} />
       <d.Button>
-        <FullButton text="결제하기" disabled={true} onClick={() => {}} />
+        <FullButton text="결제하기" disabled={false} onClick={() => {}} />
       </d.Button>
     </d.Container>
   )
