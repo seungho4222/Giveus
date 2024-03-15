@@ -3,7 +3,7 @@ eureka:
     register-with-eureka: true
     fetch-registry: true
     service-url:
-      defaultZone: http://j10c108.p.ssafy.io:8761/eureka
+      defaultZone: http://j10c206.p.ssafy.io:8761/eureka
 
 server:
   port: 8082
@@ -18,7 +18,7 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://j10c108.p.ssafy.io:3306/giveus?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Seoul&zeroDateTimeBehavior=convertToNull&rewriteBatchedStatements=true
+    url: jdbc:mysql://j10c206.p.ssafy.io:3306/giveus?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Seoul&zeroDateTimeBehavior=convertToNull&rewriteBatchedStatements=true
     hikari:
       username: root
       password: giveus2024~!
@@ -35,7 +35,7 @@ spring:
               - profile_nickname
               - profile_image
               - account_email
-            redirect-uri: "http://j10c108.p.ssafy.io:8082/login/oauth2/code/kakao" #
+            redirect-uri: "http://j10c206.p.ssafy.io:8082/login/oauth2/code/kakao" #
             client-name: Kakao
         provider:
           kakao:
@@ -47,6 +47,6 @@ spring:
 
 redirect:
   success:
-    http://j10c108.p.ssafy.io:5173/login/oauth2
+    http://j10c206.p.ssafy.io:5173/login/oauth2
 
 # https://j10c108.p.ssafy.io
