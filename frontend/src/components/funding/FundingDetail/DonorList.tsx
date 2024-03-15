@@ -1,5 +1,5 @@
 import * as D from '@/components/funding/FundingDetail/DonerList.styled'
-import { donerListState } from '@/recoil/fundingState'
+import { donerListState } from '@/stores/fundingState'
 import { colors } from '@/styles/theme'
 import { useRecoilValue } from 'recoil'
 
