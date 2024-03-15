@@ -10,10 +10,10 @@ spring:
     gateway:
       mvc:
         routes:
-          #        - id: auth
-          #          uri: lb://MY-FIRST-SERVICE
-          #          predicates:
-          #            - Path=/auth/**
+          - id: auth
+            uri: lb://BACKEND-AUTH
+            predicates:
+              - Path=/auth/**
           - id: funding
             uri: lb://BACKEND-FUNDING
             predicates:
@@ -26,3 +26,6 @@ spring:
   #          uri: http://localhost:8085
   #          predicates:
   #            - Path=/notify/**
+
+jwt:
+  secret: dyAeHubOOc8KaOfYB6XEQoEj1QzRlVgtjNL8PYs1A1tymZvvqkcEU7L1imkKHeDa
