@@ -13,6 +13,11 @@ export type DonatePaymentSectionType = {
 }
 
 export type DonateAnonymousSectionType = {
-  isPublic: boolean,
+  isPublic: boolean
   setIsPublic: Dispatch<SetStateAction<boolean>>
+}
+
+export type DonateFinalAmountSectionType = {
+  amount: number
+  point: number
 }

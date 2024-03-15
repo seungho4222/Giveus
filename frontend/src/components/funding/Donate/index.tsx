@@ -4,6 +4,7 @@ import PaymentSection from './PaymentSection'
 import AnonymousSection from './AnonymousSection'
 import FinalAmountSection from './FinalAmountSection'
 import { useState } from 'react'
+import FullButton from '@/common/FullButton'
 
 const Index = () => {
   const [amount, setAmount] = useState(0)
@@ -21,7 +22,10 @@ const Index = () => {
       />
       <PaymentSection payment={payment} setPayment={setPayment} />
       <AnonymousSection isPublic={isPublic} setIsPublic={setIsPublic} />
-      <FinalAmountSection />
+      <FinalAmountSection amount={amount} point={point} />
+      <d.Button>
+        <FullButton text="결제하기" disabled={true} onClick={() => {}} />
+      </d.Button>
     </d.Container>
   )
 }
