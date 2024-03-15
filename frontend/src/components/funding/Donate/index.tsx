@@ -8,11 +8,17 @@ import { useState } from 'react'
 const Index = () => {
   const [amount, setAmount] = useState(0)
   const [point, setPoint] = useState(0)
+  const [payment, setPayment] = useState<'toss' | 'kakao'>('toss')
 
   return (
     <d.Container>
-      <AmountSection amount={amount} setAmount={setAmount} point={point} setPoint={setPoint}/>
-      <PaymentSection />
+      <AmountSection
+        amount={amount}
+        setAmount={setAmount}
+        point={point}
+        setPoint={setPoint}
+      />
+      <PaymentSection payment={payment} setPayment={setPayment} />
       <AnonymousSection />
       <FinalAmountSection />
     </d.Container>
