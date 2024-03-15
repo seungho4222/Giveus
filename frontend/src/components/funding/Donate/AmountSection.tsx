@@ -53,7 +53,7 @@ const AmountSection = (props: DonateAmountSectionType) => {
           }
           max={userPoint}
         />
-        <a.SmallButton>전액사용</a.SmallButton>
+        <a.SmallButton onClick={() => setPoint(userPoint)}>전액사용</a.SmallButton>
       </a.Wrap>
     </a.Container>
   )
