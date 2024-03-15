@@ -4,7 +4,7 @@ import FundingStatus from './FundingStatus'
 import { FundingType } from '@/types/fundingType'
 import { useNavigate } from 'react-router-dom'
 import { useSetRecoilState } from 'recoil'
-import { fundingDetailState } from '@/recoil/fundingState'
+import { fundingDetailState } from '@/stores/fundingState'
 
 const Index = (props: { data: FundingType }) => {
   const { data } = props
