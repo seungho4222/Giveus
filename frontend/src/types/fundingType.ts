@@ -1,5 +1,3 @@
-import { Dispatch, SetStateAction } from "react"
-
 export type FundingType = {
   id: string,
   title: string,
@@ -23,11 +21,4 @@ export type MedicalExpenseType = {
   content: string,
   amount: number,
   count: number,
-}
-
-export type DonateAmountSectionType = {
-  amount: number
-  setAmount: Dispatch<SetStateAction<number>>
-  point: number
-  setPoint: Dispatch<SetStateAction<number>>
 }

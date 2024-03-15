@@ -1,5 +1,5 @@
 import * as a from '@/components/funding/Donate/AmountSection.styled'
-import { DonateAmountSectionType } from '@/types/fundingType'
+import { DonateAmountSectionType } from '@/types/donateType'
 import { useState } from 'react'
 
 const AmountSection = (props: DonateAmountSectionType) => {
