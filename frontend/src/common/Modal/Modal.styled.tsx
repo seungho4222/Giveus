@@ -10,6 +10,14 @@ export const Container = styled.div<{ $open: boolean }>`
   height: 100vh;
   background-color: #fff;
   visibility: ${props => (props.$open ? 'visible' : 'hidden')};
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    display: none; /* 크롬, 사파리, 오페라, 엣지 */
+    width: 0; /* Remove scrollbar space */
+    height: 0;
+    background: transparent; /* Optional: just make scrollbar invisible */
+    -webkit-appearance: none;
+  }
 `
 
 export const Wrap = styled.div`
