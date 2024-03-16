@@ -1,4 +1,4 @@
-import * as C from '@/components/funding/FundingDetail/FundingDetailCommon.styled'
+import * as c from '@/components/funding/FundingDetail/FundingDetailCommon.styled'
 import { FundingType } from '@/types/fundingType'
 import { Link } from 'react-router-dom'
 
@@ -6,15 +6,15 @@ const FundingDetailCommon = (props: { data: FundingType }) => {
   const { data } = props
 
   return (
-    <C.Container>
+    <c.Container>
       <Link to="/funding">
-        <C.BackBtn src="/icon/icon_backBtn.png" />
+        <c.BackBtn src="/icon/icon_backBtn.png" />
       </Link>
-      <C.Wrap>
-        <C.Title>{data.title}</C.Title>
-        <C.Status>{data.status}</C.Status>
-      </C.Wrap>
-    </C.Container>
+      <c.Wrap>
+        <c.Title>{data.title}</c.Title>
+        <c.Status>{data.status}</c.Status>
+      </c.Wrap>
+    </c.Container>
   )
 }
 

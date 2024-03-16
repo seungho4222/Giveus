@@ -1,4 +1,4 @@
-import * as C from '@/components/funding/FundingListCard/FundingListCard.styled'
+import * as c from '@/components/funding/FundingListCard/FundingListCard.styled'
 import FundingInfo from './FundingInfo'
 import FundingStatus from './FundingStatus'
 import { FundingType } from '@/types/fundingType'
@@ -17,13 +17,13 @@ const Index = (props: { data: FundingType }) => {
   }
 
   return (
-    <C.Container onClick={() => onClickHanlder()}>
-      <C.Img src="/img/img_data.png" alt="" />
-      <C.Wrap>
+    <c.Container onClick={() => onClickHanlder()}>
+      <c.Img src="/img/img_data.png" alt="" />
+      <c.Wrap>
         <FundingInfo data={data} />
         <FundingStatus data={data} />
-      </C.Wrap>
-    </C.Container>
+      </c.Wrap>
+    </c.Container>
   )
 }
 

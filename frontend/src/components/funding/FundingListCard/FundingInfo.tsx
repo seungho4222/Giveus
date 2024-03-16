@@ -1,19 +1,19 @@
-import * as I from '@/components/funding/FundingListCard/FundingInfo.styled'
+import * as i from '@/components/funding/FundingListCard/FundingInfo.styled'
 import { FundingType } from '@/types/fundingType'
 
 const FundingInfo = (props: { data: FundingType }) => {
   const { data } = props
 
   return (
-    <I.Container>
-      <I.Wrap>
-        <I.Title>{data.title}</I.Title>
-        <I.Period>
+    <i.Container>
+      <i.Wrap>
+        <i.Title>{data.title}</i.Title>
+        <i.Period>
           {data.startDate} ~ {data.endDate}
-        </I.Period>
-      </I.Wrap>
-      <I.Status>{data.status}</I.Status>
-    </I.Container>
+        </i.Period>
+      </i.Wrap>
+      <i.Status>{data.status}</i.Status>
+    </i.Container>
   )
 }
 
