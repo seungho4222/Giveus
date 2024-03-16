@@ -16,7 +16,7 @@ const FundingPage = () => {
       </Layout>
       <FilterBtn />
       {funding.map(item => (
-        <FundingListCard key={item.id} data={item} />
+        <FundingListCard key={item.fundingNo} data={item} />
       ))}
       <Navbar current="funding" />
     </>

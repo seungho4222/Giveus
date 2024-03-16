@@ -15,9 +15,9 @@ const DonorList = () => {
             명이 기부에 참여했습니다.
           </D.ListTrue>
           {donorList.map(item => (
-            <D.Card key={item.id}>
+            <D.Card key={item.memberFundingNo}>
               <D.Wrap>
-                <D.Date>{item.create_at}</D.Date>
+                <D.Date>{item.createdAt}</D.Date>
                 <D.Desc>기부금 기부</D.Desc>
               </D.Wrap>
               <D.Wrap>

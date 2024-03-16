@@ -11,7 +11,7 @@ const Index = (props: { data: FundingType }) => {
 
   const onClickHandler = (page: string) => {
     setTap(page)
-    navigate(`/funding/${data.id}/${page}`)
+    navigate(`/funding/${data.fundingNo}/${page}`)
   }
 
   return (

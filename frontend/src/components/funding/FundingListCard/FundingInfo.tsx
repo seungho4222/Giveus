@@ -9,7 +9,7 @@ const FundingInfo = (props: { data: FundingType }) => {
       <I.Wrap>
         <I.Title>{data.title}</I.Title>
         <I.Period>
-          {data.start_date} ~ {data.end_date}
+          {data.startDate} ~ {data.endDate}
         </I.Period>
       </I.Wrap>
       <I.Status>{data.status}</I.Status>

@@ -16,11 +16,11 @@ const DetailMain = () => {
     <D.Container>
       <D.DetailInfo>
         <D.Period>
-          모금기간 &nbsp;{fundingDetail.start_date} ~ {fundingDetail.end_date}
+          모금기간 &nbsp;{fundingDetail.startDate} ~ {fundingDetail.endDate}
         </D.Period>
         <D.Wrap>
           <D.TotalAmount>
-            {fundingDetail.total_amount.toLocaleString('ko-KR')}원
+            {fundingDetail.totalAmount.toLocaleString('ko-KR')}원
           </D.TotalAmount>
           <D.Dday>{dDay(fundingDetail)}</D.Dday>
         </D.Wrap>
@@ -30,7 +30,7 @@ const DetailMain = () => {
         <D.Wrap>
           <D.Percent>{percent(fundingDetail)} 달성</D.Percent>
           <D.TargetAmount>
-            {fundingDetail.target_amount.toLocaleString('ko-KR')}원
+            {fundingDetail.targetAmount.toLocaleString('ko-KR')}원
           </D.TargetAmount>
         </D.Wrap>
         <D.Note>* 모금 종료시 전액 일시 전달됩니다</D.Note>

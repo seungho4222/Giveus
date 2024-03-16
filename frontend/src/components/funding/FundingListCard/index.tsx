@@ -13,7 +13,7 @@ const Index = (props: { data: FundingType }) => {
 
   const onClickHanlder = () => {
     setFundingDetail(data)
-    navigate(`/funding/${data.id}/detail-main`)
+    navigate(`/funding/${data.fundingNo}/detail-main`)
   }
 
   return (

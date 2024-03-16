@@ -8,7 +8,7 @@ const FundingStatus = (props: { data: FundingType }) => {
   return (
     <S.Container>
       <S.Wrap>
-        <S.Text>모금액 {data.total_amount.toLocaleString('ko-KR')}원</S.Text>
+        <S.Text>모금액 {data.totalAmount.toLocaleString('ko-KR')}원</S.Text>
         <S.Text>
           <S.Percent>{percent(data)}</S.Percent> {dDay(data)}
         </S.Text>

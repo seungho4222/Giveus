@@ -21,7 +21,7 @@ const MedicalExpense = () => {
             합계 {totalExpense().toLocaleString('ko-KR')}원
           </M.TotalExpense>
           {medicalExpense.map(item => (
-            <M.Card key={item.id}>
+            <M.Card key={item.usageHistoryNo}>
               <M.Icon src="/icon/icon_document_blue.png" />
               <M.Wrap>
                 <M.Category>{item.category}</M.Category>
