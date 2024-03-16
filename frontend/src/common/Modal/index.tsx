@@ -2,7 +2,7 @@ import { ModalType } from '@/types/commonType'
 
 import * as m from '@common/Modal/Modal.styled'
 
-const Index = ({ name, children, open, onClickToggleModal }: ModalType) => {
+const Index = ({ name, children, open, onClose }: ModalType) => {
   return (
     <m.Container $open={open}>
       <m.Wrap>
@@ -10,7 +10,7 @@ const Index = ({ name, children, open, onClickToggleModal }: ModalType) => {
         {children}
       </m.Wrap>
       <m.Backdrop>
-        <img src="/icon/icon_close.png" alt="" onClick={onClickToggleModal} />
+        <img src="/icon/icon_close.png" alt="" onClick={onClose} />
       </m.Backdrop>
     </m.Container>
   )

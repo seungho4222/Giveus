@@ -20,5 +20,5 @@ export type ModalType = {
   name: string
   children: React.ReactNode
   open: boolean
-  onClickToggleModal: () => void
+  onClose: () => void
 }
