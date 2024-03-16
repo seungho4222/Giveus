@@ -12,7 +12,7 @@ const FundingInfo = (props: { data: FundingType }) => {
           {data.startDate} ~ {data.endDate}
         </i.Period>
       </i.Wrap>
-      <i.Status>{data.status}</i.Status>
+      <i.Status $status={data.status === '진행중'}>{data.status}</i.Status>
     </i.Container>
   )
 }

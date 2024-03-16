@@ -12,7 +12,7 @@ const FundingDetailCommon = (props: { data: FundingType }) => {
       </Link>
       <c.Wrap>
         <c.Title>{data.title}</c.Title>
-        <c.Status>{data.status}</c.Status>
+        <c.Status $status={data.status === '진행중'}>{data.status}</c.Status>
       </c.Wrap>
     </c.Container>
   )

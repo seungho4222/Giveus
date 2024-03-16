@@ -10,7 +10,6 @@ import Review from '../Review'
 
 const DetailMain = () => {
   const fundingDetail = useRecoilValue(fundingDetailState)
-  const memberFunding: boolean = true // test
   const review: boolean = true // test
 
   const [open, setOpen] = useState<boolean>(false)
@@ -47,19 +46,25 @@ const DetailMain = () => {
       <d.Button>
         <FullButton
           text={
-            memberFunding
-              ? review
-                ? '후기 확인하기'
-                : '작성된 후기가 없습니다'
-              : '후원하기'
+            fundingDetail.status === '진행중'
+              ? '후원하기'
+              : review
+              ? '후기 확인하기'
+              : '작성된 후기가 없습니다'
           }
-          disabled={memberFunding && !review}
+          disabled={fundingDetail.status === '진행완료' && !review}
           onClick={() => setOpen(true)}
         />
       </d.Button>
       <Modal
         name={'후기'}
-        children={memberFunding && review ? <Review /> : <Donate />}
+        children={
+          fundingDetail.status === '진행완료' && review ? (
+            <Review />
+          ) : (
+            <Donate />
+          )
+        }
         open={open}
         onClose={() => setOpen(false)}
       />

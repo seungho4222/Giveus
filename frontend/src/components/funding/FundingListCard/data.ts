@@ -24,7 +24,7 @@ export const data = [
     issueNumber: '2',
     registrationNumber: '2',
     patientName: '아무개',
-    status: '진행중',
+    status: '진행완료',
     birth: '1999-11-11',
     gender: 'F',
     diseaseName: '장염',
