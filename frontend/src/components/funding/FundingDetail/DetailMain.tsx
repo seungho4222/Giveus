@@ -1,11 +1,11 @@
 import * as D from '@/components/funding/FundingDetail/DetailMain.styled'
-import BottomButton from '@/common/BottomButton'
 import { percent, dDay } from '@/utils/fundingInfoAdd'
 import { useRecoilValue } from 'recoil'
 import { fundingDetailState } from '@/stores/fundingState'
 import Modal from '@/common/Modal'
 import { useState } from 'react'
 import Donate from '../Donate'
+import FullButton from '@/common/FullButton'
 
 const DetailMain = () => {
   const fundingDetail = useRecoilValue(fundingDetailState)
@@ -41,9 +41,9 @@ const DetailMain = () => {
         omnis! Optio vitae tempore ipsum assumenda, voluptas debitis dolores
         sunt adipisci?
       </D.DetailDesc>
-      <div onClick={() => setOpen(true)}>
-        <BottomButton text={'후원하기'} />
-      </div>
+      <D.Button>
+        <FullButton text={'후원하기'} disabled={false} onClick={() => setOpen(true)} />
+      </D.Button>
       <Modal
         name={'후원하기'}
         children={<Donate />}
