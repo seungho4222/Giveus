@@ -1,4 +1,4 @@
-import * as M from '@/components/funding/FundingDetail/MedicalExpense.styled'
+import * as m from '@/components/funding/FundingDetail/MedicalExpense.styled'
 import { medicalExpenseState } from '@/stores/fundingState'
 import { MedicalExpenseType } from '@/types/fundingType'
 import { useRecoilValue } from 'recoil'
@@ -14,29 +14,29 @@ const MedicalExpense = () => {
   }
 
   return (
-    <M.Container>
+    <m.Container>
       {medicalExpense.length ? (
-        <M.ExpenseTrue>
-          <M.TotalExpense>
+        <m.ExpenseTrue>
+          <m.TotalExpense>
             합계 {totalExpense().toLocaleString('ko-KR')}원
-          </M.TotalExpense>
+          </m.TotalExpense>
           {medicalExpense.map(item => (
-            <M.Card key={item.id}>
-              <M.Icon src="/icon/icon_document_blue.png" />
-              <M.Wrap>
-                <M.Category>{item.category}</M.Category>
-                <M.SubWrap>
-                  <M.Content>{item.content}</M.Content>
-                  <M.Amount>{item.amount.toLocaleString('ko-KR')}원</M.Amount>
-                </M.SubWrap>
-              </M.Wrap>
-            </M.Card>
+            <m.Card key={item.usageHistoryNo}>
+              <m.Icon src="/icon/icon_document_blue.png" />
+              <m.Wrap>
+                <m.Category>{item.category}</m.Category>
+                <m.SubWrap>
+                  <m.Content>{item.content}</m.Content>
+                  <m.Amount>{item.amount.toLocaleString('ko-KR')}원</m.Amount>
+                </m.SubWrap>
+              </m.Wrap>
+            </m.Card>
           ))}
-        </M.ExpenseTrue>
+        </m.ExpenseTrue>
       ) : (
-        <M.ExpenseFalse>등록된 진료비 사용 내역이 없습니다.</M.ExpenseFalse>
+        <m.ExpenseFalse>등록된 진료비 사용 내역이 없습니다.</m.ExpenseFalse>
       )}
-    </M.Container>
+    </m.Container>
   )
 }
 

@@ -9,7 +9,7 @@ const FundingDetailPage = () => {
   const { id } = useParams();
 
   const getFunding = () => {
-    setFunding(data.filter(item => ( item.id == id))[0])
+    setFunding(data.filter(item => ( item.fundingNo === Number(id)))[0])
   }
   
   useEffect(() => {

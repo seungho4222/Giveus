@@ -74,3 +74,11 @@ export const DetailDesc = styled.div`
   padding: 1em;
   margin-bottom: 80px; // BottomButton 크기 80px
 `
+
+export const Button = styled.div`
+  width: 375px;
+  position: fixed;
+  bottom: 0;
+  padding: 1em;
+  background-color: white;
+`
