@@ -1,4 +1,4 @@
-import FilterBtn from '@/components/funding/FilterBtn'
+import FilterBox from '@components/funding/FilterBox'
 import FundingListCard from '@/components/funding/FundingListCard'
 import HomeHeader from '@/components/home/HomeHeader'
 import { fundingState } from '@/stores/fundingState'
@@ -14,7 +14,7 @@ const FundingPage = () => {
       <Layout>
         <HomeHeader />
       </Layout>
-      <FilterBtn />
+      <FilterBox />
       {funding.map(item => (
         <FundingListCard key={item.fundingNo} data={item} />
       ))}
