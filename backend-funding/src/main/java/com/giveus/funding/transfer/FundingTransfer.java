@@ -28,5 +28,6 @@ public class FundingTransfer {
     }
 
     public static FundingDetailsRes entityToDto(Funding savedFunding) {
+        return null;
     }
 }

@@ -1,10 +1,6 @@
 package com.giveus.funding.common.advisor;
 
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-
-import static org.springframework.http.HttpStatus.*;
 
 /**
  * rest controller 에서 예외발생시 종합적인 처리를 해주기 위한 클래스입니다.
