@@ -6,21 +6,34 @@ import SearchResult from '@components/search/SearchResult'
 import { useState } from 'react'
 
 const SearchPage = () => {
-  const [term, setTerm] = useState('')
+  const [value, setValue] = useState('')
+  const [keyword, setKeyword] = useState('')
 
   // 검색
   const onSearch = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter') {
-      setTerm('')
+      setKeyword(value)
+      setValue('')
     }
+  }
+
+  // 검색어 reset
+  const resetKeyword = () => {
+    setKeyword('')
+    setValue('')
   }
 
   return (
     <>
       <Layout>
-        <SearchForm value={term} setValue={setTerm} onSearch={onSearch} />
+        <SearchForm
+          value={value}
+          setValue={setValue}
+          onSearch={onSearch}
+          resetKeyword={resetKeyword}
+        />
+        {/* {keyword === '' ? <RecentTerm /> : <SearchResult />} */}
         <RecentTerm />
-        <SearchResult />
       </Layout>
       <Navbar current="search" />
     </>

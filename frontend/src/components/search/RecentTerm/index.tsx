@@ -1,8 +1,11 @@
+import * as r from '@components/search/RecentTerm/RecentTerm.styled'
+import RecentTermHeader from '@components/search/RecentTerm/RecentTermHeader'
+
 const Index = () => {
   return (
-    <div>
-      <div>최근 검색어</div>
-    </div>
+    <r.Container>
+      <RecentTermHeader />
+    </r.Container>
   )
 }
 

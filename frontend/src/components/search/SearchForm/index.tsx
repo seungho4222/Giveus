@@ -2,11 +2,7 @@ import { SearchFormType } from '@/types/searchType'
 import * as s from '@components/search/SearchForm/SearchForm.styled'
 
 const Index = (props: SearchFormType) => {
-  const { value, setValue, onSearch } = props
-
-  const onClickXButton = () => {
-    setValue('')
-  }
+  const { value, setValue, onSearch, resetKeyword } = props
 
   return (
     <s.Container>
@@ -19,7 +15,7 @@ const Index = (props: SearchFormType) => {
         onKeyDown={onSearch}
       />
       <s.Xbutton>
-        <img src="/icon/icon_close_black.png" alt="" onClick={onClickXButton} />
+        <img src="/icon/icon_close_black.png" alt="" onClick={resetKeyword} />
       </s.Xbutton>
     </s.Container>
   )
