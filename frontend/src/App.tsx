@@ -19,7 +19,7 @@ const App = () => {
     >
       <BrowserRouter>
         <GlobalStyle />
-        {user.memberNo !== -1 ? <AuthRouter /> : <HomeRouter />}
+        {user.memberNo === -1 ? <AuthRouter /> : <HomeRouter />}
       </BrowserRouter>
     </ThemeProvider>
   )
