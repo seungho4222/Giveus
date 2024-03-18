@@ -29,3 +29,11 @@ spring:
 
 jwt:
   secret: dyAeHubOOc8KaOfYB6XEQoEj1QzRlVgtjNL8PYs1A1tymZvvqkcEU7L1imkKHeDa
+
+springdoc:
+  swagger-ui:
+    path: /api/docs
+    config-url: /v3/api-docs/swagger-config
+    urls:
+      - url: /api/v1/funding/docs
+        name: Funding

@@ -40,11 +40,6 @@ springdoc:
   swagger-ui:
     operations-sorter: alpha
     path: /docs
-######
-##  swagger-ui:
-##    path: /docs
 #  #    disable-swagger-default-url: true
-#  api-docs:
-#    path: /api-docs
-#
-
+  api-docs:
+    path: /api/v1/funding/docs
