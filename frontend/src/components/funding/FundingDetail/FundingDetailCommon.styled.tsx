@@ -20,8 +20,9 @@ export const Wrap = styled.div`
   display: flex;
   justify-content: space-between;
   bottom: 0;
-  padding: 1em;
-  width: 100%;
+  padding-bottom: 1em;
+  margin-inline: 5%;
+  width: 90%;
 `
 
 export const Title = styled.div`
@@ -31,12 +32,15 @@ export const Title = styled.div`
 `
 
 export const Status = styled.div<{ $status: boolean }>`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border-radius: 20px;
   background-color: ${props =>
-    props.$status ? colors.orange01 : colors.blue01};
-  color: white;
+    props.$status ? colors.orange01 : colors.gray02};
+  color: ${props => (props.$status ? 'white' : colors.gray04)};
   font-size: 0.5em;
-  height: 12px;
-  padding-inline: 4px;
+  height: 1rem;
+  padding-inline: 0.5em;
   margin-block: auto;
 `
