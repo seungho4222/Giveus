@@ -1,5 +1,5 @@
-import { fundingCondition } from '@/assets/data/fundingCondition'
-import * as f from '@/components/funding/FilterBtn/FilterBtn.styled'
+import { fundingCondition } from '@assets/data/fundingCondition'
+import * as f from '@components/funding/FilterBox/FilterBox.styled'
 
 const Index = () => {
   return (
