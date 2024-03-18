@@ -4,11 +4,12 @@ import SignupHeader from '@components/signup/SignupHeader'
 import * as s from '@pages/signup/SignupPage.styled'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { joinUser } from '@/apis/auth'
 
 const SignupPage = () => {
   const [stage, setStage] = useState(0)
   const [name, setName] = useState('')
-  const [nickName, setNickName] = useState('')
+  const [nickname, setNickname] = useState('')
 
   const navigate = useNavigate()
 
@@ -16,6 +17,10 @@ const SignupPage = () => {
     // stage가 -1 이하이면 로그인 페이지로 이동
     stage < 0 && navigate('/login', { replace: true })
   }, [stage])
+
+  const singup = () => {
+    joinUser({ name, nickname })
+  }
 
   return (
     <s.Container>
@@ -30,9 +35,9 @@ const SignupPage = () => {
         )}
         {stage === 1 && (
           <SingupNicknameSection
-            value={nickName}
-            setValue={setNickName}
-            onClick={() => setStage(0)}
+            value={nickname}
+            setValue={setNickname}
+            onClick={singup}
           />
         )}
       </s.Wrap>

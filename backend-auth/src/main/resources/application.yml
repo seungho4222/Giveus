@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: backend-auth
+  profiles:
+    active: dev
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        show_sql: true
+        dialect: org.hibernate.dialect.MySQLDialect
+    open-in-view: false
+
+  data:
+    web:
+      pageable:
+        one-indexed-parameters: true
+
+jwt:
+  secret: dyAeHubOOc8KaOfYB6XEQoEj1QzRlVgtjNL8PYs1A1tymZvvqkcEU7L1imkKHeDa
+  expiration:
+    access: 3600000 # 1시간
+    refresh: 1296000000 # 2주

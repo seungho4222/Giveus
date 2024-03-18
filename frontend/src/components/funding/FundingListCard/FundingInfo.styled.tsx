@@ -22,9 +22,10 @@ export const Period = styled.p`
   color: ${colors.gray04};
 `
 
-export const Status = styled.div`
+export const Status = styled.div<{ $status: boolean }>`
   border-radius: 20px;
-  background-color: ${colors.orange01};
+  background-color: ${props =>
+    props.$status ? colors.orange01 : colors.blue01};
   color: white;
   font-size: 0.5em;
   height: 12px;

@@ -1,5 +1,5 @@
-import * as D from '@/components/funding/FundingDetail/DonerList.styled'
-import { donerListState } from '@/recoil/fundingState'
+import * as d from '@/components/funding/FundingDetail/DonerList.styled'
+import { donerListState } from '@/stores/fundingState'
 import { colors } from '@/styles/theme'
 import { useRecoilValue } from 'recoil'
 
@@ -7,33 +7,33 @@ const DonorList = () => {
   const donorList = useRecoilValue(donerListState)
 
   return (
-    <D.Container>
+    <d.Container>
       {donorList.length ? (
         <>
-          <D.ListTrue>
+          <d.ListTrue>
             <span style={{ color: colors.orange01 }}>{donorList.length}</span>
             명이 기부에 참여했습니다.
-          </D.ListTrue>
+          </d.ListTrue>
           {donorList.map(item => (
-            <D.Card key={item.id}>
-              <D.Wrap>
-                <D.Date>{item.create_at}</D.Date>
-                <D.Desc>기부금 기부</D.Desc>
-              </D.Wrap>
-              <D.Wrap>
-                <D.SubWrap>
-                  <D.Img />
-                  <D.Nickname>{item.nickname}</D.Nickname>
-                </D.SubWrap>
-                <D.Amount>{item.amount.toLocaleString('ko-KR')}원</D.Amount>
-              </D.Wrap>
-            </D.Card>
+            <d.Card key={item.memberFundingNo}>
+              <d.Wrap>
+                <d.Date>{item.createdAt}</d.Date>
+                <d.Desc>기부금 기부</d.Desc>
+              </d.Wrap>
+              <d.Wrap>
+                <d.SubWrap>
+                  <d.Img />
+                  <d.Nickname>{item.nickname}</d.Nickname>
+                </d.SubWrap>
+                <d.Amount>{item.amount.toLocaleString('ko-KR')}원</d.Amount>
+              </d.Wrap>
+            </d.Card>
           ))}
         </>
       ) : (
-        <D.ListFalse>아직 기부에 참여한 사람이 없습니다.</D.ListFalse>
+        <d.ListFalse>아직 기부에 참여한 사람이 없습니다.</d.ListFalse>
       )}
-    </D.Container>
+    </d.Container>
   )
 }
 

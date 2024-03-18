@@ -6,6 +6,7 @@
     "module": "ESNext",
     "skipLibCheck": true,
     "baseUrl": "./src",
+    "types": ["vite/client"], //설정없이 import.meta.env 사용 시 TS error 발생
     "paths": {
       "@/*": ["*"],
       "@apis/*": ["apis/*"],

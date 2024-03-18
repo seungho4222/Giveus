@@ -15,3 +15,10 @@ export type NumberStateType = {
   value: number
   setValue: Dispatch<SetStateAction<number>>
 }
+
+export type ModalType = {
+  name: string
+  children: React.ReactNode
+  open: boolean
+  onClose: () => void
+}

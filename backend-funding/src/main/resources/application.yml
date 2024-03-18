@@ -16,12 +16,12 @@ spring:
   datasource:
     hikari:
       connection-test-query: select 1
-      username: root
-      password: 1234
+      username: giveus
+      password: giveus2024~!
 
 server:
-  port: 8082
-  address: localhost
+  port: 8083
+#  address: localhost
   servlet:
     context-path: /api/v1/funding
     encoding:
