@@ -18,10 +18,10 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://j10c206.p.ssafy.io:3306/giveus?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Seoul&zeroDateTimeBehavior=convertToNull&rewriteBatchedStatements=true
+    url: jdbc:mysql://j10c206.p.ssafy.io:3306/prod?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Seoul&zeroDateTimeBehavior=convertToNull&rewriteBatchedStatements=true
     hikari:
-      username: root
-      password: 1234
+      username: giveus
+      password: giveus2024~!
 #      connection-timeout: 300000000
   security:
     oauth2:

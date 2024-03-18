@@ -37,6 +37,7 @@ public class JwtUtil {
 
         String accessToken = generateAccessToken(provider, key);
         String refreshToken = generateRefreshToken(provider, key);
+        log.info("================ accessToken :  {} =====================", accessToken);
 
         return new AuthTokenRes(accessToken, refreshToken);
     }
@@ -70,10 +71,14 @@ public class JwtUtil {
 
     }
 
-//    // 토큰에서 Email을 추출
-//    public static String getUid(String token) {
-//        return Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody().getSubject();
-//    }
+    // 토큰에서 sns_key 추출
+    public String getSnsKey(String token) {
+        return Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody().getSubject();
+    }
 
+    // 토큰에서 provider 추출
+    public String getProvider(String token) {
+        return Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody().get("provider", String.class);
+    }
 
 }
