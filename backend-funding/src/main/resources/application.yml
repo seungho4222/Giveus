@@ -16,8 +16,8 @@ spring:
   datasource:
     hikari:
       connection-test-query: select 1
-      username: root
-      password: 1234
+      username: giveus
+      password: giveus2024~!
 
 server:
   port: 8083
