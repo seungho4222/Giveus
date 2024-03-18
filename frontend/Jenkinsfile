@@ -13,7 +13,7 @@ pipeline {
       steps {
         script {
           dir('./frontend') {
-            sh 'docker build --no-cache -t $repository'
+            sh 'docker build --no-cache -t $repository frontend'
           }
         }
       }
