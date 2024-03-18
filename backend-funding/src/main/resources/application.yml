@@ -23,7 +23,7 @@ server:
   port: 8083
 #  address: localhost
   servlet:
-    context-path: /api/v1/funding
+#    context-path: /api/v1/funding
     encoding:
       charset: utf-8
       enabled: true
@@ -33,15 +33,18 @@ management:
     refresh:
       enabled: true
 
+
 springdoc:
-  packages-to-scan: com.giveus.funding.controller
+#  paths-to-match: /api/v1/funding
+#  packages-to-scan: com.giveus.funding.controller
   swagger-ui:
     operations-sorter: alpha
-    path: docs
-
-
-#  springdoc.packagesToScan=com.pawsitive.usergroup.controller, com.pawsitive.auth.controller, com.pawsitive.doggroup.controller, com.pawsitive.contentgroup.controller, com.pawsitive.chatgroup.controller, com.pawsitive.communitygroup.controller,com.pawsitive.questiongroup.controller, com.pawsitive.surveygroup.controller, com.pawsitive.adoptgroup.controller
-#  springdoc.pathsToMatch=/api/v1/**
-#  spring.profiles.include=oauth
-#  springdoc.swagger-ui.operations-sorter=alpha
+    path: /docs
+######
+##  swagger-ui:
+##    path: /docs
+#  #    disable-swagger-default-url: true
+#  api-docs:
+#    path: /api-docs
+#
 
