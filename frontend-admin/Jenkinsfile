@@ -1,7 +1,7 @@
 pipeline {
   agent any
     environment {
-      repository = "gudrb4869/giveus_frontend"  //docker hub id와 repository 이름
+      repository = "gudrb4869/giveus_frontend_admin"  //docker hub id와 repository 이름
       DOCKERHUB_CREDENTIALS = credentials('dockerhub') // jenkins에 등록해 놓은 docker hub credentials 이름
       dockerImage = ''
       REPO = "s10-blockchain-contract-sub2/S10P22C206"
@@ -52,13 +52,13 @@ pipeline {
       steps {
         script {
           try {
-            sh 'docker stop giveus_frontend'
-            sh 'docker rm giveus_frontend'
+            sh 'docker stop giveus_frontend_admin'
+            sh 'docker rm giveus_frontend_admin'
           } catch (Exception e) {
             sh 'echo "fail to stop and remove container"'
           }
           sh 'docker pull $repository:latest'
-          sh 'docker run --name giveus_frontend -d -p 8090:3000 $repository'
+          sh 'docker run --name giveus_frontend_admin -d -p 8091:3001 $repository'
         }
       }
     }
