@@ -34,5 +34,10 @@ export const joinUser = async (req: JoinUserType) => {
       email: email || '',
       provider: provider || '',
     })
-    .then(res => console.log(res.data))
+    .then(res => res)
+}
+
+// 회원 정보 조회
+export const fetchUserInfo = async () => {
+  return authRequest.get(`${url}/info`).then(res => res)
 }

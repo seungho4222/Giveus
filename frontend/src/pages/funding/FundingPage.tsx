@@ -1,7 +1,7 @@
 import FilterBtn from '@/components/funding/FilterBtn'
 import FundingListCard from '@/components/funding/FundingListCard'
 import HomeHeader from '@/components/home/HomeHeader'
-import { fundingState } from '@/recoil/fundingState'
+import { fundingState } from '@/stores/fundingState'
 import Layout from '@common/Layout'
 import Navbar from '@common/Navbar'
 import { useRecoilValue } from 'recoil'
@@ -16,7 +16,7 @@ const FundingPage = () => {
       </Layout>
       <FilterBtn />
       {funding.map(item => (
-        <FundingListCard key={item.id} data={item} />
+        <FundingListCard key={item.fundingNo} data={item} />
       ))}
       <Navbar current="funding" />
     </>

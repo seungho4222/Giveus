@@ -13,6 +13,7 @@ import lombok.ToString;
 public class AuthTokenRes {
 
     private String accessToken;
+
     private String refreshToken;
 
 }

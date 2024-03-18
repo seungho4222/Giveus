@@ -1,8 +1,14 @@
-import { loginSuccess } from '@apis/auth'
+import { userState } from '@stores/user'
+import { fetchUserInfo, loginSuccess } from '@apis/auth'
 import { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { useSetRecoilState } from 'recoil'
 
 const LoginRedirectHandler = () => {
+  const setUserState = useSetRecoilState(userState)
   const url = new URL(window.location.href).searchParams
+
+  const navigate = useNavigate()
 
   useEffect(() => {
     setStorage()
@@ -22,18 +28,21 @@ const LoginRedirectHandler = () => {
       window.location.href = '/signup'
     } else {
       // 로그인 성공
-      localStorage.removeItem('accessToken')
       const accessToken = url.get('accessToken')
-      accessToken && loginSuccess({ accessToken })
+      accessToken &&
+        loginSuccess({ accessToken })
+          .then(() =>
+            fetchUserInfo().then(res => {
+              setUserState(res.data)
+              navigate('/')
+            }),
+          )
+          .catch(err => console.log('로그인 실패', err))
     }
   }
 
-  // http://localhost:5173/login/oauth2?type=register&provider=kakao&email=jihyeon2474@gmail.com
-  // http://localhost:5173/login/oauth2?type=login&accessToken=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzMzg2NTgxODU2IiwicHJvdmlkZXIiOiJrYWthbyIsImlhdCI6MTcxMDMxMzk4MSwiZXhwIjoxNzEwMzE3NTgxfQ.X_5k1v3dvPR7BXE7B9saULkd4Y2ErvXKchITICXNesc
-
   return (
     <div>
-      <button>임시 카카오 버튼</button>
       <div>login redirect page</div>
     </div>
   )

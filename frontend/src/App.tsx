@@ -5,11 +5,13 @@ import useTheme from '@hooks/useTheme'
 import { BrowserRouter } from 'react-router-dom'
 import AuthRouter from '@routers/AuthRouter'
 import HomeRouter from '@routers/HomeRouter'
+import { useRecoilValue } from 'recoil'
+import { userState } from './stores/user'
 
 const App = () => {
   const themeProps = useTheme()
 
-  const user = true
+  const user = useRecoilValue(userState)
 
   return (
     <ThemeProvider
@@ -17,7 +19,7 @@ const App = () => {
     >
       <BrowserRouter>
         <GlobalStyle />
-        {user ? <AuthRouter /> : <HomeRouter />}
+        {user.memberNo === -1 ? <AuthRouter /> : <HomeRouter />}
       </BrowserRouter>
     </ThemeProvider>
   )
