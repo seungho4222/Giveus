@@ -4,12 +4,16 @@ import SignupHeader from '@components/signup/SignupHeader'
 import * as s from '@pages/signup/SignupPage.styled'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { joinUser } from '@/apis/auth'
+import { joinUser } from '@apis/auth'
+import { useSetRecoilState } from 'recoil'
+import { userState } from '@stores/user'
 
 const SignupPage = () => {
   const [stage, setStage] = useState(0)
   const [name, setName] = useState('')
   const [nickname, setNickname] = useState('')
+
+  const setUserState = useSetRecoilState(userState)
 
   const navigate = useNavigate()
 
@@ -19,7 +23,10 @@ const SignupPage = () => {
   }, [stage])
 
   const singup = () => {
-    joinUser({ name, nickname })
+    joinUser({ name, nickname }).then(res => {
+      setUserState(res.data)
+      navigate('/')
+    })
   }
 
   return (
