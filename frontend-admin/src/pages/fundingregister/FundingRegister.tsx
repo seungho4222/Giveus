@@ -4,24 +4,9 @@ import { Input, TextArea } from '@/common/input/Input'
 import Button from '@/common/button/Button'
 import { useState } from 'react'
 import ImageUpload from '@/common/imageUpload/imageUpload'
+import { StyledFundingRegisterPage, StyledBirthContainer, StyledInputContainer } from './FundingRegister.styled'
 
-const StyledFundingRegisterPage = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 22px;
-`
-const StyledInputContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-`
 
-const StyledBirthContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-`
 
 const FundingRegister = () => {
   const [registrationData, setRegistrationData] = useState({
