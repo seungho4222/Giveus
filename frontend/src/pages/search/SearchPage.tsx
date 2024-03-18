@@ -27,9 +27,11 @@ const SearchPage = () => {
   // 최근 검색어 localstorage에 저장
   const addRecentTerm = (term: string) => {
     const storage = localStorage.getItem('recentTerm')
-    let prev = storage && JSON.parse(storage)
+    let prev: string[] = storage && JSON.parse(storage)
     if (term !== '') {
-      prev === null ? (prev = [term]) : prev.unshift(term)
+      prev === null
+        ? (prev = [term])
+        : prev.every(item => item !== term) && prev.unshift(term)
       localStorage.setItem('recentTerm', JSON.stringify(prev))
     }
   }
