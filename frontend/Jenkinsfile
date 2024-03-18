@@ -52,13 +52,13 @@ pipeline {
       steps {
         script {
           try {
-            sh 'docker stop -f giveus_frontend'
-            sh 'docker rm -f giveus_frontend'
-            sh 'docker pull $repository:latest'
-            sh 'docker run --name giveus_frontend -d -p 8090:3000 $repository'
+            sh 'docker stop giveus_frontend'
+            sh 'docker rm giveus_frontend'
           } catch (Exception e) {
-            sh 'docker restart giveus_frontend'
+            sh 'echo "fail to stop and remove container"'
           }
+          sh 'docker pull $repository:latest'
+          sh 'docker run --name giveus_frontend -d -p 8090:3000 $repository'
         }
       }
     }
