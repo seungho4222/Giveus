@@ -3,8 +3,10 @@ package com.giveus.funding.controller;
 import com.giveus.funding.common.dto.CommonResponseBody;
 import com.giveus.funding.dto.request.FundingCreateReq;
 import com.giveus.funding.dto.response.FundingDetailsRes;
+import com.giveus.funding.dto.response.FundingListRes;
 import com.giveus.funding.service.FundingService;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -15,20 +17,18 @@ import static org.springframework.http.HttpStatus.OK;
 
 @Tag(name = "Admin API", description = "관리자")
 @RestController
-@RequestMapping("/api/v1/funding")
+@RequestMapping("/api/v1/admin/funding")
 @RequiredArgsConstructor
-@Slf4j
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class FundingController {
 
     private final FundingService fundingService;
 
     @GetMapping
-
-    public ResponseEntity<CommonResponseBody<String>> getFundingList() {
-        log.info("debug");
+    public ResponseEntity<CommonResponseBody<List<FundingListRes>>> getFundingList() {
         return ResponseEntity
-                .status(OK)
-                .body(new CommonResponseBody<>(OK, "TEST!!!"));
+            .status(OK)
+            .body(new CommonResponseBody<>(OK, fundingService.getFundingList()));
     }
 
     @PostMapping
