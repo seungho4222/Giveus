@@ -10,7 +10,7 @@ interface ButtonProps {
     $borderColor?: string;
     $fontColor?: string;
     $fontSize?: string;
-    $children?: React.ReactNode;
+    $children: React.ReactNode;
     onButtonClick?: () => void;
     disabled?: boolean;
   }

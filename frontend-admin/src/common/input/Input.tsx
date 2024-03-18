@@ -2,17 +2,16 @@ import { useState } from 'react'
 import { StyledInput, StyledTextArea } from './Input.styled'
 
 type InputProps = {
-    id: string
-    type?: any
-    width?: string
-    height?: string
-    placeholder: string
-    value: string | number
-    fontSize?: string
-    onInputChange?: (value: string) => void
-    onEnterKeyUp?: (value: string) => void
-  }
-
+  id: string
+  type?: string
+  width?: string
+  height?: string
+  placeholder: string
+  value: string | number
+  fontSize?: string
+  onInputChange?: (value: string) => void
+  onEnterKeyUp?: (value: string) => void
+}
 
 const Input = (props: InputProps) => {
   const [inputValue, setInputValue] = useState('')
@@ -36,6 +35,7 @@ const Input = (props: InputProps) => {
 
   return (
     <StyledInput
+      type={props.type}
       id={props.id}
       width={props.width}
       height={props.height}
@@ -46,8 +46,6 @@ const Input = (props: InputProps) => {
     ></StyledInput>
   )
 }
-
-
 
 const TextArea = (props: InputProps) => {
   const [inputValue, setInputValue] = useState('')
@@ -72,6 +70,7 @@ const TextArea = (props: InputProps) => {
 
   return (
     <StyledTextArea
+      type={props.type}
       id={props.id}
       width={props.width}
       height={props.height}
@@ -82,7 +81,5 @@ const TextArea = (props: InputProps) => {
     ></StyledTextArea>
   )
 }
-
-
 
 export { Input, TextArea }

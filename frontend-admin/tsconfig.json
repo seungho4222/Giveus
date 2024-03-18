@@ -15,6 +15,7 @@
       "@common/*": ["common/*"],
       "@components/*": ["components/*"],
       "@pages/*": ["pages/*"],
+      "@recoil/*":["recoil/*"],
       "@router/*": ["router/*"],
       "@stores/*": ["stores/*"],
       "@styles/*": ["styles/*"],

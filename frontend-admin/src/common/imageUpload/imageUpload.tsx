@@ -1,6 +1,7 @@
 import { useRef, useCallback, useState } from 'react'
 import Button from '../button/Button'
 
+
 const ImageUpload = () => {
   const inputRef = useRef<HTMLInputElement | null>(null)
   const [imageUrl, setImageUrl] = useState<string | null>(null)
@@ -26,7 +27,28 @@ const ImageUpload = () => {
 
   return (
     <>
-      {imageUrl && <img src={imageUrl} alt="Uploaded" style={{ maxWidth: "300px", maxHeight: "300px" }} />} {/* 이미지 표시 */}
+      {imageUrl ? (
+        <img
+          src={imageUrl}
+          alt="Uploaded"
+          style={{
+            maxWidth: '300px',
+            maxHeight: '300px',
+            border: '1px #cacfd9 solid',
+            borderRadius: '10px',
+          }}
+        />
+      ) : (
+        <div
+          style={{
+            width: '300px',
+            height: '300px',
+            border: '1px #cacfd9 solid',
+            borderRadius: '10px',
+          }}
+        ></div>
+      )}{' '}
+      {/* 이미지 표시 */}
       <input
         type="file"
         accept="image/*"
