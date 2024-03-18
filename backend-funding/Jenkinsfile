@@ -12,18 +12,18 @@ pipeline {
 
   stages {
 
-//     stage('SonarQube analysis') {
-//         steps {
-//             withSonarQubeEnv('SonarQube-server') {
-//                 dir('./backend-gateway') {
-//                     script {
-//                         sh "chmod +x ./gradlew"
-//                         sh './gradlew sonarqube'
-//                     }
-//                 }
-//             }
-//         }
-//     }
+    stage('SonarQube analysis') {
+        steps {
+            withSonarQubeEnv('SonarQube-server') {
+                dir('./backend-funding') {
+                    script {
+                        sh "chmod +x ./gradlew"
+                        sh './gradlew sonarqube'
+                    }
+                }
+            }
+        }
+    }
 
     stage('Build') {
       steps {
