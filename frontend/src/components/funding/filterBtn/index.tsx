@@ -1,21 +1,21 @@
 import { fundingCondition } from '@/assets/data/fundingCondition'
-import * as F from '@/components/funding/FilterBtn/FilterBtn.styled'
+import * as f from '@/components/funding/FilterBtn/FilterBtn.styled'
 
 const Index = () => {
   return (
-    <F.Container>
+    <f.Container>
       {fundingCondition.map(item => (
-        <F.Button key={item.name}>
-          <F.Icon
+        <f.Button key={item.name}>
+          <f.Icon
             src={item.imgSrc}
             alt=""
             width={item.width}
             height={item.height}
           />
-          <F.Label>{item.label}</F.Label>
-        </F.Button>
+          <f.Label>{item.label}</f.Label>
+        </f.Button>
       ))}
-    </F.Container>
+    </f.Container>
   )
 }
 
