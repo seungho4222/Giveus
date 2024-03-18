@@ -1,3 +1,4 @@
+import { colors } from '@/styles/theme'
 import styled from 'styled-components'
 
 export const Container = styled.div`
@@ -8,6 +9,8 @@ export const Container = styled.div`
   img {
     width: 56px;
     height: 56px;
+    border-radius: 100%;
+    border: 2px solid ${colors.gray04};
   }
 `
 export const Wrap = styled.div`
