@@ -64,5 +64,6 @@ export const SmallButton = styled.button`
   padding: 0 0.5em;
   font-size: 0.8em;
   width: 23%;
+  white-space: nowrap;
 `
 
