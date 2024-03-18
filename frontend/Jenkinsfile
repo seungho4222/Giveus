@@ -1,10 +1,6 @@
 pipeline {
   agent any
-//     tools {nodejs "Node.js 20.10.0"}
     environment {
-      // AWS_PUBLIC_IP = '172.26.8.148'
-      // SSH_CMD = 'ssh -i /var/jenkins_home/.ssh/id_rsa ubuntu@i10c111.p.ssafy.io'
-      // DOCKER = 'sudo docker'
       repository = "gudrb4869/giveus_frontend"  //docker hub id와 repository 이름
       DOCKERHUB_CREDENTIALS = credentials('dockerhub') // jenkins에 등록해 놓은 docker hub credentials 이름
       dockerImage = ''
@@ -13,25 +9,11 @@ pipeline {
     
   stages {
 
-    //stage('SonarQube') {
-    //
-    //}
-
-    stage('Install') {
-      steps {
-        dir('./frontend') {
-          script {
-            sh 'npm install'
-          }
-        }
-      }
-    }
-
     stage('Build image') {
       steps {
         script {
           dir('./frontend') {
-            dockerImage = docker.build repository
+            sh 'docker build --no-cache -t $repository'
           }
         }
       }
@@ -51,6 +33,15 @@ pipeline {
       }
     }
 
+    stage('Prune old images') {
+      steps {
+        script {
+          sh "docker system prune --filter until=1h"
+        }
+      }
+    }
+
+
     stage('Clean image') {
       steps {
         sh 'docker rmi $repository' // jenkins 컨테이너에 있는 docker image 제거
@@ -63,13 +54,12 @@ pipeline {
           try {
             sh 'docker stop giveus_frontend'
             sh 'docker rm giveus_frontend'
-          } catch (e) {
-            sh 'echo "fail to stop and remove container"'
+            sh 'docker pull $repository:latest'
+            sh 'docker run --name giveus_frontend -d -p 8090:3000 $repository'
+          } catch (Exception e) {
+            sh 'docker restart giveus_frontend'
           }
         }
-        sh 'docker pull $repository:latest'
-        sh 'docker run --name giveus_frontend -d -p 8090:3000 $repository'
-//         sh '$SSH_CMD $DOCKER compose up'
       }
     }
   }
