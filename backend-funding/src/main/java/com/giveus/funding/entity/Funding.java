@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.DynamicInsert;
 
 import java.time.LocalDate;
 
@@ -12,6 +13,7 @@ import java.time.LocalDate;
 @Table(name = "funding")
 @Getter
 @Setter
+@DynamicInsert
 @NoArgsConstructor
 public class Funding {
 
@@ -60,10 +62,10 @@ public class Funding {
     private LocalDate endDate;
 
     @Column(name = "total_amount")
-    private LocalDate totalAmount;
+    private int totalAmount;
 
     @Column(name = "target_amount")
-    private LocalDate targetAmount;
+    private int targetAmount;
 
     @Column(name = "created_at")
     private LocalDate createdAt;
@@ -72,7 +74,7 @@ public class Funding {
     private String phone;
 
     @Builder
-    public Funding(String issueNumber, String registrationNumber, String patientName, String status, LocalDate birth, char gender, String diseaseName, String diseaseCode, LocalDate diagnosisDate, String opinion, String title, LocalDate startDate, LocalDate endDate, LocalDate totalAmount, LocalDate targetAmount, String phone) {
+    public Funding(String issueNumber, String registrationNumber, String patientName, String status, LocalDate birth, char gender, String diseaseName, String diseaseCode, LocalDate diagnosisDate, String opinion, String title, LocalDate startDate, LocalDate endDate, int totalAmount, int targetAmount, String phone) {
         this.issueNumber = issueNumber;
         this.registrationNumber = registrationNumber;
         this.patientName = patientName;
