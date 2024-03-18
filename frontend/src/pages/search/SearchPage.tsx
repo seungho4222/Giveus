@@ -12,6 +12,7 @@ const SearchPage = () => {
   // 검색
   const onSearch = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter') {
+      addRecentTerm(value)
       setKeyword(value)
       setValue('')
     }
@@ -21,6 +22,16 @@ const SearchPage = () => {
   const resetKeyword = () => {
     setKeyword('')
     setValue('')
+  }
+
+  // 최근 검색어 localstorage에 저장
+  const addRecentTerm = (term: string) => {
+    const storage = localStorage.getItem('recentTerm')
+    let prev = storage && JSON.parse(storage)
+    if (term !== '') {
+      prev === null ? (prev = [term]) : prev.unshift(term)
+      localStorage.setItem('recentTerm', JSON.stringify(prev))
+    }
   }
 
   return (
