@@ -7,7 +7,7 @@ eureka:
 
 server:
   port: 8082
-  address: localhost
+#  address: localhost
   servlet:
     context-path: /
     encoding:
@@ -21,7 +21,7 @@ spring:
     url: jdbc:mysql://j10c206.p.ssafy.io:3306/giveus?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Seoul&zeroDateTimeBehavior=convertToNull&rewriteBatchedStatements=true
     hikari:
       username: root
-      password: giveus2024~!
+      password: 1234
 #      connection-timeout: 300000000
   security:
     oauth2:
