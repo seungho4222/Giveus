@@ -12,7 +12,7 @@ pipeline {
     stage('Build image') {
       steps {
         script {
-          dir('./frontend') {
+          dir('./frontend-admin') {
             sh 'docker build --no-cache -t $repository .'
           }
         }
