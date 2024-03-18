@@ -3,12 +3,15 @@ import Layout from '@common/Layout'
 import SearchForm from '@components/search/SearchForm'
 import RecentTerm from '@components/search/RecentTerm'
 import SearchResult from '@components/search/SearchResult'
+import { useState } from 'react'
 
 const SearchPage = () => {
+  const [term, setTerm] = useState('')
+
   return (
     <>
       <Layout>
-        <SearchForm />
+        <SearchForm value={term} setValue={setTerm} />
         <RecentTerm />
         <SearchResult />
       </Layout>
