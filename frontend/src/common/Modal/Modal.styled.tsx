@@ -1,7 +1,7 @@
 import { colors } from '@/styles/theme'
 import styled from 'styled-components'
 
-export const Container = styled.div<{ $open: boolean }>`
+export const Container = styled.div`
   display: flex;
   position: fixed;
   top: 0;
@@ -9,7 +9,6 @@ export const Container = styled.div<{ $open: boolean }>`
   width: 375px;
   height: 100vh;
   background-color: #fff;
-  visibility: ${props => (props.$open ? 'visible' : 'hidden')};
   overflow-y: scroll;
   &::-webkit-scrollbar {
     display: none; /* 크롬, 사파리, 오페라, 엣지 */

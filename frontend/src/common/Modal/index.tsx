@@ -2,9 +2,9 @@ import { ModalType } from '@/types/commonType'
 
 import * as m from '@common/Modal/Modal.styled'
 
-const Index = ({ name, children, open, onClose }: ModalType) => {
+const Index = ({ name, children, onClose }: ModalType) => {
   return (
-    <m.Container $open={open}>
+    <m.Container>
       <m.Wrap>
         <m.ModalName>{name}</m.ModalName>
         {children}

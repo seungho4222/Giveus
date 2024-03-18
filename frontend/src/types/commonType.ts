@@ -19,6 +19,5 @@ export type NumberStateType = {
 export type ModalType = {
   name: string
   children: React.ReactNode
-  open: boolean
   onClose: () => void
 }
