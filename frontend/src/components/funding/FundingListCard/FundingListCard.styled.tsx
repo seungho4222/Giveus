@@ -3,13 +3,16 @@ import styled from 'styled-components'
 
 export const Container = styled.div`
   display: flex;
-  margin: 15px;
+  width: 90%;
+  margin-inline: auto;
+  margin-block: 15px;
   padding-bottom: 15px;
   border-bottom: 1px solid ${colors.gray02};
 `
 
 export const Img = styled.img`
   width: 30%;
+  border-radius: 6px;
 `
 
 export const Wrap = styled.div`
