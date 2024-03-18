@@ -56,18 +56,19 @@ const DetailMain = () => {
           onClick={() => setOpen(true)}
         />
       </d.Button>
-      <Modal
-        name={'후기'}
-        children={
-          fundingDetail.status === '진행완료' && review ? (
-            <Review />
-          ) : (
-            <Donate />
-          )
-        }
-        open={open}
-        onClose={() => setOpen(false)}
-      />
+      {open && (
+        <Modal
+          name={'후기'}
+          children={
+            fundingDetail.status === '진행완료' && review ? (
+              <Review />
+            ) : (
+              <Donate />
+            )
+          }
+          onClose={() => setOpen(false)}
+        />
+      )}
     </d.Container>
   )
 }

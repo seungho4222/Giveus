@@ -3,14 +3,18 @@ import { colors } from '@/styles/theme'
 
 export const Container = styled.div`
   display: flex;
-  margin-inline: 10px;
+  margin-inline: auto;
+  padding-block: 45px 10px;
+  width: 90%;
+  column-gap: 8px;
 `
 
 export const Button = styled.button`
   display: flex;
+  justify-content: center;
+  align-items: center;
   border-radius: 20px;
   background-color: ${colors.gray02};
-  margin: 5px;
   padding: 9px 13px;
 `
 
