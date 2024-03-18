@@ -1,5 +1,5 @@
 # 가져올 이미지를 정의
-FROM node:20.11.0
+FROM node:20.10.0
 
 # 경로 설정하기
 WORKDIR /frontend
