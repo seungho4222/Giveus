@@ -1,8 +1,11 @@
-import { loginSuccess } from '@apis/auth'
+import { userState } from '@stores/user'
+import { fetchUserInfo, loginSuccess } from '@apis/auth'
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useSetRecoilState } from 'recoil'
 
 const LoginRedirectHandler = () => {
+  const setUserState = useSetRecoilState(userState)
   const url = new URL(window.location.href).searchParams
 
   const navigate = useNavigate()
@@ -25,13 +28,16 @@ const LoginRedirectHandler = () => {
       window.location.href = '/signup'
     } else {
       // 로그인 성공
-      localStorage.removeItem('accessToken')
       const accessToken = url.get('accessToken')
       accessToken &&
-        loginSuccess({ accessToken }).then(res => {
-          console.log('login success', res)
-          navigate('/')
-        })
+        loginSuccess({ accessToken })
+          .then(() =>
+            fetchUserInfo().then(res => {
+              setUserState(res.data)
+              navigate('/')
+            }),
+          )
+          .catch(err => console.log('로그인 실패', err))
     }
   }
 

@@ -9,6 +9,7 @@ import DetailMainPage from '@/pages/funding/DetailMainPage'
 import DonorListPage from '@/pages/funding/DonorListPage'
 import MedicalExpensePage from '@/pages/funding/MedicalExpensePage'
 import SettingPage from '@pages/mypage/setting/SettingPage'
+import SignupPage from '@pages/signup/SignupPage'
 
 const AuthRouter = () => {
   return (
@@ -17,6 +18,7 @@ const AuthRouter = () => {
       <Route path="/search" element={<SearchPage />} />
       <Route path="/funding" element={<FundingPage />} />
       <Route path="/alarm" element={<AlarmPage />} />
+      <Route path="/signup" element={<SignupPage />} />
       <Route path="/mypage" element={<MyPage />} />
       <Route path="/mypage/setting" element={<SettingPage />} />
       <Route path="/funding/:id" element={<FundingDetailPage />}>

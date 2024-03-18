@@ -4,7 +4,7 @@ import { atom } from 'recoil'
 export const userState = atom<userType>({
   key: 'userState',
   default: {
-    memberNo: 0,
+    memberNo: -1,
     email: 'naerim1119@gmail.com',
     name: '김내림',
     nickname: '익명의 쿼카',
