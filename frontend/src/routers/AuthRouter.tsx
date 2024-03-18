@@ -10,6 +10,7 @@ import DonorListPage from '@/pages/funding/DonorListPage'
 import MedicalExpensePage from '@/pages/funding/MedicalExpensePage'
 import SettingPage from '@pages/mypage/setting/SettingPage'
 import SignupPage from '@pages/signup/SignupPage'
+import LoginRedirectHandler from '@pages/login/LoginRedirectHandler'
 
 const AuthRouter = () => {
   return (
@@ -19,6 +20,7 @@ const AuthRouter = () => {
       <Route path="/funding" element={<FundingPage />} />
       <Route path="/alarm" element={<AlarmPage />} />
       <Route path="/signup" element={<SignupPage />} />
+      <Route path="/login/oauth2" element={<LoginRedirectHandler />} />
       <Route path="/mypage" element={<MyPage />} />
       <Route path="/mypage/setting" element={<SettingPage />} />
       <Route path="/funding/:id" element={<FundingDetailPage />}>
