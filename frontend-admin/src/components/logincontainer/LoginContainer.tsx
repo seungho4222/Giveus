@@ -2,7 +2,7 @@ import { Input } from '@common/input/Input'
 import { Label } from '@common/input/Input.styled'
 import { StyledInputContainer } from '@pages/fundingregister/FundingRegister.styled'
 import Button from '@common/button/Button'
-import { StyledLoginContainer, StyledH1Tag, StyledPTag } from './LoginContainr.styled'
+import { StyledLoginContainer, StyledLoginH1Tag, StyledLoginPTag } from './LoginContainr.styled'
 import { useState } from 'react'
 import { userLogin } from '@apis/user/user'
 import { useRecoilState } from 'recoil'
@@ -12,13 +12,13 @@ import tokenState from '@/recoil/atoms/TokenAtom'
 const LoginContainer = () => {
 
   const [loginData, setLoginData] = useState({
-    userId: '',
+    id: '',
     password: '',
   })
 
   
-  const handleUserIdChange = (value:string) => {
-    setLoginData((prevData) => ({...prevData, userid: value}))
+  const handleIdChange = (value:string) => {
+    setLoginData((prevData) => ({...prevData, id: value}))
   }
 
   const handlePasswordChange = (value:string) => {
@@ -40,15 +40,15 @@ const LoginContainer = () => {
 
   return (
     <StyledLoginContainer>
-      <StyledH1Tag>Welcome Back</StyledH1Tag>
-      <StyledPTag>Giveus 병원 페이지에 오신 것을 환영합니다</StyledPTag>
+      <StyledLoginH1Tag>Welcome Back</StyledLoginH1Tag>
+      <StyledLoginPTag>Giveus 병원 페이지에 오신 것을 환영합니다</StyledLoginPTag>
       <StyledInputContainer>
         <Label htmlFor="id">아이디</Label>
         <Input
           id={'id'}
           placeholder={'아이디를 입력해주세요'}
-          value={loginData.userId}
-          onInputChange={handleUserIdChange}
+          value={loginData.id}
+          onInputChange={handleIdChange}
         />
       </StyledInputContainer>
       <StyledInputContainer>
@@ -70,6 +70,7 @@ const LoginContainer = () => {
         $children={'SIGN IN'}
         onButtonClick={onLogin}
       ></Button>
+      <StyledLoginPTag>Don't have an account? Sign up</StyledLoginPTag> 
     </StyledLoginContainer>
   )
 }

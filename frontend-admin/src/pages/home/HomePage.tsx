@@ -3,13 +3,14 @@ import Footer from '@/components/footer/Footer';
 import { HomePageContainer } from './HomePage.styled';
 import FundingRegister from '../fundingregister/FundingRegister';
 import LoginPage from '../login/LoginPage';
+import SignUpPage from '../signup/SignUpPage';
 
 
 const HomePage = () => {
     return (
         <HomePageContainer>
             <Header/>
-            <LoginPage/>
+            <SignUpPage/>
             <Footer/>
 
         </HomePageContainer>
