@@ -3,6 +3,7 @@ import HomePage from '@pages/home/HomePage'
 import { Route, Routes } from 'react-router-dom'
 import AlarmPage from '@pages/alarm/AlarmPage'
 import FundingPage from '@pages/funding/FundingPage'
+import LoginPage from '@pages/login/LoginPage'
 import MyPage from '@pages/mypage/MyPage'
 import FundingDetailPage from '@/pages/funding/FundingDetailPage'
 import DetailMainPage from '@/pages/funding/DetailMainPage'
@@ -20,6 +21,7 @@ const AuthRouter = () => {
       <Route path="/funding" element={<FundingPage />} />
       <Route path="/alarm" element={<AlarmPage />} />
       <Route path="/signup" element={<SignupPage />} />
+      <Route path="/login" element={<LoginPage />} />
       <Route path="/login/oauth2" element={<LoginRedirectHandler />} />
       <Route path="/mypage" element={<MyPage />} />
       <Route path="/mypage/setting" element={<SettingPage />} />
@@ -28,6 +30,7 @@ const AuthRouter = () => {
         <Route path="donor-list" element={<DonorListPage />} />
         <Route path="medical-expense" element={<MedicalExpensePage />} />
       </Route>
+      <Route path="*" element={<HomePage />} />
     </Routes>
   )
 }

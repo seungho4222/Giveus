@@ -1,14 +1,14 @@
-import { defaultUser, userState } from '@stores/user'
+import { userState } from '@stores/user'
 import { useNavigate } from 'react-router-dom'
-import { useSetRecoilState } from 'recoil'
+import { useResetRecoilState } from 'recoil'
 
 const SettingPage = () => {
   const navigate = useNavigate()
 
-  const setUserState = useSetRecoilState(userState)
+  const resetUserState = useResetRecoilState(userState)
 
   const logout = () => {
-    setUserState(defaultUser)
+    resetUserState()
     navigate('/login')
   }
 

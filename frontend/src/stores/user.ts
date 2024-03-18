@@ -7,7 +7,7 @@ const { persistAtom } = recoilPersist({
   storage: localStorage,
 })
 
-export const defaultUser = {
+const defaultUser = {
   memberNo: -1,
   email: '',
   name: '',
