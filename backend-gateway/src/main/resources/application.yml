@@ -13,11 +13,15 @@ spring:
           - id: backend-auth
             uri: lb://BACKEND-AUTH
             predicates:
-              - Path=/auth/**
+              - Path=/api/auth/**
           - id: backend-funding
             uri: lb://BACKEND-FUNDING
             predicates:
               - Path=/api/v1/funding/**
+          - id: backend-admin
+            uri: lb://BACKEND-ADMIN
+            predicates:
+              - Path=/api/v1/admin/**
 eureka:
   instance:
     instance-id: ${spring.application.name}:${server.port}
@@ -31,3 +35,5 @@ springdoc:
     urls:
       - url: /api/v1/funding/docs
         name: Funding
+      - url: /api/v1/admin/docs
+        name: Admin
