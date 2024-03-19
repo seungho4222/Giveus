@@ -1,3 +1,5 @@
+import { Dispatch, SetStateAction } from "react"
+
 export type FundingType = {
   fundingNo: number
   issueNumber: string
@@ -33,4 +35,10 @@ export type MedicalExpenseType = {
   content: string
   amount: number
   count: number
+}
+
+export type FilterBoxType = {
+  setFilterOpen: Dispatch<SetStateAction<boolean>>
+  sort: string
+  setSortrOpen: Dispatch<SetStateAction<boolean>>
 }

@@ -13,6 +13,7 @@ export const BackBtn = styled.img`
   position: absolute;
   width: 0.7em;
   margin: 5%;
+  cursor: pointer;
 `
 
 export const Wrap = styled.div`
