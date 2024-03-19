@@ -12,7 +12,7 @@ export const Container = styled.div`
 export const BackBtn = styled.img`
   position: absolute;
   width: 0.7em;
-  margin: 1em;
+  margin: 5%;
 `
 
 export const Wrap = styled.div`
