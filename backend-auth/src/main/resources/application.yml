@@ -25,3 +25,7 @@ jwt:
   expiration:
     access: 3600000 # 1시간
     refresh: 1296000000 # 2주
+
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${server.port}

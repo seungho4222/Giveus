@@ -10,29 +10,23 @@ spring:
     gateway:
       mvc:
         routes:
-          - id: auth
+          - id: backend-auth
             uri: lb://BACKEND-AUTH
             predicates:
               - Path=/auth/**
-          - id: funding
+          - id: backend-funding
             uri: lb://BACKEND-FUNDING
             predicates:
               - Path=/api/v1/funding/**
-  #        - id: payment
-  #          uri: http://localhost:8084
-  #          predicates:
-  #            - Path=/payment/**
-  #        - id: notify
-  #          uri: http://localhost:8085
-  #          predicates:
-  #            - Path=/notify/**
-
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${server.port}
 jwt:
   secret: dyAeHubOOc8KaOfYB6XEQoEj1QzRlVgtjNL8PYs1A1tymZvvqkcEU7L1imkKHeDa
 
 springdoc:
   swagger-ui:
-    path: /api/docs
+    path: /api/v1/docs
     config-url: /v3/api-docs/swagger-config
     urls:
       - url: /api/v1/funding/docs

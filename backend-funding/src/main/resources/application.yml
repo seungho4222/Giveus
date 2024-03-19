@@ -33,6 +33,9 @@ management:
     refresh:
       enabled: true
 
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${server.port}
 
 springdoc:
 #  paths-to-match: /api/v1/funding
