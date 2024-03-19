@@ -3,24 +3,66 @@ import Layout from '@common/Layout'
 import SearchForm from '@components/search/SearchForm'
 import RecentTerm from '@components/search/RecentTerm'
 import SearchResult from '@components/search/SearchResult'
-import { useState } from 'react'
+import { KeyboardEvent, useEffect, useState } from 'react'
+import { deleteBlank } from '@utils/regexMethods'
+import { data } from '@components/funding/FundingListCard/data'
+import { FundingType } from '@/types/fundingType'
+import { useRecoilState } from 'recoil'
+import { keywordState } from '@stores/search'
 
 const SearchPage = () => {
-  const [term, setTerm] = useState('')
+  const [value, setValue] = useState('')
+  const [keyword, setKeyword] = useRecoilState(keywordState)
+  const [result, setResult] = useState<FundingType[]>([])
+
+  useEffect(() => {
+    if (keyword !== '') {
+      addRecentTerm(keyword)
+      setResult(data)
+    }
+  }, [keyword])
 
   // 검색
-  const onSearch = (e: React.KeyboardEvent) => {
+  const onSearch = (value: string, e: KeyboardEvent<Element>) => {
     if (e.key === 'Enter') {
-      setTerm('')
+      setKeyword(value)
+      addRecentTerm(value)
+      setResult(data)
     }
+  }
+
+  // 검색어 reset
+  const resetKeyword = () => {
+    setValue('')
+    setKeyword('')
+    setResult([])
+  }
+
+  // 최근 검색어 localstorage에 저장
+  const addRecentTerm = (term: string) => {
+    let prev: string[] = JSON.parse(localStorage.getItem('recentTerm') || '[]')
+
+    term = deleteBlank(term)
+    prev = prev.filter(item => item !== term)
+    prev.unshift(term)
+    prev.length > 10 && prev.pop()
+    localStorage.setItem('recentTerm', JSON.stringify(prev))
   }
 
   return (
     <>
       <Layout>
-        <SearchForm value={term} setValue={setTerm} onSearch={onSearch} />
-        <RecentTerm />
-        <SearchResult />
+        <SearchForm
+          value={value}
+          setValue={setValue}
+          onSearch={onSearch}
+          resetKeyword={resetKeyword}
+        />
+        {result.length === 0 ? (
+          <RecentTerm />
+        ) : (
+          <SearchResult result={result} />
+        )}
       </Layout>
       <Navbar current="search" />
     </>
