@@ -29,3 +29,10 @@ jwt:
 eureka:
   instance:
     instance-id: ${spring.application.name}:${server.port}
+
+springdoc:
+  swagger-ui:
+    operations-sorter: alpha
+    path: /docs
+  api-docs:
+    path: /api/v1/auth/docs
