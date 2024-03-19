@@ -8,6 +8,7 @@ export const Container = styled.div`
   margin-block: 15px;
   padding-bottom: 15px;
   border-bottom: 1px solid ${colors.gray02};
+  cursor: pointer;
 `
 
 export const Img = styled.img`
