@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.*;
 import static org.springframework.http.HttpStatus.CREATED;
 import static org.springframework.http.HttpStatus.OK;
 
-@Tag(name = "Admin API", description = "관리자")
+@Tag(name = "사용자 펀딩 API", description = "User")
 @RestController
-@RequestMapping("/api/v1/admin/funding")
+@RequestMapping("/api/v1/funding")
 @RequiredArgsConstructor
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class FundingController {
