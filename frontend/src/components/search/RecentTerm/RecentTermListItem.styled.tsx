@@ -12,4 +12,5 @@ export const Wrap = styled.div`
   margin-right: 12px;
   margin-bottom: 10px;
   white-space: pre;
+  cursor: pointer;
 `

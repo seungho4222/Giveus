@@ -3,18 +3,29 @@ import Layout from '@common/Layout'
 import SearchForm from '@components/search/SearchForm'
 import RecentTerm from '@components/search/RecentTerm'
 import SearchResult from '@components/search/SearchResult'
-import { useState } from 'react'
+import { KeyboardEvent, useEffect, useState } from 'react'
 import { deleteBlank } from '@utils/regexMethods'
 import { data } from '@components/funding/FundingListCard/data'
 import { FundingType } from '@/types/fundingType'
+import { useRecoilState } from 'recoil'
+import { keywordState } from '@stores/search'
 
 const SearchPage = () => {
   const [value, setValue] = useState('')
+  const [keyword, setKeyword] = useRecoilState(keywordState)
   const [result, setResult] = useState<FundingType[]>([])
 
+  useEffect(() => {
+    if (keyword !== '') {
+      addRecentTerm(keyword)
+      setResult(data)
+    }
+  }, [keyword])
+
   // 검색
-  const onSearch = (e: React.KeyboardEvent) => {
+  const onSearch = (value: string, e: KeyboardEvent<Element>) => {
     if (e.key === 'Enter') {
+      setKeyword(value)
       addRecentTerm(value)
       setResult(data)
     }
@@ -23,6 +34,7 @@ const SearchPage = () => {
   // 검색어 reset
   const resetKeyword = () => {
     setValue('')
+    setKeyword('')
     setResult([])
   }
 
