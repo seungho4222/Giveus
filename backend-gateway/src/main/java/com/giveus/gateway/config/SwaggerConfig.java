@@ -10,12 +10,10 @@ import org.springframework.context.annotation.Profile;
 
 
 @Configuration
-@Profile({"dev", "prod"})
 public class SwaggerConfig {
     @Bean
     public OpenAPI openAPI() {
         return new OpenAPI()
-//                .components(new Components())
             .info(new Info()
                 .title("GIVEUS API 명세서")
                 .description("C206")
@@ -23,7 +21,6 @@ public class SwaggerConfig {
                 .contact(new Contact()
                     .email("giveus2024@gmail.com")
                     .name("giveus")))
-//                .servers(List.of(server()))
             ;
     }
 

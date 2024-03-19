@@ -1,9 +1,11 @@
 eureka:
   client:
+    prefer-ip-address: true
     register-with-eureka: true
     fetch-registry: true
     service-url:
-      defaultZone: http://j10c206.p.ssafy.io:8761/eureka
+      defaultZone: http://3.34.127.65:8761/eureka
+
 
 server:
   port: 8082
