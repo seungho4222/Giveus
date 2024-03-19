@@ -1,7 +1,7 @@
 import * as r from '@components/search/RecentTerm/RecentTerm.styled'
 import RecentTermHeader from '@components/search/RecentTerm/RecentTermHeader'
 import RecentTermList from '@components/search/RecentTerm/RecentTermList'
-import { useEffect, useState } from 'react'
+import { Dispatch, SetStateAction, useEffect, useState } from 'react'
 
 const Index = () => {
   const storage = localStorage.getItem('recentTerm')

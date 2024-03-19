@@ -5,24 +5,25 @@ import RecentTerm from '@components/search/RecentTerm'
 import SearchResult from '@components/search/SearchResult'
 import { useState } from 'react'
 import { deleteBlank } from '@utils/regexMethods'
+import { data } from '@components/funding/FundingListCard/data'
+import { FundingType } from '@/types/fundingType'
 
 const SearchPage = () => {
   const [value, setValue] = useState('')
-  const [keyword, setKeyword] = useState('')
+  const [result, setResult] = useState<FundingType[]>([])
 
   // 검색
   const onSearch = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter') {
       addRecentTerm(value)
-      setKeyword(value)
-      setValue('')
+      setResult(data)
     }
   }
 
   // 검색어 reset
   const resetKeyword = () => {
-    setKeyword('')
     setValue('')
+    setResult([])
   }
 
   // 최근 검색어 localstorage에 저장
@@ -45,8 +46,11 @@ const SearchPage = () => {
           onSearch={onSearch}
           resetKeyword={resetKeyword}
         />
-        {/* {keyword === '' ? <RecentTerm /> : <SearchResult />} */}
-        <RecentTerm />
+        {result.length === 0 ? (
+          <RecentTerm />
+        ) : (
+          <SearchResult result={result} />
+        )}
       </Layout>
       <Navbar current="search" />
     </>
