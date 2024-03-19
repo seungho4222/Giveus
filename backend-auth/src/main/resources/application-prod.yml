@@ -7,17 +7,6 @@ eureka:
     service-url:
       defaultZone: http://3.34.127.65:8761/eureka
 
-
-server:
-  port: 8082
-#  address: localhost
-  servlet:
-    context-path: /
-    encoding:
-      charset: UTF-8
-      enabled: true
-      force: true
-
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver

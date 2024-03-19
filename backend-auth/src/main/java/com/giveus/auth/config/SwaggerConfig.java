@@ -17,7 +17,7 @@ import org.springframework.context.annotation.Configuration;
  */
 @OpenAPIDefinition(
         servers = {
-                @Server(url = "https://j10c108.p.ssafy.io", description = "배포 Auth 서버 API"),
+                @Server(url = "https://j10c206.p.ssafy.io", description = "배포 Auth 서버 API"),
                 @Server(url = "http://localhost:8082", description = "로컬 Auth 서버 API"),
         },
         info = @Info(
