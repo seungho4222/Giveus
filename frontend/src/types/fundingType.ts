@@ -42,3 +42,8 @@ export type FilterBoxType = {
   sort: string
   setSortrOpen: Dispatch<SetStateAction<boolean>>
 }
+
+export type FilterStatusType = {
+  filterStatus: boolean[]
+  setFilterStatus: Dispatch<SetStateAction<boolean[]>>
+}

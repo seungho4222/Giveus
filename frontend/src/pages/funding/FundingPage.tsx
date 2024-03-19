@@ -20,12 +20,15 @@ import {
   sortByPeriod,
 } from '@/utils/fundingSort'
 import { sortCondition } from '@/assets/data/fundingCondition'
+import FilterArea from '@/components/funding/FilterBox/FilterArea'
 
 const FundingPage = () => {
   const funding: FundingType[] = useRecoilValue(fundingState)
   const [filterOpen, setFilterOpen] = useState<boolean>(false)
   const [sortOpen, setSortrOpen] = useState<boolean>(false)
   const [sort, setSort] = useState<string>(sortCondition[0])
+  const [filterStatus, setFilterStatus] = useState<boolean[]>([true, false, true]) // 진행중, 진행완료, 나이
+
   const [sortedFunding, setSortedFunding] = useState<FundingType[]>(sortByPeriod(funding))
 
   useEffect(() => {
@@ -57,11 +60,12 @@ const FundingPage = () => {
           sort={sort}
           setSortrOpen={setSortrOpen}
         />
+        <FilterArea filterStatus={filterStatus} setFilterStatus={setFilterStatus} />
         <FundingListCount data={funding} />
         <div>
           {sortedFunding &&
-            sortedFunding.map(item => (
-              <FundingListCard key={item.fundingNo} data={item} />
+            sortedFunding.map((item, idx) => (
+              <FundingListCard key={idx} data={item} />
             ))}
         </div>
       </Layout>
@@ -70,7 +74,7 @@ const FundingPage = () => {
       {filterOpen && (
         <Modal
           name={'필터'}
-          children={<FilterCondition />}
+          children={<FilterCondition filterStatus={filterStatus} setFilterStatus={setFilterStatus} />}
           onClose={() => setFilterOpen(false)}
         />
       )}
