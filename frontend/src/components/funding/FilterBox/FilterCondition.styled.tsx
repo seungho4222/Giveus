@@ -27,6 +27,9 @@ export const Button = styled.button<{ $checked: boolean }>`
 `
 
 export const Footer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   width: 375px;
   position: fixed;
   bottom: 0;

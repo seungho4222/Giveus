@@ -74,7 +74,7 @@ const FundingPage = () => {
       {filterOpen && (
         <Modal
           name={'필터'}
-          children={<FilterCondition filterStatus={filterStatus} setFilterStatus={setFilterStatus} />}
+          children={<FilterCondition filterStatus={filterStatus} setFilterStatus={setFilterStatus} setFilterOpen={setFilterOpen}/>}
           onClose={() => setFilterOpen(false)}
         />
       )}

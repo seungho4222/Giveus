@@ -46,4 +46,5 @@ export type FilterBoxType = {
 export type FilterStatusType = {
   filterStatus: boolean[]
   setFilterStatus: Dispatch<SetStateAction<boolean[]>>
+  setFilterOpen?: Dispatch<SetStateAction<boolean>>
 }
