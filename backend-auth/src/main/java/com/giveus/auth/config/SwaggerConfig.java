@@ -21,9 +21,9 @@ import org.springframework.context.annotation.Configuration;
                 @Server(url = "http://localhost:8082", description = "로컬 Auth 서버 API"),
         },
         info = @Info(
-                title = "Giveus API Document",
-                description = "SSAFY 10th 특화 C206",
-                version = "v1.0",
+                title = "GIVEUS 인증 API 명세서",
+                description = "C206",
+                version = "1.0.0",
                 contact = @Contact(name = "seojihyeon", email = "seojihyeon99@naver.com")),
         tags = {
                 @Tag(name = "01.User", description = "유저 기능"),
@@ -45,8 +45,8 @@ public class SwaggerConfig {
     @Bean
     public GroupedOpenApi publicApi() {
         return GroupedOpenApi.builder()
-                .group("controller")
-                .pathsToMatch("/api/**")
+                .group("API")
+                .packagesToScan("com.giveus.auth.controller")
                 .build();
     }
 
