@@ -11,4 +11,5 @@ export const Wrap = styled.div`
   border-radius: 20px;
   margin-right: 12px;
   margin-bottom: 10px;
+  white-space: pre;
 `

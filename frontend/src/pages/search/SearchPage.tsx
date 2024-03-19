@@ -4,6 +4,7 @@ import SearchForm from '@components/search/SearchForm'
 import RecentTerm from '@components/search/RecentTerm'
 import SearchResult from '@components/search/SearchResult'
 import { useState } from 'react'
+import { deleteBlank } from '@utils/regexMethods'
 
 const SearchPage = () => {
   const [value, setValue] = useState('')
@@ -26,14 +27,13 @@ const SearchPage = () => {
 
   // 최근 검색어 localstorage에 저장
   const addRecentTerm = (term: string) => {
-    const storage = localStorage.getItem('recentTerm')
-    let prev: string[] = storage && JSON.parse(storage)
-    if (term !== '') {
-      prev === null
-        ? (prev = [term])
-        : prev.every(item => item !== term) && prev.unshift(term)
-      localStorage.setItem('recentTerm', JSON.stringify(prev))
-    }
+    let prev: string[] = JSON.parse(localStorage.getItem('recentTerm') || '[]')
+
+    term = deleteBlank(term)
+    prev = prev.filter(item => item !== term)
+    prev.unshift(term)
+    prev.length > 10 && prev.pop()
+    localStorage.setItem('recentTerm', JSON.stringify(prev))
   }
 
   return (
