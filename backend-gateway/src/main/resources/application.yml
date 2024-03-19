@@ -36,6 +36,10 @@ spring:
             uri: lb://BACKEND-ADMIN
             predicates:
               - Path=/api/v1/admin/**
+          - id: backend-payment
+            uri: lb://BACKEND-PAYMENT
+            predicates:
+              - Path=/api/v1/payment/**
 eureka:
   instance:
     instance-id: ${spring.application.name}:${server.port}
@@ -51,3 +55,5 @@ springdoc:
         name: Funding
       - url: /api/v1/admin/docs
         name: Admin
+      - url: /api/v1/payment/docs
+        name: Payment
