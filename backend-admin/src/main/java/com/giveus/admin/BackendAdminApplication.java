@@ -1,15 +1,15 @@
-package com.giveus.auth;
+package com.giveus.admin;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
-@EnableDiscoveryClient
 @SpringBootApplication
-public class BackendAuthApplication {
+@EnableDiscoveryClient
+public class BackendAdminApplication {
 
-    public static void main(String[] args) {
-        SpringApplication.run(BackendAuthApplication.class, args);
-    }
+	public static void main(String[] args) {
+		SpringApplication.run(BackendAdminApplication.class, args);
+	}
 
 }

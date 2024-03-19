@@ -1,23 +1,22 @@
-package com.giveus.funding.controller;
+package com.giveus.admin.controller;
 
-import com.giveus.funding.common.dto.CommonResponseBody;
-import com.giveus.funding.dto.request.FundingCreateReq;
-import com.giveus.funding.dto.response.FundingDetailsRes;
-import com.giveus.funding.dto.response.FundingListRes;
-import com.giveus.funding.service.FundingService;
+import com.giveus.admin.common.dto.CommonResponseBody;
+import com.giveus.admin.dto.request.FundingCreateReq;
+import com.giveus.admin.dto.response.FundingDetailsRes;
+import com.giveus.admin.dto.response.FundingListRes;
+import com.giveus.admin.service.FundingService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import static org.springframework.http.HttpStatus.CREATED;
 import static org.springframework.http.HttpStatus.OK;
 
-@Tag(name = "사용자 펀딩 API", description = "User")
+@Tag(name = "관리자 펀딩 API", description = "Admin")
 @RestController
-@RequestMapping("/api/v1/funding")
+@RequestMapping("/api/v1/admin/funding")
 @RequiredArgsConstructor
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class FundingController {

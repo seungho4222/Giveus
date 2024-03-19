@@ -1,4 +1,4 @@
-package com.giveus.funding.config;
+package com.giveus.admin.config;
 
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.info.Contact;
@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
 
 @OpenAPIDefinition(
         info = @Info(
-                title = "GIVEUS 펀딩 API 명세서",
+                title = "GIVEUS 관리자 API 명세서",
                 description = "C206",
                 version = "1.0.0",
                 contact = @Contact(name = "giveus", email = "giveus2024@gmail.com"))
@@ -22,7 +22,7 @@ public class SwaggerConfig {
     public GroupedOpenApi publicApi() {
         return GroupedOpenApi.builder()
                 .group("API")
-                .packagesToScan("com.giveus.funding.controller")
+                .packagesToScan("com.giveus.admin.controller")
                 .build();
     }
 
