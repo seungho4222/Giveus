@@ -39,17 +39,5 @@ export type MedicalExpenseType = {
 
 export type FilterBoxType = {
   setFilterOpen: Dispatch<SetStateAction<boolean>>
-  sort: string
   setSortrOpen: Dispatch<SetStateAction<boolean>>
-}
-
-export type FilterStatusType = {
-  filterStatus: boolean[]
-  setFilterStatus: Dispatch<SetStateAction<boolean[]>>
-  setFilterOpen?: Dispatch<SetStateAction<boolean>>
-}
-
-export type AgeRangeType = {
-  ageRange: ReadonlyArray<number>
-  setAgeRange: Dispatch<SetStateAction<ReadonlyArray<number>>>
 }

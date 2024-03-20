@@ -1,8 +1,10 @@
-import { AgeRangeType, FilterStatusType } from '@/types/fundingType'
+import { ageRangeState, filterStatusState } from '@/stores/filterAndSort'
 import * as f from '@components/funding/FilterBox/FilterArea.styled'
+import { useRecoilState } from 'recoil'
 
-const FilterArea = (props: FilterStatusType & AgeRangeType) => {
-  const { filterStatus, setFilterStatus, ageRange, setAgeRange } = props
+const FilterArea = () => {
+  const [filterStatus, setFilterStatus] = useRecoilState(filterStatusState)
+  const [ageRange, setAgeRange] = useRecoilState(ageRangeState)
 
   const onClickDelete = (idx: number) => {
     if (idx === 2) setAgeRange([0, 100])

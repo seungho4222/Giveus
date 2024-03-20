@@ -1,53 +1,54 @@
 import { sortCondition } from '@/assets/data/fundingCondition'
-import { StringStateType } from '@/types/commonType'
+import { sortState } from '@/stores/filterAndSort'
 import * as s from '@components/funding/FilterBox/SortCondition.styled'
+import { useRecoilState } from 'recoil'
 
-const SortCondition = (props: StringStateType) => {
-  const { value, setValue } = props
+const SortCondition = () => {
+  const [sort, setSort] = useRecoilState(sortState)
 
   return (
     <s.Container>
-      <s.Wrap onClick={() => setValue(sortCondition[0])}>
+      <s.Wrap onClick={() => setSort(sortCondition[0])}>
         <s.RadioInput
           type="radio"
           name="sort"
-          checked={value === sortCondition[0]}
+          checked={sort === sortCondition[0]}
           readOnly
         />
         {sortCondition[0]}
       </s.Wrap>
-      <s.Wrap onClick={() => setValue(sortCondition[1])}>
+      <s.Wrap onClick={() => setSort(sortCondition[1])}>
         <s.RadioInput
           type="radio"
           name="sort"
-          checked={value === sortCondition[1]}
+          checked={sort === sortCondition[1]}
           readOnly
         />
         {sortCondition[1]}
       </s.Wrap>
-      <s.Wrap onClick={() => setValue(sortCondition[2])}>
+      <s.Wrap onClick={() => setSort(sortCondition[2])}>
         <s.RadioInput
           type="radio"
           name="sort"
-          checked={value === sortCondition[2]}
+          checked={sort === sortCondition[2]}
           readOnly
         />
         {sortCondition[2]}
       </s.Wrap>
-      <s.Wrap onClick={() => setValue(sortCondition[3])}>
+      <s.Wrap onClick={() => setSort(sortCondition[3])}>
         <s.RadioInput
           type="radio"
           name="sort"
-          checked={value === sortCondition[3]}
+          checked={sort === sortCondition[3]}
           readOnly
         />
         {sortCondition[3]}
       </s.Wrap>
-      <s.Wrap onClick={() => setValue(sortCondition[4])}>
+      <s.Wrap onClick={() => setSort(sortCondition[4])}>
         <s.RadioInput
           type="radio"
           name="sort"
-          checked={value === sortCondition[4]}
+          checked={sort === sortCondition[4]}
           readOnly
         />
         {sortCondition[4]}

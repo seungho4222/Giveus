@@ -1,9 +1,12 @@
+import { sortState } from '@/stores/filterAndSort'
 import { FilterBoxType } from '@/types/fundingType'
 import { fundingCondition } from '@assets/data/fundingCondition'
 import * as f from '@components/funding/FilterBox/FilterBox.styled'
+import { useRecoilValue } from 'recoil'
 
 const Index = (props: FilterBoxType) => {
-  const { setFilterOpen, sort, setSortrOpen } = props
+  const { setFilterOpen, setSortrOpen } = props
+  const sort = useRecoilValue(sortState)
 
   return (
     <f.Container>

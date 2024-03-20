@@ -33,9 +33,9 @@ const FundingPage = () => {
   const funding: FundingType[] = useRecoilValue(fundingState)
   const [filterOpen, setFilterOpen] = useState<boolean>(false) // 필터 모달
   const [sortOpen, setSortrOpen] = useState<boolean>(false) // 정렬 모달
-  const [sort, setSort] = useRecoilState(sortState)
-  const [filterStatus, setFilterStatus] = useRecoilState(filterStatusState)
-  const [ageRange, setAgeRange] = useRecoilState(ageRangeState)
+  const sort = useRecoilValue(sortState)
+  const filterStatus = useRecoilValue(filterStatusState)
+  const ageRange = useRecoilValue(ageRangeState)
 
   const [filteredFunding, setFilteredFunding] =
     useRecoilState(filteredFundingState)
@@ -83,17 +83,8 @@ const FundingPage = () => {
     <>
       <Layout>
         <HomeHeader />
-        <FilterBox
-          setFilterOpen={setFilterOpen}
-          sort={sort}
-          setSortrOpen={setSortrOpen}
-        />
-        <FilterArea
-          filterStatus={filterStatus}
-          setFilterStatus={setFilterStatus}
-          ageRange={ageRange}
-          setAgeRange={setAgeRange}
-        />
+        <FilterBox setFilterOpen={setFilterOpen} setSortrOpen={setSortrOpen} />
+        <FilterArea />
         <FundingListCount data={filteredFunding} />
         <div>
           {filteredFunding.map((item, idx) => (
@@ -106,15 +97,7 @@ const FundingPage = () => {
       {filterOpen && (
         <Modal
           name={'필터'}
-          children={
-            <FilterCondition
-              filterStatus={filterStatus}
-              setFilterStatus={setFilterStatus}
-              setFilterOpen={setFilterOpen}
-              ageRange={ageRange}
-              setAgeRange={setAgeRange}
-            />
-          }
+          children={<FilterCondition setFilterOpen={setFilterOpen} />}
           onClose={() => setFilterOpen(false)}
         />
       )}
@@ -122,7 +105,7 @@ const FundingPage = () => {
       {sortOpen && (
         <ResponsiveModal
           name={'정렬'}
-          children={<SortCondition value={sort} setValue={setSort} />}
+          children={<SortCondition />}
           onClose={() => setSortrOpen(false)}
         />
       )}

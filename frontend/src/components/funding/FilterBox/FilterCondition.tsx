@@ -1,18 +1,18 @@
 import LargeButton from '@/common/LargeButton'
 import ResetButton from '@/common/ResetButton'
-import { AgeRangeType, FilterStatusType } from '@/types/fundingType'
 import * as f from '@components/funding/FilterBox/FilterCondition.styled'
-import { useState } from 'react'
+import { Dispatch, SetStateAction, useState } from 'react'
 import RangeSlieder from './RangeSlieder'
+import { useRecoilState } from 'recoil'
+import { ageRangeState, filterStatusState } from '@/stores/filterAndSort'
 
-const FilterCondition = (props: FilterStatusType & AgeRangeType) => {
-  const {
-    filterStatus,
-    setFilterStatus,
-    setFilterOpen,
-    ageRange,
-    setAgeRange,
-  } = props
+const FilterCondition = (props: {
+  setFilterOpen: Dispatch<SetStateAction<boolean>>
+}) => {
+  const { setFilterOpen } = props
+  const [filterStatus, setFilterStatus] = useRecoilState(filterStatusState)
+  const [ageRange, setAgeRange] = useRecoilState(ageRangeState)
+
   const [doing, setDoing] = useState<boolean>(filterStatus[0]) // 진행중
   const [done, setDone] = useState<boolean>(filterStatus[1]) // 진행완료
   const [values, setValues] = useState<ReadonlyArray<number>>(ageRange) // 나이 범위
@@ -20,13 +20,13 @@ const FilterCondition = (props: FilterStatusType & AgeRangeType) => {
   const onClickReset = () => {
     setDoing(true)
     setDone(false)
-    setFilterStatus([doing, done, false])
     setValues([0, 100])
+    setFilterStatus([doing, done, false])
   }
 
   const onClickSubmit = () => {
     setFilterStatus([doing, done, values[0] !== 0 || values[1] !== 100])
-    setFilterOpen && setFilterOpen(false)
+    setFilterOpen(false)
     setAgeRange(values)
   }
 
