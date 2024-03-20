@@ -53,4 +53,5 @@ springdoc:
     path: /api/v1/payment/docs
 
 pay:
-  admin-key: 77ecd177d7cea31fbcbf2f38acf293a1
+  kakao:
+    secret-key: DEV8E767E2382C67CBD8C824845C98BF88F0DBC0

@@ -25,8 +25,8 @@ public class KakaoPayService {
     private final TidRepository tidRepository;
 
 
-    @Value("${pay.admin-key}")
-    private String adminKey;
+    @Value("${pay.kakao.secret-key}")
+    private String secretKey;
 
     /** 카오페이 결제를 시작하기 위해 상세 정보를 카카오페이 서버에 전달하고 결제 고유 번호(TID)를 받는 단계입니다.
      * 어드민 키를 헤더에 담아 파라미터 값들과 함께 POST로 요청합니다.
@@ -44,9 +44,11 @@ public class KakaoPayService {
 
         HttpHeaders headers = new HttpHeaders();
 
+        log.info("secretKey: {}", secretKey);
+
         /** 요청 헤더 */
-        String auth = "KakaoAK " + adminKey;
-        headers.set("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
+        String auth = "SECRET_KEY " + secretKey;
+        headers.set("Content-type", "application/json");
         headers.set("Authorization", auth);
 
         /** 요청 Body */
@@ -62,6 +64,8 @@ public class KakaoPayService {
         tidRepository.save(memberNo + "", payReadyResDto.getTid(), 5L);
 //        member.updateTid(payReadyResDto.getTid());
 
+        log.info("payReadyResDto: {}", payReadyResDto);
+
         return payReadyResDto;
     }
 
@@ -72,14 +76,15 @@ public class KakaoPayService {
 //                .orElseThrow(()->new Exception("해당 유저가 존재하지 않습니다."));
 
 //        String tid=member.getTid();
-        String tid = "";
-//        tidRepository.find(id + "")
+//        String tid = "";
+        String tid = tidRepository.find(id + "")
+                .orElseThrow(() -> new Exception("결제 고유 번호가 존재하지 않습니다."));
 
         HttpHeaders headers = new HttpHeaders();
-        String auth = "KakaoAK " + adminKey;
+        String auth = "SECRET_KEY " + secretKey;
 
         /** 요청 헤더 */
-        headers.set("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
+        headers.set("Content-type", "application/json");
         headers.set("Authorization", auth);
 
         /** 요청 Body */
@@ -92,6 +97,8 @@ public class KakaoPayService {
         // 요청 보내기
         RestTemplate rt = new RestTemplate();
         PayApproveResDto payApproveResDto = rt.postForObject(payRequest.getUrl(), requestEntity, PayApproveResDto.class);
+
+        tidRepository.delete(id + "");
 
         return payApproveResDto;
     }
