@@ -23,5 +23,5 @@ public class FundingListRes {
 
     private String title;
 
-    private boolean isCompleted;
+    private Boolean isCompleted;
 }

@@ -19,8 +19,6 @@ public class FundingCreateReq {
 
     private String patientName;
 
-    private String status;
-
     private LocalDate birth;
 
     private char gender;
@@ -42,8 +40,6 @@ public class FundingCreateReq {
     private int totalAmount;
 
     private int targetAmount;
-
-    private LocalDate createdAt;
 
     private String phone;
 }

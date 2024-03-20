@@ -20,9 +20,7 @@ public class FundingTransfer {
                 .patientName(req.getPatientName())
                 .registrationNumber(req.getRegistrationNumber())
                 .startDate(req.getStartDate())
-                .status(req.getStatus())
                 .targetAmount(req.getTargetAmount())
-                .totalAmount(req.getTotalAmount())
                 .build();
 
     }
