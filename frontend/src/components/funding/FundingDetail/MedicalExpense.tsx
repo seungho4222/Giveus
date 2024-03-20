@@ -1,5 +1,5 @@
 import * as m from '@/components/funding/FundingDetail/MedicalExpense.styled'
-import { medicalExpenseState } from '@/stores/fundingState'
+import { medicalExpenseState } from '@/stores/funding'
 import { MedicalExpenseType } from '@/types/fundingType'
 import { useRecoilValue } from 'recoil'
 
