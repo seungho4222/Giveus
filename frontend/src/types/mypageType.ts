@@ -22,7 +22,7 @@ export type PointsFilterModalType = {
   DateInputType
 
 // 포인트 사용내역 타입
-export type usagePointType = {
+export type UsagePointType = {
   pointNo: number
   memberNo: number
   amount: number
@@ -31,11 +31,18 @@ export type usagePointType = {
 }
 
 // 포인트 충전 내역 타입
-export type rechargePointType = {
+export type RechargePointType = {
   paymentType?: string
-} & usagePointType
+} & UsagePointType
 
 export type PointsListType = {
-  usageData: usagePointType[]
-  rechargeData: rechargePointType[]
+  usageData: UsagePointType[]
+  rechargeData: RechargePointType[]
+}
+
+export type PointItemType = {
+  type: string
+  createdAt: string
+  content: string
+  amount: number
 }

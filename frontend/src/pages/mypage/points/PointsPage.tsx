@@ -9,7 +9,7 @@ import { getOneMonthAgoDate, getTodayDate } from '@utils/dateMethods'
 import { rechargePointData, usagePointData } from '@components/points/data'
 
 const PointsPage = () => {
-  const [open, setOpen] = useState(true)
+  const [open, setOpen] = useState(false)
   const [startDate, setStartDate] = useState(getOneMonthAgoDate())
   const [endDate, setEndDate] = useState(getTodayDate())
   const [type, setType] = useState('전체')
