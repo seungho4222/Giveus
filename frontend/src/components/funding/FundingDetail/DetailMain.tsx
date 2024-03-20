@@ -1,7 +1,7 @@
 import * as d from '@/components/funding/FundingDetail/DetailMain.styled'
 import { percent, dDay } from '@/utils/fundingInfoAdd'
 import { useRecoilValue } from 'recoil'
-import { fundingDetailState } from '@/stores/fundingState'
+import { fundingDetailState } from '@/stores/funding'
 import Modal from '@/common/Modal'
 import { useState } from 'react'
 import Donate from '../Donate'

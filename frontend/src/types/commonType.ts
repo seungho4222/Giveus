@@ -6,6 +6,13 @@ export type FullButtonType = {
   onClick: () => void
 }
 
+export type LargeButtonType = {
+  text: string
+  onClick: () => void
+}
+
+export type ResetButtonType = LargeButtonType
+
 export type StringStateType = {
   value: string
   setValue: Dispatch<SetStateAction<string>>
