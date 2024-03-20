@@ -14,15 +14,16 @@ public class FundingListRes {
 
     private int fundingNo;
 
-    private String issueNumber;
-
-    private String registrationNumber;
-
-    private String patientName;
+    private String title;
 
     private String status;
 
-    private String title;
+    private int targetAmount;
 
-    private boolean isCompleted;
+    private int totalAmount;
+
+    private LocalDate startDate;
+
+    private LocalDate endDate;
+
 }
