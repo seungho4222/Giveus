@@ -34,6 +34,7 @@ export const Right = styled.div`
 
 export const Detail = styled.div`
   margin-bottom: 12px;
+  font-size: 0.9em;
   font-weight: 500;
 `
 
