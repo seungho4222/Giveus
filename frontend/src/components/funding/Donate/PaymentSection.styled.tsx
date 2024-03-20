@@ -29,6 +29,7 @@ export const Button = styled.button<{ $active: boolean }>`
 export const RadioInut = styled.input`
   margin-right: 0.5em;
   margin-block: auto;
+  cursor: pointer;
 `
 
 export const Logo = styled.img`

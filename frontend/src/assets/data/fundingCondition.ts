@@ -14,3 +14,11 @@ export const fundingCondition = [
     height: 12,
   },
 ]
+
+export const sortCondition = [
+  '기간순',
+  '참여자순',
+  '최신순',
+  '높은 모금액순',
+  '낮은 모금액순',
+]
