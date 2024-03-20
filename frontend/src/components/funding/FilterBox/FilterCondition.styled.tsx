@@ -26,6 +26,29 @@ export const Button = styled.button<{ $checked: boolean }>`
   color: ${props => (props.$checked ? colors.blue01 : colors.gray04)};
 `
 
+export const AgeWrap = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-block: 5%;
+`
+
+export const StartAge = styled.div<{ $age: number }>`
+  font-size: 0.8em;
+  width: 8%;
+  white-space: nowrap;
+  color: ${props =>
+    props.$age === 0 || props.$age === 100 ? colors.gray04 : colors.blue01};
+`
+
+export const EndAge = styled.div<{ $age: number }>`
+  display: flex;
+  justify-content: end;
+  font-size: 0.8em;
+  width: 11%;
+  color: ${props =>
+    props.$age === 0 || props.$age === 100 ? colors.gray04 : colors.blue01};
+`
+
 export const Footer = styled.div`
   display: flex;
   align-items: center;

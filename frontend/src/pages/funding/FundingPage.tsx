@@ -21,35 +21,59 @@ import {
 } from '@/utils/fundingSort'
 import { sortCondition } from '@/assets/data/fundingCondition'
 import FilterArea from '@/components/funding/FilterBox/FilterArea'
+import { filterByAge, filterByDoing, filterByDone } from '@/utils/fundingFilter'
 
 const FundingPage = () => {
   const funding: FundingType[] = useRecoilValue(fundingState)
-  const [filterOpen, setFilterOpen] = useState<boolean>(false)
-  const [sortOpen, setSortrOpen] = useState<boolean>(false)
-  const [sort, setSort] = useState<string>(sortCondition[0])
-  const [filterStatus, setFilterStatus] = useState<boolean[]>([true, false, true]) // 진행중, 진행완료, 나이
+  const [filterOpen, setFilterOpen] = useState<boolean>(false) // 필터 모달
+  const [sortOpen, setSortrOpen] = useState<boolean>(false) // 정렬 모달
+  const [sort, setSort] = useState<string>(sortCondition[0]) // 정렬 기준 : default 기간순
+  const [filterStatus, setFilterStatus] = useState<boolean[]>([
+    true,
+    false,
+    false,
+  ]) // 진행중, 진행완료, 나이 체크 여부
+  const [ageRange, setAgeRange] = useState<ReadonlyArray<number>>([0, 100]) // 나이 범위
 
-  const [sortedFunding, setSortedFunding] = useState<FundingType[]>(sortByPeriod(funding))
+  const [filteredFunding, setFilteredFunding] = useState<FundingType[]>([])
 
-  useEffect(() => {
+  const filter = () => {
+    let filteredData = funding
+
+    if (filterStatus[0] && !filterStatus[1]) {
+      filteredData = filterByDoing(filteredData)
+    } else if (!filterStatus[0] && filterStatus[1]) {
+      filteredData = filterByDone(filteredData)
+    }
+
+    if (filterStatus[2]) {
+      filteredData = filterByAge(filteredData, ageRange[0], ageRange[1])
+    }
+
+    return filteredData
+  }
+
+  useEffect(() => { // filter 후 sort 진행
+    const filteredData = filter()
+
     switch (sort) {
       case sortCondition[0]:
-        setSortedFunding(sortByPeriod(funding))
+        setFilteredFunding(sortByPeriod(filteredData))
         break
       case sortCondition[1]:
-        setSortedFunding(sortByDonerCount(funding))
+        setFilteredFunding(sortByDonerCount(filteredData))
         break
       case sortCondition[2]:
-        setSortedFunding(sortByLatest(funding))
+        setFilteredFunding(sortByLatest(filteredData))
         break
       case sortCondition[3]:
-        setSortedFunding(sortByHighestAmount(funding))
+        setFilteredFunding(sortByHighestAmount(filteredData))
         break
-        case sortCondition[4]:
-        setSortedFunding(sortByLowestAmount(funding))
+      case sortCondition[4]:
+        setFilteredFunding(sortByLowestAmount(filteredData))
         break
     }
-  }, [sort])
+  }, [filterStatus, sort])
 
   return (
     <>
@@ -60,13 +84,17 @@ const FundingPage = () => {
           sort={sort}
           setSortrOpen={setSortrOpen}
         />
-        <FilterArea filterStatus={filterStatus} setFilterStatus={setFilterStatus} />
-        <FundingListCount data={funding} />
+        <FilterArea
+          filterStatus={filterStatus}
+          setFilterStatus={setFilterStatus}
+          ageRange={ageRange}
+          setAgeRange={setAgeRange}
+        />
+        <FundingListCount data={filteredFunding} />
         <div>
-          {sortedFunding &&
-            sortedFunding.map((item, idx) => (
-              <FundingListCard key={idx} data={item} />
-            ))}
+          {filteredFunding.map((item, idx) => (
+            <FundingListCard key={idx} data={item} />
+          ))}
         </div>
       </Layout>
       <Navbar current="funding" />
@@ -74,7 +102,15 @@ const FundingPage = () => {
       {filterOpen && (
         <Modal
           name={'필터'}
-          children={<FilterCondition filterStatus={filterStatus} setFilterStatus={setFilterStatus} setFilterOpen={setFilterOpen}/>}
+          children={
+            <FilterCondition
+              filterStatus={filterStatus}
+              setFilterStatus={setFilterStatus}
+              setFilterOpen={setFilterOpen}
+              ageRange={ageRange}
+              setAgeRange={setAgeRange}
+            />
+          }
           onClose={() => setFilterOpen(false)}
         />
       )}

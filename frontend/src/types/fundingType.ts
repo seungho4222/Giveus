@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction } from "react"
+import { Dispatch, SetStateAction } from 'react'
 
 export type FundingType = {
   fundingNo: number
@@ -47,4 +47,9 @@ export type FilterStatusType = {
   filterStatus: boolean[]
   setFilterStatus: Dispatch<SetStateAction<boolean[]>>
   setFilterOpen?: Dispatch<SetStateAction<boolean>>
+}
+
+export type AgeRangeType = {
+  ageRange: ReadonlyArray<number>
+  setAgeRange: Dispatch<SetStateAction<ReadonlyArray<number>>>
 }
