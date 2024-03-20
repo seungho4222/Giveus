@@ -51,4 +51,5 @@ redirect:
   success:
     http://j10c206.p.ssafy.io:3000/login/oauth2
 
-# https://j10c108.p.ssafy.io
+swagger:
+  server: https://j10c206.p.ssafy.io
