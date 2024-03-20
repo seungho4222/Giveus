@@ -31,9 +31,6 @@ public class Funding {
     @Column(name = "patient_name")
     private String patientName;
 
-    @Column(name = "status")
-    private String status;
-
     @Column(name = "birth")
     private LocalDate birth;
 
@@ -61,9 +58,6 @@ public class Funding {
     @Column(name = "end_date")
     private LocalDate endDate;
 
-    @Column(name = "total_amount")
-    private int totalAmount;
-
     @Column(name = "target_amount")
     private int targetAmount;
 
@@ -74,11 +68,10 @@ public class Funding {
     private String phone;
 
     @Builder
-    public Funding(String issueNumber, String registrationNumber, String patientName, String status, LocalDate birth, char gender, String diseaseName, String diseaseCode, LocalDate diagnosisDate, String opinion, String title, LocalDate startDate, LocalDate endDate, int totalAmount, int targetAmount, String phone) {
+    public Funding(String issueNumber, String registrationNumber, String patientName, LocalDate birth, char gender, String diseaseName, String diseaseCode, LocalDate diagnosisDate, String opinion, String title, LocalDate startDate, LocalDate endDate, int targetAmount, String phone) {
         this.issueNumber = issueNumber;
         this.registrationNumber = registrationNumber;
         this.patientName = patientName;
-        this.status = status;
         this.birth = birth;
         this.gender = gender;
         this.diseaseName = diseaseName;
@@ -88,7 +81,6 @@ public class Funding {
         this.title = title;
         this.startDate = startDate;
         this.endDate = endDate;
-        this.totalAmount = totalAmount;
         this.targetAmount = targetAmount;
         this.phone = phone;
     }

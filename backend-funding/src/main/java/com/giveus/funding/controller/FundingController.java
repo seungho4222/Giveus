@@ -1,18 +1,14 @@
 package com.giveus.funding.controller;
 
 import com.giveus.funding.common.dto.CommonResponseBody;
-import com.giveus.funding.dto.request.FundingCreateReq;
-import com.giveus.funding.dto.response.FundingDetailsRes;
 import com.giveus.funding.dto.response.FundingListRes;
 import com.giveus.funding.service.FundingService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import static org.springframework.http.HttpStatus.CREATED;
 import static org.springframework.http.HttpStatus.OK;
 
 @Tag(name = "사용자 펀딩 API", description = "User")
@@ -31,11 +27,6 @@ public class FundingController {
             .body(new CommonResponseBody<>(OK, fundingService.getFundingList()));
     }
 
-    @PostMapping
-    public ResponseEntity<CommonResponseBody<FundingDetailsRes>> createFunding(@RequestBody FundingCreateReq req) {
-        return ResponseEntity
-                .status(CREATED)
-                .body(new CommonResponseBody<>(CREATED, fundingService.createFunding(req)));
-    }
+
 
 }
