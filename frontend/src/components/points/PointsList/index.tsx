@@ -1,8 +1,11 @@
+import * as p from '@components/points/PointsList/PontsList.styled'
+import PointsListItem from '@components/points/PointsList/PointsListItem'
+
 const Index = () => {
   return (
-    <div>
-      <div>포인트 내역 페이지</div>
-    </div>
+    <p.Container>
+      <PointsListItem />
+    </p.Container>
   )
 }
 export default Index
