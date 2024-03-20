@@ -6,3 +6,6 @@ eureka:
     fetch-registry: true
     service-url:
       defaultZone: http://3.34.127.65:8761/eureka
+
+swagger:
+  server: https://j10c206.p.ssafy.io

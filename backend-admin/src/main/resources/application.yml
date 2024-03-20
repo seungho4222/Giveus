@@ -47,3 +47,15 @@ springdoc:
     path: /docs
   api-docs:
     path: /api/v1/admin/docs
+
+#logging:
+#  file:
+#    path: /home/ubuntu/giveus-log
+#    name: gateway-log-%d{yyyy_MM-dd}.log
+#  pattern:
+#    console: %d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} -%msg%n
+#  logback:
+#    rollingpolicy:
+#      max-history: 7
+#      max-file-size: 100MB
+#      total-size-cap: 0
