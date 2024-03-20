@@ -1,21 +1,11 @@
 eureka:
-  client:
+  instance:
     prefer-ip-address: true
+  client:
     register-with-eureka: true
     fetch-registry: true
     service-url:
       defaultZone: http://3.34.127.65:8761/eureka
-
-
-server:
-  port: 8082
-#  address: localhost
-  servlet:
-    context-path: /
-    encoding:
-      charset: UTF-8
-      enabled: true
-      force: true
 
 spring:
   datasource:
@@ -51,4 +41,5 @@ redirect:
   success:
     http://j10c206.p.ssafy.io:3000/login/oauth2
 
-# https://j10c108.p.ssafy.io
+swagger:
+  server: https://j10c206.p.ssafy.io

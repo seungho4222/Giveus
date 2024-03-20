@@ -1,6 +1,6 @@
 spring:
   application:
-    name: backend-admin
+    name: backend-notification
   profiles:
     active: dev
   jpa:
@@ -20,7 +20,7 @@ spring:
       password: giveus2024~!
 
 server:
-  port: 8086
+  port: 8085
   servlet:
     encoding:
       charset: utf-8
@@ -34,28 +34,13 @@ management:
 eureka:
   instance:
     instance-id: ${spring.application.name}:${server.port}
-    prefer-ip-address: true
   client:
     register-with-eureka: true
     fetch-registry: true
 
 springdoc:
-#  paths-to-match: /api/v1/funding
-#  packages-to-scan: com.giveus.funding.controller
   swagger-ui:
     operations-sorter: alpha
     path: /docs
   api-docs:
-    path: /api/v1/admin/docs
-
-#logging:
-#  file:
-#    path: /home/ubuntu/giveus-log
-#    name: gateway-log-%d{yyyy_MM-dd}.log
-#  pattern:
-#    console: %d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} -%msg%n
-#  logback:
-#    rollingpolicy:
-#      max-history: 7
-#      max-file-size: 100MB
-#      total-size-cap: 0
+    path: /api/v1/authentication/docs
