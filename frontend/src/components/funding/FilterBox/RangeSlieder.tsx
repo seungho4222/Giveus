@@ -22,11 +22,6 @@ const RangeSlieder = (props: {
   return (
     <r.Container>
       <r.Track ref={rangerRef}>
-        {rangerInstance.getTicks().map(({ value, key, percentage }) => (
-          <r.Tick key={key} $percentage={percentage}>
-            <r.TickLabel>{value}</r.TickLabel>
-          </r.Tick>
-        ))}
         {rangerInstance.getSteps().map(({ left, width }, i) => (
           <r.Segment key={i} $index={i} $left={left} $width={width} />
         ))}
@@ -50,9 +45,7 @@ const RangeSlieder = (props: {
                 onTouchStart={onTouchStart}
                 $left={rangerInstance.getPercentageForValue(value)}
                 $active={isActive}
-              >
-                {value}
-              </r.Handle>
+              />
             ),
           )}
       </r.Track>
