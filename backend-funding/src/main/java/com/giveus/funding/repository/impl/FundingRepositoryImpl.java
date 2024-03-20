@@ -20,6 +20,7 @@ public class FundingRepositoryImpl extends QuerydslRepositorySupport
         implements FundingRepositoryCustom {
 
     private static final QFunding qFunding = QFunding.funding;
+    private static final QFundingDetail qFundingDetail = QFundingDetail.fundingDetail;
     private static final QFundingStatusHistory qFundingStatusHistory = QFundingStatusHistory.fundingStatusHistory;
 
     private static final QMemberFunding qMemberFunding = QMemberFunding.memberFunding;
@@ -31,9 +32,10 @@ public class FundingRepositoryImpl extends QuerydslRepositorySupport
     @Override
     public List<FundingListRes> getFundingList() {
         QFundingStatusHistory qFundingStatusHistory2 = QFundingStatusHistory.fundingStatusHistory;
-        return from(qFunding)
-                .select(Projections.fields(FundingListRes.class, qFunding.fundingNo,
-                        qFunding.title,
+        return from(qFundingDetail)
+                .leftJoin(qFundingDetail.funding, qFunding)
+                .select(Projections.fields(FundingListRes.class,
+                        qFundingDetail.thumbnailUrl, qFunding.fundingNo, qFunding.title,
                         ExpressionUtils.as(from(qFundingStatusHistory)
                                 .select(qFundingStatusHistory.status)
                                 .where(qFundingStatusHistory.fundingStatusHistoryNo.eq(

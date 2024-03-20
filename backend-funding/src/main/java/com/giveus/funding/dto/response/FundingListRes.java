@@ -12,6 +12,8 @@ import lombok.Setter;
 @Getter
 public class FundingListRes {
 
+    private String thumbnailUrl;
+
     private int fundingNo;
 
     private String title;
