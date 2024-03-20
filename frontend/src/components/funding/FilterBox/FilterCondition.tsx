@@ -18,7 +18,7 @@ const FilterCondition = (props: FilterStatusType & AgeRangeType) => {
   const [values, setValues] = useState<ReadonlyArray<number>>(ageRange) // 나이 범위
 
   const onClickReset = () => {
-    setDoing(false)
+    setDoing(true)
     setDone(false)
     setFilterStatus([doing, done, false])
     setValues([0, 100])
