@@ -1,3 +1,4 @@
+import MypagePrevHeader from '@components/mypage/MypagePrevHeader'
 import { userState } from '@stores/user'
 import { useNavigate } from 'react-router-dom'
 import { useResetRecoilState } from 'recoil'
@@ -14,7 +15,7 @@ const SettingPage = () => {
 
   return (
     <div>
-      <div>setting</div>
+      <MypagePrevHeader title="설정" />
       <button onClick={logout}>로그아웃</button>
     </div>
   )
