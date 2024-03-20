@@ -26,4 +26,7 @@ public class FundingListRes {
 
     private LocalDate endDate;
 
+    private LocalDate createdAt;
+
+    private LocalDate birth;
 }
