@@ -45,7 +45,7 @@ public class FundingRepositoryImpl extends QuerydslRepositorySupport
                         ExpressionUtils.as(from(qMemberFunding)
                                 .select(qMemberFunding.amount.sum())
                                 .where(qMemberFunding.funding.eq(qFunding)),"totalAmount")
-                        , qFunding.startDate, qFunding.endDate
+                        , qFunding.startDate, qFunding.endDate, qFunding.createdAt, qFunding.birth
                 ))
                 .fetch();
     }
