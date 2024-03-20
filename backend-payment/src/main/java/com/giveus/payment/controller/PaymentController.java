@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import static org.springframework.http.HttpStatus.OK;
 
-@Tag(name = "Payment API", description = "결제")
+@Tag(name = "결제 API", description = "Payment")
 @RestController
 @RequestMapping("/api/v1/payment")
 @RequiredArgsConstructor
