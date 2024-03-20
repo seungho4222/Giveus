@@ -32,7 +32,7 @@ export const PointBox = styled.div`
   justify-content: center;
   border-radius: 12px;
   height: 63px;
-  margin: 16px 0;
+  margin: 16px 0 10px 0;
   color: #fff;
   font-weight: 600;
   font-size: 1.4em;
