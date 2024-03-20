@@ -7,7 +7,7 @@ export const Container = styled.div`
   width: 70%;
 `
 
-export const Track = styled('div')`
+export const Track = styled.div`
   position: relative;
   width: 100%;
   height: 4px;
@@ -17,32 +17,22 @@ export const Track = styled('div')`
   border-radius: 2px;
 `
 
-export const Tick = styled('div')<{ $percentage: number }>`
+export const Tick = styled.div<{ $percentage: number }>`
   position: absolute;
   top: 5px;
   left: ${props => `${props.$percentage}%`};
-  transform: translateX(-50%);
-  :before {
-    content: '';
-    position: absolute;
-    left: 0;
-    background: rgba(0, 0, 0, 0.2);
-    height: 5px;
-    width: 2px;
-    transform: translate(-50%, 0.7rem);
-  }
 `
 
-export const TickLabel = styled('div')`
+export const TickLabel = styled.div`
   position: absolute;
   font-size: 0.6rem;
-  color: rgba(0, 0, 0, 0.5);
+  color: ${colors.gray04};
   top: 100%;
   transform: translate(-50%, 1.2rem);
   white-space: nowrap;
 `
 
-export const Segment = styled('div')<{
+export const Segment = styled.div<{
   $index: number
   $left: number
   $width: number
@@ -59,7 +49,7 @@ export const Segment = styled('div')<{
   width: ${props => `${props.$width}%`};
 `
 
-export const Handle = styled('button')<{ $left: number; $active: boolean }>`
+export const Handle = styled.button<{ $left: number; $active: boolean }>`
   position: absolute;
   left: ${props => `${props.$left}%`};
   z-index: ${props => (props.$active ? 1 : 0)};
@@ -72,14 +62,13 @@ export const Handle = styled('button')<{ $left: number; $active: boolean }>`
   justify-content: center;
   width: 1.5em;
   height: 1.5em;
-  border: 1px solid ${colors.blue01};
+  border: ${props => (props.$active ? '2px' : '1px')} solid ${colors.blue01};
   border-radius: 4px;
   font-size: 0.7rem;
   white-space: nowrap;
-  color: white;
   font-weight: ${props => (props.$active ? 'bold' : 'normal')};
   transform: ${props =>
     props.$active
-      ? 'translate(-50%, -100%) scale(1.3)'
-      : 'translate(-50%, -50%) scale(0.9)'};
+      ? 'translate(-50%, -50%) scale(1.3)'
+      : 'translate(-50%, -40%) scale(0.9)'};
 `
