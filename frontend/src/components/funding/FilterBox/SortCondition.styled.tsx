@@ -12,6 +12,7 @@ export const Wrap = styled.div`
   display: flex;
   align-items: center;
   font-size: 0.8em;
+  cursor: pointer;
 `
 
 export const RadioInput = styled.input`
@@ -19,4 +20,5 @@ export const RadioInput = styled.input`
   width: 1.2em;
   height: 1.2em;
   cursor: pointer;
+  
 `
