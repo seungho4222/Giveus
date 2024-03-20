@@ -32,5 +32,10 @@ export type usagePointType = {
 
 // 포인트 충전 내역 타입
 export type rechargePointType = {
-  paymentType: string
+  paymentType?: string
 } & usagePointType
+
+export type PointsListType = {
+  usageData: usagePointType[]
+  rechargeData: rechargePointType[]
+}

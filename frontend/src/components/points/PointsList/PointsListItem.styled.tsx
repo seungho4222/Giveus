@@ -8,6 +8,7 @@ export const Container = styled.div`
   padding: 13px 16px;
   height: 72px;
   justify-content: space-between;
+  margin-bottom: 10px;
 `
 
 export const Left = styled.div`

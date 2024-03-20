@@ -6,6 +6,7 @@ import * as p from '@pages/mypage/points/PointsPage.styled'
 import { useState } from 'react'
 import PointsFilterModal from '@components/points/PointsFilter/PointsFilterModal'
 import { getOneMonthAgoDate, getTodayDate } from '@utils/dateMethods'
+import { rechargePointData, usagePointData } from '@components/points/data'
 
 const PointsPage = () => {
   const [open, setOpen] = useState(true)
@@ -24,7 +25,10 @@ const PointsPage = () => {
           endDate={endDate}
           type={type}
         />
-        <PointsList />
+        <PointsList
+          usageData={usagePointData}
+          rechargeData={rechargePointData}
+        />
       </p.Container>
       {open && (
         <PointsFilterModal
