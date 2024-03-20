@@ -8,7 +8,16 @@ const FundingDetailCommon = (props: { data: FundingType }) => {
 
   return (
     <c.Container>
-      <c.BackBtn src="/icon/icon_backBtn.png" onClick={() => navigate(-1)}/>
+      <c.BackBtn
+        src="/icon/icon_backBtn.png"
+        onClick={() =>
+          navigate(
+            window.location.pathname.includes('funding')
+              ? '/funding'
+              : '/search',
+          )
+        }
+      />
       <c.Wrap>
         <c.Title>{data.title}</c.Title>
         <c.Status $status={data.status === '진행중'}>{data.status}</c.Status>
