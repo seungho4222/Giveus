@@ -20,6 +20,7 @@ const Index = (props: PointsListType) => {
         content: item.content,
         amount: item.amount,
         createdAt: item.createdAt,
+        total: 0,
       }
       items.push(obj)
     })
@@ -30,15 +31,26 @@ const Index = (props: PointsListType) => {
         content: item.content + ' 결제',
         amount: item.amount,
         createdAt: item.createdAt,
+        total: 0,
       }
       items.push(obj)
     })
 
-    // 최신순 정렬
+    // 과거순 정렬
     items.sort(
-      (a, b) =>
+      (b, a) =>
         new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
     )
+
+    // total 계산
+    let total = 0
+    items.forEach(item => {
+      item.type === '충전' ? (total += item.amount) : (total -= item.amount)
+      item.total = total
+    })
+
+    // 최신순 정렬
+    items.reverse()
 
     setData(items)
   }

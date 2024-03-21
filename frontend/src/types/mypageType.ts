@@ -45,4 +45,5 @@ export type PointItemType = {
   createdAt: string
   content: string
   amount: number
+  total: number
 }

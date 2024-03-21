@@ -1,8 +1,9 @@
 import { PointItemType } from '@/types/mypageType'
+import { formatAmount } from '@utils/format'
 import * as p from '@components/points/PointsList/PointsListItem.styled'
 
 const PointsListItem = (props: { item: PointItemType }) => {
-  const { createdAt, type, content } = props.item
+  const { createdAt, type, content, amount, total } = props.item
 
   const formattDate = () => {
     const date = new Date(createdAt)
@@ -22,8 +23,10 @@ const PointsListItem = (props: { item: PointItemType }) => {
         </p.ContentWrap>
       </p.Left>
       <p.AmountWrap>
-        <p.Pay>+ 50,000원</p.Pay>
-        <p.Amount>20,000원</p.Amount>
+        <p.Pay $type={type}>
+          {type === '충전' ? '+' : '-'} {formatAmount(amount)}원
+        </p.Pay>
+        <p.Amount>{formatAmount(total)}원</p.Amount>
       </p.AmountWrap>
     </p.Container>
   )

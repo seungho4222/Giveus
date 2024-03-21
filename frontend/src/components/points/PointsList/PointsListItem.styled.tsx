@@ -47,9 +47,10 @@ export const AmountWrap = styled.div`
   justify-content: space-between;
 `
 
-export const Pay = styled.div`
+export const Pay = styled.div<{ $type: string }>`
   font-size: 1.2em;
   font-weight: 700;
+  color: ${props => (props.$type === '충전' ? colors.blue01 : '#676F83')};
 `
 
 export const Amount = styled.div`
