@@ -1,26 +1,25 @@
-import FundingDetail from "@/components/funding/FundingDetail";
-import { data } from "@/components/funding/FundingListCard/data";
-import { FundingType } from "@/types/fundingType";
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { fetchFundingDetail } from '@/apis/funding'
+import FundingDetail from '@/components/funding/FundingDetail'
+import { fundingDetailState } from '@/stores/funding'
+import { useQuery } from '@tanstack/react-query'
+import { useEffect } from 'react'
+import { useParams } from 'react-router-dom'
+import { useSetRecoilState } from 'recoil'
 
 const FundingDetailPage = () => {
-  const [funding, setFunding] = useState<FundingType>();
-  const { id } = useParams();
+  const { id } = useParams()
+  const setFundingDetail = useSetRecoilState(fundingDetailState)
 
-  const getFunding = () => {
-    setFunding(data.filter(item => ( item.fundingNo === Number(id)))[0])
-  }
-  
+  const { data, isLoading } = useQuery({
+    queryKey: ['FundingDetail'],
+    queryFn: () => fetchFundingDetail(Number(id)),
+  })
+
   useEffect(() => {
-    getFunding()
-  }, [])
+    !isLoading && setFundingDetail(data)
+  }, [data, isLoading])
 
-  return (
-    <>
-      {funding && <FundingDetail data={funding} />}
-    </>
-  );
-};
+  return <>{!isLoading && <FundingDetail data={data} />}</>
+}
 
-export default FundingDetailPage;
+export default FundingDetailPage

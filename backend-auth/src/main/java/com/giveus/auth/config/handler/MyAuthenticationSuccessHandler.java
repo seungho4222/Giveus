@@ -3,6 +3,7 @@ package com.giveus.auth.config.handler;
 import com.giveus.auth.common.util.JwtUtil;
 import com.giveus.auth.dto.response.AuthTokenRes;
 import com.giveus.auth.entity.Member;
+import com.giveus.auth.entity.MemberSetting;
 import com.giveus.auth.repository.AuthRepository;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -52,6 +53,7 @@ public class MyAuthenticationSuccessHandler extends SimpleUrlAuthenticationSucce
                     .provider(provider)
                     .key(key)
                     .build();
+            member.addMemberSetting(new MemberSetting());
             authRepository.save(member);
             log.info("MyAuthenticationSuccessHandler - Temperary register" + member);
 
