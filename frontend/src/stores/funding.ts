@@ -62,3 +62,8 @@ export const medicalExpenseState = atom<MedicalExpenseType[]>({
     },
   ],
 })
+
+export const prevUrlState = atom<string>({
+  key: 'prevUrlState',
+  default: '',
+})
