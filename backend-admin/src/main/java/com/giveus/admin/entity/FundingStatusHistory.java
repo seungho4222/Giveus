@@ -22,7 +22,7 @@ public class FundingStatusHistory {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int fundingStatusHistoryNo;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "funding_no")
     private Funding funding;
 

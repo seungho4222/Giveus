@@ -7,11 +7,11 @@ import { useState } from 'react'
 import Donate from '../Donate'
 import FullButton from '@/common/FullButton'
 import Review from '../Review'
+import { formatAmount } from '@/utils/format'
 
 const DetailMain = () => {
   const fundingDetail = useRecoilValue(fundingDetailState)
   const review: boolean = true // test
-
   const [open, setOpen] = useState<boolean>(false)
 
   return (
@@ -22,7 +22,7 @@ const DetailMain = () => {
         </d.Period>
         <d.Wrap>
           <d.TotalAmount>
-            {fundingDetail.totalAmount.toLocaleString('ko-KR')}원
+            {formatAmount(fundingDetail.totalAmount)}원
           </d.TotalAmount>
           <d.Dday>{dDay(fundingDetail)}</d.Dday>
         </d.Wrap>
@@ -32,17 +32,12 @@ const DetailMain = () => {
         <d.Wrap>
           <d.Percent>{percent(fundingDetail)} 달성</d.Percent>
           <d.TargetAmount>
-            {fundingDetail.targetAmount.toLocaleString('ko-KR')}원
+            {formatAmount(fundingDetail.targetAmount)}원
           </d.TargetAmount>
         </d.Wrap>
         <d.Note>* 모금 종료시 전액 일시 전달됩니다</d.Note>
       </d.DetailInfo>
-      <d.DetailDesc>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis
-        numquam non quod corporis cum, facere vero aliquam natus consequatur
-        omnis! Optio vitae tempore ipsum assumenda, voluptas debitis dolores
-        sunt adipisci?
-      </d.DetailDesc>
+      <d.DetailDesc>{fundingDetail.content}</d.DetailDesc>
       <d.Button>
         <FullButton
           text={

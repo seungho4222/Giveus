@@ -1,6 +1,7 @@
 import * as m from '@/components/funding/FundingDetail/MedicalExpense.styled'
 import { medicalExpenseState } from '@/stores/funding'
 import { MedicalExpenseType } from '@/types/fundingType'
+import { formatAmount } from '@/utils/format'
 import { useRecoilValue } from 'recoil'
 
 const MedicalExpense = () => {
@@ -18,7 +19,7 @@ const MedicalExpense = () => {
       {medicalExpense.length ? (
         <m.ExpenseTrue>
           <m.TotalExpense>
-            합계 {totalExpense().toLocaleString('ko-KR')}원
+            합계 {formatAmount(totalExpense())}원
           </m.TotalExpense>
           {medicalExpense.map(item => (
             <m.Card key={item.usageHistoryNo}>
@@ -27,7 +28,7 @@ const MedicalExpense = () => {
                 <m.Category>{item.category}</m.Category>
                 <m.SubWrap>
                   <m.Content>{item.content}</m.Content>
-                  <m.Amount>{item.amount.toLocaleString('ko-KR')}원</m.Amount>
+                  <m.Amount>{formatAmount(item.amount)}원</m.Amount>
                 </m.SubWrap>
               </m.Wrap>
             </m.Card>

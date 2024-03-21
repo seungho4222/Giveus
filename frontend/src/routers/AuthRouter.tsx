@@ -12,6 +12,7 @@ import MedicalExpensePage from '@/pages/funding/MedicalExpensePage'
 import SettingPage from '@pages/mypage/setting/SettingPage'
 import SignupPage from '@pages/signup/SignupPage'
 import LoginRedirectHandler from '@pages/login/LoginRedirectHandler'
+import PointsPage from '@/pages/mypage/points/PointsPage'
 
 const AuthRouter = () => {
   return (
@@ -25,6 +26,7 @@ const AuthRouter = () => {
       <Route path="/login/oauth2" element={<LoginRedirectHandler />} />
       <Route path="/mypage" element={<MyPage />} />
       <Route path="/mypage/setting" element={<SettingPage />} />
+      <Route path="/mypage/points" element={<PointsPage />} />
       <Route path="/funding/:id" element={<FundingDetailPage />}>
         <Route path="detail-main" element={<DetailMainPage />} />
         <Route path="donor-list" element={<DonorListPage />} />

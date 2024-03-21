@@ -14,4 +14,6 @@ public class CommonResponseBody<T> {
         this.code = status.value();
         this.data = data;
     }
+
+
 }

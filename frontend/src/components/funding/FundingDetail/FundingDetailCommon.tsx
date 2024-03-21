@@ -7,7 +7,7 @@ const FundingDetailCommon = (props: { data: FundingType }) => {
   const navigate = useNavigate()
 
   return (
-    <c.Container>
+    <c.Container $img={data.thumbnailUrl}>
       <c.BackBtn
         src="/icon/icon_backBtn.png"
         onClick={() =>

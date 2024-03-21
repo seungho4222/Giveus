@@ -1,6 +1,7 @@
 import * as d from '@/components/funding/FundingDetail/DonerList.styled'
 import { donerListState } from '@/stores/funding'
 import { colors } from '@/styles/theme'
+import { formatAmount } from '@/utils/format'
 import { useRecoilValue } from 'recoil'
 
 const DonorList = () => {
@@ -25,7 +26,7 @@ const DonorList = () => {
                   <d.Img />
                   <d.Nickname>{item.nickname}</d.Nickname>
                 </d.SubWrap>
-                <d.Amount>{item.amount.toLocaleString('ko-KR')}원</d.Amount>
+                <d.Amount>{formatAmount(item.amount)}원</d.Amount>
               </d.Wrap>
             </d.Card>
           ))}

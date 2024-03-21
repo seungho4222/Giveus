@@ -60,7 +60,6 @@ export const Percent = styled.div`
 export const TargetAmount = styled.div`
   color: ${colors.gray05};
   font-size: 0.8em;
-
 `
 
 export const Note = styled.div`

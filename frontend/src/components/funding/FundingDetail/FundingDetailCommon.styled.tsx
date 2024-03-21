@@ -1,11 +1,11 @@
 import { colors } from '@/styles/theme'
 import styled from 'styled-components'
 
-export const Container = styled.div`
+export const Container = styled.div<{ $img: string }>`
   position: relative;
   width: 100%;
-  height: 300px;
-  background-image: url('/img/img_data.png');
+  height: 40vh;
+  background-image: url(${props => props.$img});
   background-size: cover;
 `
 
