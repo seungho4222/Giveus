@@ -2,12 +2,13 @@ import * as p from '@components/points/PointsList/PontsList.styled'
 import PointsListItem from '@components/points/PointsList/PointsListItem'
 import { PointsListType, PointItemType } from '@/types/mypageType'
 import { useEffect } from 'react'
-import { useRecoilState } from 'recoil'
-import { myPointListState } from '@/stores/point'
+import { useRecoilState, useRecoilValue } from 'recoil'
+import { filteredMyPointListState, myPointListState } from '@stores/point'
 
 const Index = (props: PointsListType) => {
   const { usageData, rechargeData } = props
-  const [myPointList, setMyPointList] = useRecoilState(myPointListState)
+  const [, setMyPointList] = useRecoilState(myPointListState)
+  const filteredMyPointList = useRecoilValue(filteredMyPointListState)
 
   useEffect(() => {
     setDataForm()
@@ -59,7 +60,7 @@ const Index = (props: PointsListType) => {
 
   return (
     <p.Container>
-      {myPointList.map((item, index) => (
+      {filteredMyPointList.map((item, index) => (
         <PointsListItem key={index} item={item} />
       ))}
     </p.Container>

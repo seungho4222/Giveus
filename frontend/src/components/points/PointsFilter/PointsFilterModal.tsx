@@ -5,11 +5,11 @@ import * as p from '@components/points/PointsFilter/PointsFilterModal.styled'
 import { useState } from 'react'
 import { BooleanStateType } from '@/types/commonType'
 import { useRecoilState } from 'recoil'
-import { myPointListFilterState } from '@stores/point'
-import { pointTypeList } from '@/assets/data/pointTypeList'
+import { DefaultMyPointListFilter, myPointListFilterState } from '@stores/point'
+import { pointTypeList } from '@assets/data/pointTypeList'
 
 const PointsFilterModal = (props: BooleanStateType) => {
-  const { value, setValue } = props
+  const { setValue } = props
 
   const [myPointListFilter, setMyPointListFilter] = useRecoilState(
     myPointListFilterState,
@@ -23,7 +23,7 @@ const PointsFilterModal = (props: BooleanStateType) => {
 
   // 초기화
   const onClickReset = () => {
-    setValues(myPointListFilter)
+    setValues(DefaultMyPointListFilter)
   }
 
   // 확인
