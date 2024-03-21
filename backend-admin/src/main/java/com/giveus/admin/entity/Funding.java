@@ -70,6 +70,9 @@ public class Funding {
     @Column(name="phone")
     private String phone;
 
+    @Column(name = "reg_id")
+    private String regId;
+
     @OneToMany(mappedBy = "funding", cascade = CascadeType.PERSIST)
     private Set<FundingStatusHistory> statusList = new HashSet<>();
 
