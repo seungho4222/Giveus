@@ -70,7 +70,7 @@ public class Funding {
     @Column(name="phone")
     private String phone;
 
-    @OneToMany(mappedBy = "funding")
+    @OneToMany(mappedBy = "funding", cascade = CascadeType.PERSIST)
     private Set<FundingStatusHistory> statusList = new HashSet<>();
 
     @Builder
@@ -89,6 +89,11 @@ public class Funding {
         this.endDate = endDate;
         this.targetAmount = targetAmount;
         this.phone = phone;
+    }
+
+    public void addStatus(FundingStatusHistory status) {
+        statusList.add(status);
+        status.setFunding(this);
     }
 
 
