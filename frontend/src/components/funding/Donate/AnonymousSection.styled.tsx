@@ -16,6 +16,7 @@ export const SectionTitle = styled.div`
 export const Note = styled.div`
   color: ${colors.gray04};
   font-size: 0.7em;
+  margin-block: 1px;
 `
 
 export const Wrap = styled.div`
@@ -24,7 +25,7 @@ export const Wrap = styled.div`
   margin-block: 1em;
 `
 
-export const Button = styled.div<{ $active: boolean }>`
+export const Button = styled.button<{ $active: boolean }>`
   display: flex;
   flex-direction: column;
   border: 1px solid ${props => (props.$active ? colors.blue01 : colors.gray03)};
@@ -42,6 +43,7 @@ export const SubWrap = styled.div`
 
 export const RadioInput = styled.input`
   margin-block: auto;
+  cursor: pointer;
 `
 
 export const Img = styled.div`

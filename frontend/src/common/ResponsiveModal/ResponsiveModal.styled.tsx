@@ -1,14 +1,25 @@
 import { colors } from '@/styles/theme'
 import styled from 'styled-components'
 
-export const Container = styled.div`
+export const BlackBox = styled.div`
   display: flex;
   position: fixed;
   top: 0;
   z-index: 100;
   width: 375px;
   height: 100vh;
+  background-color: #000;
+  opacity: 0.3;
+`
+
+export const Container = styled.div`
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  z-index: 101;
+  width: 375px;
   background-color: #fff;
+  border-radius: 12px 12px 0 0;
   overflow-y: scroll;
   &::-webkit-scrollbar {
     display: none; /* 크롬, 사파리, 오페라, 엣지 */

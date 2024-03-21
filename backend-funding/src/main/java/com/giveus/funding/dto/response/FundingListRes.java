@@ -12,17 +12,23 @@ import lombok.Setter;
 @Getter
 public class FundingListRes {
 
+    private String thumbnailUrl;
+
     private int fundingNo;
-
-    private String issueNumber;
-
-    private String registrationNumber;
-
-    private String patientName;
-
-    private String status;
 
     private String title;
 
-    private boolean isCompleted;
+    private String status;
+
+    private int targetAmount;
+
+    private int totalAmount;
+
+    private LocalDate startDate;
+
+    private LocalDate endDate;
+
+    private LocalDate createdAt;
+
+    private LocalDate birth;
 }
