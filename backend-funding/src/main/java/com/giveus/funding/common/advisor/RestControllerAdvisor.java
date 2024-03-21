@@ -3,6 +3,7 @@ package com.giveus.funding.common.advisor;
 import com.giveus.funding.common.dto.CommonResponseBody;
 import com.giveus.funding.common.dto.ErrorResponseDto;
 import com.giveus.funding.common.util.ErrorMessageUtil;
+import com.giveus.funding.exception.AlreadyExistFundingException;
 import com.giveus.funding.exception.FundingNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -12,8 +13,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.util.NoSuchElementException;
 
-import static org.springframework.http.HttpStatus.BAD_REQUEST;
-import static org.springframework.http.HttpStatus.NOT_FOUND;
+import static org.springframework.http.HttpStatus.*;
 
 /**
  * rest controller 에서 예외발생시 종합적인 처리를 해주기 위한 클래스입니다.
@@ -89,23 +89,23 @@ public class RestControllerAdvisor {
     }
 
 
-/**
- * 409에 해당하는 예외들을 한번에 처리하는 메소드입니다.
- *
- * @param e 실제 발생한 예외객체입니다.
- * @return 에러메세지를 response entity 에 담아서 전송합니다.
- *//*
+    /**
+     * 409에 해당하는 예외들을 한번에 처리하는 메소드입니다.
+     *
+     * @param e 실제 발생한 예외객체입니다.
+     * @return 에러메세지를 response entity 에 담아서 전송합니다.
+     */
 
-    @ExceptionHandler
-    public ResponseEntity<ErrorResponseDto> ConflictException409(RuntimeException e) {
+    @ExceptionHandler({AlreadyExistFundingException.class})
+    public ResponseEntity<CommonResponseBody<String>> ConflictException409(RuntimeException e) {
 
-        return ResponseEntity.status(CONFLICT)
-                .body(new ErrorResponseDto(CONFLICT, e.getMessage()));
+        return ResponseEntity
+                .status(CONFLICT)
+                .body(new CommonResponseBody<>(CONFLICT, e.getMessage()));
 
     }
 
 
-    */
 /**
  * 500에 해당하는 예외들을 한번에 처리하는 메소드입니다.
  *

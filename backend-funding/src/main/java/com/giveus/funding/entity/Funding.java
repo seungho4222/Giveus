@@ -67,6 +67,9 @@ public class Funding {
     @Column(name="phone")
     private String phone;
 
+    @Column(name = "reg_id")
+    private String regId;
+
     @Builder
     public Funding(String issueNumber, String registrationNumber, String patientName, LocalDate birth, char gender, String diseaseName, String diseaseCode, LocalDate diagnosisDate, String opinion, String title, LocalDate startDate, LocalDate endDate, int targetAmount, String phone) {
         this.issueNumber = issueNumber;
