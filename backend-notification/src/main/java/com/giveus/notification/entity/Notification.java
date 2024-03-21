@@ -22,13 +22,8 @@ public class Notification {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int notificationNo;
 
-    // 연관관계 매핑
-//    @ManyToOne
-//    @JoinColumn(name = "member_no")
-//    private Member member;
-
-//    @Column(name = "meber_no")
-//    private int memberNo;
+    @Column(name = "meber_no")
+    private int memberNo;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "category")
