@@ -1,5 +1,6 @@
 package com.giveus.funding.service.impl;
 
+import com.giveus.funding.dto.response.FundingDetailRes;
 import com.giveus.funding.dto.response.FundingListRes;
 import com.giveus.funding.repository.FundingRepository;
 import com.giveus.funding.service.FundingService;
@@ -19,5 +20,10 @@ public class FundingServiceImpl implements FundingService {
     @Override
     public List<FundingListRes> getFundingList() {
         return fundingRepository.getFundingList();
+    }
+
+    @Override
+    public FundingDetailRes getFunding(int fundingNo) {
+        return fundingRepository.getFunding(fundingNo);
     }
 }
