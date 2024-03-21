@@ -11,6 +11,7 @@ import com.giveus.admin.service.FundingService;
 import com.giveus.admin.service.FundingStatusHistoryService;
 import com.giveus.admin.transfer.FundingStatusHistoryTransfer;
 import com.giveus.admin.transfer.FundingTransfer;
+
 import java.util.List;
 
 import lombok.RequiredArgsConstructor;
@@ -19,7 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
-@Transactional(readOnly=true)
+@Transactional(readOnly = true)
 public class FundingServiceImpl implements FundingService {
     private final FundingRepository fundingRepository;
     private final FundingStatusHistoryService fundingStatusHistoryService;
@@ -28,8 +29,10 @@ public class FundingServiceImpl implements FundingService {
     @Transactional
     public FundingDetailsRes createFunding(FundingCreateReq fundingCreateReq) {
         Funding funding = FundingTransfer.dtoToEntity(fundingCreateReq);
+        FundingStatusHistory fundingStatusHistory = FundingStatusHistoryTransfer.dtoToEntity(funding);
+        fundingStatusHistory.setFunding(funding);
         Funding savedFunding = fundingRepository.save(funding);
-        fundingStatusHistoryService.createHistory(savedFunding);
+//        fundingStatusHistoryService.createHistory(savedFunding);
         return FundingTransfer.entityToDto(savedFunding);
     }
 

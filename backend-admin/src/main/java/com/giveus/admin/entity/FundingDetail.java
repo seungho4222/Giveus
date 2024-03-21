@@ -1,12 +1,6 @@
 package com.giveus.admin.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.MapsId;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -19,9 +13,9 @@ import lombok.Setter;
 public class FundingDetail {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int fundingNo;
 
-    @MapsId
     @OneToOne
     @JoinColumn(name = "funding_no")
     private Funding funding;

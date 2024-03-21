@@ -8,9 +8,8 @@ import com.querydsl.core.types.ExpressionUtils;
 import com.querydsl.core.types.Projections;
 
 import java.util.List;
+import java.util.Optional;
 
-import com.querydsl.jpa.JPAExpressions;
-import com.querydsl.jpa.impl.JPAUtil;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
 
 /**
@@ -54,9 +53,9 @@ public class FundingRepositoryImpl extends QuerydslRepositorySupport
     }
 
     @Override
-    public FundingDetailRes getFunding(int fundingNo) {
+    public Optional<FundingDetailRes> getFunding(int fundingNo) {
         QFundingStatusHistory qFundingStatusHistory2 = QFundingStatusHistory.fundingStatusHistory;
-        return from(qFundingDetail)
+        return Optional.ofNullable(from(qFundingDetail)
                 .leftJoin(qFundingDetail.funding, qFunding)
                 .select(Projections.fields(FundingDetailRes.class,
                         qFundingDetail.thumbnailUrl, qFunding.fundingNo, qFunding.title,
@@ -74,6 +73,6 @@ public class FundingRepositoryImpl extends QuerydslRepositorySupport
                         , qFunding.startDate, qFunding.endDate, qFunding.createdAt, qFunding.birth, qFundingDetail.content
                 ))
                 .where(qFundingDetail.funding.fundingNo.eq(fundingNo))
-                .fetchOne();
+                .fetchOne());
     }
 }
