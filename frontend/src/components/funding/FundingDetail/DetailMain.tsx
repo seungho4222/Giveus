@@ -11,7 +11,6 @@ import Review from '../Review'
 const DetailMain = () => {
   const fundingDetail = useRecoilValue(fundingDetailState)
   const review: boolean = true // test
-
   const [open, setOpen] = useState<boolean>(false)
 
   return (
@@ -37,12 +36,7 @@ const DetailMain = () => {
         </d.Wrap>
         <d.Note>* 모금 종료시 전액 일시 전달됩니다</d.Note>
       </d.DetailInfo>
-      <d.DetailDesc>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis
-        numquam non quod corporis cum, facere vero aliquam natus consequatur
-        omnis! Optio vitae tempore ipsum assumenda, voluptas debitis dolores
-        sunt adipisci?
-      </d.DetailDesc>
+      <d.DetailDesc>{fundingDetail.content}</d.DetailDesc>
       <d.Button>
         <FullButton
           text={

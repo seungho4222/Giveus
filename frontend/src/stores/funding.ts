@@ -1,33 +1,25 @@
 import { atom } from 'recoil'
-import { data } from '@/components/funding/FundingListCard/data'
 import { DonerType, FundingType, MedicalExpenseType } from '@/types/fundingType'
 
 export const fundingState = atom<FundingType[]>({
   key: 'fundingState',
-  default: data,
+  default: [],
 })
 
 export const fundingDetailState = atom<FundingType>({
   key: 'fundingDetailState',
   default: {
     fundingNo: 0,
-    issueNumber: '',
-    registrationNumber: '',
-    patientName: '',
-    status: '',
-    birth: '',
-    gender: '',
-    diseaseName: '',
-    diseaseCode: '',
-    dignosisDate: '',
-    opinion: '',
+    thumbnailUrl: '',
     title: '',
+    birth: '',
+    status: '',
     startDate: '',
     endDate: '',
     totalAmount: 0,
     targetAmount: 0,
     createdAt: '',
-    phone: '',
+    content: '',
   },
 })
 

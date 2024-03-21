@@ -11,7 +11,6 @@ import Modal from '@/common/Modal'
 import FilterCondition from '@/components/funding/FilterBox/FilterCondition'
 import ResponsiveModal from '@/common/ResponsiveModal'
 import SortCondition from '@/components/funding/FilterBox/SortCondition'
-import { FundingType } from '@/types/fundingType'
 import {
   sortByDonerCount,
   sortByHighestAmount,
@@ -28,9 +27,12 @@ import {
   filteredFundingState,
   sortState,
 } from '@/stores/filterAndSort'
+import { useQuery } from '@tanstack/react-query'
+import { fetchFundingList } from '@/apis/funding'
+import FundingListBox from '@/components/funding/FundingListCard/FundingListBox'
 
 const FundingPage = () => {
-  const funding: FundingType[] = useRecoilValue(fundingState)
+  const [funding, setFunding] = useRecoilState(fundingState)
   const [filterOpen, setFilterOpen] = useState<boolean>(false) // 필터 모달
   const [sortOpen, setSortrOpen] = useState<boolean>(false) // 정렬 모달
   const sort = useRecoilValue(sortState)
@@ -40,24 +42,31 @@ const FundingPage = () => {
   const [filteredFunding, setFilteredFunding] =
     useRecoilState(filteredFundingState)
 
-  const filter = () => {
-    let filteredData = funding
-
-    if (filterStatus[0] && !filterStatus[1]) {
-      filteredData = filterByDoing(filteredData)
-    } else if (!filterStatus[0] && filterStatus[1]) {
-      filteredData = filterByDone(filteredData)
-    }
-
-    if (filterStatus[2]) {
-      filteredData = filterByAge(filteredData, ageRange[0], ageRange[1])
-    }
-
-    return filteredData
-  }
+  const { data, isLoading } = useQuery({
+    queryKey: ['FundingList'],
+    queryFn: () => fetchFundingList(),
+  })
 
   useEffect(() => {
-    // filter 후 sort 진행
+    !isLoading && setFunding(data)
+  }, [data, isLoading])
+
+  useEffect(() => {
+    const filter = () => {
+      let filteredData = funding
+
+      if (filterStatus[0] && !filterStatus[1]) {
+        filteredData = filterByDoing(filteredData)
+      } else if (!filterStatus[0] && filterStatus[1]) {
+        filteredData = filterByDone(filteredData)
+      }
+
+      if (filterStatus[2]) {
+        filteredData = filterByAge(filteredData, ageRange[0], ageRange[1])
+      }
+
+      return filteredData
+    }
     const filteredData = filter()
 
     switch (sort) {
@@ -77,20 +86,25 @@ const FundingPage = () => {
         setFilteredFunding(sortByLowestAmount(filteredData))
         break
     }
-  }, [filterStatus, sort])
+  }, [filterStatus, sort, funding])
 
   return (
     <>
       <Layout>
         <HomeHeader />
-        <FilterBox setFilterOpen={setFilterOpen} setSortrOpen={setSortrOpen} />
-        <FilterArea />
-        <FundingListCount data={filteredFunding} />
-        <div>
-          {filteredFunding.map((item, idx) => (
-            <FundingListCard key={idx} data={item} />
-          ))}
-        </div>
+        <FundingListBox>
+          <FilterBox
+            setFilterOpen={setFilterOpen}
+            setSortrOpen={setSortrOpen}
+          />
+          <FilterArea />
+          <FundingListCount data={filteredFunding} />
+          <div>
+            {filteredFunding.map((item, idx) => (
+              <FundingListCard key={idx} data={item} />
+            ))}
+          </div>
+        </FundingListBox>
       </Layout>
       <Navbar current="funding" />
 
