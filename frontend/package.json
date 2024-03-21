@@ -12,6 +12,7 @@
     "lint": "eslint --cache ."
   },
   "dependencies": {
+    "@tanstack/react-query": "^5.28.6",
     "@tanstack/react-ranger": "^0.0.4",
     "@types/axios": "^0.14.0",
     "@types/node": "^20.11.25",
