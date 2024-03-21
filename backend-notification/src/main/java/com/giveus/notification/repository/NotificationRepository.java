@@ -1,5 +1,6 @@
 package com.giveus.notification.repository;
 
+import com.giveus.notification.common.dto.DeleteSuccessDto;
 import com.giveus.notification.dto.response.NotificationListRes;
 import com.giveus.notification.entity.Notification;
 import io.lettuce.core.dynamic.annotation.Param;
@@ -18,4 +19,7 @@ public interface NotificationRepository extends JpaRepository<Notification, Inte
     List<NotificationListRes> getNotificationByMemberNo(int memberNo);
 
 
+    DeleteSuccessDto deleteByNotificationNo(int notificationNo);
+
+    DeleteSuccessDto deleteAllByMemberNo(int memberNo);
 }

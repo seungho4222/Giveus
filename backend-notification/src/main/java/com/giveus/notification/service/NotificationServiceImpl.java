@@ -1,6 +1,7 @@
 package com.giveus.notification.service;
 
 
+import com.giveus.notification.common.dto.DeleteSuccessDto;
 import com.giveus.notification.dto.response.NotificationListRes;
 import com.giveus.notification.repository.NotificationRepository;
 import lombok.RequiredArgsConstructor;
@@ -23,8 +24,25 @@ public class NotificationServiceImpl implements NotificationService{
      */
     @Override
     public List<NotificationListRes> getNotificationList(int memberNo) {
-        log.info("============== [start] NotificationServiceImpl : memberNo :  {}", memberNo);
         return notificationRepository.getNotificationByMemberNo(memberNo);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public DeleteSuccessDto deleteNotification(int notificationNo) {
+        log.info("============== NotificationServiceImpl : notificationNo :  {}", notificationNo);
+        return notificationRepository.deleteByNotificationNo(notificationNo);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public DeleteSuccessDto deleteAllNotification(int memberNo) {
+        log.info("============== NotificationServiceImpl : notificationNo :  {}", memberNo);
+        return notificationRepository.deleteAllByMemberNo(memberNo);
     }
 
 
