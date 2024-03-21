@@ -72,6 +72,8 @@ public class FundingRepositoryImpl extends QuerydslRepositorySupport
                                 .select(qMemberFunding.amount.sum())
                                 .where(qMemberFunding.funding.fundingNo.eq(fundingNo)), "totalAmount")
                         , qFunding.startDate, qFunding.endDate, qFunding.createdAt, qFunding.birth, qFundingDetail.content
-                )).fetchOne();
+                ))
+                .where(qFundingDetail.funding.fundingNo.eq(fundingNo))
+                .fetchOne();
     }
 }
