@@ -35,17 +35,17 @@ CREATE TABLE `admin_funding` (
 -- Table structure for table `device`
 --
 
-DROP TABLE IF EXISTS `device`;
+DROP TABLE IF EXISTS `member_device`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `device` (
-  `device_no` int NOT NULL AUTO_INCREMENT,
+CREATE TABLE `member_device` (
+  `member_device_no` int NOT NULL AUTO_INCREMENT,
   `member_no` int NOT NULL,
   `device_token` varchar(255) NOT NULL,
   `last_login_at` datetime NOT NULL,
-  PRIMARY KEY (`device_no`),
-  KEY `FK_member_TO_device_1` (`member_no`),
-  CONSTRAINT `FK_member_TO_device_1` FOREIGN KEY (`member_no`) REFERENCES `member` (`member_no`)
+  PRIMARY KEY (`member_device_no`),
+  KEY `FK_member_TO_member_device_1` (`member_no`),
+  CONSTRAINT `FK_member_TO_member_device_1` FOREIGN KEY (`member_no`) REFERENCES `member` (`member_no`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -189,7 +189,7 @@ CREATE TABLE `notification` (
   `content` varchar(30) NOT NULL,
   `detail` varchar(30) NOT NULL,
   `created_at` datetime NOT NULL DEFAULT (curdate()),
-  `is_read` tinyint(1) NOT NULL,
+  `is_read` tinyint(1) NOT NULL DEFAULT FALSE,
   PRIMARY KEY (`notification_no`),
   KEY `FK_member_TO_notification_1` (`member_no`),
   CONSTRAINT `FK_member_TO_notification_1` FOREIGN KEY (`member_no`) REFERENCES `member` (`member_no`)
@@ -200,17 +200,18 @@ CREATE TABLE `notification` (
 -- Table structure for table `notification_setting`
 --
 
-DROP TABLE IF EXISTS `notification_setting`;
+DROP TABLE IF EXISTS `member_setting`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `notification_setting` (
+CREATE TABLE `member_setting` (
+  `member_setting_no` int NOT NULL AUTO_INCREMENT,
   `member_no` int NOT NULL,
-  `funding_review` tinyint(1) NOT NULL,
-  `usage_history` tinyint(1) NOT NULL,
-  `regular_payment` tinyint(1) NOT NULL,
-  `recommend_funding` tinyint(1) NOT NULL,
-  PRIMARY KEY (`member_no`),
-  CONSTRAINT `FK_member_TO_notification_setting_1` FOREIGN KEY (`member_no`) REFERENCES `member` (`member_no`)
+  `funding_review` tinyint(1) NOT NULL DEFAULT TRUE,
+  `usage_history` tinyint(1) NOT NULL DEFAULT TRUE,
+  `regular_payment` tinyint(1) NOT NULL DEFAULT TRUE,
+  `recommend_funding` tinyint(1) NOT NULL DEFAULT TRUE,
+  PRIMARY KEY (`member_setting_no`),
+  CONSTRAINT `FK_member_TO_member_setting_1` FOREIGN KEY (`member_no`) REFERENCES `member` (`member_no`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
