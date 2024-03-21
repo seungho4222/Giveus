@@ -15,7 +15,7 @@ export const mypageMenuList = [
     key: 'sponsorship',
     name: '후원내역',
     imgSrc: '/icon/icon_mypage3.png',
-    url: '/mypage/setting',
+    url: '/mypage/donate',
   },
   {
     key: 'setting',
