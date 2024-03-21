@@ -1,4 +1,4 @@
-import { PointItemType } from '@/types/mypageType'
+import { DonatedFundingType, PointItemType } from '@/types/mypageType'
 
 const today = new Date()
 
@@ -27,6 +27,20 @@ export const getOneMonthAgoDate = () => {
 // 시작 날짜와 종료 날짜 사이에 있는 날짜 반환
 export const filterDatesInRange = (
   dates: PointItemType[],
+  startDate: string,
+  endDate: string,
+) => {
+  const start = new Date(startDate).getTime()
+  const end = new Date(endDate).getTime()
+
+  return dates.filter(item => {
+    const check = new Date(item.createdAt.split(' ')[0]).getTime()
+    return check >= start && check <= end
+  })
+}
+
+export const donatefilterDatesInRange = (
+  dates: DonatedFundingType[],
   startDate: string,
   endDate: string,
 ) => {

@@ -9,3 +9,10 @@ spring:
 
 swagger:
   server: https://j10c206.p.ssafy.io
+
+coolsms:
+  env:
+    phone: '01052742656'
+  api:
+    key: NCSIL23LEGM0V7FC
+    secret: F8RY0URODZFQSMCMRTFIIAORJCR8Z4VU
