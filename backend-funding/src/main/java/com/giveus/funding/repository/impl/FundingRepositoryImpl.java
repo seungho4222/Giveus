@@ -1,5 +1,6 @@
 package com.giveus.funding.repository.impl;
 
+import com.giveus.funding.dto.response.FundingDetailRes;
 import com.giveus.funding.dto.response.FundingListRes;
 import com.giveus.funding.entity.*;
 import com.giveus.funding.repository.FundingRepositoryCustom;
@@ -42,13 +43,35 @@ public class FundingRepositoryImpl extends QuerydslRepositorySupport
                                         from(qFundingStatusHistory2)
                                                 .select(qFundingStatusHistory2.fundingStatusHistoryNo.max())
                                                 .where(qFundingStatusHistory2.funding.eq(qFunding)))
-                                ),"status")
+                                ), "status")
                         , qFunding.targetAmount,
                         ExpressionUtils.as(from(qMemberFunding)
                                 .select(qMemberFunding.amount.sum())
-                                .where(qMemberFunding.funding.eq(qFunding)),"totalAmount")
+                                .where(qMemberFunding.funding.eq(qFunding)), "totalAmount")
                         , qFunding.startDate, qFunding.endDate, qFunding.createdAt, qFunding.birth
                 ))
                 .fetch();
+    }
+
+    @Override
+    public FundingDetailRes getFunding(int fundingNo) {
+        QFundingStatusHistory qFundingStatusHistory2 = QFundingStatusHistory.fundingStatusHistory;
+        return from(qFundingDetail)
+                .leftJoin(qFundingDetail.funding, qFunding)
+                .select(Projections.fields(FundingDetailRes.class,
+                        qFundingDetail.thumbnailUrl, qFunding.fundingNo, qFunding.title,
+                        ExpressionUtils.as(from(qFundingStatusHistory)
+                                .select(qFundingStatusHistory.status)
+                                .where(qFundingStatusHistory.fundingStatusHistoryNo.eq(
+                                        from(qFundingStatusHistory2)
+                                                .select(qFundingStatusHistory2.fundingStatusHistoryNo.max())
+                                                .where(qFundingStatusHistory2.funding.fundingNo.eq(fundingNo)))
+                                ), "status")
+                        , qFunding.targetAmount,
+                        ExpressionUtils.as(from(qMemberFunding)
+                                .select(qMemberFunding.amount.sum())
+                                .where(qMemberFunding.funding.fundingNo.eq(fundingNo)), "totalAmount")
+                        , qFunding.startDate, qFunding.endDate, qFunding.createdAt, qFunding.birth, qFundingDetail.content
+                )).fetchOne();
     }
 }
