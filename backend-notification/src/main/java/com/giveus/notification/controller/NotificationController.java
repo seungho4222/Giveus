@@ -1,0 +1,8 @@
+package com.giveus.notification.controller;
+
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class NotificationController {
+    // 알람
+}
