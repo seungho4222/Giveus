@@ -8,6 +8,9 @@ import lombok.Setter;
 import org.hibernate.annotations.DynamicInsert;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "funding")
@@ -67,6 +70,9 @@ public class Funding {
     @Column(name="phone")
     private String phone;
 
+    @OneToMany(mappedBy = "funding")
+    private Set<FundingStatusHistory> statusList = new HashSet<>();
+
     @Builder
     public Funding(String issueNumber, String registrationNumber, String patientName, LocalDate birth, char gender, String diseaseName, String diseaseCode, LocalDate diagnosisDate, String opinion, String title, LocalDate startDate, LocalDate endDate, int targetAmount, String phone) {
         this.issueNumber = issueNumber;
@@ -84,4 +90,6 @@ public class Funding {
         this.targetAmount = targetAmount;
         this.phone = phone;
     }
+
+
 }
