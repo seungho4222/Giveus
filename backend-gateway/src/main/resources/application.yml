@@ -48,6 +48,10 @@ spring:
           uri: lb://BACKEND-PAYMENT
           predicates:
             - Path=/api/v1/payment/**
+        - id: backend-notification
+          uri: lb://BACKEND-NOTIFICATION
+          predicates:
+            - Path=/api/v1/notification/**
 eureka:
   instance:
     instance-id: ${spring.application.name}:${server.port}
@@ -67,3 +71,5 @@ springdoc:
         name: Admin
       - url: /api/v1/payment/docs
         name: Payment
+      - url: /api/v1/notification/docs
+        name: Notification
