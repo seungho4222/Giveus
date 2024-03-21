@@ -9,3 +9,10 @@ spring:
 
 swagger:
   server: http://localhost:8081
+
+coolsms:
+  env:
+    phone: '01052742656'
+  api:
+    key: NCSIQHM6IWPFFB7J
+    secret: CIKC7HDQRH8TH1PHLGAQRR8CLOIHEIAE

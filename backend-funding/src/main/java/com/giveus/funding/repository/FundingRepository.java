@@ -6,6 +6,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Optional;
 
 public interface FundingRepository extends JpaRepository<Funding, Integer>, FundingRepositoryCustom {
-    Optional<Funding> getFundingByFundingNo(int fundingNo);
+    Optional<Funding> findFundingByFundingNo(int fundingNo);
+
+    Optional<Funding> findFundingByRegId(String regId);
+
 
 }
