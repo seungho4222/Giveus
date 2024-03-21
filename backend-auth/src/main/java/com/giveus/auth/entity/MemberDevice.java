@@ -1,23 +1,22 @@
-package com.giveus.notification.entity;
+package com.giveus.auth.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.DynamicInsert;
 
 @Entity
-@Table(name = "device")
+@Table(name = "member_device")
 @Getter
-@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @DynamicInsert
-public class Device {
+public class MemberDevice {
 
     @Id
-    @Column(name = "device_no")
+    @Column(name = "member_device_no")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int deviceNo;
+    private int memberDeviceNo;
 
     @Column(name = "member_no")
     private int memberNo;
@@ -27,6 +26,4 @@ public class Device {
 
     @Column(name = "last_login_at")
     private int lastLoginAt;
-
-
 }
