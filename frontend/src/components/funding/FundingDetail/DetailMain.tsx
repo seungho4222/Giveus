@@ -7,6 +7,7 @@ import { useState } from 'react'
 import Donate from '../Donate'
 import FullButton from '@/common/FullButton'
 import Review from '../Review'
+import { formatAmount } from '@/utils/format'
 
 const DetailMain = () => {
   const fundingDetail = useRecoilValue(fundingDetailState)
@@ -21,7 +22,7 @@ const DetailMain = () => {
         </d.Period>
         <d.Wrap>
           <d.TotalAmount>
-            {fundingDetail.totalAmount.toLocaleString('ko-KR')}원
+            {formatAmount(fundingDetail.totalAmount)}원
           </d.TotalAmount>
           <d.Dday>{dDay(fundingDetail)}</d.Dday>
         </d.Wrap>
@@ -31,7 +32,7 @@ const DetailMain = () => {
         <d.Wrap>
           <d.Percent>{percent(fundingDetail)} 달성</d.Percent>
           <d.TargetAmount>
-            {fundingDetail.targetAmount.toLocaleString('ko-KR')}원
+            {formatAmount(fundingDetail.targetAmount)}원
           </d.TargetAmount>
         </d.Wrap>
         <d.Note>* 모금 종료시 전액 일시 전달됩니다</d.Note>
