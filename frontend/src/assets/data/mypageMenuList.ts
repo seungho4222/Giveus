@@ -3,7 +3,7 @@ export const mypageMenuList = [
     key: 'managePoint',
     name: '포인트 관리',
     imgSrc: '/icon/icon_mypage1.png',
-    url: '/mypage/setting',
+    url: '/mypage/points',
   },
   {
     key: 'regularPayment',
