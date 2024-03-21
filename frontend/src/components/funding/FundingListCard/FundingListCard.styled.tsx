@@ -13,6 +13,7 @@ export const Container = styled.div`
 
 export const Img = styled.img`
   width: 30%;
+  height: 10vh;
   border-radius: 6px;
 `
 
