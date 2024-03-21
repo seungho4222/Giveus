@@ -1,5 +1,6 @@
 package com.giveus.notification.entity;
 
+import com.giveus.notification.entity.enums.NotificationCategory;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
@@ -22,12 +23,12 @@ public class Notification {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int notificationNo;
 
-    @Column(name = "meber_no")
+    @Column(name = "member_no")
     private int memberNo;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "category")
-    private String category;
+    private NotificationCategory category;
 
     @Column(name = "content")
     private String content;

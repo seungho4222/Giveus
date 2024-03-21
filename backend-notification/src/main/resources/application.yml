@@ -43,4 +43,4 @@ springdoc:
     operations-sorter: alpha
     path: /docs
   api-docs:
-    path: /api/v1/authentication/docs
+    path: /api/v1/notification/docs
