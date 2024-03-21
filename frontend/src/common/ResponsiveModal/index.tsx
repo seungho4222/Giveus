@@ -4,7 +4,7 @@ import * as r from '@common/ResponsiveModal/ResponsiveModal.styled'
 const Index = ({ name, children, onClose }: ModalType) => {
   return (
     <>
-      <r.BlackBox onClick={onClose} />
+      <r.BlackBox onClick={onClose}/>
       <r.Container>
         <r.Wrap>
           <r.ModalName>{name}</r.ModalName>

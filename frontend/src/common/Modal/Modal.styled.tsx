@@ -30,6 +30,7 @@ export const ModalName = styled.div`
   justify-content: center;
   padding-block: 1em;
   border-bottom: 2px solid ${colors.gray02};
+  font-weight: 600;
 `
 
 export const Backdrop = styled.div`

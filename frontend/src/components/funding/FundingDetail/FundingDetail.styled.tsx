@@ -19,4 +19,5 @@ export const Tap = styled.div<{ $active: boolean }>`
   color: ${props => (props.$active ? 'black' : `${colors.gray04}`)};
   font-size: 0.8em;
   font-weight: 600;
+  cursor: pointer;
 `
