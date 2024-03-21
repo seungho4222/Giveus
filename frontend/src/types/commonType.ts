@@ -23,6 +23,11 @@ export type NumberStateType = {
   setValue: Dispatch<SetStateAction<number>>
 }
 
+export type BooleanStateType = {
+  value: boolean
+  setValue: Dispatch<SetStateAction<boolean>>
+}
+
 export type ModalType = {
   name: string
   children: React.ReactNode
