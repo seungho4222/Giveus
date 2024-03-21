@@ -1,8 +1,11 @@
+import { myPointListFilterState } from '@stores/point'
 import { PointsFilterType } from '@/types/mypageType'
 import * as p from '@components/points/PointsFilter/PointsFilter.styled'
+import { useRecoilValue } from 'recoil'
 
 const Index = (props: PointsFilterType) => {
-  const { setOpen, startDate, endDate, type } = props
+  const { setOpen } = props
+  const myPointListFilter = useRecoilValue(myPointListFilterState)
 
   // modal open
   const modalOpen = () => setOpen(true)
@@ -11,7 +14,8 @@ const Index = (props: PointsFilterType) => {
     <p.Container>
       <p.Wrap onClick={modalOpen}>
         <div>
-          {startDate} ~ {endDate} ∙ {type}
+          {myPointListFilter.startDate} ~ {myPointListFilter.endDate} ∙
+          {myPointListFilter.type}
         </div>
         <img src="/icon/icon_arrow_bottom_gray.png" alt="" />
       </p.Wrap>

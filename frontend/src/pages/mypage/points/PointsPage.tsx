@@ -5,43 +5,23 @@ import MypagePrevHeader from '@components/mypage/MypagePrevHeader'
 import * as p from '@pages/mypage/points/PointsPage.styled'
 import { useState } from 'react'
 import PointsFilterModal from '@components/points/PointsFilter/PointsFilterModal'
-import { getOneMonthAgoDate, getTodayDate } from '@utils/dateMethods'
 import { rechargePointData, usagePointData } from '@components/points/data'
 
 const PointsPage = () => {
   const [open, setOpen] = useState(false)
-  const [startDate, setStartDate] = useState(getOneMonthAgoDate())
-  const [endDate, setEndDate] = useState(getTodayDate())
-  const [type, setType] = useState('전체')
 
   return (
     <>
       <p.Container>
         <MypagePrevHeader title="포인트 관리" />
         <PointsInfo />
-        <PointsFilter
-          setOpen={setOpen}
-          startDate={startDate}
-          endDate={endDate}
-          type={type}
-        />
+        <PointsFilter setOpen={setOpen} />
         <PointsList
           usageData={usagePointData}
           rechargeData={rechargePointData}
         />
       </p.Container>
-      {open && (
-        <PointsFilterModal
-          value={open}
-          setValue={setOpen}
-          startDate={startDate}
-          setStartDate={setStartDate}
-          endDate={endDate}
-          setEndDate={setEndDate}
-          type={type}
-          setType={setType}
-        />
-      )}
+      {open && <PointsFilterModal value={open} setValue={setOpen} />}
     </>
   )
 }

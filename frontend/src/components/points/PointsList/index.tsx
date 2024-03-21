@@ -1,11 +1,13 @@
 import * as p from '@components/points/PointsList/PontsList.styled'
 import PointsListItem from '@components/points/PointsList/PointsListItem'
 import { PointsListType, PointItemType } from '@/types/mypageType'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
+import { useRecoilState } from 'recoil'
+import { myPointListState } from '@/stores/point'
 
 const Index = (props: PointsListType) => {
   const { usageData, rechargeData } = props
-  const [data, setData] = useState<PointItemType[]>([])
+  const [myPointList, setMyPointList] = useRecoilState(myPointListState)
 
   useEffect(() => {
     setDataForm()
@@ -52,13 +54,14 @@ const Index = (props: PointsListType) => {
     // 최신순 정렬
     items.reverse()
 
-    setData(items)
+    setMyPointList(items)
   }
 
   return (
     <p.Container>
-      {data &&
-        data.map((item, index) => <PointsListItem key={index} item={item} />)}
+      {myPointList.map((item, index) => (
+        <PointsListItem key={index} item={item} />
+      ))}
     </p.Container>
   )
 }

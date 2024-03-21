@@ -1,5 +1,4 @@
 import { Dispatch, SetStateAction } from 'react'
-import { BooleanStateType } from '@/types/commonType'
 
 export type DateInputType = {
   startDate: string
@@ -10,16 +9,7 @@ export type DateInputType = {
 
 export type PointsFilterType = {
   setOpen: Dispatch<SetStateAction<boolean>>
-  type: string
-  startDate: string
-  endDate: string
 }
-
-export type PointsFilterModalType = {
-  type: string
-  setType: Dispatch<SetStateAction<string>>
-} & BooleanStateType &
-  DateInputType
 
 // 포인트 사용내역 타입
 export type UsagePointType = {

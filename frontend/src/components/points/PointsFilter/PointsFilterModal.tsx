@@ -2,26 +2,20 @@ import ResetButton from '@common/ResetButton'
 import ResponsiveModal from '@common/ResponsiveModal'
 import LargeButton from '@common/LargeButton'
 import * as p from '@components/points/PointsFilter/PointsFilterModal.styled'
-import { PointsFilterModalType } from '@/types/mypageType'
 import { useState } from 'react'
+import { BooleanStateType } from '@/types/commonType'
+import { useRecoilState } from 'recoil'
+import { myPointListFilterState } from '@stores/point'
+import { pointTypeList } from '@/assets/data/pointTypeList'
 
-const PointsFilterModal = (props: PointsFilterModalType) => {
-  const {
-    value,
-    setValue,
-    startDate,
-    setStartDate,
-    endDate,
-    setEndDate,
-    type,
-    setType,
-  } = props
+const PointsFilterModal = (props: BooleanStateType) => {
+  const { value, setValue } = props
 
-  const [values, setValues] = useState({
-    startDate,
-    endDate,
-    type,
-  })
+  const [myPointListFilter, setMyPointListFilter] = useRecoilState(
+    myPointListFilterState,
+  )
+
+  const [values, setValues] = useState(myPointListFilter)
 
   const changeType = (v: string) => {
     setValues({ ...values, type: v })
@@ -29,14 +23,12 @@ const PointsFilterModal = (props: PointsFilterModalType) => {
 
   // 초기화
   const onClickReset = () => {
-    setValues({ type, startDate, endDate })
+    setValues(myPointListFilter)
   }
 
   // 확인
   const onClickConfirm = () => {
-    setStartDate(values.startDate)
-    setEndDate(values.endDate)
-    setType(values.type)
+    setMyPointListFilter(values)
     setValue(false)
   }
 
@@ -59,24 +51,15 @@ const PointsFilterModal = (props: PointsFilterModalType) => {
         </p.DateWrap>
         <p.Title>포인트 사용 유형</p.Title>
         <p.TypeWrap>
-          <p.TypeItem
-            $active={values.type === '전체'}
-            onClick={() => changeType('전체')}
-          >
-            전체
-          </p.TypeItem>
-          <p.TypeItem
-            $active={values.type === '충전만'}
-            onClick={() => changeType('충전만')}
-          >
-            충전만
-          </p.TypeItem>
-          <p.TypeItem
-            $active={values.type === '사용만'}
-            onClick={() => changeType('사용만')}
-          >
-            사용만
-          </p.TypeItem>
+          {pointTypeList.map(item => (
+            <p.TypeItem
+              $active={values.type === item}
+              onClick={() => changeType(item)}
+              key={item}
+            >
+              {item}
+            </p.TypeItem>
+          ))}
         </p.TypeWrap>
         <p.ButtonWrap>
           <ResetButton text="초기화" onClick={onClickReset} />
