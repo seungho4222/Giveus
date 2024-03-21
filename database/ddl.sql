@@ -157,26 +157,27 @@ CREATE TABLE `notification` (
 	`content`	VARCHAR(30)	NOT NULL,
 	`detail`	VARCHAR(30)	NOT NULL,
 	`created_at`	DATETIME	NOT NULL,
-	`is_read`	TINYINT(1)	NOT NULL
+	`is_read`	TINYINT(1)	NOT NULL DEFAULT FALSE
 );
 
-DROP TABLE IF EXISTS `device`;
+DROP TABLE IF EXISTS `member_device`;
 
-CREATE TABLE `device` (
-	`device_no`	INT	PRIMARY KEY AUTO_INCREMENT,
+CREATE TABLE `member_device` (
+	`member_device_no`	INT	PRIMARY KEY AUTO_INCREMENT,
 	`member_no`	INT	NOT NULL,
 	`device_token`	VARCHAR(255)	NOT NULL,
 	`last_login_at`	DATETIME	NOT NULL
 );
 
-DROP TABLE IF EXISTS `notification_setting`;
+DROP TABLE IF EXISTS `member_setting`;
 
-CREATE TABLE `notification_setting` (
-	`member_no`	INT	PRIMARY KEY,
-	`funding_review`	TINYINT(1)	NOT NULL,
-	`usage_history`	TINYINT(1)	NOT NULL,
-	`regular_payment`	TINYINT(1)	NOT NULL,
-	`recommend_funding`	TINYINT(1)	NOT NULL
+CREATE TABLE `member_setting` (
+	`member_setting_no`	INT	PRIMARY KEY AUTO_INCREMENT,
+    `member_no`	INT	NOT NULL,
+	`funding_review`	TINYINT(1)	NOT NULL DEFAULT TRUE,
+	`usage_history`	TINYINT(1)	NOT NULL DEFAULT TRUE,
+	`regular_payment`	TINYINT(1)	NOT NULL DEFAULT TRUE,
+	`recommend_funding`	TINYINT(1)	NOT NULL DEFAULT TRUE
 );
 
 DROP TABLE IF EXISTS `payment_token`;
@@ -294,14 +295,14 @@ REFERENCES `member` (
 	`member_no`
 );
 
-ALTER TABLE `device` ADD CONSTRAINT `FK_member_TO_device_1` FOREIGN KEY (
+ALTER TABLE `member_device` ADD CONSTRAINT `FK_member_TO_member_device_1` FOREIGN KEY (
 	`member_no`
 )
 REFERENCES `member` (
 	`member_no`
 );
 
-ALTER TABLE `notification_setting` ADD CONSTRAINT `FK_member_TO_notification_setting_1` FOREIGN KEY (
+ALTER TABLE `member_setting` ADD CONSTRAINT `FK_member_TO_member_setting_1` FOREIGN KEY (
 	`member_no`
 )
 REFERENCES `member` (
