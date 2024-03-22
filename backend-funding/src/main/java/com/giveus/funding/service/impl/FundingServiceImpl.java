@@ -10,6 +10,7 @@ import com.giveus.funding.exception.AlreadyExistFundingException;
 import com.giveus.funding.exception.FundingNotFoundException;
 import com.giveus.funding.repository.FundingDetailRepository;
 import com.giveus.funding.repository.FundingRepository;
+import com.giveus.funding.service.FileService;
 import com.giveus.funding.service.FundingService;
 
 import java.util.List;
@@ -26,7 +27,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class FundingServiceImpl implements FundingService {
     private final FundingRepository fundingRepository;
     private final FundingDetailRepository fundingDetailRepository;
-//private final FileService fileService;
+    private final FileService fileService;
 
     /**
      * @inheritDoc
@@ -75,11 +76,9 @@ public class FundingServiceImpl implements FundingService {
         fundingDetail.setFundingNo(funding.getFundingNo());
         fundingDetail.setFunding(funding);
         fundingDetail.setContent(fundingCreateReq.getContent());
+        String url = fileService.upload(file); // 파일 업로드
+        fundingDetail.setThumbnailUrl(url);
         fundingDetailRepository.save(fundingDetail);
-
-        // TODO 파일 업로드 로직
-        // String url = fileService.upload(file);
-//        fundingDetail.setThumbnailUrl(url);
 
         return new CreateSuccessDto(funding.getFundingNo());
     }

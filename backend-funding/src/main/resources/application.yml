@@ -40,10 +40,21 @@ eureka:
     fetch-registry: true
 
 springdoc:
-#  paths-to-match: /api/v1/funding
-#  packages-to-scan: com.giveus.funding.controller
   swagger-ui:
     operations-sorter: alpha
     path: /docs
   api-docs:
     path: /api/v1/funding/docs
+
+cloud:
+  aws:
+    s3:
+      bucket: giveus
+    stack:
+      auto: false
+    region:
+      static: ap-northeast-2
+    credentials:
+      accessKey: AKIARUOHM5QA2FAS4XL7
+      secretKey: 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
+
