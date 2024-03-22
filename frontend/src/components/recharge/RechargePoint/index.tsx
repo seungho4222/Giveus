@@ -1,21 +1,42 @@
+import { rechargeList } from '@assets/data/rechargeList'
 import * as r from '@/components/recharge/RechargePoint/RechargePoint.styled'
+import { StringStateType } from '@/types/commonType'
+import { formatAmount } from '@utils/format'
+import { useState } from 'react'
 
-const Index = () => {
+const Index = (props: StringStateType) => {
+  const { value, setValue } = props
+
+  const [readOnly, setReadOnly] = useState<boolean>(false)
+  const [active, setActive] = useState<string>('직접입력')
+
+  const setAmount = (v: string) => {
+    setActive(v)
+    if (v === '직접입력') {
+      setReadOnly(false)
+      return
+    }
+    setReadOnly(true)
+    setValue(v)
+  }
+
   return (
     <r.Container>
       <r.Title>충전할 포인트</r.Title>
       <r.ButtonWrap>
-        <r.Button>5,000</r.Button>
-        <r.Button>10,000</r.Button>
-        <r.Button>20,000</r.Button>
-        <r.Button>50,000</r.Button>
-        <r.Button>100,000</r.Button>
-        <r.Button>200,000</r.Button>
-        <r.Button>500,000</r.Button>
-        <r.Button>직접입력</r.Button>
+        {rechargeList.map(v => (
+          <r.Button $active={active === v} onClick={() => setAmount(v)} key={v}>
+            {v === '직접입력' ? v : formatAmount(Number(v))}
+          </r.Button>
+        ))}
       </r.ButtonWrap>
-      <r.Input />
-      <r.Label>충전할 금액 70,000원</r.Label>
+      <r.Input
+        type="number"
+        value={value}
+        readOnly={readOnly}
+        onChange={e => setValue(e.target.value)}
+      />
+      <r.Label>충전할 금액 {formatAmount(Number(value))}원</r.Label>
     </r.Container>
   )
 }

@@ -21,8 +21,9 @@ export const ButtonWrap = styled.div`
   margin-bottom: 20px;
 `
 
-export const Button = styled.button`
-  background-color: ${colors.gray02};
+export const Button = styled.button<{ $active: boolean }>`
+  background-color: ${props => (props.$active ? colors.blue01 : colors.gray02)};
+  color: ${props => (props.$active ? '#fff' : '#000')};
   height: 32px;
   border-radius: 6px;
   display: flex;
@@ -39,6 +40,12 @@ export const Input = styled.input`
   text-align: end;
   padding: 10px 15px;
   font-size: 0.9em;
+
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
 `
 
 export const Label = styled.div`

@@ -1,16 +1,19 @@
+import { formatAmount } from '@utils/format'
 import FullButton from '@common/FullButton'
 import * as r from '@components/recharge/RechargeBottom/RechargeBottom.styled'
 
-const Index = () => {
+const Index = (props: { amount: string; onRecharge: () => void }) => {
+  const { amount, onRecharge } = props
+
   return (
     <r.Container>
       <r.Label>
         <input type="checkbox" /> 이용약관에 동의하고 신청 절차를 진행할게요.
       </r.Label>
       <FullButton
-        text="70000원 충전하기"
+        text={`${formatAmount(Number(amount))}원 충전하기`}
         disabled={false}
-        onClick={() => console.log('충전하기')}
+        onClick={onRecharge}
       />
     </r.Container>
   )
