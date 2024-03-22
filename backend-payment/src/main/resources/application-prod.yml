@@ -13,4 +13,4 @@ swagger:
   server: https://j10c206.p.ssafy.io
 
 host:
-  address: j10c206.p.ssafy.io
+  address: https://j10c206.p.ssafy.io

@@ -58,15 +58,15 @@ public class MakeKakaoPayRequest {
         params.put("tax_free_amount", 0);
 
         // 결제 성공 시 redirect url, 최대 255자
-        params.put("approval_url", "http://" + hostAddress + ":8081/api/v1/payment/success"
+        params.put("approval_url", hostAddress + "/api/v1/payment/kakao/success"
                 + "?member_no=" + kakaoPayInfoDto.getMemberNo()
                 + "&funding_no=" + kakaoPayInfoDto.getFundingNo()
                 + "&point=" + kakaoPayInfoDto.getPoint()
                 + "&opened=" + kakaoPayInfoDto.isOpened());
         // 결제 취소 시 redirect url, 최대 255자
-        params.put("cancel_url", "http://" + hostAddress + ":8081/api/v1/payment/cancel");
+        params.put("cancel_url", hostAddress + "/api/v1/payment/kakao/cancel");
         // 결제 실패 시 redirect url, 최대 255자
-        params.put("fail_url", "http://" + hostAddress + ":8081/api/v1/payment/fail");
+        params.put("fail_url", hostAddress + "/api/v1/payment/kakao/fail");
 
         log.info("params: {}", params);
 
