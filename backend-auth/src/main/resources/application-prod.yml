@@ -27,7 +27,7 @@ spring:
               - profile_nickname
               - profile_image
               - account_email
-            redirect-uri: "http://j10c206.p.ssafy.io:8082/login/oauth2/code/kakao" #
+            redirect-uri: "https://j10c206.p.ssafy.io/login/oauth2/code/kakao" #
             client-name: Kakao
         provider:
           kakao:
@@ -39,7 +39,7 @@ spring:
 
 redirect:
   success:
-    http://j10c206.p.ssafy.io:3000/login/oauth2
+    https://j10c206.p.ssafy.io/login/oauth2
 
 swagger:
   server: https://j10c206.p.ssafy.io
