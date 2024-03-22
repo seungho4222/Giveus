@@ -16,7 +16,7 @@ import java.util.List;
 public class SwaggerConfig {
     @Value("${swagger.server}")
     private String server;
-
+ 
     @Bean
     public OpenAPI openAPI() {
         return new OpenAPI()
