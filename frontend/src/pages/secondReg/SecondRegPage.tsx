@@ -32,8 +32,8 @@ const SecondRegPage = () => {
       formData.append('file', file)
 
       formData.append(
-        'req',
-        new Blob([JSON.stringify({ text: text, id: id })], {
+        'fundingCreateReq',
+        new Blob([JSON.stringify({ regId: id, content: text })], {
           type: 'application/json',
         }),
       )
