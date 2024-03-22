@@ -18,6 +18,13 @@ spring:
       connection-test-query: select 1
       username: giveus
       password: giveus2024~!
+  data:
+    redis:
+      host: j10c206.p.ssafy.io
+      port: 6379
+      password: giveus2024~!
+      repositories:
+        enabled: false
 
 server:
   port: 8084
@@ -44,3 +51,8 @@ springdoc:
     path: /docs
   api-docs:
     path: /api/v1/payment/docs
+
+pay:
+  kakao:
+    cid: TC0ONETIME
+    secret-key: DEV8BED019BC61B73FE2595FB95EC2E08D8A824D
