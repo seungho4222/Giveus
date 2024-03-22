@@ -9,11 +9,21 @@ const Index = (props: StringStateType) => {
       <r.Title>결제 수단</r.Title>
       <r.Wrap>
         <r.Label $active={value === 'toss'} onClick={() => setValue('toss')}>
-          <r.RadioInut type="radio" name="payment" readOnly />
+          <r.RadioInut
+            type="radio"
+            name="payment"
+            readOnly
+            checked={value === 'toss'}
+          />
           <r.Logo src="/img/img_logo_tosspay.png" />
         </r.Label>
         <r.Label $active={value === 'kakao'} onClick={() => setValue('kakao')}>
-          <r.RadioInut type="radio" name="payment" readOnly />
+          <r.RadioInut
+            type="radio"
+            name="payment"
+            readOnly
+            checked={value === 'kakao'}
+          />
           <r.Logo src="/img/img_logo_kakaopay.png" />
         </r.Label>
       </r.Wrap>
