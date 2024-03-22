@@ -14,7 +14,7 @@ import SignupPage from '@pages/signup/SignupPage'
 import LoginRedirectHandler from '@pages/login/LoginRedirectHandler'
 import PointsPage from '@/pages/mypage/points/PointsPage'
 import DonatePage from '@/pages/mypage/donate/DonatePage'
-import RechargePage from '@pages/mypage/points/RechargePage'
+import RechargePage from '@pages/mypage/recharge/RechargePage'
 
 const AuthRouter = () => {
   return (
