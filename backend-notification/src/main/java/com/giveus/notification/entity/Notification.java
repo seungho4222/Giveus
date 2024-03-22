@@ -43,5 +43,8 @@ public class Notification {
     @ColumnDefault("false")
     private boolean isRead;
 
+    public void updateIsRead() {
+        this.isRead = true;
+    }
 
 }
