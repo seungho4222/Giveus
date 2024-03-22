@@ -1,10 +1,7 @@
 package com.giveus.admin.repository.impl;
 
 import com.giveus.admin.dto.response.FundingListRes;
-import com.giveus.admin.entity.Funding;
-import com.giveus.admin.entity.QFunding;
-import com.giveus.admin.entity.QFundingDetail;
-import com.giveus.admin.entity.QFundingStatusHistory;
+import com.giveus.admin.entity.*;
 import com.giveus.admin.repository.FundingRepositoryCustom;
 import com.querydsl.core.types.Expression;
 import com.querydsl.core.types.ExpressionUtils;
@@ -12,7 +9,6 @@ import com.querydsl.core.types.Projections;
 
 import java.util.List;
 
-import com.querydsl.core.types.dsl.BooleanExpression;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
 
 /**
@@ -24,6 +20,7 @@ public class FundingRepositoryImpl extends QuerydslRepositorySupport
 
     private static final QFunding qFunding = QFunding.funding;
     private static final QFundingDetail qFundingDetail = QFundingDetail.fundingDetail;
+    private static final QAdminFunding qAdminFunding = QAdminFunding.adminFunding;
 
     private static final QFundingStatusHistory qFundingStatusHistory = QFundingStatusHistory.fundingStatusHistory;
 
@@ -32,11 +29,12 @@ public class FundingRepositoryImpl extends QuerydslRepositorySupport
     }
 
     @Override
-    public List<FundingListRes> getFundingList() {
+    public List<FundingListRes> getFundingList(int adminNo) {
         QFundingStatusHistory qFundingStatusHistory2 = QFundingStatusHistory.fundingStatusHistory;
 
         return from(qFundingDetail)
                 .rightJoin(qFundingDetail.funding, qFunding)
+                .innerJoin(qFunding, qAdminFunding.funding)
                 .select(Projections.constructor(FundingListRes.class, qFunding.fundingNo,
                         qFunding.issueNumber, qFunding.registrationNumber, qFunding.patientName,
                         ExpressionUtils.as(from(qFundingStatusHistory)
@@ -45,9 +43,10 @@ public class FundingRepositoryImpl extends QuerydslRepositorySupport
                                         from(qFundingStatusHistory2)
                                                 .select(qFundingStatusHistory2.fundingStatusHistoryNo.max())
                                                 .where(qFundingStatusHistory2.funding.eq(qFunding)))
-                                ),"status")
+                                ), "status")
                         , qFunding.title, ExpressionUtils.isNull(qFundingDetail.thumbnailUrl)
                 ))
+                .where((qAdminFunding.adminNo.eq(adminNo)))
                 .fetch();
     }
 

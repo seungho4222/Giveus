@@ -8,5 +8,5 @@ import java.util.List;
 public interface FundingService {
     FundingDetailsRes createFunding(FundingCreateReq fundingCreateReq);
 
-    List<FundingListRes> getFundingList();
+    List<FundingListRes> getFundingList(int adminNo);
 }

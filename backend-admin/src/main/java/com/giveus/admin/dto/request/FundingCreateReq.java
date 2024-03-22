@@ -40,4 +40,6 @@ public class FundingCreateReq {
     private int targetAmount;
 
     private String phone;
+
+    private int adminNo;
 }

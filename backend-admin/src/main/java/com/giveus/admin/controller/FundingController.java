@@ -28,10 +28,10 @@ public class FundingController {
 
     @SwaggerApiSuccess(summary = "펀딩 전체 조회", implementation = FundingListRes.class)
     @GetMapping
-    public ResponseEntity<CommonResponseBody<List<FundingListRes>>> getFundingList() {
+    public ResponseEntity<CommonResponseBody<List<FundingListRes>>> getFundingList(@RequestParam int adminNo) {
         return ResponseEntity
                 .status(OK)
-                .body(new CommonResponseBody<>(OK, fundingService.getFundingList()));
+                .body(new CommonResponseBody<>(OK, fundingService.getFundingList(adminNo)));
     }
 
     @SwaggerApiSuccess(summary = "펀딩 1차 등록", implementation = FundingDetailsRes.class)

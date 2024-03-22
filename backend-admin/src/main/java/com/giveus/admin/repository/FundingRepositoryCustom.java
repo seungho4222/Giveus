@@ -10,5 +10,5 @@ import org.springframework.data.repository.NoRepositoryBean;
  */
 @NoRepositoryBean
 public interface FundingRepositoryCustom {
-    List<FundingListRes> getFundingList();
+    List<FundingListRes> getFundingList(int adminNo);
 }
