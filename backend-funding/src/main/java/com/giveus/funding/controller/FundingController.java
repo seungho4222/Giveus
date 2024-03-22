@@ -6,16 +6,16 @@ import com.giveus.funding.common.swagger.SwaggerApiSuccess;
 import com.giveus.funding.dto.request.FundingCreateReq;
 import com.giveus.funding.dto.response.FundingDetailRes;
 import com.giveus.funding.dto.response.FundingListRes;
+import com.giveus.funding.dto.response.FundingParticipantsRes;
 import com.giveus.funding.service.FundingService;
 import io.swagger.v3.oas.annotations.tags.Tag;
-
-import java.util.List;
-
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
 
 import static org.springframework.http.HttpStatus.OK;
 
@@ -53,5 +53,12 @@ public class FundingController {
                 .body(new CommonResponseBody<>(OK, fundingService.createFunding(fundingCreateReq, file)));
     }
 
+    @SwaggerApiSuccess(summary = "펀딩 기부자 명단 조회", implementation = FundingParticipantsRes.class)
+    @GetMapping("/{fundingNo}/participants")
+    public ResponseEntity<CommonResponseBody<List<FundingParticipantsRes>>> getFundingParticipants(@PathVariable int fundingNo) {
+        return ResponseEntity
+                .status(OK)
+                .body(new CommonResponseBody<>(OK, fundingService.getParticipants(fundingNo)));
+    }
 
 }

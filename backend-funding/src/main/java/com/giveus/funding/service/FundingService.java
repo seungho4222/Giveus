@@ -4,6 +4,7 @@ import com.giveus.funding.common.dto.CreateSuccessDto;
 import com.giveus.funding.dto.request.FundingCreateReq;
 import com.giveus.funding.dto.response.FundingDetailRes;
 import com.giveus.funding.dto.response.FundingListRes;
+import com.giveus.funding.dto.response.FundingParticipantsRes;
 import com.giveus.funding.entity.Funding;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -41,4 +42,12 @@ public interface FundingService {
      * @return 등록한 펀딩의 고유 번호
      */
     CreateSuccessDto createFunding(FundingCreateReq fundingCreateReq, MultipartFile file);
+
+    /**
+     * 펀딩 참여자 내역을 조회하는 메서드입니다.
+     *
+     * @param fundingNo 조회할 펀딩 고유 번호
+     * @return 펀딩 참여자 목록
+     */
+    List<FundingParticipantsRes> getParticipants(int fundingNo);
 }

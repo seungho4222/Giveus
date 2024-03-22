@@ -5,9 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.DynamicInsert;
-import org.springframework.aot.generate.GeneratedTypeReference;
 
-import java.lang.reflect.Member;
 import java.time.LocalDate;
 
 @Entity
@@ -23,8 +21,9 @@ public class MemberFunding {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int memberFundingNo;
 
-    @Column(name = "member_no")
-    private int memberNo;
+    @ManyToOne
+    @JoinColumn(name = "member_no")
+    private Member member;
 
     @ManyToOne
     @JoinColumn(name = "funding_no")
