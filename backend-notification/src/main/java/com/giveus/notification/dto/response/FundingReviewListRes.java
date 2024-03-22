@@ -6,15 +6,11 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
 
-import java.time.LocalDate;
-
 @Getter
 @Builder
 @AllArgsConstructor
 @ToString
-public class DeviceListRes {
-
-    private NotificationCategory category; // REVIEW, USAGE, PAYMENT, RECOMMEND
+public class FundingReviewListRes {
 
     private int memberNo;
 
@@ -22,15 +18,6 @@ public class DeviceListRes {
 
     private boolean fundingReview;
 
-//    private boolean usuageHistory;
-
-//    private boolean regularPayment;
-
-//    private boolean recommentFunding;
-
     private String deviceToken;
 
-    public void updateCategory(NotificationCategory category) {
-        this.category = category;
-    }
 }

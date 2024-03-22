@@ -1,7 +1,7 @@
 package com.giveus.notification.service;
 
 
-import com.giveus.notification.dto.response.DeviceListRes;
+import com.giveus.notification.dto.response.FundingReviewListRes;
 import com.giveus.notification.dto.response.NotificationListRes;
 import com.giveus.notification.entity.Notification;
 import com.giveus.notification.exception.NotificationDeleteFailedException;
@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -91,8 +90,13 @@ public class NotificationServiceImpl implements NotificationService{
         log.info("============== NotificationServiceImpl - createFundingReviewNotification ::: fundingNo :  {}", fundingNo);
 
         // 1) 해당 펀딩에 참여한 사람들 중 알림 설정이 true인 사람들 얻어옴
-//        List<DeviceListRes> list = notificationRepository.getDeviceList("funding_review");
+        List<FundingReviewListRes> list = notificationRepository.getFundingReviewList(fundingNo);
+        for(int i=0; i<list.size(); i++) {
+            log.info("========== " + list.get(i).toString() + " ==========");
+        }
+
         // 2) 해당 사람들 모두에게 펀딩 후기 등록 알림 발송 (FCM)
+
 
         // 3) 해당 내용 알림 테이블에 기록 (Notification 테이블에 기록)
 
