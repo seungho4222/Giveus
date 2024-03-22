@@ -11,7 +11,11 @@ import lombok.ToString;
  */
 @Getter
 @ToString
-public class PayInfoDto {
-    private int price;
-    private String itemName;
+public class KakaoPayInfoDto {
+    private int memberNo; // 회원 PK
+    private int fundingNo; // 펀딩 PK
+    private int price; // 후원 금액
+    private int point; // 사용 포인트
+    private String title; // 펀딩 제목
+    private boolean opened; // 공개 여부
 }

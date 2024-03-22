@@ -9,3 +9,6 @@ spring:
 
 swagger:
   server: http://localhost:8081
+
+server:
+  address: localhost

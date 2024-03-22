@@ -1,6 +1,7 @@
 package com.giveus.notification.controller;
 
 import com.giveus.notification.common.dto.CommonResponseBody;
+import com.giveus.notification.common.dto.CreateSuccessDto;
 import com.giveus.notification.common.swagger.SwaggerApiSuccess;
 import com.giveus.notification.dto.response.NotificationListRes;
 import com.giveus.notification.service.NotificationService;
@@ -80,10 +81,11 @@ public class NotificationController {
                 .body(new CommonResponseBody<>(OK, ""));
     }
 
-    // FCM 토큰 저장
-    
     // 펀딩 후기 등록 시 알림 발송
+    // 1) 해당 펀딩에 참여한 사람들 중 알림 설정이 true인 사람들 얻어옴
+    // 2) 해당 사람들 모두에게 펀딩 후기 등록 알림 발송
+    
 
-    // 진료비 세부 내역 등록 시 알림 발송
+    // 진료비 사용 내역 등록 시 알림 발송 (진료비 사용 내역 알림 설정 true인 사람만)
 
 }

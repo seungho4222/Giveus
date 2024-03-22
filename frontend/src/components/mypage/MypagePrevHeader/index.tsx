@@ -6,14 +6,14 @@ const Index = (props: { title: string }) => {
 
   const navigate = useNavigate()
 
-  const goMypage = () => navigate('/mypage')
+  const goBack = () => navigate(-1)
 
   return (
     <m.Container $isDonate={title === '후원 내역'}>
       {title === '후원 내역' ? (
-        <m.Image src="/icon/icon_arrow_white.png" alt="" onClick={goMypage} />
+        <m.Image src="/icon/icon_arrow_white.png" alt="" onClick={goBack} />
       ) : (
-        <m.Image src="/icon/icon_arrow_black.png" alt="" onClick={goMypage} />
+        <m.Image src="/icon/icon_arrow_black.png" alt="" onClick={goBack} />
       )}
       <m.Title>{title}</m.Title>
       <m.EmptyBox />
