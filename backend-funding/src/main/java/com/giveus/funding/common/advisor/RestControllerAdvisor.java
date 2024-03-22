@@ -1,10 +1,11 @@
 package com.giveus.funding.common.advisor;
 
 import com.giveus.funding.common.dto.CommonResponseBody;
-import com.giveus.funding.common.dto.ErrorResponseDto;
 import com.giveus.funding.common.util.ErrorMessageUtil;
 import com.giveus.funding.exception.AlreadyExistFundingException;
 import com.giveus.funding.exception.FundingNotFoundException;
+import com.giveus.funding.exception.InvalidRequestDataException;
+import com.giveus.funding.exception.InvalidRequestException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -31,7 +32,8 @@ public class RestControllerAdvisor {
      * @param e 실제 발생한 예외객체입니다.
      * @return 에러메세지를 response entity 에 담아서 전송합니다.
      */
-    @ExceptionHandler({MethodArgumentNotValidException.class, NoSuchElementException.class})
+    @ExceptionHandler({MethodArgumentNotValidException.class, NoSuchElementException.class,
+            InvalidRequestException.class, InvalidRequestDataException.class})
     public ResponseEntity<CommonResponseBody<String>> badRequestException400(
             MethodArgumentNotValidException e) {
 

@@ -47,7 +47,7 @@ public class FundingController {
     @SwaggerApiSuccess(summary = "펀딩 2차 등록", implementation = CreateSuccessDto.class)
     @PostMapping
     public ResponseEntity<CommonResponseBody<CreateSuccessDto>> createFunding(
-            @Valid @RequestPart FundingCreateReq fundingCreateReq, @RequestPart MultipartFile file) {
+            @Valid @RequestPart FundingCreateReq fundingCreateReq, @RequestPart(required = false) MultipartFile file) {
         return ResponseEntity
                 .status(OK)
                 .body(new CommonResponseBody<>(OK, fundingService.createFunding(fundingCreateReq, file)));

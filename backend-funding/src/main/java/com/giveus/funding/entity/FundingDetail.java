@@ -1,20 +1,9 @@
 package com.giveus.funding.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.MapsId;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
-import java.time.LocalDate;
-import lombok.Builder;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.DynamicInsert;
 
 @Entity
 @Table(name = "funding_detail")
@@ -24,8 +13,9 @@ import org.hibernate.annotations.DynamicInsert;
 public class FundingDetail {
 
     @Id
+    @Column(name = "funding_detail_no")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int fundingNo;
+    private int fundingDetailNo;
 
     @OneToOne
     @JoinColumn(name = "funding_no")

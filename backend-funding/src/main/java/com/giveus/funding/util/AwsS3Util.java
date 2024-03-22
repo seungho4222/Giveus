@@ -6,6 +6,7 @@ import com.giveus.funding.exception.FileUploadException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -16,22 +17,63 @@ public class AwsS3Util {
 
     private final AmazonS3Client amazonS3Client;
     private final String HTTPS = "https://";
-    private final String FOLDER_NAME = "/funding";
+    private final String SLASH = "/";
+    private final String S3 = ".s3.";
+    private final String AMAZON_AWS = ".amazonaws.com";
+    private final String DOT = ".";
 
     @Value("${cloud.aws.s3.bucket}")
     private String bucket;
 
-    public String uploadFile(MultipartFile file) {
+    @Value("${cloud.aws.region.static}")
+    private String region;
+
+
+    /**
+     * AWS S3에 파일을 업로드하는 메서드입니다.
+     *
+     * @param file       업로드 할 파일
+     * @param folderName 업로드 할 버킷 폴더명
+     * @return 업로드 한 S3 url
+     */
+    public String uploadFile(MultipartFile file, String objectName, String folderName) {
         try {
-            String fileName = file.getOriginalFilename();
-            String fileUrl = HTTPS + bucket + FOLDER_NAME + fileName;
+            String extension = StringUtils.getFilenameExtension(file.getOriginalFilename());
+            String fileName = objectName + DOT + extension;
+            String fileUrl = getFileUrl(folderName, fileName);
+
             ObjectMetadata metadata = new ObjectMetadata();
             metadata.setContentType(file.getContentType());
             metadata.setContentLength(file.getSize());
-            amazonS3Client.putObject(bucket, fileName, file.getInputStream(), metadata);
+
+            String bucketName = bucket + SLASH + folderName;
+            amazonS3Client.putObject(bucketName, fileName, file.getInputStream(), metadata);
+
             return fileUrl;
         } catch (IOException e) {
             throw new FileUploadException();
         }
+    }
+
+    /**
+     * 파일 URL을 생성하는 메서드입니다.
+     *
+     * @param folderName 폴더명
+     * @param fileName   파일명
+     * @return url
+     */
+    private String getFileUrl(String folderName, String fileName) {
+        return HTTPS + bucket + S3 + region + AMAZON_AWS + SLASH + folderName + SLASH + fileName;
+    }
+
+    /**
+     * AWS S3 파일을 삭제하는 메서드입니다.
+     *
+     * @param objectName 삭제 할 오브젝트명
+     * @param folderName 삭제 할 버킷 폴더명
+     */
+    public void deleteFile(String objectName, String folderName) {
+        String bucketName = bucket + SLASH + folderName;
+        amazonS3Client.deleteObject(bucketName, objectName);
     }
 }

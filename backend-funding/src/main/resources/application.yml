@@ -53,7 +53,7 @@ cloud:
     stack:
       auto: false
     region:
-      static: ap-northeast-2
+      static: ap-southeast-2
     credentials:
       accessKey: AKIARUOHM5QA2FAS4XL7
       secretKey: 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
