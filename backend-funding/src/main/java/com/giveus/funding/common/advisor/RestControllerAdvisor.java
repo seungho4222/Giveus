@@ -1,11 +1,13 @@
 package com.giveus.funding.common.advisor;
 
 import com.giveus.funding.common.dto.CommonResponseBody;
-import com.giveus.funding.common.dto.ErrorResponseDto;
 import com.giveus.funding.common.util.ErrorMessageUtil;
 import com.giveus.funding.exception.AlreadyExistFundingException;
 import com.giveus.funding.exception.FundingNotFoundException;
+import com.giveus.funding.exception.InvalidRequestDataException;
+import com.giveus.funding.exception.InvalidRequestException;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -20,6 +22,7 @@ import static org.springframework.http.HttpStatus.*;
  */
 @RestControllerAdvice
 @RequiredArgsConstructor
+@Slf4j
 public class RestControllerAdvisor {
     private final ErrorMessageUtil errorMessageUtil;
 
@@ -29,7 +32,8 @@ public class RestControllerAdvisor {
      * @param e 실제 발생한 예외객체입니다.
      * @return 에러메세지를 response entity 에 담아서 전송합니다.
      */
-    @ExceptionHandler({MethodArgumentNotValidException.class, NoSuchElementException.class})
+    @ExceptionHandler({MethodArgumentNotValidException.class, NoSuchElementException.class,
+            InvalidRequestException.class, InvalidRequestDataException.class})
     public ResponseEntity<CommonResponseBody<String>> badRequestException400(
             MethodArgumentNotValidException e) {
 
@@ -40,36 +44,34 @@ public class RestControllerAdvisor {
                 .body(new CommonResponseBody<>(BAD_REQUEST, msg));
     }
 
-/**
- * 401에 해당하는 예외들을 한번에 처리하는 메소드입니다.
- *
- * @param e 실제 발생한 예외객체입니다.
- * @return 에러메세지를 response entity 에 담아서 전송합니다.
- *//*
-
-    @ExceptionHandler
-    public ResponseEntity<ErrorResponseDto> unauthorizedException401(Exception e) {
-
-        return ResponseEntity
-                .status(UNAUTHORIZED)
-                .body(new ErrorResponseDto(UNAUTHORIZED, e.getMessage()));
-    }
-
-    */
-/**
- * 403에 해당하는 예외들을 한번에 처리하는 메소드입니다.
- *
- * @param e 실제 발생한 예외객체입니다.
- * @return 에러메세지를 response entity 에 담아서 전송합니다.
- *//*
-
-//  @ExceptionHandler(value = {})
-//  public ResponseEntity<BaseResponseBody> forbiddenException403(RuntimeException e) {
+    /**
+     * 401에 해당하는 예외들을 한번에 처리하는 메소드입니다.
+     *
+     * @param e 실제 발생한 예외객체입니다.
+     * @return 에러메세지를 response entity 에 담아서 전송합니다.
+     */
+//    @ExceptionHandler(value = {})
+//    public ResponseEntity<CommonResponseBody<String>> unauthorizedException401(Exception e) {
 //
-//    return ResponseEntity
-//        .status(FORBIDDEN)
-//        .body(BaseResponseBody.of(FORBIDDEN, e.getMessage()));
-//  }
+//        return ResponseEntity
+//                .status(UNAUTHORIZED)
+//                .body(new CommonResponseBody<>(UNAUTHORIZED, e.getMessage()));
+//    }
+
+    /**
+     * 403에 해당하는 예외들을 한번에 처리하는 메소드입니다.
+     *
+     * @param e 실제 발생한 예외객체입니다.
+     * @return 에러메세지를 response entity 에 담아서 전송합니다.
+     */
+    /*
+//    @ExceptionHandler(value = {})
+//    public ResponseEntity<CommonResponseBody<String>> forbiddenException403(RuntimeException e) {
+//
+//        return ResponseEntity
+//                .status(FORBIDDEN)
+//                .body(new CommonResponseBody<>(FORBIDDEN, e.getMessage()));
+//    }
 
     */
 
@@ -106,22 +108,22 @@ public class RestControllerAdvisor {
     }
 
 
-/**
- * 500에 해당하는 예외들을 한번에 처리하는 메소드입니다.
- *
- * @param e 실제 발생한 예외객체입니다.
- * @return 에러메세지를 response entity 에 담아서 전송합니다.
- *//*
+    /**
+     * 500에 해당하는 예외들을 한번에 처리하는 메소드입니다.
+     *
+     * @param e 실제 발생한 예외객체입니다.
+     * @return 에러메세지를 response entity 에 담아서 전송합니다.
+     */
 
     @ExceptionHandler(value = {RuntimeException.class, Exception.class})
-    public ResponseEntity<ErrorResponseDto> internalErrorException500(Exception e) {
+    public ResponseEntity<CommonResponseBody<String>> internalErrorException500(Exception e) {
 
-        e.printStackTrace();
+        log.error(e.getMessage());
 
         return ResponseEntity.status(INTERNAL_SERVER_ERROR)
-                .body(new ErrorResponseDto(INTERNAL_SERVER_ERROR, e.getMessage()));
+                .body(new CommonResponseBody<>(INTERNAL_SERVER_ERROR, e.getMessage()));
 
     }
-*/
+
 
 }

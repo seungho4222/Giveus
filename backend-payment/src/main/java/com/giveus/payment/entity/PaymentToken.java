@@ -1,9 +1,6 @@
 package com.giveus.payment.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
@@ -17,6 +14,10 @@ import lombok.*;
 public class PaymentToken {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "payment_token_no")
+    private Integer paymentTokenNo;
+
     @Column(name = "member_no")
     private Integer memberNo;
 

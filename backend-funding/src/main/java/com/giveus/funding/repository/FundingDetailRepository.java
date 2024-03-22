@@ -10,6 +10,6 @@ import java.util.Optional;
 @Repository
 public interface FundingDetailRepository extends JpaRepository<FundingDetail, Integer> {
 
-    Optional<FundingDetail> findFundingDetailByFundingNo(int fundingNo);
+    Optional<FundingDetail> findFundingDetailByFunding(Funding funding);
 
 }
