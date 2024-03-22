@@ -11,3 +11,6 @@ spring:
 
 swagger:
   server: https://j10c206.p.ssafy.io
+
+server:
+  address: 0.0.0.0
