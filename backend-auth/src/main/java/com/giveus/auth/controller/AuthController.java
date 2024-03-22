@@ -1,6 +1,11 @@
 package com.giveus.auth.controller;
 
+import com.giveus.auth.common.dto.CommonResponseBody;
+import com.giveus.auth.common.dto.CreateSuccessDto;
+import com.giveus.auth.common.swagger.SwaggerApiSuccess;
 import com.giveus.auth.dto.request.AuthJoinPostReq;
+import com.giveus.auth.dto.request.MemberDevicePostReq;
+import com.giveus.auth.dto.response.MemberInfoRes;
 import com.giveus.auth.service.AuthService;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
@@ -10,6 +15,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import static org.springframework.http.HttpStatus.OK;
+
 
 @RestController
 @RequestMapping("/api/v1/auth")
@@ -18,27 +25,37 @@ import org.springframework.web.bind.annotation.*;
 public class AuthController {
 
     private final AuthService authService;
-
-
+    
+    @SwaggerApiSuccess(summary = "회원가입 추가 정보 입력", implementation = MemberInfoRes.class)
     @PutMapping("/join")
-    public ResponseEntity<?> updateMember(@RequestBody AuthJoinPostReq userJoinPostReq) {
-        log.info("회원가입 요청 " + userJoinPostReq.toString());
-
-        return new ResponseEntity<>(authService.updateMember(userJoinPostReq), HttpStatus.OK);
+    public ResponseEntity<CommonResponseBody<MemberInfoRes>> updateMember(@RequestBody AuthJoinPostReq userJoinPostReq) {
+        return ResponseEntity
+                .status(OK)
+                .body(new CommonResponseBody<>(OK, authService.updateMember(userJoinPostReq)));
     }
 
+    @SwaggerApiSuccess(summary = "회원 정보 조회 (회원번호 이용)", implementation = MemberInfoRes.class)
     @GetMapping("/{memberNo}")
-    public ResponseEntity<?> findByMemberNo(@PathVariable int memberNo) {
-        log.info("회원정보조회 요청 1 " + memberNo);
-
-        return new ResponseEntity<>(authService.findByMemberNo(memberNo), HttpStatus.OK);
+    public ResponseEntity<CommonResponseBody<MemberInfoRes>> findByMemberNo(@PathVariable int memberNo) {
+        return ResponseEntity
+                .status(OK)
+                .body(new CommonResponseBody<>(OK, authService.findByMemberNo(memberNo)));
     }
 
+    @SwaggerApiSuccess(summary = "회원 정보 조회 (엑세시 토큰 이용)", implementation = MemberInfoRes.class)
     @GetMapping("/info")
-    public ResponseEntity<?> findByAccessToken(HttpServletRequest httpServletRequest) {
-        log.info("회원정보조회 요청 2 " + httpServletRequest);
+    public ResponseEntity<CommonResponseBody<MemberInfoRes>> findByAccessToken(HttpServletRequest httpServletRequest) {
+        return ResponseEntity
+                .status(OK)
+                .body(new CommonResponseBody<>(OK, authService.findByAccessToken(httpServletRequest)));
+    }
 
-        return new ResponseEntity<>(authService.findByAccessToken(httpServletRequest), HttpStatus.OK);
+    @SwaggerApiSuccess(summary = "FCM 기기 토큰 저장", implementation = String.class)
+    @PostMapping("/device")
+    public ResponseEntity<CommonResponseBody<CreateSuccessDto>> createMemberDevice(@RequestBody MemberDevicePostReq memberDevicePostReq) {
+        return ResponseEntity
+                .status(OK)
+                .body(new CommonResponseBody<>(OK, authService.createMemberDevice(memberDevicePostReq)));
     }
 
 }

@@ -4,6 +4,9 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.DynamicInsert;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 @Entity
 @Table(name = "member_device")
 @Getter
@@ -22,8 +25,13 @@ public class MemberDevice {
     private int memberNo;
 
     @Column(name = "device_token")
-    private int deviceToken;
+    private String deviceToken;
 
     @Column(name = "last_login_at")
-    private int lastLoginAt;
+    private LocalDateTime lastLoginAt;
+
+
+    public void updateLastLoginAt() {
+        this.lastLoginAt = LocalDateTime.now();
+    }
 }
