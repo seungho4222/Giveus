@@ -20,7 +20,7 @@ public interface NotificationService {
      * @param notificationNo 알림번호
      * @return
      */
-    DeleteSuccessDto deleteNotification(int notificationNo);
+    void deleteNotification(int notificationNo);
 
 
     /**
@@ -28,5 +28,5 @@ public interface NotificationService {
      * @param memberNo 회원번호
      * @return
      */
-    DeleteSuccessDto deleteAllNotification(int memberNo);
+    void deleteAllNotification(int memberNo);
 }

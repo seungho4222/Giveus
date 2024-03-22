@@ -1,8 +1,8 @@
 package com.giveus.notification.service;
 
 
-import com.giveus.notification.common.dto.DeleteSuccessDto;
 import com.giveus.notification.dto.response.NotificationListRes;
+import com.giveus.notification.exception.NotificationDeleteFailedException;
 import com.giveus.notification.repository.NotificationRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -12,8 +12,8 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-@Transactional(readOnly = true)
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 @Slf4j
 public class NotificationServiceImpl implements NotificationService{
 
@@ -31,18 +31,27 @@ public class NotificationServiceImpl implements NotificationService{
      * @inheritDoc
      */
     @Override
-    public DeleteSuccessDto deleteNotification(int notificationNo) {
-        log.info("============== NotificationServiceImpl : notificationNo :  {}", notificationNo);
-        return notificationRepository.deleteByNotificationNo(notificationNo);
+    @Transactional
+    public void deleteNotification(int notificationNo) {
+        try {
+            notificationRepository.deleteByNotificationNo(notificationNo);
+        } catch(Exception e) {
+            throw new NotificationDeleteFailedException();
+        }
     }
 
     /**
      * @inheritDoc
      */
     @Override
-    public DeleteSuccessDto deleteAllNotification(int memberNo) {
-        log.info("============== NotificationServiceImpl : notificationNo :  {}", memberNo);
-        return notificationRepository.deleteAllByMemberNo(memberNo);
+    @Transactional
+    public void deleteAllNotification(int memberNo) {
+        log.info("============== NotificationServiceImpl : memberNo :  {}", memberNo);
+        try {
+            notificationRepository.deleteAllByMemberNo(memberNo);
+        } catch(Exception e) {
+            throw new NotificationDeleteFailedException();
+        }
     }
 
 

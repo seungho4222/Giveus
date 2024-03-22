@@ -1,10 +1,12 @@
 package com.giveus.notification.controller;
 
 import com.giveus.notification.common.dto.CommonResponseBody;
-import com.giveus.notification.common.dto.DeleteSuccessDto;
 import com.giveus.notification.common.swagger.SwaggerApiSuccess;
 import com.giveus.notification.dto.response.NotificationListRes;
 import com.giveus.notification.service.NotificationService;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -35,23 +37,27 @@ public class NotificationController {
     }
 
     // 알림 단건 삭제
-    @SwaggerApiSuccess(summary = "알림 단일 삭제", implementation = DeleteSuccessDto.class)
+    @SwaggerApiSuccess(summary = "알림 단일 삭제", implementation = String.class)
+    @ApiResponse(responseCode = "500", content = @Content(schema = @Schema(implementation = Error.class)))
     @DeleteMapping("/{notificationNo}")
-    public ResponseEntity<CommonResponseBody<DeleteSuccessDto>> deleteNotification(@PathVariable int notificationNo) {
+    public ResponseEntity<CommonResponseBody<String>> deleteNotification(@PathVariable int notificationNo) {
         log.info("notificationNo :  {}", notificationNo);
+        notificationService.deleteNotification(notificationNo);
         return ResponseEntity
                 .status(OK)
-                .body(new CommonResponseBody<>(OK, notificationService.deleteNotification(notificationNo)));
+                .body(new CommonResponseBody<>(OK, ""));
     }
 
     // 알림 전체 삭제
-    @SwaggerApiSuccess(summary = "알림 전체 삭제", implementation = DeleteSuccessDto.class)
+    @SwaggerApiSuccess(summary = "알림 전체 삭제", implementation = String.class)
+    @ApiResponse(responseCode = "500", content = @Content(schema = @Schema(implementation = Error.class)))
     @DeleteMapping("/deleteAll/{memberNo}")
-    public ResponseEntity<CommonResponseBody<DeleteSuccessDto>> deleteAllNotification(@PathVariable int memberNo) {
+    public ResponseEntity<CommonResponseBody<String>> deleteAllNotification(@PathVariable int memberNo) {
         log.info("memberNo :  {}", memberNo);
+        notificationService.deleteAllNotification(memberNo);
         return ResponseEntity
                 .status(OK)
-                .body(new CommonResponseBody<>(OK, notificationService.deleteAllNotification(memberNo)));
+                .body(new CommonResponseBody<>(OK, ""));
     }
     
     // 알림 단일 읽음 여부 변경
