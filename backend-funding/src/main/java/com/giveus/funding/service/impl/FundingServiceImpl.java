@@ -4,6 +4,7 @@ import com.giveus.funding.common.dto.CreateSuccessDto;
 import com.giveus.funding.dto.request.FundingCreateReq;
 import com.giveus.funding.dto.response.FundingDetailRes;
 import com.giveus.funding.dto.response.FundingListRes;
+import com.giveus.funding.dto.response.FundingParticipantsRes;
 import com.giveus.funding.entity.Funding;
 import com.giveus.funding.entity.FundingDetail;
 import com.giveus.funding.exception.AlreadyExistFundingException;
@@ -99,6 +100,14 @@ public class FundingServiceImpl implements FundingService {
         }
 
         return new CreateSuccessDto(funding.getFundingNo());
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public List<FundingParticipantsRes> getParticipants(int fundingNo) {
+        return fundingRepository.getParticipantList(fundingNo);
     }
 
     /**
