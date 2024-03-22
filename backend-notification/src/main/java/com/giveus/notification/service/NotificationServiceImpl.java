@@ -1,6 +1,7 @@
 package com.giveus.notification.service;
 
 
+import com.giveus.notification.dto.response.DeviceListRes;
 import com.giveus.notification.dto.response.NotificationListRes;
 import com.giveus.notification.entity.Notification;
 import com.giveus.notification.exception.NotificationDeleteFailedException;
@@ -74,12 +75,28 @@ public class NotificationServiceImpl implements NotificationService{
     @Override
     @Transactional
     public void updateAllNotification(int memberNo) {
-        log.info("============== NotificationServiceImpl - updateAllNotification ::: memberNo :  {}", memberNo);
         try {
             notificationRepository.updateAllByMemberNo(memberNo);
         } catch(Exception e) {
             throw new NotificationUpdateFailedException();
         }
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    @Transactional
+    public void createFundingReviewNotification(int fundingNo) {
+        log.info("============== NotificationServiceImpl - createFundingReviewNotification ::: fundingNo :  {}", fundingNo);
+
+        // 1) 해당 펀딩에 참여한 사람들 중 알림 설정이 true인 사람들 얻어옴
+//        List<DeviceListRes> list = notificationRepository.getDeviceList("funding_review");
+        // 2) 해당 사람들 모두에게 펀딩 후기 등록 알림 발송 (FCM)
+
+        // 3) 해당 내용 알림 테이블에 기록 (Notification 테이블에 기록)
+
+
     }
 
 

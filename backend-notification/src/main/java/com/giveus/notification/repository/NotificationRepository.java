@@ -25,4 +25,8 @@ public interface NotificationRepository extends JpaRepository<Notification, Inte
 
     void deleteAllByMemberNo(int memberNo);
 
+//    @Modifying
+//    @Query("update Notification n set n.isRead = true where n.memberNo = :memberNo")
+//    List<DevicenListRes> getDeviceList(String category);
+
 }

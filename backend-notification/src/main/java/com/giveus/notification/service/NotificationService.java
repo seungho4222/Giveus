@@ -44,4 +44,6 @@ public interface NotificationService {
      * @return
      */
     void updateAllNotification(int memberNo);
+
+    void createFundingReviewNotification(int fundingNo);
 }

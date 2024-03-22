@@ -82,9 +82,15 @@ public class NotificationController {
     }
 
     // 펀딩 후기 등록 시 알림 발송
-    // 1) 해당 펀딩에 참여한 사람들 중 알림 설정이 true인 사람들 얻어옴
-    // 2) 해당 사람들 모두에게 펀딩 후기 등록 알림 발송
-    
+    @SwaggerApiSuccess(summary = "펀딩 후기 등록 시 알림 발송", implementation = String.class)
+    @PostMapping("/fundingReview")
+    public ResponseEntity<CommonResponseBody<String>> createFundingReviewNotification(@RequestBody int fundingNo) {
+        notificationService.createFundingReviewNotification(fundingNo);
+        return ResponseEntity
+                .status(OK)
+                .body(new CommonResponseBody<>(OK, "")); // 원래는 create는 pk 반환해야?ㅠㅠ
+    }
+
 
     // 진료비 사용 내역 등록 시 알림 발송 (진료비 사용 내역 알림 설정 true인 사람만)
 
