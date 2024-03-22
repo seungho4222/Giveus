@@ -28,6 +28,11 @@ export type BooleanStateType = {
   setValue: Dispatch<SetStateAction<boolean>>
 }
 
+export type FileStateType = {
+  value: File | null
+  setValue: Dispatch<SetStateAction<File | null>>
+}
+
 export type ModalType = {
   name: string
   children: React.ReactNode
