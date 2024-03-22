@@ -1,9 +1,6 @@
 pipeline {
   agent any
     environment {
-//       AWS_PUBLIC_IP = '172.26.8.148'
-//       SSH_CMD = 'ssh -i /var/jenkins_home/.ssh/id_rsa ubuntu@j10c206.p.ssafy.io'
-//       DOCKER = 'sudo docker'
       repository = "gudrb4869/giveus_backend_payment"  //docker hub id와 repository 이름
       DOCKERHUB_CREDENTIALS = credentials('dockerhub') // jenkins에 등록해 놓은 docker hub credentials 이름
       dockerImage = ''
@@ -36,20 +33,9 @@ pipeline {
       }
     }
 
-//      stage('SonarQube analysis') {
-//         steps {
-//             withSonarQubeEnv('SonarQube-Server') {
-//                 dir('./backend') {
-//                     sh './gradlew sonarqube'
-//                 }
-//             }
-//         }
-//      }
-
     stage('Build image') {
       steps {
         script {
-          // sh "cp ~/workspace/backend_please/backend/build/libs/backend-0.0.1-SNAPSHOT.jar ~/workspace/backend_please" // jar 파일을 현재 위치로 복사
           dir('./backend-payment') {
             dockerImage = docker.build repository
           }
@@ -67,6 +53,14 @@ pipeline {
       steps {
         script {
           sh 'docker push $repository' //docker push
+        }
+      }
+    }
+
+    stage('Prune old images') {
+      steps {
+        script {
+          sh "docker system prune"
         }
       }
     }
@@ -89,8 +83,8 @@ pipeline {
         }
         sh 'docker pull $repository:latest'
         sh 'docker run --name giveus_backend_payment -d -p 8084:8084 $repository -e TZ=Asia/Seoul'
-//         sh '$SSH_CMD $DOCKER compose up'
       }
     }
+
   }
 }
