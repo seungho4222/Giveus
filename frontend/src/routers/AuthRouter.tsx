@@ -14,6 +14,7 @@ import SignupPage from '@pages/signup/SignupPage'
 import LoginRedirectHandler from '@pages/login/LoginRedirectHandler'
 import PointsPage from '@/pages/mypage/points/PointsPage'
 import DonatePage from '@/pages/mypage/donate/DonatePage'
+import RechargePage from '@pages/mypage/points/RechargePage'
 
 const AuthRouter = () => {
   return (
@@ -28,6 +29,7 @@ const AuthRouter = () => {
       <Route path="/mypage" element={<MyPage />} />
       <Route path="/mypage/setting" element={<SettingPage />} />
       <Route path="/mypage/points" element={<PointsPage />} />
+      <Route path="/mypage/recharge" element={<RechargePage />} />
       <Route path="/mypage/donate" element={<DonatePage />} />
       <Route path="/funding/:id" element={<FundingDetailPage />}>
         <Route path="detail-main" element={<DetailMainPage />} />
