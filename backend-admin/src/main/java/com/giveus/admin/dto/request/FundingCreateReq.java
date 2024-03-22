@@ -37,8 +37,6 @@ public class FundingCreateReq {
 
     private LocalDate endDate;
 
-    private int totalAmount;
-
     private int targetAmount;
 
     private String phone;
