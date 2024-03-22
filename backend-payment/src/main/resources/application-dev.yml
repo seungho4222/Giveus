@@ -11,4 +11,4 @@ swagger:
   server: http://localhost:8081
 
 host:
-  address: localhost
+  address: http://localhost:8081
