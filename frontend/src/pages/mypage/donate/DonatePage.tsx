@@ -13,7 +13,7 @@ const DonatePage = () => {
   return (
     <>
       <d.Container>
-        <MypagePrevHeader title="후원 내역" />
+        <MypagePrevHeader title="후원 내역" url="/mypage" />
         <DonateTotal donatedFunding={donatedFundingData} />
         <DonateFilter setOpen={setOpen} />
         <DonateList donatedFunding={donatedFundingData} />

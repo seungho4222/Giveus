@@ -15,6 +15,7 @@ import LoginRedirectHandler from '@pages/login/LoginRedirectHandler'
 import PointsPage from '@/pages/mypage/points/PointsPage'
 import DonatePage from '@/pages/mypage/donate/DonatePage'
 import RechargePage from '@pages/mypage/recharge/RechargePage'
+import RechargeDonePage from '@pages/mypage/recharge/RechargeDonePage'
 
 const AuthRouter = () => {
   return (
@@ -30,6 +31,7 @@ const AuthRouter = () => {
       <Route path="/mypage/setting" element={<SettingPage />} />
       <Route path="/mypage/points" element={<PointsPage />} />
       <Route path="/mypage/recharge" element={<RechargePage />} />
+      <Route path="/mypage/recharge/done" element={<RechargeDonePage />} />
       <Route path="/mypage/donate" element={<DonatePage />} />
       <Route path="/funding/:id" element={<FundingDetailPage />}>
         <Route path="detail-main" element={<DetailMainPage />} />

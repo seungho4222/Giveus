@@ -15,7 +15,7 @@ const SettingPage = () => {
 
   return (
     <div>
-      <MypagePrevHeader title="설정" />
+      <MypagePrevHeader title="설정" url="/mypage" />
       <button onClick={logout}>로그아웃</button>
     </div>
   )

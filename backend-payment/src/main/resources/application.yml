@@ -33,6 +33,7 @@ server:
       charset: utf-8
       enabled: true
       force: true
+
 management:
   health:
     refresh:

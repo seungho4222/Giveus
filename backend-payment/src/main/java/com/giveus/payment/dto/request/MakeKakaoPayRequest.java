@@ -68,6 +68,8 @@ public class MakeKakaoPayRequest {
         // 결제 실패 시 redirect url, 최대 255자
         params.put("fail_url", "http://" + address + ":8081/api/v1/payment/fail");
 
+        log.info("params: {}", params);
+
         return new KakaoPayRequest("https://open-api.kakaopay.com/online/v1/payment/ready", params);
     }
 

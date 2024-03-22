@@ -60,14 +60,20 @@ pipeline {
     stage('Prune old images') {
       steps {
         script {
-          sh "docker system prune"
+          sh "docker system prune -af --volumes"
         }
       }
     }
 
     stage('Clean image') {
       steps {
-        sh 'docker rmi $repository' // jenkins 컨테이너에 있는 docker image 제거
+        script {
+            try {
+              sh 'docker rmi $repository' // jenkins 컨테이너에 있는 docker image 제거
+            } catch (Exception e) {
+              sh 'echo "fail to remove Docker Image"'
+            }
+        }
       }
     }
 
