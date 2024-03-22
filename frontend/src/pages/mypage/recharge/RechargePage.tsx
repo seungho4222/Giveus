@@ -21,7 +21,7 @@ const RechargePage = () => {
 
   return (
     <r.Container>
-      <MypagePrevHeader title="포인트 충전" />
+      <MypagePrevHeader title="포인트 충전" url="/mypage/points" />
       <RechargePoint value={amount} setValue={setAmount} />
       <RechargePay value={payment} setValue={setPayment} />
       <RechargeTerm />
