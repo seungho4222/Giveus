@@ -13,7 +13,7 @@ const PointsPage = () => {
   return (
     <>
       <p.Container>
-        <MypagePrevHeader title="포인트 관리" />
+        <MypagePrevHeader title="포인트 관리" url="/mypage" />
         <PointsInfo />
         <PointsFilter setOpen={setOpen} />
         <PointsList
