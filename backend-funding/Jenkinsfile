@@ -25,19 +25,6 @@ pipeline {
         }
     }
 
-    stage('SonarQube analysis SSAFY') {
-            steps {
-                withSonarQubeEnv('SonarQube-ssafy-server') {
-                    dir('./backend-funding') {
-                        script {
-                            sh "chmod +x ./gradlew"
-                            sh './gradlew sonarqube'
-                        }
-                    }
-                }
-            }
-        }
-
     stage('Build') {
       steps {
         dir('./backend-funding') {
