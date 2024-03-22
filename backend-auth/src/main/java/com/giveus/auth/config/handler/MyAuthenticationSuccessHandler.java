@@ -4,7 +4,7 @@ import com.giveus.auth.common.util.JwtUtil;
 import com.giveus.auth.dto.response.AuthTokenRes;
 import com.giveus.auth.entity.Member;
 import com.giveus.auth.entity.MemberSetting;
-import com.giveus.auth.repository.AuthRepository;
+import com.giveus.auth.repository.AuthMemberRepository;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -30,7 +30,7 @@ public class MyAuthenticationSuccessHandler extends SimpleUrlAuthenticationSucce
 
     private final JwtUtil jwtUtil;
 
-    private final AuthRepository authRepository;
+    private final AuthMemberRepository authRepository;
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
