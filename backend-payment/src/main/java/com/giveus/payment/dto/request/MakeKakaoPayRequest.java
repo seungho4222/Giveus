@@ -24,8 +24,8 @@ import java.util.Map;
 @Slf4j
 public class MakeKakaoPayRequest {
 
-    @Value("${server.address}")
-    private String address;
+    @Value("${host.address}")
+    private String hostAddress;
 
     @Value("${pay.kakao.cid}")
     private String cid;
@@ -58,15 +58,15 @@ public class MakeKakaoPayRequest {
         params.put("tax_free_amount", 0);
 
         // 결제 성공 시 redirect url, 최대 255자
-        params.put("approval_url", "http://" + address + ":8081/api/v1/payment/success"
+        params.put("approval_url", "http://" + hostAddress + ":8081/api/v1/payment/success"
                 + "?member_no=" + kakaoPayInfoDto.getMemberNo()
                 + "&funding_no=" + kakaoPayInfoDto.getFundingNo()
                 + "&point=" + kakaoPayInfoDto.getPoint()
                 + "&opened=" + kakaoPayInfoDto.isOpened());
         // 결제 취소 시 redirect url, 최대 255자
-        params.put("cancel_url", "http://" + address + ":8081/api/v1/payment/cancel");
+        params.put("cancel_url", "http://" + hostAddress + ":8081/api/v1/payment/cancel");
         // 결제 실패 시 redirect url, 최대 255자
-        params.put("fail_url", "http://" + address + ":8081/api/v1/payment/fail");
+        params.put("fail_url", "http://" + hostAddress + ":8081/api/v1/payment/fail");
 
         log.info("params: {}", params);
 
