@@ -12,7 +12,7 @@ pipeline {
 
   stages {
 
-    stage('SonarQube analysis') {
+    stage('SonarQube analysis LOCAL') {
         steps {
             withSonarQubeEnv('SonarQube-server') {
                 dir('./backend-funding') {
@@ -25,6 +25,19 @@ pipeline {
         }
     }
 
+    stage('SonarQube analysis SSAFY') {
+            steps {
+                withSonarQubeEnv('SonarQube-ssafy-server') {
+                    dir('./backend-funding') {
+                        script {
+                            sh "chmod +x ./gradlew"
+                            sh './gradlew sonarqube'
+                        }
+                    }
+                }
+            }
+        }
+
     stage('Build') {
       steps {
         dir('./backend-funding') {
@@ -35,16 +48,6 @@ pipeline {
         }
       }
     }
-
-//      stage('SonarQube analysis') {
-//         steps {
-//             withSonarQubeEnv('SonarQube-Server') {
-//                 dir('./backend') {
-//                     sh './gradlew sonarqube'
-//                 }
-//             }
-//         }
-//      }
 
     stage('Build image') {
       steps {
