@@ -1,7 +1,10 @@
 package com.giveus.funding.repository;
 
+import com.giveus.funding.dto.response.FundingDetailRes;
 import com.giveus.funding.dto.response.FundingListRes;
 import java.util.List;
+import java.util.Optional;
+
 import org.springframework.data.repository.NoRepositoryBean;
 
 /**
@@ -11,4 +14,5 @@ import org.springframework.data.repository.NoRepositoryBean;
 @NoRepositoryBean
 public interface FundingRepositoryCustom {
     List<FundingListRes> getFundingList();
+    Optional<FundingDetailRes> getFunding(int fundingNo);
 }

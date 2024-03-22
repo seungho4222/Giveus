@@ -7,7 +7,7 @@ const Index = (props: { data: FundingType[] }) => {
   return (
     <f.Container>
       <f.TotalCount>
-        총 {data.length > 0 && data.length}건
+        총 {data.length}건
       </f.TotalCount>
     </f.Container>
   );

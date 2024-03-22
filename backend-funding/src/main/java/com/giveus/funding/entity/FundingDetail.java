@@ -24,9 +24,9 @@ import org.hibernate.annotations.DynamicInsert;
 public class FundingDetail {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int fundingNo;
 
-    @MapsId
     @OneToOne
     @JoinColumn(name = "funding_no")
     private Funding funding;

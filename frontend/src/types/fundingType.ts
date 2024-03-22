@@ -2,23 +2,16 @@ import { Dispatch, SetStateAction } from 'react'
 
 export type FundingType = {
   fundingNo: number
-  issueNumber: string
-  registrationNumber: string
-  patientName: string
-  status: string
-  birth: string
-  gender: string
-  diseaseName: string
-  diseaseCode: string
-  dignosisDate: string
-  opinion: string
+  thumbnailUrl: string
   title: string
+  birth: string
+  status: string
   startDate: string
   endDate: string
   totalAmount: number
   targetAmount: number
   createdAt: string
-  phone: string
+  content: string
 }
 
 export type DonerType = {

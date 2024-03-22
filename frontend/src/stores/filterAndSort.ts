@@ -1,6 +1,14 @@
 import { sortCondition } from '@/assets/data/fundingCondition'
-import { FundingType } from '@/types/fundingType'
-import { atom } from 'recoil'
+import { atom, selector } from 'recoil'
+import { fundingState } from './funding'
+import { filterByAge, filterByDoing, filterByDone } from '@/utils/fundingFilter'
+import {
+  sortByDonerCount,
+  sortByHighestAmount,
+  sortByLatest,
+  sortByLowestAmount,
+  sortByPeriod,
+} from '@/utils/fundingSort'
 
 export const sortState = atom<string>({
   key: 'sortState',
@@ -17,7 +25,38 @@ export const ageRangeState = atom<ReadonlyArray<number>>({
   default: [0, 100], // 나이 범위
 })
 
-export const filteredFundingState = atom<FundingType[]>({
-  key: 'filteredFundingState',
-  default: [], // 필터링된 펀딩 목록
+// 필터링된 펀딩 목록
+export const filteredFundingState = selector({
+  key: 'sortedFundingState',
+  get: ({ get }) => {
+    let filteredData = get(fundingState)
+    const filterStatus = get(filterStatusState)
+    const ageRange = get(ageRangeState)
+    const sort = get(sortState)
+
+    if (filterStatus[0] && !filterStatus[1]) {
+      filteredData = filterByDoing(filteredData)
+    } else if (!filterStatus[0] && filterStatus[1]) {
+      filteredData = filterByDone(filteredData)
+    }
+
+    if (filterStatus[2]) {
+      filteredData = filterByAge(filteredData, ageRange[0], ageRange[1])
+    }
+
+    switch (sort) {
+      case sortCondition[0]:
+        return sortByPeriod(filteredData)
+      case sortCondition[1]:
+        return sortByDonerCount(filteredData)
+      case sortCondition[2]:
+        return sortByLatest(filteredData)
+      case sortCondition[3]:
+        return sortByHighestAmount(filteredData)
+      case sortCondition[4]:
+        return sortByLowestAmount(filteredData)
+      default:
+        return filteredData
+    }
+  },
 })

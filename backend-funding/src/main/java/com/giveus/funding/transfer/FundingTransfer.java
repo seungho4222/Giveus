@@ -1,6 +1,5 @@
 package com.giveus.funding.transfer;
 
-import com.giveus.funding.dto.response.FundingDetailsRes;
 import com.giveus.funding.entity.Funding;
 
 public class FundingTransfer {
@@ -24,7 +23,7 @@ public class FundingTransfer {
 //
 //    }
 
-    public static FundingDetailsRes entityToDto(Funding savedFunding) {
-        return null;
-    }
+//    public static FundingDetailsRes entityToDto(Funding savedFunding) {
+//        return null;
+//    }
 }

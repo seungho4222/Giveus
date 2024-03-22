@@ -3,15 +3,18 @@ package com.giveus.auth.entity;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 
 import java.time.LocalDateTime;
 
 @Entity
 @Getter
-@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@DynamicInsert
+@DynamicUpdate
 @Table(name = "member")
 public class Member {
 
@@ -42,6 +45,11 @@ public class Member {
     @Column(name = "sns_key")
     private String key;
 
+    @OneToOne(mappedBy = "member", cascade = CascadeType.ALL)
+    @JoinColumn(name = "member_no")
+    private MemberSetting memberSetting;
+
+
     public void updateName(String name) {
         this.name = name;
     }
@@ -50,4 +58,9 @@ public class Member {
         this.nickname = nickname;
     }
 
+    public void addMemberSetting(MemberSetting memberSetting) {
+
+        this.memberSetting = memberSetting;
+        memberSetting.setMember(this);
+    }
 }
