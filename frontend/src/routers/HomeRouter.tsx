@@ -3,6 +3,7 @@ import FundingPage from '@pages/funding/FundingPage'
 import LoginPage from '@pages/login/LoginPage'
 import { Route, Routes } from 'react-router-dom'
 import LoginRedirectHandler from '@pages/login/LoginRedirectHandler'
+import SecondRegPage from '@/pages/secondReg/SecondRegPage'
 
 const HomeRouter = () => {
   return (
@@ -12,6 +13,7 @@ const HomeRouter = () => {
       <Route path="/signup" element={<SignupPage />} />
       <Route path="/funding" element={<FundingPage />} />
       <Route path="*" element={<LoginPage />} />
+      <Route path="/giveus/:id" element={<SecondRegPage />} />
     </Routes>
   )
 }
