@@ -92,6 +92,7 @@ public class FundingServiceImpl implements FundingService {
             fundingDetailRepository.save(fundingDetail);
         } catch (Exception e) { // 등록 실패 시
             if (Objects.nonNull(file)) { // 업로드 한 파일이 있을 경우
+                // TODO 더 테스트가 필요할듯
                 fileService.delete(objectName, FOLDER_NAME); // AWS S3에서 등록했던 파일 삭제
             }
             throw new InvalidRequestDataException("등록 요청 데이터 형식이 맞지 않습니다.");

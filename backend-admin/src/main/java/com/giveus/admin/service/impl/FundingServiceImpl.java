@@ -6,6 +6,7 @@ import com.giveus.admin.dto.response.FundingListRes;
 import com.giveus.admin.entity.Funding;
 import com.giveus.admin.entity.FundingStatusHistory;
 import com.giveus.admin.repository.FundingRepository;
+import com.giveus.admin.service.AdminFundingService;
 import com.giveus.admin.service.FundingService;
 import com.giveus.admin.service.MessageService;
 import com.giveus.admin.transfer.FundingStatusHistoryTransfer;
@@ -24,6 +25,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class FundingServiceImpl implements FundingService {
     private final FundingRepository fundingRepository;
     private final MessageService messageService;
+    private final AdminFundingService adminFundingService;
 
     @Override
     @Transactional
@@ -36,6 +38,7 @@ public class FundingServiceImpl implements FundingService {
         String regId = generateRegId();
         funding.setRegId(regId);
         Funding savedFunding = fundingRepository.save(funding);
+        adminFundingService.createAdminFunding(fundingCreateReq.getAdminNo(), savedFunding);
 
         // 문자 전송
         messageService.sendMessage(funding.getPhone(), regId);
@@ -56,7 +59,7 @@ public class FundingServiceImpl implements FundingService {
     }
 
     @Override
-    public List<FundingListRes> getFundingList() {
-        return fundingRepository.getFundingList();
+    public List<FundingListRes> getFundingList(int adminNo) {
+        return fundingRepository.getFundingList(adminNo);
     }
 }

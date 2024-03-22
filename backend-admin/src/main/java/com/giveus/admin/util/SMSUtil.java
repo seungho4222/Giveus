@@ -37,7 +37,7 @@ public class SMSUtil {
         message.setText("[giveus]\n" +
                 "안녕하세요, 기브어스입니다.\n" +
                 "아래의 링크에서 펀딩 추가정보를 입력해주세요!\n" +
-                "펀딩 추가정보 입력하기 : https://j10c206.p.ssafy.io/giveus/" + regId);
+                "https://j10c206.p.ssafy.io/giveus/" + regId);
         SingleMessageSentResponse response = null;
 
 //        try {
