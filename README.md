@@ -5,7 +5,9 @@
 ## 목차
 - [개요](#개요)
 - [진행 내용](#진행-내용)
+- [프로젝트 구성](#프로젝트-구성)
 - [4주차 진행 상황](#4주차-진행-상황)
+- [화면](#화면)
 
 ## 개요
 - 프로젝트 이름: GIVEUS
@@ -15,6 +17,8 @@
     - back-end:  박형규, 서지현, 이하늬
 
 ## 진행 내용
+<img src="/uploads/ed8d691e29373b0ae5a9ba67700f4537/wbs공통.PNG" width="500" height="300"/>
+
 ### 1주차
 >2024.02.26 - 2024.02.29 : 아이디어 기획
 ### 2주차
@@ -31,6 +35,26 @@
 > - MVP 기능 개발
 ### 4주차
 > - MVP 기능 개발
+
+## 프로젝트 구성
+### 아키텍처
+<img src="/uploads/9da1ff5e0cb2874305834d3bc476e239/아키텍처.png" width="500" height="300"/>
+
+### FRONT
+- [관리자](https://lab.ssafy.com/s10-blockchain-contract-sub2/S10P22C206/-/tree/develop/frontend-admin?ref_type=heads)
+- [사용자](https://lab.ssafy.com/s10-blockchain-contract-sub2/S10P22C206/-/tree/develop/frontend?ref_type=heads)
+### API
+- [관리자 서버](https://lab.ssafy.com/s10-blockchain-contract-sub2/S10P22C206/-/tree/develop/backend-admin?ref_type=heads)
+- [인증 서버](https://lab.ssafy.com/s10-blockchain-contract-sub2/S10P22C206/-/tree/develop/backend-auth?ref_type=heads)
+- [유레카 서버](https://lab.ssafy.com/s10-blockchain-contract-sub2/S10P22C206/-/tree/develop/backend-eureka?ref_type=heads)
+- [펀딩 서버](https://lab.ssafy.com/s10-blockchain-contract-sub2/S10P22C206/-/tree/develop/backend-funding?ref_type=heads)
+- [게이트웨이 서버](https://lab.ssafy.com/s10-blockchain-contract-sub2/S10P22C206/-/tree/develop/backend-gateway?ref_type=heads)
+- [알림 서버](https://lab.ssafy.com/s10-blockchain-contract-sub2/S10P22C206/-/tree/develop/backend-notification?ref_type=heads)
+- [결제 서버](https://lab.ssafy.com/s10-blockchain-contract-sub2/S10P22C206/-/tree/develop/backend-payment?ref_type=heads)
+- [공통 모듈](https://lab.ssafy.com/s10-blockchain-contract-sub2/S10P22C206/-/tree/develop/backend-common?ref_type=heads)
+
+### ERD
+<img src="/uploads/fc456a736fa51cb5a5b8bb11bf5ae60d/GiveUs__1_.png" width="500" height="300"/>
 
 ---
 ## 4주차 진행 상황
