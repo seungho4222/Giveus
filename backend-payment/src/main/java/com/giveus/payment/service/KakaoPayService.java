@@ -1,29 +1,30 @@
 package com.giveus.payment.service;
 
 import com.giveus.payment.common.repository.TidRepository;
-import com.giveus.payment.dto.PayInfoDto;
-import com.giveus.payment.dto.request.MakePayRequest;
-import com.giveus.payment.dto.request.PayRequest;
-import com.giveus.payment.dto.response.PayApproveResDto;
-import com.giveus.payment.dto.response.PayReadyResDto;
+import com.giveus.payment.dto.KakaoPayInfoDto;
+import com.giveus.payment.dto.request.KakaoPayRequest;
+import com.giveus.payment.dto.request.MakeKakaoPayRequest;
+import com.giveus.payment.dto.response.KakaoPayApproveResDto;
+import com.giveus.payment.dto.response.KakaoPayReadyResDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
+
+import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
 @Slf4j
 public class KakaoPayService {
 
-    private final MakePayRequest makePayRequest;
+    private final MakeKakaoPayRequest makeKakaoPayRequest;
     private final TidRepository tidRepository;
-
 
     @Value("${pay.kakao.secret-key}")
     private String secretKey;
@@ -32,73 +33,58 @@ public class KakaoPayService {
      * 어드민 키를 헤더에 담아 파라미터 값들과 함께 POST로 요청합니다.
      * 테스트  가맹점 코드로 'TC0ONETIME'를 사용 */
     @Transactional
-    public PayReadyResDto getRedirectUrl(PayInfoDto payInfoDto) throws Exception {
-//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-//        String name = authentication.getName();
-//
-//
-//        Member member=memberRepository.findByEmail(name)
-//                .orElseThrow(()-> new Exception("해당 유저가 존재하지 않습니다."));
-//
-        int memberNo = 1;
-
-        HttpHeaders headers = new HttpHeaders();
-
-        log.info("secretKey: {}", secretKey);
-
+    public KakaoPayReadyResDto getRedirectUrl(KakaoPayInfoDto kakaoPayInfoDto) throws Exception {
         /** 요청 헤더 */
-        String auth = "SECRET_KEY " + secretKey;
-        headers.set("Content-type", "application/json");
-        headers.set("Authorization", auth);
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Authorization", "SECRET_KEY " + secretKey);
+        headers.setContentType(MediaType.APPLICATION_JSON);
 
         /** 요청 Body */
-        PayRequest payRequest = makePayRequest.getReadyRequest(memberNo, payInfoDto);
+        KakaoPayRequest kakaoPayRequest = makeKakaoPayRequest.getReadyRequest(kakaoPayInfoDto);
 
         /** Header와 Body 합쳐서 RestTemplate로 보내기 위한 밑작업 */
-        HttpEntity<MultiValueMap<String, String>> urlRequest = new HttpEntity<>(payRequest.getMap(), headers);
+        HttpEntity<Map<String, Object>> httpEntity = new HttpEntity<>(kakaoPayRequest.getMap(), headers);
 
         /** RestTemplate로 Response 받아와서 DTO로 변환후 return */
-        RestTemplate rt = new RestTemplate();
-        PayReadyResDto payReadyResDto = rt.postForObject(payRequest.getUrl(), urlRequest, PayReadyResDto.class);
+        RestTemplate restTemplate = new RestTemplate();
 
-        tidRepository.save(memberNo + "", payReadyResDto.getTid(), 5L);
-//        member.updateTid(payReadyResDto.getTid());
+        KakaoPayReadyResDto payReadyResDto = restTemplate.postForObject(
+                kakaoPayRequest.getUrl(),
+                httpEntity,
+                KakaoPayReadyResDto.class);
 
-        log.info("payReadyResDto: {}", payReadyResDto);
+        tidRepository.save( "F" + kakaoPayInfoDto.getFundingNo() + "M" + kakaoPayInfoDto.getMemberNo(), payReadyResDto.getTid(), 5L);
 
         return payReadyResDto;
     }
 
     @Transactional
-    public PayApproveResDto getApprove(String pgToken, int id) throws Exception {
+    public KakaoPayApproveResDto getApprove(String pgToken, int memberNo, int fundingNo) throws Exception {
 
-//        Member member=memberRepository.findById(id)
-//                .orElseThrow(()->new Exception("해당 유저가 존재하지 않습니다."));
-
-//        String tid=member.getTid();
-//        String tid = "";
-        String tid = tidRepository.find(id + "")
+        String orderId = "F" + fundingNo + "M" + memberNo;
+        String tid = tidRepository.find(orderId)
                 .orElseThrow(() -> new Exception("결제 고유 번호가 존재하지 않습니다."));
 
         HttpHeaders headers = new HttpHeaders();
-        String auth = "SECRET_KEY " + secretKey;
 
         /** 요청 헤더 */
-        headers.set("Content-type", "application/json");
-        headers.set("Authorization", auth);
+        headers.set("Authorization", "SECRET_KEY " + secretKey);
+        headers.setContentType(MediaType.APPLICATION_JSON);
 
         /** 요청 Body */
-        PayRequest payRequest = makePayRequest.getApproveRequest(tid, id, pgToken);
-
+        KakaoPayRequest kakaoPayRequest = makeKakaoPayRequest.getApproveRequest(tid, memberNo, fundingNo, pgToken);
 
         /** Header와 Body 합쳐서 RestTemplate로 보내기 위한 밑작업 */
-        HttpEntity<MultiValueMap<String, String>> requestEntity = new HttpEntity<>(payRequest.getMap(), headers);
+        HttpEntity<Map<String, Object>> httpEntity = new HttpEntity<>(kakaoPayRequest.getMap(), headers);
 
         // 요청 보내기
-        RestTemplate rt = new RestTemplate();
-        PayApproveResDto payApproveResDto = rt.postForObject(payRequest.getUrl(), requestEntity, PayApproveResDto.class);
+        RestTemplate restTemplate = new RestTemplate();
+        KakaoPayApproveResDto payApproveResDto = restTemplate.postForObject(
+                kakaoPayRequest.getUrl(),
+                httpEntity,
+                KakaoPayApproveResDto.class);
 
-        tidRepository.delete(id + "");
+        tidRepository.delete(orderId);
 
         return payApproveResDto;
     }

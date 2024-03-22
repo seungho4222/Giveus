@@ -2,7 +2,6 @@ package com.giveus.payment.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.data.annotation.CreatedDate;
 
 import java.time.LocalDateTime;
 
@@ -21,8 +20,7 @@ public class Payment {
     @Column(name = "payment_no")
     private int paymentNo; // 결제 PK, NOT NULL
 
-    @CreatedDate
-    @Column(name = "created_at", updatable = false)
+    @Column(name = "created_at")
     private LocalDateTime createdAt; // 생성일자, NOT NULL
 
     @Column(name = "method")
