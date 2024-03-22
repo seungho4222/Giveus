@@ -7,15 +7,15 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
  */
 @RestControllerAdvice
 public class RestControllerAdvisor {
-/*
+    /*
 
-    */
+     */
 /**
-     * 400에 해당하는 예외들을 한번에 처리하는 메소드입니다.
-     *
-     * @param e 실제 발생한 예외객체입니다.
-     * @return 에러메세지를 response entity 에 담아서 전송합니다.
-     *//*
+ * 400에 해당하는 예외들을 한번에 처리하는 메소드입니다.
+ *
+ * @param e 실제 발생한 예외객체입니다.
+ * @return 에러메세지를 response entity 에 담아서 전송합니다.
+ *//*
 
 //  @ExceptionHandler
 //  public ResponseEntity<BaseResponseBody> badRequestException400(Exception e) {
@@ -27,11 +27,11 @@ public class RestControllerAdvisor {
 
     */
 /**
-     * 401에 해당하는 예외들을 한번에 처리하는 메소드입니다.
-     *
-     * @param e 실제 발생한 예외객체입니다.
-     * @return 에러메세지를 response entity 에 담아서 전송합니다.
-     *//*
+ * 401에 해당하는 예외들을 한번에 처리하는 메소드입니다.
+ *
+ * @param e 실제 발생한 예외객체입니다.
+ * @return 에러메세지를 response entity 에 담아서 전송합니다.
+ *//*
 
     @ExceptionHandler
     public ResponseEntity<ErrorResponseDto> unauthorizedException401(Exception e) {
@@ -43,11 +43,11 @@ public class RestControllerAdvisor {
 
     */
 /**
-     * 403에 해당하는 예외들을 한번에 처리하는 메소드입니다.
-     *
-     * @param e 실제 발생한 예외객체입니다.
-     * @return 에러메세지를 response entity 에 담아서 전송합니다.
-     *//*
+ * 403에 해당하는 예외들을 한번에 처리하는 메소드입니다.
+ *
+ * @param e 실제 발생한 예외객체입니다.
+ * @return 에러메세지를 response entity 에 담아서 전송합니다.
+ *//*
 
 //  @ExceptionHandler(value = {})
 //  public ResponseEntity<BaseResponseBody> forbiddenException403(RuntimeException e) {
@@ -59,11 +59,11 @@ public class RestControllerAdvisor {
 
     */
 /**
-     * 404에 해당하는 예외들을 한번에 처리하는 메소드입니다.
-     *
-     * @param e 실제 발생한 예외객체입니다.
-     * @return 에러메세지를 response entity 에 담아서 전송합니다.
-     *//*
+ * 404에 해당하는 예외들을 한번에 처리하는 메소드입니다.
+ *
+ * @param e 실제 발생한 예외객체입니다.
+ * @return 에러메세지를 response entity 에 담아서 전송합니다.
+ *//*
 
     @ExceptionHandler
     public ResponseEntity<ErrorResponseDto> NotFoundException404(RuntimeException e) {
@@ -74,11 +74,11 @@ public class RestControllerAdvisor {
 
     */
 /**
-     * 409에 해당하는 예외들을 한번에 처리하는 메소드입니다.
-     *
-     * @param e 실제 발생한 예외객체입니다.
-     * @return 에러메세지를 response entity 에 담아서 전송합니다.
-     *//*
+ * 409에 해당하는 예외들을 한번에 처리하는 메소드입니다.
+ *
+ * @param e 실제 발생한 예외객체입니다.
+ * @return 에러메세지를 response entity 에 담아서 전송합니다.
+ *//*
 
     @ExceptionHandler
     public ResponseEntity<ErrorResponseDto> ConflictException409(RuntimeException e) {
@@ -91,11 +91,11 @@ public class RestControllerAdvisor {
 
     */
 /**
-     * 500에 해당하는 예외들을 한번에 처리하는 메소드입니다.
-     *
-     * @param e 실제 발생한 예외객체입니다.
-     * @return 에러메세지를 response entity 에 담아서 전송합니다.
-     *//*
+ * 500에 해당하는 예외들을 한번에 처리하는 메소드입니다.
+ *
+ * @param e 실제 발생한 예외객체입니다.
+ * @return 에러메세지를 response entity 에 담아서 전송합니다.
+ *//*
 
     @ExceptionHandler(value = {RuntimeException.class, Exception.class})
     public ResponseEntity<ErrorResponseDto> internalErrorException500(Exception e) {
