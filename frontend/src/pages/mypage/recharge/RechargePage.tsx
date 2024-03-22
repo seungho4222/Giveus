@@ -1,12 +1,19 @@
-import RechargePoint from '@/components/recharge/RechargePoint'
+import RechargePay from '@components/recharge/RechargePay'
+import RechargePoint from '@components/recharge/RechargePoint'
 import MypagePrevHeader from '@components/mypage/MypagePrevHeader'
+import RechargeTerm from '@components/recharge/RechargeTerm'
+import * as r from '@pages/mypage/recharge/RechargePage.styled'
+import RechargeBottom from '@components/recharge/RechargeBottom'
 
 const RechargePage = () => {
   return (
-    <div>
+    <r.Container>
       <MypagePrevHeader title="포인트 충전" />
       <RechargePoint />
-    </div>
+      <RechargePay />
+      <RechargeTerm />
+      <RechargeBottom />
+    </r.Container>
   )
 }
 
