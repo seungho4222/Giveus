@@ -41,7 +41,6 @@ public class NotificationController {
     @ApiResponse(responseCode = "500", content = @Content(schema = @Schema(implementation = Error.class)))
     @DeleteMapping("/{notificationNo}")
     public ResponseEntity<CommonResponseBody<String>> deleteNotification(@PathVariable int notificationNo) {
-        log.info("notificationNo :  {}", notificationNo);
         notificationService.deleteNotification(notificationNo);
         return ResponseEntity
                 .status(OK)
@@ -53,7 +52,6 @@ public class NotificationController {
     @ApiResponse(responseCode = "500", content = @Content(schema = @Schema(implementation = Error.class)))
     @DeleteMapping("/deleteAll/{memberNo}")
     public ResponseEntity<CommonResponseBody<String>> deleteAllNotification(@PathVariable int memberNo) {
-        log.info("memberNo :  {}", memberNo);
         notificationService.deleteAllNotification(memberNo);
         return ResponseEntity
                 .status(OK)
@@ -61,13 +59,31 @@ public class NotificationController {
     }
     
     // 알림 단일 읽음 여부 변경
+    @SwaggerApiSuccess(summary = "알림 단일 읽음 여부 변경", implementation = String.class)
+    @ApiResponse(responseCode = "404", content = @Content(schema = @Schema(implementation = Error.class)))
+    @PatchMapping("/{notificationNo}")
+    public ResponseEntity<CommonResponseBody<String>> updateNotification(@PathVariable int notificationNo) {
+        notificationService.updateNotification(notificationNo);
+        return ResponseEntity
+                .status(OK)
+                .body(new CommonResponseBody<>(OK, ""));
+    }
 
     // 알림 전체 읽음 여부 변경
+    @SwaggerApiSuccess(summary = "알림 전체 읽음 여부 변경", implementation = String.class)
+    @ApiResponse(responseCode = "500", content = @Content(schema = @Schema(implementation = Error.class)))
+    @PatchMapping("/changeAll/{memberNo}")
+    public ResponseEntity<CommonResponseBody<String>> updateAllNotification(@PathVariable int memberNo) {
+        notificationService.updateAllNotification(memberNo);
+        return ResponseEntity
+                .status(OK)
+                .body(new CommonResponseBody<>(OK, ""));
+    }
 
     // FCM 토큰 저장
     
     // 펀딩 후기 등록 시 알림 발송
 
-    // 진료비 세부 내역 등록 시 알림 발소
+    // 진료비 세부 내역 등록 시 알림 발송
 
 }

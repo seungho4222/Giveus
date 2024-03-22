@@ -1,6 +1,5 @@
 package com.giveus.notification.service;
 
-import com.giveus.notification.common.dto.DeleteSuccessDto;
 import com.giveus.notification.dto.response.NotificationListRes;
 
 import java.util.List;
@@ -29,4 +28,20 @@ public interface NotificationService {
      * @return
      */
     void deleteAllNotification(int memberNo);
+
+    
+    /**
+     * 알림 번호로 알림 단일 읽음 여부를 읽음 처리하는 메서드입니다.
+     * @param notificationNo 알림번호
+     * @return
+     */
+    void updateNotification(int notificationNo);
+
+
+    /**
+     * 회원 번호로 알림 전체 읽음 여부를 읽음 처리하는 메서드입니다.
+     * @param memberNo 회원번호
+     * @return
+     */
+    void updateAllNotification(int memberNo);
 }
