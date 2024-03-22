@@ -3,12 +3,16 @@ import FundingInfo from './FundingInfo'
 import FundingStatus from './FundingStatus'
 import { FundingType } from '@/types/fundingType'
 import { useNavigate } from 'react-router-dom'
+import { useSetRecoilState } from 'recoil'
+import { prevUrlState } from '@/stores/funding'
 
 const Index = (props: { data: FundingType }) => {
   const { data } = props
   const navigate = useNavigate()
+  const setPrevUrl = useSetRecoilState(prevUrlState)
 
   const onClickHanlder = () => {
+    setPrevUrl(window.location.pathname)
     navigate(`/funding/${data.fundingNo}/detail-main`)
   }
 
