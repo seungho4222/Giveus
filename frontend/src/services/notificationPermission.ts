@@ -3,32 +3,17 @@ import { getMessaging, getToken } from 'firebase/messaging'
 import { app } from '@/services/initFirebase'
 
 export async function handleAllowNotification() {
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', function () {
-      navigator.serviceWorker
-        .register('/firebase-messaging-sw.js')
-        .then(function (registration) {
-          console.log(
-            'Service Worker가 scope에 등록되었습니다.:',
-            registration.scope,
-          )
-        })
-        .catch(function (err) {
-          console.log('Service Worker 등록 실패:', err)
-        })
-    })
-  }
   try {
     const permission = await Notification.requestPermission()
 
     if (permission === 'granted') {
       const token = await getToken(getMessaging(app), {
         vapidKey:
-          'BJsTn--ljqz75uI2NRBkUIL1MpOeIM8BkqXVFZ-wOGIskuq56UucWq1tDeAQiIpkQ2dgN0LuegxmxUi70K7v2As',
+          'BAvqdKa3n4JU-eYDF_C6-CKfd_AS5uaKXWhsMRqm2rGKQLKY50SIGQ4vE-bccoRqNAab3nhoPCbwztT9fNdJyis',
       })
 
       if (token) {
-        console.log(token)
+        // console.log(token)
         // sendTokenToServer(token);// (토큰을 서버로 전송하는 로직)
       } else {
         alert('토큰 등록이 불가능 합니다. 생성하려면 권한을 허용해주세요')

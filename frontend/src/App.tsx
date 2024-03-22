@@ -6,7 +6,8 @@ import { BrowserRouter } from 'react-router-dom'
 import AuthRouter from '@routers/AuthRouter'
 import HomeRouter from '@routers/HomeRouter'
 import { useRecoilValue } from 'recoil'
-import { userState } from './stores/user'
+import { userState } from '@stores/user'
+import '@/services/foregroundMessage'
 
 const App = () => {
   const themeProps = useTheme()

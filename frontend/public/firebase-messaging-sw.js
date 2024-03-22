@@ -10,7 +10,7 @@ self.addEventListener('install', function (e) {
 })
 
 self.addEventListener('activate', function (e) {
-  e.waitUntil(self.clients.claim())
+  // e.waitUntil(self.clients.claim())
   console.log('fcm service worker가 실행되었습니다.')
 })
 
@@ -30,16 +30,16 @@ const messaging = firebase.messaging()
 
 messaging.onBackgroundMessage(payload => {
   console.log(payload)
-  const notificationTitle = payload.title
+  const notificationTitle = payload.notification.title
   const notificationOptions = {
-    body: payload.body,
+    body: payload.notificationbody,
     icon: payload.icon,
   }
   self.registration.showNotification(notificationTitle, notificationOptions)
 })
 
 // self.addEventListener('push', function (e) {
-//   // console.log('push: ', e.data.json())
+//   console.log('push: ', e.data.json())
 //   const notification = e.data.json().notification
 
 //   const notificationTitle = notification.title
