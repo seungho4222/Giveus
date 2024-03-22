@@ -2,7 +2,7 @@ spring:
   application:
     name: backend-payment
   profiles:
-    active: prod
+    active: dev
   jpa:
     open-in-view: false
     hibernate:
