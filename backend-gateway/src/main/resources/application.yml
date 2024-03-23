@@ -36,7 +36,7 @@ spring:
         - id: backend-auth
           uri: lb://BACKEND-AUTH
           predicates:
-            - Path=/api/v1/auth/** || /login/oauth2/code/kakao
+            - Path=/api/v1/auth/** || /login/oauth2/code/**
         - id: backend-funding
           uri: lb://BACKEND-FUNDING
           predicates:
