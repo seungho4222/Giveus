@@ -47,9 +47,8 @@ export const SubWrap = styled.div`
   column-gap: 10px;
 `
 
-export const Img = styled.div`
-  border-radius: 100%;
-  background-color: pink;
+export const Img = styled.img`
+  border-radius: 50%;
   width: 1.5em;
   height: 1.5em;
 `

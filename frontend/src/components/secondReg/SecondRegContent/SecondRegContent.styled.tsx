@@ -10,15 +10,16 @@ export const Container = styled.div`
 `
 
 export const Desc = styled.div`
-  margin: 5% 10% 10%;
+  margin: 5% 10%;
   font-size: 1em;
   font-weight: 600;
 `
 
 export const SubDesc = styled.textarea`
   height: 75%;
-  font-size: 0.75em;
+  font-size: 0.9em;
   margin-inline: 5%;
+  padding: 2%;
   border: none;
   resize: none;
 `
