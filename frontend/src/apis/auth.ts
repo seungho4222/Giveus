@@ -41,3 +41,6 @@ export const joinUser = async (req: JoinUserType) => {
 export const fetchUserInfo = async () => {
   return authRequest.get(`${url}/info`).then(res => res)
 }
+
+// FCM 기기 토큰 전송
+export const sendFCMToken = async () => {}
