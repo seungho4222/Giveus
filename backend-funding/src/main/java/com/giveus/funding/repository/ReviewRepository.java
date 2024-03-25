@@ -1,18 +1,14 @@
 package com.giveus.funding.repository;
 
-import com.giveus.funding.dto.response.ReviewDetailRes;
 import com.giveus.funding.entity.Review;
 import io.lettuce.core.dynamic.annotation.Param;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
-import java.awt.print.Pageable;
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
-public interface ReviewRepository extends JpaRepository<Review, Integer> {
+public interface ReviewRepository extends JpaRepository<Review, Integer>, ReviewRepositoryCustom {
 
 //    @Query(value = "SELECT new com.giveus.funding.dto.response.ReviewDetailRes(r.reviewNo, r.funding.fundingNo, r.title, r.content, r.createdAt, r.url) " +
 //                    "FROM Review r " +
