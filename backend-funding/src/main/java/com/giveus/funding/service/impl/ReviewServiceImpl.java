@@ -1,7 +1,6 @@
 package com.giveus.funding.service.impl;
 
 import com.giveus.funding.dto.response.ReviewDetailRes;
-import com.giveus.funding.dto.response.ReviewListRes;
 import com.giveus.funding.entity.Review;
 import com.giveus.funding.exception.ReviewNotFoundException;
 import com.giveus.funding.repository.FundingRepository;
@@ -27,7 +26,10 @@ public class ReviewServiceImpl implements ReviewService {
      * @inheritDoc
      */
     @Override
-    public List<ReviewListRes> getReviewList(int count) {
+    public List<ReviewDetailRes> getReviewList(int count) {
+        List<Review> reviews = reviewRepository.findReviews(count);
+
+
         return null;
     }
 
