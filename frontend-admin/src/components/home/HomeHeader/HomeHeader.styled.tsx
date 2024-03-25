@@ -15,7 +15,7 @@ export const LeftWrap = styled.div`
 
 export const SubWrap = styled.div`
   display: flex;
-  margin-bottom: 10%;
+  margin-bottom: 10px;
 `
 
 export const Pages = styled.div`
