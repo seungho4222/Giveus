@@ -10,7 +10,7 @@ const index = () => {
       <l.Desc>Welcome Back</l.Desc>
       <l.SubDesc>GIVEUS 병원 페이지에 오신 것을 환영합니다.</l.SubDesc>
       <l.Button onClick={onClick}>
-        <img src="icon/icon_kakao.png" alt="" />
+        <img src="/icon/icon_kakao.png" alt="" />
         카카오로 시작하기
       </l.Button>
     </l.Container>
