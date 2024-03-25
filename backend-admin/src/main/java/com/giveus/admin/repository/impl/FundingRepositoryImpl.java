@@ -20,7 +20,6 @@ public class FundingRepositoryImpl extends QuerydslRepositorySupport
 
     private static final QFunding qFunding = QFunding.funding;
     private static final QFundingDetail qFundingDetail = QFundingDetail.fundingDetail;
-    private static final QAdminFunding qAdminFunding = QAdminFunding.adminFunding;
 
     private static final QFundingStatusHistory qFundingStatusHistory = QFundingStatusHistory.fundingStatusHistory;
 
@@ -34,8 +33,6 @@ public class FundingRepositoryImpl extends QuerydslRepositorySupport
 
         return from(qFundingDetail)
                 .rightJoin(qFundingDetail.funding, qFunding)
-                .innerJoin(qAdminFunding)
-                .on(qAdminFunding.funding.eq(qFunding).and(qAdminFunding.adminNo.eq(adminNo)))
                 .select(Projections.constructor(FundingListRes.class, qFunding.fundingNo,
                         qFunding.issueNumber, qFunding.registrationNumber, qFunding.patientName,
                         ExpressionUtils.as(from(qFundingStatusHistory)
@@ -47,6 +44,7 @@ public class FundingRepositoryImpl extends QuerydslRepositorySupport
                                 ), "status")
                         , qFunding.title, ExpressionUtils.isNull(qFundingDetail.thumbnailUrl)
                 ))
+                .where(qFunding.adminNo.eq(adminNo))
                 .fetch();
     }
 

@@ -22,6 +22,9 @@ public class Funding {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int fundingNo;
 
+    @Column(name="admin_no")
+    private int adminNo;
+
     @Column(name = "issue_number")
     private String issueNumber;
 
