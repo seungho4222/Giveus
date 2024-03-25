@@ -1,14 +1,15 @@
-import styled from "styled-components";
+import { colors } from '@/styles/theme'
+import styled from 'styled-components'
 
-
-
-const HomePageContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+export const Container = styled.div`
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  background-color: ${colors.gray01};
 `
 
-
-
-export { HomePageContainer }
+export const Wrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+`
