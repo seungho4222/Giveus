@@ -25,7 +25,7 @@ public class ReviewController {
 
     // 펀딩 후기 목록 조회 api 생성 => 메인에 (limit 개수 요청)
     @SwaggerApiSuccess(summary = "펀딩 후기 전체 조회", implementation = ReviewListRes.class)
-    @GetMapping("/{count}")
+    @GetMapping("/findAll/{count}")
     public ResponseEntity<CommonResponseBody<List<ReviewListRes>>> getReviewList(@PathVariable int count) {
         return ResponseEntity
                 .status(OK)
