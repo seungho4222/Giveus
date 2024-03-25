@@ -53,15 +53,15 @@ CREATE TABLE `member_device` (
 -- Table structure for table `file`
 --
 
-DROP TABLE IF EXISTS `file`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `file` (
-  `file_no` int NOT NULL AUTO_INCREMENT,
-  `url` varchar(255) NOT NULL,
-  PRIMARY KEY (`file_no`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+-- DROP TABLE IF EXISTS `file`;
+-- /*!40101 SET @saved_cs_client     = @@character_set_client */;
+-- /*!50503 SET character_set_client = utf8mb4 */;
+-- CREATE TABLE `file` (
+--   `file_no` int NOT NULL AUTO_INCREMENT,
+--   `url` varchar(255) NOT NULL,
+--   PRIMARY KEY (`file_no`)
+-- ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+-- /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Table structure for table `funding`
@@ -315,8 +315,9 @@ CREATE TABLE `review` (
   `review_no` int NOT NULL AUTO_INCREMENT,
   `funding_no` int NOT NULL,
   `title` varchar(30) NOT NULL,
-  `content` text NOT NULL,
-  `create_at` datetime NOT NULL DEFAULT (curdate()),
+  `content` varchar(500) NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT (curdate()),
+  `url` varchar(255) NOT NULL,
   PRIMARY KEY (`review_no`),
   KEY `FK_funding_TO_review_1` (`funding_no`),
   CONSTRAINT `FK_funding_TO_review_1` FOREIGN KEY (`funding_no`) REFERENCES `funding` (`funding_no`)
@@ -327,20 +328,20 @@ CREATE TABLE `review` (
 -- Table structure for table `review_file`
 --
 
-DROP TABLE IF EXISTS `review_file`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `review_file` (
-  `review_file_no` int NOT NULL AUTO_INCREMENT,
-  `review_no` int NOT NULL,
-  `file_no` int NOT NULL,
-  PRIMARY KEY (`review_file_no`),
-  KEY `FK_review_TO_review_file_1` (`review_no`),
-  KEY `FK_file_TO_review_file_1` (`file_no`),
-  CONSTRAINT `FK_file_TO_review_file_1` FOREIGN KEY (`file_no`) REFERENCES `file` (`file_no`),
-  CONSTRAINT `FK_review_TO_review_file_1` FOREIGN KEY (`review_no`) REFERENCES `review` (`review_no`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+-- DROP TABLE IF EXISTS `review_file`;
+-- /*!40101 SET @saved_cs_client     = @@character_set_client */;
+-- /*!50503 SET character_set_client = utf8mb4 */;
+-- CREATE TABLE `review_file` (
+--   `review_file_no` int NOT NULL AUTO_INCREMENT,
+--   `review_no` int NOT NULL,
+--   `file_no` int NOT NULL,
+--   PRIMARY KEY (`review_file_no`),
+--   KEY `FK_review_TO_review_file_1` (`review_no`),
+--   KEY `FK_file_TO_review_file_1` (`file_no`),
+--   CONSTRAINT `FK_file_TO_review_file_1` FOREIGN KEY (`file_no`) REFERENCES `file` (`file_no`),
+--   CONSTRAINT `FK_review_TO_review_file_1` FOREIGN KEY (`review_no`) REFERENCES `review` (`review_no`)
+-- ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+-- /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Table structure for table `usage_history`
