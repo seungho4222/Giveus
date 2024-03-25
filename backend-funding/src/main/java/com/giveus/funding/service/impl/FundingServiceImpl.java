@@ -71,8 +71,7 @@ public class FundingServiceImpl implements FundingService {
         Funding funding = getFunding(fundingCreateReq.getRegId());
 
         // 해당 펀딩에 대해 이미 등록되어있는 펀딩인지 확인
-        // 이미 등록되어있는 펀딩이라면 409 예외 발생
-        if (isExistFundingDetail(funding)) {
+        if (isExistFundingDetail(funding)) { // 이미 등록되어있는 펀딩이라면 409 예외 발생
             throw new AlreadyExistFundingException();
         }
 
@@ -108,6 +107,14 @@ public class FundingServiceImpl implements FundingService {
     @Override
     public List<FundingParticipantsRes> getParticipants(int fundingNo) {
         return fundingRepository.getParticipantList(fundingNo);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public List<FundingListRes> getFundingSearchList(String query) {
+        return fundingRepository.getFundingByFundingTitle(query);
     }
 
     /**

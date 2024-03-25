@@ -19,4 +19,6 @@ public interface FundingRepositoryCustom {
     Optional<FundingDetailRes> getFunding(int fundingNo);
 
     List<FundingParticipantsRes> getParticipantList(int fundingNo);
+
+    List<FundingListRes> getFundingByFundingTitle(String query);
 }

@@ -13,7 +13,10 @@ import java.time.LocalDate;
 @Getter
 public class FundingParticipantsRes {
 
+    private int memberFundingNo;
     private String name;
     private int amount;
     private LocalDate createdAt;
+    private Boolean isPublic;
+    private String imageUrl;
 }

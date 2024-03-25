@@ -7,6 +7,7 @@ import com.giveus.funding.entity.*;
 import com.giveus.funding.repository.FundingRepositoryCustom;
 import com.querydsl.core.types.ExpressionUtils;
 import com.querydsl.core.types.Projections;
+import com.querydsl.jpa.JPQLQuery;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
 
 import java.util.List;
@@ -30,23 +31,11 @@ public class FundingRepositoryImpl extends QuerydslRepositorySupport implements 
 
     @Override
     public List<FundingListRes> getFundingList() {
-        QFundingStatusHistory qFundingStatusHistory2 = QFundingStatusHistory.fundingStatusHistory;
-        return from(qFundingDetail)
-                .leftJoin(qFundingDetail.funding, qFunding)
-                .select(Projections.fields(FundingListRes.class,
-                        qFundingDetail.thumbnailUrl, qFunding.fundingNo, qFunding.title,
-                        ExpressionUtils.as(from(qFundingStatusHistory)
-                                .select(qFundingStatusHistory.status)
-                                .where(qFundingStatusHistory.fundingStatusHistoryNo
-                                        .eq(from(qFundingStatusHistory2)
-                                                .select(qFundingStatusHistory2.fundingStatusHistoryNo.max())
-                                                .where(qFundingStatusHistory2.funding.eq(qFunding)))), "status"),
-                        qFunding.targetAmount, ExpressionUtils.as(from(qMemberFunding)
-                                .select(qMemberFunding.amount.sum())
-                                .where(qMemberFunding.funding.eq(qFunding)), "totalAmount")
-                        , qFunding.startDate, qFunding.endDate, qFunding.createdAt, qFunding.birth))
+
+        return getFundingListResJPQLQuery()
                 .fetch();
     }
+
 
     @Override
     public Optional<FundingDetailRes> getFunding(int fundingNo) {
@@ -70,16 +59,48 @@ public class FundingRepositoryImpl extends QuerydslRepositorySupport implements 
 
     @Override
     public List<FundingParticipantsRes> getParticipantList(int fundingNo) {
-        QMemberFunding qMemberFunding2 = QMemberFunding.memberFunding;
-        return from(qMemberFunding2)
-                .innerJoin(qMemberFunding2.member, qMember)
-                .on(qMemberFunding2.funding.fundingNo.eq(fundingNo))
+//        QMemberFunding qMemberFunding2 = QMemberFunding.memberFunding;
+        return from(qMemberFunding)
+                .innerJoin(qMemberFunding.member, qMember)
+                .on(qMemberFunding.funding.fundingNo.eq(fundingNo))
                 .select(Projections.fields(FundingParticipantsRes.class,
-                        qMemberFunding2.isPublic
-                                .when(true).then(qMember.name)
+                        qMemberFunding.memberFundingNo,
+                        qMemberFunding.isPublic.when(true).then(qMember.name)
                                 .when(false).then(qMember.nickname)
                                 .otherwise("").as("name"),
-                        qMemberFunding2.amount, qMemberFunding2.createdAt))
+                        qMemberFunding.amount, qMemberFunding.createdAt,
+                        qMemberFunding.isPublic, qMember.imageUrl))
                 .fetch();
+    }
+
+    @Override
+    public List<FundingListRes> getFundingByFundingTitle(String query) {
+        return getFundingListResJPQLQuery()
+                .where(qFunding.title.contains(query))
+                .fetch();
+    }
+
+    /**
+     * 펀딩 목록 JPQLQuery를 조회하는 메서드입니다.
+     *
+     * @return 조회한 펀딩 목록
+     */
+    private JPQLQuery<FundingListRes> getFundingListResJPQLQuery() {
+        QFundingStatusHistory qFundingStatusHistory2 = QFundingStatusHistory.fundingStatusHistory;
+
+        return from(qFundingDetail)
+                .leftJoin(qFundingDetail.funding, qFunding)
+                .select(Projections.fields(FundingListRes.class,
+                        qFundingDetail.thumbnailUrl, qFunding.fundingNo, qFunding.title,
+                        ExpressionUtils.as(from(qFundingStatusHistory)
+                                .select(qFundingStatusHistory.status)
+                                .where(qFundingStatusHistory.fundingStatusHistoryNo
+                                        .eq(from(qFundingStatusHistory2)
+                                                .select(qFundingStatusHistory2.fundingStatusHistoryNo.max())
+                                                .where(qFundingStatusHistory2.funding.eq(qFunding)))), "status"),
+                        qFunding.targetAmount, ExpressionUtils.as(from(qMemberFunding)
+                                .select(qMemberFunding.amount.sum())
+                                .where(qMemberFunding.funding.eq(qFunding)), "totalAmount")
+                        , qFunding.startDate, qFunding.endDate, qFunding.createdAt, qFunding.birth));
     }
 }
