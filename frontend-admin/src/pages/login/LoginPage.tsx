@@ -1,16 +1,16 @@
-import { Input } from '@/common/input/Input'
-import { Label, StyledInput } from '@/common/input/Input.styled'
-import styled from 'styled-components'
-
-import LoginContainer from '@/components/logincontainer/LoginContainer'
-
-
+import LoginFooter from '@/components/login/LoginFooter'
+import LoginHeader from '@/components/login/LoginHeader'
+import LoginSection from '@/components/login/LoginSection'
+import * as l from '@pages/login/LoginPage.styeld'
 
 const LoginPage = () => {
-
-
   return (
-    <LoginContainer/>
+    <l.Container>
+      <LoginHeader />
+      <l.BackgroundImg src="/img/img_login_bg.png" alt="bg" />
+      <LoginSection />
+      <LoginFooter />
+    </l.Container>
   )
 }
 
