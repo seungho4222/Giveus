@@ -28,10 +28,10 @@ public class MemberFunding {
     private int fundingNo;
 
     @Column(name = "payment_no")
-    private int paymentNo;
+    private Integer paymentNo;
 
     @Column(name = "point_no")
-    private int pointNo;
+    private Integer pointNo;
 
     @CreatedDate
     @Column(name = "created_at", updatable = false)

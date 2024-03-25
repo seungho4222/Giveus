@@ -61,7 +61,7 @@ public class KakaoPayController {
             Integer pointUsageNo = point > 0 ? pointService.saveUsage(memberNo, point, kakaoApprove.getApproved_at()) : null;
             int paymentNo = paymentService.save(kakaoApprove);
             memberFundingService.save(memberNo, fundingNo, paymentNo, pointUsageNo,
-                    kakaoApprove.getApproved_at(), kakaoApprove.getAmount().getTotal(), opened);
+                    kakaoApprove.getApproved_at(), kakaoApprove.getAmount().getTotal() + point, opened);
 
             return ResponseEntity.status(OK)
                     .body(new CommonResponseBody<>(OK, kakaoApprove));
