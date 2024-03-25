@@ -1,5 +1,6 @@
 package com.giveus.payment.service.impl;
 
+import com.giveus.payment.dto.request.PointUsageRequest;
 import com.giveus.payment.entity.MemberFunding;
 import com.giveus.payment.repository.MemberFundingRepository;
 import com.giveus.payment.service.MemberFundingService;
@@ -35,6 +36,20 @@ public class MemberFundingServiceImpl implements MemberFundingService {
                 .isPublic(opened)
                 .build();
 
+        return memberFundingRepository.save(memberFunding).getMemberFundingNo();
+    }
+
+    @Override
+    @Transactional
+    public int save(PointUsageRequest request, int pointNo, LocalDateTime now) {
+        MemberFunding memberFunding = MemberFunding.builder()
+                .memberNo(request.getMemberNo())
+                .fundingNo(request.getFundingNo())
+                .pointNo(pointNo)
+                .createdAt(now)
+                .amount(request.getAmount())
+                .isPublic(request.isOpened())
+                .build();
         return memberFundingRepository.save(memberFunding).getMemberFundingNo();
     }
 }
