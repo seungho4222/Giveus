@@ -1,8 +1,8 @@
 import { getMessaging, getToken } from 'firebase/messaging'
-
 import { app } from '@/services/initFirebase'
+import { sendFCMToken } from '@/apis/auth'
 
-export async function handleAllowNotification() {
+export const handleAllowNotification = async (memberNo: number) => {
   try {
     const permission = await Notification.requestPermission()
 
@@ -13,8 +13,7 @@ export async function handleAllowNotification() {
       })
 
       if (token) {
-        // console.log(token)
-        // sendTokenToServer(token);// (토큰을 서버로 전송하는 로직)
+        sendFCMToken({ memberNo: memberNo, deviceToken: token })
       } else {
         alert('토큰 등록이 불가능 합니다. 생성하려면 권한을 허용해주세요')
       }
