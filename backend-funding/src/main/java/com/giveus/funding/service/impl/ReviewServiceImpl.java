@@ -29,8 +29,7 @@ public class ReviewServiceImpl implements ReviewService {
     public List<ReviewDetailRes> getReviewList(int count) {
         List<ReviewDetailRes> reviews = reviewRepository.getReviewList(count);
 
-
-        return null;
+        return reviews;
     }
 
     /**

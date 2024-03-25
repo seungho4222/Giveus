@@ -24,8 +24,9 @@ public class ReviewRepositoryImpl extends QuerydslRepositorySupport implements R
         return from(qReview)
                 .orderBy(qReview.createdAt.desc())
                 .limit(count)
-                .select(Projections.fields(ReviewDetailRes.class, qReview.reviewNo))
-
+                .select(Projections.fields(ReviewDetailRes.class,
+                        qReview.reviewNo, qReview.funding.fundingNo, qReview.title, qReview.content, qReview.createdAt, qReview.url
+                ))
                 .fetch();
     }
 }
