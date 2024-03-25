@@ -1,9 +1,17 @@
+import { myPointListState } from '@stores/point'
 import * as m from '@components/mypage/MypageInfoSection/MypagePointSection.styled'
+import { useRecoilValue } from 'recoil'
 
 const MypagePointSection = (props: { memberNo: number }) => {
+  const myPointsList = useRecoilValue(myPointListState)
+
   const { memberNo } = props
 
+  console.log(myPointsList)
+
   const countPoint = () => {
+    let total = 0
+
     console.log(memberNo)
     return '20,000'
   }

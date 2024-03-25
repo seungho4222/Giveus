@@ -1,10 +1,16 @@
-import { PointItemType } from '@/types/mypageType'
+import { PointItemType, PointsListType } from '@/types/mypageType'
 import {
   filterDatesInRange,
   getOneMonthAgoDate,
   getTodayDate,
 } from '@utils/dateMethods'
 import { atom, selector } from 'recoil'
+
+// 포인트 사용내역 및 충전내역
+export const myPointsListState = atom<PointsListType>({
+  key: 'myPointsListState',
+  default: { rechargeList: [], usageList: [] },
+})
 
 export const DefaultMyPointListFilter = {
   startDate: getOneMonthAgoDate(),

@@ -17,8 +17,8 @@ const PointsPage = () => {
         <PointsInfo />
         <PointsFilter setOpen={setOpen} />
         <PointsList
-          usageData={usagePointData}
-          rechargeData={rechargePointData}
+          usageList={usagePointData}
+          rechargeList={rechargePointData}
         />
       </p.Container>
       {open && <PointsFilterModal value={open} setValue={setOpen} />}

@@ -5,14 +5,14 @@ export const usagePointData = [
     memberNo: 1,
     amount: 20000,
     createdAt: '2024-03-20 07:27:40',
-    content: '소아암 6세(남) 펀딩',
+    title: '소아암 6세(남) 펀딩',
   },
   {
     pointNo: 1,
     memberNo: 1,
     amount: 40000,
     createdAt: '2024-03-19 07:25:40',
-    content: '소아암 6세(남) 펀딩',
+    title: '소아암 6세(남) 펀딩',
   },
 ]
 

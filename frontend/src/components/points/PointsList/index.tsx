@@ -6,21 +6,21 @@ import { useRecoilState, useRecoilValue } from 'recoil'
 import { filteredMyPointListState, myPointListState } from '@stores/point'
 
 const Index = (props: PointsListType) => {
-  const { usageData, rechargeData } = props
+  const { usageList, rechargeList } = props
   const [, setMyPointList] = useRecoilState(myPointListState)
   const filteredMyPointList = useRecoilValue(filteredMyPointListState)
 
   useEffect(() => {
     setDataForm()
-  }, [usageData, rechargeData])
+  }, [usageList, rechargeList])
 
   const setDataForm = async () => {
     let items: PointItemType[] = []
     // 사용 내역
-    await usageData.map(item => {
+    await usageList.map(item => {
       const obj: PointItemType = {
         type: '사용',
-        content: item.content,
+        content: item.title,
         amount: item.amount,
         createdAt: item.createdAt,
         total: 0,
@@ -28,7 +28,7 @@ const Index = (props: PointsListType) => {
       items.push(obj)
     })
     // 충전 내역
-    await rechargeData.map(item => {
+    await rechargeList.map(item => {
       const obj: PointItemType = {
         type: '충전',
         content: item.content + ' 결제',
