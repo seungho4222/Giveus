@@ -15,15 +15,22 @@ const DonorList = () => {
             <span style={{ color: colors.orange01 }}>{donorList.length}</span>
             명이 기부에 참여했습니다.
           </d.ListTrue>
-          {donorList.map((item, idx) => (
-            <d.Card key={idx}>
+          {donorList.map(item => (
+            <d.Card key={item.memberFundingNo}>
               <d.Wrap>
                 <d.Date>{item.createdAt}</d.Date>
                 <d.Desc>기부금 기부</d.Desc>
               </d.Wrap>
               <d.Wrap>
                 <d.SubWrap>
-                  <d.Img src={false ? '' : '/img/img_default_profile.png'} alt='profile' />
+                  <d.Img
+                    src={
+                      item.isPublic
+                        ? item.imageUrl
+                        : '/img/img_default_profile.png'
+                    }
+                    alt="profile"
+                  />
                   <d.Nickname>{item.name}</d.Nickname>
                 </d.SubWrap>
                 <d.Amount>{formatAmount(item.amount)}원</d.Amount>

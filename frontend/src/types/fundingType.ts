@@ -15,12 +15,12 @@ export type FundingType = {
 }
 
 export type DonerType = {
-  // memberFundingNo: number
+  memberFundingNo: number
   name: string
   createdAt: string
   amount: number
-  // isPublic: number
-  // imageUrl: string
+  isPublic: number
+  imageUrl: string
 }
 
 export type MedicalExpenseType = {
