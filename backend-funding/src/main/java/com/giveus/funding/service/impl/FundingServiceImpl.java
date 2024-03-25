@@ -2,18 +2,23 @@ package com.giveus.funding.service.impl;
 
 import com.giveus.funding.common.dto.CreateSuccessDto;
 import com.giveus.funding.dto.request.FundingCreateReq;
+import com.giveus.funding.dto.request.ReviewCreateReq;
 import com.giveus.funding.dto.response.FundingDetailRes;
 import com.giveus.funding.dto.response.FundingListRes;
 import com.giveus.funding.dto.response.FundingParticipantsRes;
 import com.giveus.funding.entity.Funding;
 import com.giveus.funding.entity.FundingDetail;
+import com.giveus.funding.entity.Review;
 import com.giveus.funding.exception.AlreadyExistFundingException;
+import com.giveus.funding.exception.AlreadyExistReviewException;
 import com.giveus.funding.exception.FundingNotFoundException;
 import com.giveus.funding.exception.InvalidRequestDataException;
 import com.giveus.funding.repository.FundingDetailRepository;
 import com.giveus.funding.repository.FundingRepository;
 import com.giveus.funding.service.FileService;
 import com.giveus.funding.service.FundingService;
+import com.giveus.funding.service.ReviewService;
+import com.giveus.funding.transfer.ReviewTransfer;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -30,6 +35,7 @@ public class FundingServiceImpl implements FundingService {
     private final FundingRepository fundingRepository;
     private final FundingDetailRepository fundingDetailRepository;
     private final FileService fileService;
+    private final ReviewService reviewService;
 
     private final String FOLDER_NAME = "funding";
 
@@ -115,6 +121,43 @@ public class FundingServiceImpl implements FundingService {
     @Override
     public List<FundingListRes> getFundingSearchList(String query) {
         return fundingRepository.getFundingByFundingTitle(query);
+    }
+
+    @Override
+    public CreateSuccessDto createReview(ReviewCreateReq reviewCreateReq, MultipartFile file) {
+        // 펀딩마다 고유하게 갖고있는 regId로 펀딩 가져오기
+        Funding funding = getFundingEntity(reviewCreateReq.getRegId());
+
+        // 해당 펀딩이 후기가 이미 등록 되어있는지 확인
+        if (isExistFundingReview(funding.getFundingNo())) { // 이미 등록되어있는 펀딩이라면 409 예외 발생
+            throw new AlreadyExistReviewException();
+        }
+
+        // 펀딩 후기 등록
+        Review review = ReviewTransfer.dtoToEntity(funding, reviewCreateReq);
+        String objectName = null;
+        if (Objects.nonNull(file)) { // 업로드 할 파일이 있을 경우
+            objectName = fileService.generateObjectName(); // 랜덤 오브젝트명 생성
+            String url = fileService.upload(file, objectName, FOLDER_NAME); // 파일 업로드
+            review.setUrl(url);
+        }
+
+        try { // 등록 시도
+            reviewService.createReview(review);
+        } catch (Exception e) { // 등록 실패 시
+            if (Objects.nonNull(file)) { // 업로드 한 파일이 있을 경우
+                // TODO 더 테스트가 필요할듯
+                fileService.delete(objectName, FOLDER_NAME); // AWS S3에서 등록했던 파일 삭제
+            }
+            throw new InvalidRequestDataException("등록 요청 데이터 형식이 맞지 않습니다.");
+        }
+
+        return new CreateSuccessDto(review.getReviewNo());
+    }
+
+    private boolean isExistFundingReview(int fundingNo) {
+        Optional<Review> review = reviewService.findReviewEntity(fundingNo);
+        return review.isPresent();
     }
 
     /**

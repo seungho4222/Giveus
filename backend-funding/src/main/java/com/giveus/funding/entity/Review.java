@@ -1,10 +1,7 @@
 package com.giveus.funding.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.DynamicInsert;
 
 import java.time.LocalDate;
@@ -12,7 +9,6 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "review")
 @Getter
-@Builder
 @DynamicInsert
 @NoArgsConstructor
 @AllArgsConstructor
@@ -36,6 +32,13 @@ public class Review {
     private LocalDate createdAt;
 
     @Column(name = "url")
+    @Setter
     private String url;
 
+    @Builder
+    public Review(Funding funding, String title, String content) {
+        this.funding = funding;
+        this.title = title;
+        this.content = content;
+    }
 }

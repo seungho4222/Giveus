@@ -2,6 +2,7 @@ package com.giveus.funding.service;
 
 import com.giveus.funding.common.dto.CreateSuccessDto;
 import com.giveus.funding.dto.request.FundingCreateReq;
+import com.giveus.funding.dto.request.ReviewCreateReq;
 import com.giveus.funding.dto.response.FundingDetailRes;
 import com.giveus.funding.dto.response.FundingListRes;
 import com.giveus.funding.dto.response.FundingParticipantsRes;
@@ -58,4 +59,13 @@ public interface FundingService {
      * @return 검색 결과 (펀딩 목록)
      */
     List<FundingListRes> getFundingSearchList(String query);
+
+    /**
+     * 펀딩 후기를 등록하는 메서드입니다.
+     *
+     * @param reviewCreateReq 등록할 후기 정보
+     * @param file 후기 사진
+     * @return 등록한 후기의 고유 번호
+     */
+    CreateSuccessDto createReview(ReviewCreateReq reviewCreateReq, MultipartFile file);
 }
