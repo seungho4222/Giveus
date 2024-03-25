@@ -4,7 +4,8 @@ import styled from 'styled-components'
 export const Container = styled.div`
   position: absolute;
   bottom: 0;
-  width: 60%;
+  right: 5%;
+  width: 75%;
   margin-bottom: 1%;
 `
 
