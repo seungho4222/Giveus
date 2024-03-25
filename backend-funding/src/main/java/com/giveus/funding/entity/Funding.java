@@ -70,6 +70,9 @@ public class Funding {
     @Column(name = "reg_id")
     private String regId;
 
+    @OneToOne(mappedBy = "funding")
+    private Review review;
+
     @Builder
     public Funding(String issueNumber, String registrationNumber, String patientName, LocalDate birth, char gender, String diseaseName, String diseaseCode, LocalDate diagnosisDate, String opinion, String title, LocalDate startDate, LocalDate endDate, int targetAmount, String phone) {
         this.issueNumber = issueNumber;
