@@ -5,10 +5,10 @@ import RecentTerm from '@components/search/RecentTerm'
 import SearchResult from '@components/search/SearchResult'
 import { KeyboardEvent, useEffect, useState } from 'react'
 import { deleteBlank } from '@utils/regexMethods'
-import { data } from '@components/funding/FundingListCard/data'
 import { FundingType } from '@/types/fundingType'
 import { useRecoilState } from 'recoil'
 import { keywordState } from '@stores/search'
+import { searchFunding } from '@/apis/funding'
 
 const SearchPage = () => {
   const [value, setValue] = useState('')
@@ -18,7 +18,9 @@ const SearchPage = () => {
   useEffect(() => {
     if (keyword !== '') {
       addRecentTerm(keyword)
-      setResult(data)
+      searchFunding(keyword).then(res => {
+        setResult(res)
+      })
     }
   }, [keyword])
 
@@ -27,7 +29,9 @@ const SearchPage = () => {
     if (e.key === 'Enter') {
       setKeyword(value)
       addRecentTerm(value)
-      setResult(data)
+      searchFunding(value).then(res => {
+        setResult(res)
+      })
     }
   }
 
@@ -58,11 +62,7 @@ const SearchPage = () => {
           onSearch={onSearch}
           resetKeyword={resetKeyword}
         />
-        {result.length === 0 ? (
-          <RecentTerm />
-        ) : (
-          <SearchResult result={result} />
-        )}
+        {keyword === '' ? <RecentTerm /> : <SearchResult result={result} />}
       </Layout>
       <Navbar current="search" />
     </>
