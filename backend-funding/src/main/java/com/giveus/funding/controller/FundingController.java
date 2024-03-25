@@ -44,6 +44,14 @@ public class FundingController {
                 .body(new CommonResponseBody<>(OK, fundingService.getFunding(fundingNo)));
     }
 
+    @SwaggerApiSuccess(summary = "펀딩명 검색", implementation = FundingListRes.class)
+    @GetMapping("/search")
+    public ResponseEntity<CommonResponseBody<List<FundingListRes>>> getFundingQuery(@RequestParam String query) {
+        return ResponseEntity
+                .status(OK)
+                .body(new CommonResponseBody<>(OK, fundingService.getFundingSearchList(query)));
+    }
+
     @SwaggerApiSuccess(summary = "펀딩 2차 등록", implementation = CreateSuccessDto.class)
     @PostMapping
     public ResponseEntity<CommonResponseBody<CreateSuccessDto>> createFunding(

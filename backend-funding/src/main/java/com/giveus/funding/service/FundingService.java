@@ -50,4 +50,12 @@ public interface FundingService {
      * @return 펀딩 참여자 목록
      */
     List<FundingParticipantsRes> getParticipants(int fundingNo);
+
+    /**
+     * 펀딩명으로 펀딩 검색 결과를 조회하는 메서드입니다.
+     *
+     * @param query 검색어 (검색할 펀딩명)
+     * @return 검색 결과 (펀딩 목록)
+     */
+    List<FundingListRes> getFundingSearchList(String query);
 }
