@@ -1,4 +1,4 @@
-import { JoinUserType } from '@/types/reqType'
+import { JoinUserType, SendFCMTokenType } from '@/types/reqType'
 import { authRequest, publicRequest } from '@utils/requestMethods'
 
 const url = '/api/v1/auth'
@@ -43,4 +43,9 @@ export const fetchUserInfo = async () => {
 }
 
 // FCM 기기 토큰 전송
-export const sendFCMToken = async () => {}
+export const sendFCMToken = async (req: SendFCMTokenType) => {
+  return authRequest
+    .post(`${url}/device`, req)
+    .then(res => console.log(res.data.code))
+    .catch(err => console.log(err))
+}
