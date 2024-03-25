@@ -1,35 +1,36 @@
 package com.giveus.admin.service.impl;
 
+import com.giveus.admin.common.dto.CreateSuccessDto;
 import com.giveus.admin.dto.request.FundingCreateReq;
-import com.giveus.admin.dto.response.FundingDetailsRes;
+import com.giveus.admin.dto.request.FundingUsageCreateReq;
 import com.giveus.admin.dto.response.FundingListRes;
 import com.giveus.admin.entity.Funding;
 import com.giveus.admin.entity.FundingStatusHistory;
+import com.giveus.admin.exception.FundingNotFoundException;
 import com.giveus.admin.repository.FundingRepository;
-import com.giveus.admin.service.AdminFundingService;
 import com.giveus.admin.service.FundingService;
 import com.giveus.admin.service.MessageService;
+import com.giveus.admin.service.UsageHistoryService;
 import com.giveus.admin.transfer.FundingStatusHistoryTransfer;
 import com.giveus.admin.transfer.FundingTransfer;
-
-import java.util.List;
-import java.util.UUID;
-
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
 public class FundingServiceImpl implements FundingService {
     private final FundingRepository fundingRepository;
+    private final UsageHistoryService usageHistoryService;
     private final MessageService messageService;
-    private final AdminFundingService adminFundingService;
 
     @Override
     @Transactional
-    public FundingDetailsRes createFunding(FundingCreateReq fundingCreateReq) {
+    public CreateSuccessDto createFunding(FundingCreateReq fundingCreateReq) {
 
         // 펀딩 등록
         Funding funding = FundingTransfer.dtoToEntity(fundingCreateReq);
@@ -38,12 +39,11 @@ public class FundingServiceImpl implements FundingService {
         String regId = generateRegId();
         funding.setRegId(regId);
         Funding savedFunding = fundingRepository.save(funding);
-        adminFundingService.createAdminFunding(fundingCreateReq.getAdminNo(), savedFunding);
 
         // 문자 전송
         messageService.sendMessage(funding.getPhone(), regId);
 
-        return FundingTransfer.entityToDto(savedFunding);
+        return new CreateSuccessDto(savedFunding.getFundingNo());
     }
 
     /**
@@ -54,7 +54,7 @@ public class FundingServiceImpl implements FundingService {
     private String generateRegId() {
         String random = UUID.randomUUID().toString();
         random = random.replace("-", "");
-        random = random.substring(0, 10);
+        random = random.substring(0, 16);
         return random;
     }
 
@@ -62,4 +62,18 @@ public class FundingServiceImpl implements FundingService {
     public List<FundingListRes> getFundingList(int adminNo) {
         return fundingRepository.getFundingList(adminNo);
     }
+
+    @Override
+    public Funding findFundingEntity(int fundingNo) {
+        return
+                fundingRepository.findFundingByFundingNo(fundingNo)
+                        .orElseThrow(FundingNotFoundException::new);
+    }
+
+    @Override
+    @Transactional
+    public CreateSuccessDto createFundingUsage(FundingUsageCreateReq req) {
+        return usageHistoryService.createFundingUsage(findFundingEntity(req.getFundingNo()), req);
+    }
+
 }

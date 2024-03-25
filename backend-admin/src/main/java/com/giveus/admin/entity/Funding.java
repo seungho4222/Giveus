@@ -25,6 +25,9 @@ public class Funding {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int fundingNo;
 
+    @Column(name = "admin_no")
+    private int adminNo;
+
     @Column(name = "issue_number")
     private String issueNumber;
 
@@ -49,10 +52,10 @@ public class Funding {
     @Column(name = "diagnosis_date")
     private LocalDate diagnosisDate;
 
-    @Column(name="opinion")
+    @Column(name = "opinion")
     private String opinion;
 
-    @Column(name="title")
+    @Column(name = "title")
     private String title;
 
     @Column(name = "start_date")
@@ -67,7 +70,7 @@ public class Funding {
     @Column(name = "created_at")
     private LocalDate createdAt;
 
-    @Column(name="phone")
+    @Column(name = "phone")
     private String phone;
 
     @Column(name = "reg_id")
@@ -75,6 +78,7 @@ public class Funding {
 
     @OneToMany(mappedBy = "funding", cascade = CascadeType.PERSIST)
     private Set<FundingStatusHistory> statusList = new HashSet<>();
+
 
     @Builder
     public Funding(String issueNumber, String registrationNumber, String patientName, LocalDate birth, char gender, String diseaseName, String diseaseCode, LocalDate diagnosisDate, String opinion, String title, LocalDate startDate, LocalDate endDate, int targetAmount, String phone) {
