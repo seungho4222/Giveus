@@ -26,7 +26,7 @@ public class PaymentServiceImpl implements PaymentService {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
         Payment payment = Payment.builder()
                 .createdAt(LocalDateTime.parse(kakaoApprove.getApproved_at(), formatter))
-                .method("KAKAO")
+                .method("카카오페이")
                 .amount(kakaoApprove.getAmount().getTotal())
                 .build();
         return paymentRepository.save(payment).getPaymentNo();
