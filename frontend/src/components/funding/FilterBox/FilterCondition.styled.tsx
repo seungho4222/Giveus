@@ -1,4 +1,4 @@
-import { colors } from '@/styles/theme'
+import { colors, sizes } from '@styles/theme'
 import styled from 'styled-components'
 
 export const Container = styled.div`
@@ -53,7 +53,9 @@ export const Footer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 375px;
+  width: 100%;
+  min-width: ${sizes.minWidth};
+  max-width: ${sizes.maxWidth};
   position: fixed;
   bottom: 0;
   padding: 1em;

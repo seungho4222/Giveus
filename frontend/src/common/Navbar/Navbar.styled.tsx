@@ -1,10 +1,12 @@
 import { Link } from 'react-router-dom'
-import { colors } from '@styles/theme'
+import { colors, sizes } from '@styles/theme'
 import styled from 'styled-components'
 
 export const Container = styled.footer`
   position: fixed;
-  width: 375px;
+  width: 100%;
+  min-width: ${sizes.minWidth};
+  max-width: ${sizes.maxWidth};
   bottom: 0;
   z-index: 100;
   border-top: 1px solid #f7f7f7;

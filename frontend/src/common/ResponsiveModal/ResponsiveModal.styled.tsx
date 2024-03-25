@@ -1,4 +1,4 @@
-import { colors } from '@/styles/theme'
+import { colors, sizes } from '@styles/theme'
 import styled from 'styled-components'
 
 export const BlackBox = styled.div`
@@ -6,7 +6,9 @@ export const BlackBox = styled.div`
   position: fixed;
   top: 0;
   z-index: 100;
-  width: 375px;
+  width: 100%;
+  min-width: ${sizes.minWidth};
+  max-width: ${sizes.maxWidth};
   height: 100vh;
   background-color: #000;
   opacity: 0.3;
@@ -17,7 +19,9 @@ export const Container = styled.div`
   position: fixed;
   bottom: 0;
   z-index: 101;
-  width: 375px;
+  width: 100%;
+  min-width: ${sizes.minWidth};
+  max-width: ${sizes.maxWidth};
   background-color: #fff;
   border-radius: 12px 12px 0 0;
   overflow-y: scroll;

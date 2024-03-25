@@ -1,6 +1,6 @@
 import { createGlobalStyle, DefaultTheme } from 'styled-components'
 import reset from 'styled-reset'
-import { colors } from './theme'
+import { colors, sizes } from './theme'
 
 export const GlobalStyle = createGlobalStyle`
     ${reset}
@@ -32,7 +32,9 @@ export const GlobalStyle = createGlobalStyle`
         }
     }
     #root {
-        max-width: 375px;
+        width: 100%;
+        min-width: ${sizes.minWidth};
+        max-width: ${sizes.maxWidth};
         min-height: 100vh;
         margin: 0 auto;
         background: ${({ theme }: { theme: DefaultTheme }) =>

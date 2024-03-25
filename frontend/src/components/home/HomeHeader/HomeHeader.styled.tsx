@@ -1,10 +1,12 @@
 import styled from 'styled-components'
-import { colors } from '@styles/theme'
+import { colors, sizes } from '@styles/theme'
 
 export const Container = styled.header`
   display: flex;
   position: fixed;
-  width: 375px;
+  width: 100%;
+  min-width: ${sizes.minWidth};
+  max-width: ${sizes.maxWidth};
   top: 0;
   height: 45px;
   z-index: 100;

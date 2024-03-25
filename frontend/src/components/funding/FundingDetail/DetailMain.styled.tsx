@@ -1,4 +1,4 @@
-import { colors } from '@/styles/theme'
+import { colors, sizes } from '@styles/theme'
 import styled from 'styled-components'
 
 export const Container = styled.div`
@@ -49,7 +49,7 @@ export const ProgressStatus = styled.div<{ $width: string }>`
   background-color: ${colors.blue01};
   border-radius: 20px;
   height: 8px;
-  width: ${props => (props.$width)};
+  width: ${props => props.$width};
 `
 
 export const Percent = styled.div`
@@ -75,7 +75,9 @@ export const DetailDesc = styled.div`
 `
 
 export const Button = styled.div`
-  width: 375px;
+  width: 100%;
+  min-width: ${sizes.minWidth};
+  max-width: ${sizes.maxWidth};
   position: fixed;
   bottom: 0;
   padding: 1em;
