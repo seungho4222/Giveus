@@ -1,29 +1,24 @@
-package com.giveus.funding.entity;
+package com.giveus.payment.entity;
 
 import jakarta.persistence.*;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import org.hibernate.annotations.DynamicInsert;
+import lombok.*;
 
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "funding")
 @Getter
-@Setter
-@DynamicInsert
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
+@Builder
+@ToString
+@EqualsAndHashCode(of = {"fundingNo"}, callSuper = false)
 public class Funding {
 
     @Id
     @Column(name = "funding_no")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int fundingNo;
-
-    @Column(name="admin_no")
-    private int adminNo;
 
     @Column(name = "issue_number")
     private String issueNumber;
@@ -73,21 +68,4 @@ public class Funding {
     @Column(name = "reg_id")
     private String regId;
 
-    @Builder
-    public Funding(String issueNumber, String registrationNumber, String patientName, LocalDate birth, char gender, String diseaseName, String diseaseCode, LocalDate diagnosisDate, String opinion, String title, LocalDate startDate, LocalDate endDate, int targetAmount, String phone) {
-        this.issueNumber = issueNumber;
-        this.registrationNumber = registrationNumber;
-        this.patientName = patientName;
-        this.birth = birth;
-        this.gender = gender;
-        this.diseaseName = diseaseName;
-        this.diseaseCode = diseaseCode;
-        this.diagnosisDate = diagnosisDate;
-        this.opinion = opinion;
-        this.title = title;
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.targetAmount = targetAmount;
-        this.phone = phone;
-    }
 }

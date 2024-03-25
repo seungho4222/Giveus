@@ -7,8 +7,8 @@ export const Container = styled.div`
   align-items: center;
 
   img {
-    width: 56px;
-    height: 56px;
+    width: 70px;
+    height: 70px;
     border-radius: 100%;
     border: 2px solid ${colors.gray04};
   }
@@ -21,7 +21,7 @@ export const Wrap = styled.div`
 
 export const Name = styled.div`
   color: #fff;
-  font-size: 1em;
+  font-size: 1.1em;
   font-weight: 500;
 `
 
