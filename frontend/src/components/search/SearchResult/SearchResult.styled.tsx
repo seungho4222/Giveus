@@ -1,3 +1,4 @@
+import { colors } from '@/styles/theme'
 import styled from 'styled-components'
 
 export const Container = styled.div`
@@ -29,4 +30,10 @@ export const ScrollArea = styled.div`
     background: transparent; /* Optional: just make scrollbar invisible */
     -webkit-appearance: none;
   }
+`
+
+export const Empty = styled.div`
+  display: flex;
+  padding: 0 5%;
+  color: ${colors.gray04};
 `

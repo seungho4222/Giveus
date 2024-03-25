@@ -20,5 +20,5 @@ export const Wrap = styled.div`
 export const Nickname = styled.div`
   color: #fff;
   font-weight: 600;
-  font-size: 1.2em;
+  font-size: 1.3em;
 `
