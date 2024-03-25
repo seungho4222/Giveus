@@ -1,20 +1,11 @@
-import Header from '@components/header/Header';
-import Footer from '@/components/footer/Footer';
-import { HomePageContainer } from './HomePage.styled';
-import FundingRegister from '../fundingregister/FundingRegister';
-import LoginPage from '../login/LoginPage';
-import SignUpPage from '../signup/SignUpPage';
-
+import * as h from '@pages/home/HomePage.styled'
 
 const HomePage = () => {
-    return (
-        <HomePageContainer>
-            <Header/>
-            <SignUpPage/>
-            <Footer/>
-
-        </HomePageContainer>
-    );
+  return (
+    <h.Container>
+      home
+    </h.Container>
+  );
 };
 
 export default HomePage;
