@@ -61,14 +61,14 @@ public class FundingController {
                 .status(OK)
                 .body(new CommonResponseBody<>(OK, fundingService.createFunding(fundingCreateReq, file)));
     }
-
-    @SwaggerApiSuccess(summary = "펀딩 기부자 명단 조회", implementation = FundingParticipantsRes.class)
+    @SwaggerApiSuccess(summary = "후원 내역 조회", implementation = FundingParticipantsRes.class)
     @GetMapping("/{fundingNo}/participants")
     public ResponseEntity<CommonResponseBody<List<FundingParticipantsRes>>> getFundingParticipants(@PathVariable int fundingNo) {
         return ResponseEntity
                 .status(OK)
                 .body(new CommonResponseBody<>(OK, fundingService.getParticipants(fundingNo)));
     }
+
 
     @SwaggerApiSuccess(summary = "펀딩 후기 등록", implementation = CreateSuccessDto.class)
     @PostMapping("/review")

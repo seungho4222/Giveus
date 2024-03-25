@@ -3,6 +3,7 @@ package com.giveus.funding.repository.impl;
 import com.giveus.funding.dto.response.FundingDetailRes;
 import com.giveus.funding.dto.response.FundingListRes;
 import com.giveus.funding.dto.response.FundingParticipantsRes;
+import com.giveus.funding.dto.response.MyPageFundingListRes;
 import com.giveus.funding.entity.*;
 import com.giveus.funding.repository.FundingRepositoryCustom;
 import com.querydsl.core.types.ExpressionUtils;
@@ -36,6 +37,30 @@ public class FundingRepositoryImpl extends QuerydslRepositorySupport implements 
                 .fetch();
     }
 
+    @Override
+    public List<MyPageFundingListRes> getFundingList(int memberNo) {
+
+        QFundingStatusHistory qFundingStatusHistory2 = QFundingStatusHistory.fundingStatusHistory;
+
+        return from(qFundingDetail)
+                .leftJoin(qFundingDetail.funding, qFunding)
+                .rightJoin(qMemberFunding).on(qFunding.eq(qMemberFunding.funding))
+                .select(Projections.fields(MyPageFundingListRes.class,
+                        qFundingDetail.thumbnailUrl, qFunding.fundingNo, qFunding.title,
+                        ExpressionUtils.as(from(qFundingStatusHistory)
+                                .select(qFundingStatusHistory.status)
+                                .where(qFundingStatusHistory.fundingStatusHistoryNo
+                                        .eq(from(qFundingStatusHistory2)
+                                                .select(qFundingStatusHistory2.fundingStatusHistoryNo.max())
+                                                .where(qFundingStatusHistory2.funding.eq(qFunding)))), "status"),
+                        qFunding.targetAmount, ExpressionUtils.as(from(qMemberFunding)
+                                .select(qMemberFunding.amount.sum())
+                                .where(qMemberFunding.funding.eq(qFunding)), "totalAmount")
+                        , qFunding.startDate, qFunding.endDate, qFunding.birth, qMemberFunding.memberFundingNo, qMemberFunding.amount, qMemberFunding.createdAt))
+                .where(qMemberFunding.member.memberNo.eq(memberNo))
+                .fetch();
+
+    }
 
     @Override
     public Optional<FundingDetailRes> getFunding(int fundingNo) {

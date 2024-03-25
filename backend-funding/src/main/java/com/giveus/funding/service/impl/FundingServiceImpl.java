@@ -6,6 +6,7 @@ import com.giveus.funding.dto.request.ReviewCreateReq;
 import com.giveus.funding.dto.response.FundingDetailRes;
 import com.giveus.funding.dto.response.FundingListRes;
 import com.giveus.funding.dto.response.FundingParticipantsRes;
+import com.giveus.funding.dto.response.MyPageFundingListRes;
 import com.giveus.funding.entity.Funding;
 import com.giveus.funding.entity.FundingDetail;
 import com.giveus.funding.entity.Review;
@@ -46,6 +47,11 @@ public class FundingServiceImpl implements FundingService {
     @Override
     public List<FundingListRes> getFundingList() {
         return fundingRepository.getFundingList();
+    }
+
+    @Override
+    public List<MyPageFundingListRes> getFundingList(int memberNo) {
+        return fundingRepository.getFundingList(memberNo);
     }
 
     /**
