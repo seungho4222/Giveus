@@ -1,8 +1,10 @@
 package com.giveus.payment.service.impl;
 
+import com.giveus.payment.dto.response.PointListRes;
 import com.giveus.payment.entity.PointUsage;
+import com.giveus.payment.repository.PointRechargeRepository;
 import com.giveus.payment.repository.PointUsageRepository;
-import com.giveus.payment.service.PointUsageService;
+import com.giveus.payment.service.PointService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -14,13 +16,14 @@ import java.time.format.DateTimeFormatter;
 @Service
 @RequiredArgsConstructor
 @Slf4j
-public class PointUsageServiceImpl implements PointUsageService {
+public class PointServiceImpl implements PointService {
 
     private final PointUsageRepository pointUsageRepository;
+    private final PointRechargeRepository pointRechargeRepository;
 
     @Override
     @Transactional
-    public int save(int memberNo, int point, String approvedAt) {
+    public int saveUsage(int memberNo, int point, String approvedAt) {
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
 
@@ -31,5 +34,15 @@ public class PointUsageServiceImpl implements PointUsageService {
                 .build();
 
         return pointUsageRepository.save(pointUsage).getPointNo();
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public PointListRes getPointList(int memberNo) {
+
+        return PointListRes.builder()
+                .usageList(pointUsageRepository.getUsageList(memberNo))
+                .rechargeList(pointRechargeRepository.getRechargeList(memberNo))
+                .build();
     }
 }
