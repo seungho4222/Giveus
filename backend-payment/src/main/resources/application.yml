@@ -52,6 +52,7 @@ springdoc:
     path: /docs
   api-docs:
     path: /api/v1/payment/docs
+  packages-to-scan: com.giveus.payment.controller
 
 pay:
   kakao:
