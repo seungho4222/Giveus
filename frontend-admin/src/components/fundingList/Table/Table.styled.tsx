@@ -19,13 +19,42 @@ export const Th = styled.th`
   border-bottom: 1px solid ${colors.gray03};
   background-color: rgba(67, 130, 255, 0.7);
   color: white;
+  &:nth-child(1) {
+    width: 8%;
+  }
+  &:nth-child(2) {
+    width: 15%;
+  }
+  &:nth-child(3) {
+    width: 15%;
+  }
+  &:nth-child(4) {
+    width: 15%;
+  }
+  &:nth-child(5) {
+    width: 15%;
+  }
+  &:nth-child(6) {
+    width: 15%;
+  }
+  &:nth-child(7) {
+    width: 17%;
+  }
 `
 
 export const Td = styled.td`
-  padding: 12px 8px;
+  padding: 8px;
   text-align: center;
   border-bottom: 1px solid ${colors.gray03};
   cursor: pointer;
+`
+
+export const StatusButton = styled.button`
+  border-radius: 15px;
+  background-color: ${colors.orange01};
+  width: 70px;
+  padding: 4px;
+  color: #fff;
 `
 
 export const PageBox = styled.div`
@@ -37,7 +66,9 @@ export const PageBox = styled.div`
   margin-block: 10px;
 `
 
-export const PageButton = styled.button``
+export const PageButton = styled.button`
+  font-size: 1.1em;
+`
 
 export const PageText = styled.div`
   margin-inline: 20px;

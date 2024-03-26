@@ -6,6 +6,7 @@ import {
   useTable,
   useSortBy,
   Row,
+  Cell,
 } from 'react-table'
 import Search from '../Search'
 import { useNavigate } from 'react-router-dom'
@@ -39,6 +40,20 @@ const index = (props: { columns: any; data: FundingType[] }) => {
     navigate(`/admin/funding/${id}`)
   }
 
+  const tableData = (cell: Cell<FundingType>) => {
+    switch (cell.column.Header) {
+      case '번호':
+        return parseInt(cell.row.id) + 1
+      case '펀딩상태':
+        const status = cell.render('Cell')
+        return <t.StatusButton>{status}</t.StatusButton>
+      case '목표금액':
+        return cell.value.toLocaleString() + '원'
+      default:
+        return cell.render('Cell')
+    }
+  }
+
   return (
     <t.Container>
       <Search onSubmit={setGlobalFilter} />
@@ -70,11 +85,7 @@ const index = (props: { columns: any; data: FundingType[] }) => {
                 onClick={() => HandleTd(row.cells[0].value)}
               >
                 {row.cells.map(cell => (
-                  <t.Td {...cell.getCellProps()}>
-                    {cell.column.Header === '목표금액'
-                      ? cell.value.toLocaleString() + '원'
-                      : cell.render('Cell')}
-                  </t.Td>
+                  <t.Td {...cell.getCellProps()}>{tableData(cell)}</t.Td>
                 ))}
               </t.Tr>
             )
@@ -87,13 +98,13 @@ const index = (props: { columns: any; data: FundingType[] }) => {
           onClick={() => previousPage()}
           disabled={!canPreviousPage}
         >
-          이전 페이지
+          &lt;
         </t.PageButton>
         <t.PageText>
-          page {pageIndex + 1} / {pageOptions.length}
+          {pageIndex + 1} / {pageOptions.length}
         </t.PageText>
         <t.PageButton onClick={() => nextPage()} disabled={!canNextPage}>
-          다음 페이지
+          &gt;
         </t.PageButton>
       </t.PageBox>
     </t.Container>
