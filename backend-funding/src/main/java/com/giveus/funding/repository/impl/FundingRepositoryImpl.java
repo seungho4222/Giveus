@@ -84,7 +84,6 @@ public class FundingRepositoryImpl extends QuerydslRepositorySupport implements 
 
     @Override
     public List<FundingParticipantsRes> getParticipantList(int fundingNo) {
-//        QMemberFunding qMemberFunding2 = QMemberFunding.memberFunding;
         return from(qMemberFunding)
                 .innerJoin(qMemberFunding.member, qMember)
                 .on(qMemberFunding.funding.fundingNo.eq(fundingNo))
@@ -95,6 +94,7 @@ public class FundingRepositoryImpl extends QuerydslRepositorySupport implements 
                                 .otherwise("").as("name"),
                         qMemberFunding.amount, qMemberFunding.createdAt,
                         qMemberFunding.isPublic, qMember.imageUrl))
+                .orderBy(qMemberFunding.createdAt.desc())
                 .fetch();
     }
 
