@@ -16,12 +16,14 @@ spring:
             allowedOrigins:
               - 'http://localhost:3000'
               - 'http://j10c206.p.ssafy.io:8090'
+              - 'http://j10c206.p.ssafy.io:8091'
               - 'http://j10c206.p.ssafy.io'
               - 'http://j10c206.p.ssafy.io:8081'
               - 'https://j10c206.p.ssafy.io'
               - 'https://j10c206.p.ssafy.io:443'
               - 'https://j10c206.p.ssafy.io:8090'
               - 'http://172.17.0.11:8081'
+              - 'http://172.17.0.11:8091'
               - 'http://172.17.0.11:8086'
               - 'http://172.17.0.11'
             allow-credentials: true # JWT 나 쿠키를 사용해 메시지를 보내야 할 경우 true
