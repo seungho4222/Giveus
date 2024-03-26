@@ -2,7 +2,7 @@ package com.giveus.funding.repository;
 
 import com.giveus.funding.dto.response.FundingDetailRes;
 import com.giveus.funding.dto.response.FundingListRes;
-import com.giveus.funding.dto.response.FundingParticipantsRes;
+import com.giveus.funding.dto.response.FundingParticipantListRes;
 import com.giveus.funding.dto.response.MyPageFundingListRes;
 import org.springframework.data.repository.NoRepositoryBean;
 
@@ -20,7 +20,8 @@ public interface FundingRepositoryCustom {
 
     Optional<FundingDetailRes> getFunding(int fundingNo);
 
-    List<FundingParticipantsRes> getParticipantList(int fundingNo);
+    List<FundingParticipantListRes> getParticipantList(int fundingNo);
 
     List<FundingListRes> getFundingByFundingTitle(String query);
+
 }

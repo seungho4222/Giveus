@@ -11,7 +11,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @Setter
 @Getter
-public class FundingParticipantsRes {
+public class FundingParticipantListRes {
 
     private int memberFundingNo;
     private String name;

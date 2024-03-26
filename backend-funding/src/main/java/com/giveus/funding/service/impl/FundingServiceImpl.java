@@ -3,10 +3,7 @@ package com.giveus.funding.service.impl;
 import com.giveus.funding.common.dto.CreateSuccessDto;
 import com.giveus.funding.dto.request.FundingCreateReq;
 import com.giveus.funding.dto.request.ReviewCreateReq;
-import com.giveus.funding.dto.response.FundingDetailRes;
-import com.giveus.funding.dto.response.FundingListRes;
-import com.giveus.funding.dto.response.FundingParticipantsRes;
-import com.giveus.funding.dto.response.MyPageFundingListRes;
+import com.giveus.funding.dto.response.*;
 import com.giveus.funding.entity.Funding;
 import com.giveus.funding.entity.FundingDetail;
 import com.giveus.funding.entity.Review;
@@ -19,6 +16,7 @@ import com.giveus.funding.repository.FundingRepository;
 import com.giveus.funding.service.FileService;
 import com.giveus.funding.service.FundingService;
 import com.giveus.funding.service.ReviewService;
+import com.giveus.funding.service.UsageHistoryService;
 import com.giveus.funding.transfer.ReviewTransfer;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -37,6 +35,7 @@ public class FundingServiceImpl implements FundingService {
     private final FundingDetailRepository fundingDetailRepository;
     private final FileService fileService;
     private final ReviewService reviewService;
+    private final UsageHistoryService usageHistoryService;
 
     private final String FOLDER_NAME = "funding";
 
@@ -117,7 +116,7 @@ public class FundingServiceImpl implements FundingService {
      * @inheritDoc
      */
     @Override
-    public List<FundingParticipantsRes> getParticipants(int fundingNo) {
+    public List<FundingParticipantListRes> getParticipants(int fundingNo) {
         return fundingRepository.getParticipantList(fundingNo);
     }
 
@@ -129,6 +128,9 @@ public class FundingServiceImpl implements FundingService {
         return fundingRepository.getFundingByFundingTitle(query);
     }
 
+    /**
+     * @inheritDoc
+     */
     @Override
     public CreateSuccessDto createReview(ReviewCreateReq reviewCreateReq, MultipartFile file) {
         // 펀딩마다 고유하게 갖고있는 regId로 펀딩 가져오기
@@ -159,6 +161,14 @@ public class FundingServiceImpl implements FundingService {
         }
 
         return new CreateSuccessDto(review.getReviewNo());
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public List<FundingUsageListRes> getUsageHistory(int fundingNo) {
+        return usageHistoryService.getUsageList(fundingNo);
     }
 
     private boolean isExistFundingReview(int fundingNo) {

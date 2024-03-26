@@ -2,7 +2,7 @@ package com.giveus.funding.repository.impl;
 
 import com.giveus.funding.dto.response.FundingDetailRes;
 import com.giveus.funding.dto.response.FundingListRes;
-import com.giveus.funding.dto.response.FundingParticipantsRes;
+import com.giveus.funding.dto.response.FundingParticipantListRes;
 import com.giveus.funding.dto.response.MyPageFundingListRes;
 import com.giveus.funding.entity.*;
 import com.giveus.funding.repository.FundingRepositoryCustom;
@@ -83,18 +83,18 @@ public class FundingRepositoryImpl extends QuerydslRepositorySupport implements 
     }
 
     @Override
-    public List<FundingParticipantsRes> getParticipantList(int fundingNo) {
-//        QMemberFunding qMemberFunding2 = QMemberFunding.memberFunding;
+    public List<FundingParticipantListRes> getParticipantList(int fundingNo) {
         return from(qMemberFunding)
                 .innerJoin(qMemberFunding.member, qMember)
                 .on(qMemberFunding.funding.fundingNo.eq(fundingNo))
-                .select(Projections.fields(FundingParticipantsRes.class,
+                .select(Projections.fields(FundingParticipantListRes.class,
                         qMemberFunding.memberFundingNo,
                         qMemberFunding.isPublic.when(true).then(qMember.name)
                                 .when(false).then(qMember.nickname)
                                 .otherwise("").as("name"),
                         qMemberFunding.amount, qMemberFunding.createdAt,
                         qMemberFunding.isPublic, qMember.imageUrl))
+                .orderBy(qMemberFunding.createdAt.desc())
                 .fetch();
     }
 
@@ -104,6 +104,7 @@ public class FundingRepositoryImpl extends QuerydslRepositorySupport implements 
                 .where(qFunding.title.contains(query))
                 .fetch();
     }
+
 
     /**
      * 펀딩 목록 JPQLQuery를 조회하는 메서드입니다.
