@@ -4,6 +4,7 @@ import com.giveus.funding.common.dto.CommonResponseBody;
 import com.giveus.funding.common.dto.CreateSuccessDto;
 import com.giveus.funding.common.swagger.SwaggerApiSuccess;
 import com.giveus.funding.dto.request.FundingCreateReq;
+import com.giveus.funding.dto.request.ReviewCreateReq;
 import com.giveus.funding.dto.response.FundingDetailRes;
 import com.giveus.funding.dto.response.FundingListRes;
 import com.giveus.funding.dto.response.FundingParticipantsRes;
@@ -61,12 +62,22 @@ public class FundingController {
                 .body(new CommonResponseBody<>(OK, fundingService.createFunding(fundingCreateReq, file)));
     }
 
-    @SwaggerApiSuccess(summary = "펀딩 기부자 명단 조회", implementation = FundingParticipantsRes.class)
+    @SwaggerApiSuccess(summary = "후원 내역 조회", implementation = FundingParticipantsRes.class)
     @GetMapping("/{fundingNo}/participants")
     public ResponseEntity<CommonResponseBody<List<FundingParticipantsRes>>> getFundingParticipants(@PathVariable int fundingNo) {
         return ResponseEntity
                 .status(OK)
                 .body(new CommonResponseBody<>(OK, fundingService.getParticipants(fundingNo)));
+    }
+
+
+    @SwaggerApiSuccess(summary = "펀딩 후기 등록", implementation = CreateSuccessDto.class)
+    @PostMapping("/review")
+    public ResponseEntity<CommonResponseBody<CreateSuccessDto>> createReview(
+            @Valid @RequestPart ReviewCreateReq reviewCreateReq, @RequestPart(required = false) MultipartFile file) {
+        return ResponseEntity
+                .status(OK)
+                .body(new CommonResponseBody<>(OK, fundingService.createReview(reviewCreateReq, file)));
     }
 
 }

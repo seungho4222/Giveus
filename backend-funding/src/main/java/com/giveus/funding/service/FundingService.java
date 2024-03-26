@@ -2,9 +2,11 @@ package com.giveus.funding.service;
 
 import com.giveus.funding.common.dto.CreateSuccessDto;
 import com.giveus.funding.dto.request.FundingCreateReq;
+import com.giveus.funding.dto.request.ReviewCreateReq;
 import com.giveus.funding.dto.response.FundingDetailRes;
 import com.giveus.funding.dto.response.FundingListRes;
 import com.giveus.funding.dto.response.FundingParticipantsRes;
+import com.giveus.funding.dto.response.MyPageFundingListRes;
 import com.giveus.funding.entity.Funding;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -17,6 +19,15 @@ public interface FundingService {
      * @return 조회한 펀딩 목록
      */
     List<FundingListRes> getFundingList();
+
+    /**
+     * 회원 고유 번호로 기부에 참여한 펀딩 목록을 조회하는 메서드입니다.
+     *
+     * @param memberNo 조회할 회원 고유 번호
+     * @return 조회한 펀딩 목록
+     */
+    List<MyPageFundingListRes> getFundingList(int memberNo);
+
 
     /**
      * 펀딩 번호로 펀딩 상세 조회하는 메서드입니다.
@@ -58,4 +69,13 @@ public interface FundingService {
      * @return 검색 결과 (펀딩 목록)
      */
     List<FundingListRes> getFundingSearchList(String query);
+
+    /**
+     * 펀딩 후기를 등록하는 메서드입니다.
+     *
+     * @param reviewCreateReq 등록할 후기 정보
+     * @param file 후기 사진
+     * @return 등록한 후기의 고유 번호
+     */
+    CreateSuccessDto createReview(ReviewCreateReq reviewCreateReq, MultipartFile file);
 }

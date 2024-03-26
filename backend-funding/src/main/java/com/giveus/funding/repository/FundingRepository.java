@@ -10,5 +10,4 @@ public interface FundingRepository extends JpaRepository<Funding, Integer>, Fund
 
     Optional<Funding> findFundingByRegId(String regId);
 
-
 }
