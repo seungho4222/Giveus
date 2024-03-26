@@ -58,3 +58,5 @@ pay:
   kakao:
     cid: TC0ONETIME
     secret-key: DEV8BED019BC61B73FE2595FB95EC2E08D8A824D
+  toss:
+    secret-key: "test_sk_yL0qZ4G1VOdvqNwkoXKoroWb2MQY:"

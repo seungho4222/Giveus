@@ -50,7 +50,7 @@ public class KakaoPayService {
         /** 요청 바디 */
         Map<String, Object> params = new HashMap<>();
         // partner_user_id, partner_order_id 는 결제 승인 요청에서도 동일해야함
-        String orderId = "F" + kakaoPayInfoDto.getFundingNo() + "M" + kakaoPayInfoDto.getMemberNo();
+        String orderId = "KAKAO_F" + kakaoPayInfoDto.getFundingNo() + "M" + kakaoPayInfoDto.getMemberNo();
         // 가맹점 코드, 10자
         params.put("cid", cid);
         // 가맹점 주문번호, 최대 100자
@@ -104,7 +104,7 @@ public class KakaoPayService {
      */
     public KakaoPayApproveResDto getApprove(String pgToken, int memberNo, int fundingNo) throws Exception {
 
-        String orderId = "F" + fundingNo + "M" + memberNo;
+        String orderId = "KAKAO_F" + fundingNo + "M" + memberNo;
         String tid = tidRepository.find(orderId)
                 .orElseThrow(() -> new Exception("결제 고유 번호가 존재하지 않습니다."));
 
@@ -157,7 +157,7 @@ public class KakaoPayService {
         /** 요청 바디 */
         Map<String, Object> params = new HashMap<>();
         // partner_user_id, partner_order_id 는 결제 승인 요청에서도 동일해야함
-        String orderId = "M" + rechargeReq.getMemberNo();
+        String orderId = "KAKAO_M" + rechargeReq.getMemberNo();
         // 가맹점 코드, 10자
         params.put("cid", cid);
         // 가맹점 주문번호, 최대 100자
@@ -205,7 +205,7 @@ public class KakaoPayService {
      * @throws Exception
      */
     public KakaoPayApproveResDto getApprove(String pgToken, int memberNo) throws Exception {
-        String orderId = "M" + memberNo;
+        String orderId = "KAKAO_M" + memberNo;
         String tid = tidRepository.find(orderId)
                 .orElseThrow(() -> new Exception("결제 고유 번호가 존재하지 않습니다."));
 
