@@ -1,15 +1,16 @@
-import Router from './router/router'
-import { RecoilRoot } from 'recoil'
+import { BrowserRouter } from 'react-router-dom'
 import { GlobalStyle } from './styles/globalStyle'
-
+import HomeRouter from './router/HomeRouter'
+import AuthRouter from './router/AuthRouter'
 
 function App() {
+  const user = false
 
   return (
-    <RecoilRoot>
-      <Router />
+    <BrowserRouter>
       <GlobalStyle />
-    </RecoilRoot>
+      {!user ? <AuthRouter /> : <HomeRouter />}
+    </BrowserRouter>
   )
 }
 

@@ -1,10 +1,12 @@
 package com.giveus.funding.service.impl;
 
 import com.giveus.funding.dto.response.ReviewDetailRes;
-import com.giveus.funding.dto.response.ReviewListRes;
 import com.giveus.funding.entity.Review;
+import com.giveus.funding.exception.ReviewNotFoundException;
+import com.giveus.funding.repository.FundingRepository;
 import com.giveus.funding.repository.ReviewRepository;
 import com.giveus.funding.service.ReviewService;
+import com.giveus.funding.transfer.ReviewTransfer;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,12 +21,16 @@ public class ReviewServiceImpl implements ReviewService {
 
     private final ReviewRepository reviewRepository;
 
+    private final FundingRepository fundingRepository;
+
     /**
      * @inheritDoc
      */
     @Override
-    public List<ReviewListRes> getReviewList(int count) {
-        return null;
+    public List<ReviewDetailRes> getReviewList(int count) {
+        List<ReviewDetailRes> reviews = reviewRepository.getReviewList(count);
+
+        return reviews;
     }
 
     /**
@@ -32,8 +38,9 @@ public class ReviewServiceImpl implements ReviewService {
      */
     @Override
     public ReviewDetailRes getReview(int fundingNo) {
-//        return reviewRepository.findReviewByFundingNo(fundingNo).orElseThrow(ReviewNotFoundException::new);
-        return null;
+        Review review = reviewRepository.findByFunding_FundingNo(fundingNo).orElseThrow(ReviewNotFoundException::new);
+
+        return ReviewTransfer.entityToDto(review);
     }
 
     @Override

@@ -1,20 +1,20 @@
-import Header from '@components/header/Header';
-import Footer from '@/components/footer/Footer';
-import { HomePageContainer } from './HomePage.styled';
-import FundingRegister from '../fundingregister/FundingRegister';
-import LoginPage from '../login/LoginPage';
-import SignUpPage from '../signup/SignUpPage';
-
+import HomeFooter from '@/components/home/HomeFooter'
+import HomeHeader from '@/components/home/HomeHeader'
+import HomeNav from '@/components/home/HomeNav'
+import * as h from '@pages/home/HomePage.styled'
+import { Outlet } from 'react-router'
 
 const HomePage = () => {
-    return (
-        <HomePageContainer>
-            <Header/>
-            <SignUpPage/>
-            <Footer/>
+  return (
+    <h.Container>
+      <HomeNav />
+      <h.Wrap>
+        <HomeHeader />
+        <Outlet />
+      </h.Wrap>
+      <HomeFooter />
+    </h.Container>
+  )
+}
 
-        </HomePageContainer>
-    );
-};
-
-export default HomePage;
+export default HomePage
