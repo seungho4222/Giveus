@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -16,7 +16,7 @@ public class FundingParticipantListRes {
     private int memberFundingNo;
     private String name;
     private int amount;
-    private LocalDate createdAt;
+    private LocalDateTime createdAt;
     private Boolean isPublic;
     private String imageUrl;
 }
