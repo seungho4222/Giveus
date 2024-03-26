@@ -1,7 +1,7 @@
 import { fetchFundingList } from '@/apis/funding'
 import Table from '@/components/fundingList/Table'
 import { fundingState } from '@/store/funding'
-import * as h from '@pages/home/fundingList/FundingListPage.styled'
+import * as f from '@pages/home/fundingList/FundingListPage.styled'
 import { useQuery } from '@tanstack/react-query'
 import { useEffect, useMemo } from 'react'
 import { useSetRecoilState } from 'recoil'
@@ -23,9 +23,9 @@ const FundingListPage = () => {
   const data = useMemo(() => dummyData, [])
 
   return (
-    <h.Container>
+    <f.Container>
       <Table columns={columns} data={data} />
-    </h.Container>
+    </f.Container>
   )
 }
 

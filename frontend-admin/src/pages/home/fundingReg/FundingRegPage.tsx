@@ -1,10 +1,10 @@
-
+import * as f from '@pages/home/fundingReg/FundingRegPage.styled'
 
 const FundingRegPage = () => {
   return (
-    <div>
+    <f.Container>
       FundingRegPage
-    </div>
+    </f.Container>
   );
 };
 
