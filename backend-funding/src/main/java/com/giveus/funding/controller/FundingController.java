@@ -61,6 +61,7 @@ public class FundingController {
                 .status(OK)
                 .body(new CommonResponseBody<>(OK, fundingService.createFunding(fundingCreateReq, file)));
     }
+
     @SwaggerApiSuccess(summary = "후원 내역 조회", implementation = FundingParticipantsRes.class)
     @GetMapping("/{fundingNo}/participants")
     public ResponseEntity<CommonResponseBody<List<FundingParticipantsRes>>> getFundingParticipants(@PathVariable int fundingNo) {
