@@ -7,50 +7,51 @@ const uuid = crypto.randomUUID()
 const invokeUrl = 'https://76mjhq6gjw.apigw.ntruss.com/custom/v1/29548/b76957781f2da1d145048bfe53cec9dff5380d89f1a338f6e71daad7f674490a/infer'
 const secretKey = 'U0tLVG1qcnNjZVNsYU9EaFBtUWtSaEx3c1pNVkR3b0I='
 
-export function requestWithBase64(base64Data:string) {
-  axios
-    .post(
-      invokeUrl, // APIGW Invoke URL
-      {
-        images: [
-          {
-            format: 'PNG', // file format
-            name: 'diagnosis', // image name
-            data: base64Data.split(',')[1], // image base64 string(only need part of data). Example: base64String.split(',')[1]
-            templateIds:[29548]
-          },
-        ],
-        requestId: uuid, // unique string
-        timestamp: Date.now(),
-        version: 'V2',
+// export function requestWithBase64(base64Data:string) {
+//   axios
+//     .post(
+//       invokeUrl, // APIGW Invoke URL
+//       {
+//         images: [
+//           {
+//             format: 'PNG', // file format
+//             name: 'diagnosis', // image name
+//             data: base64Data.split(',')[1], // image base64 string(only need part of data). Example: base64String.split(',')[1]
+//             templateIds:[29548]
+//           },
+//         ],
+//         requestId: uuid, // unique string
+//         timestamp: Date.now(),
+//         version: 'V2',
         
-      },
-      {
-        headers: {
-          'X-OCR-SECRET': secretKey, // Secret Key
-          'Content-Type':'application/json',
-          'Access-Control-Allow-Origin': 'http://localhost:3001',
-        //   'Access-Control-Allow-Methods': 'post',
-        },
-      },
-    )
-    .then(res => {
-      if (res.status === 200) {
-        console.log('requestWithBase64 response:', res.data)
-      }
-    })
-    .catch(e => {
-      console.warn('requestWithBase64 error', e.response)
-    })
-}
+//       },
+//       {
+//         headers: {
+//           'X-OCR-SECRET': secretKey, // Secret Key
+//           'Content-Type':'multipart/form-data',
+//         //   'Access-Control-Allow-Origin': 'http://localhost:3001',
+//         //   'Access-Control-Allow-Methods': 'post',
+//         },
+//       },
+//     )
+//     .then(res => {
+//       if (res.status === 200) {
+//         console.log('requestWithBase64 response:', res.data)
+//       }
+//     })
+//     .catch(e => {
+//       console.warn('requestWithBase64 error', e.response)
+//     })
+// }
 
-// export function requestWithFile() {
+// export function requestWithFile(imgURL:string) {
 //   const file = '' // image file object. Example: fs.createReadStream('./example.png')
 //   const message = {
 //     images: [
 //       {
-//         format: 'PNG', // file format
+//         format: 'png', // file format
 //         name: 'diagnosis', // file name
+//         templateIds:[29548]
 //       },
 //     ],
 //     requestId: uuid, // unique string
@@ -84,3 +85,52 @@ export function requestWithBase64(base64Data:string) {
 //     })
 // }
 
+
+export function requestWithFile(imageUrl: string) {
+  const message = {
+    images: [
+      {
+        format: 'png', // 파일 형식
+        name: 'diagnosis', // 파일 이름
+        templateIds: [29548] // 템플릿 ID
+      },
+    ],
+    requestId: uuid, // 고유한 문자열 생성
+    timestamp: Date.now(),
+    version: 'V2',
+  };
+
+  // 이미지 URL을 fetch를 사용하여 가져오기
+  fetch(imageUrl)
+    .then((response) => response.blob())
+    .then((blob) => {
+      const file = new File([blob], 'FundingRegister.png'); // 이미지 파일 생성
+      const formData = new FormData();
+      formData.append('file', file);
+      formData.append('message', JSON.stringify(message));
+
+      axios
+        .post(
+          invokeUrl, // APIGW Invoke URL
+          formData,
+          {
+            headers: {
+              'X-OCR-SECRET': secretKey, // Secret Key
+              'Content-Type': 'multipart/form-data', // Content-Type 설정
+            //   ...formData.getHeaders(),
+            },
+          },
+        )
+        .then((res) => {
+          if (res.status === 200) {
+            console.log('requestWithFile response:', res.data);
+          }
+        })
+        .catch((e) => {
+          console.warn('requestWithFile error', e.response);
+        });
+    })
+    .catch((error) => {
+      console.error('Error fetching image:', error);
+    });
+}

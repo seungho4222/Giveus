@@ -1,6 +1,6 @@
 import { useRef, useCallback, useState } from 'react';
 import Button from '../button/Button';
-import { requestWithBase64 } from '@/pages/fundingregister/OCR';
+import { requestWithFile } from '@/pages/fundingregister/OCR';
 
 const ImageUpload = () => {
   const inputRef = useRef<HTMLInputElement | null>(null);
@@ -36,7 +36,7 @@ const ImageUpload = () => {
   const handleOCRButtonClick = useCallback(() => {
     if (imageUrl) { // 이미지 URL이 존재하는 경우에만 requestWithBase64 호출
       console.log(imageUrl);
-      requestWithBase64(imageUrl);
+      requestWithFile(imageUrl);
     }
   }, [imageUrl]);
 
