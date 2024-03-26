@@ -14,7 +14,7 @@ import java.util.List;
 
 import static org.springframework.http.HttpStatus.OK;
 
-@Tag(name = "마이페이지 API", description = "User")
+@Tag(name = "마이페이지 API")
 @RestController
 @RequestMapping("/api/v1/funding/mypage")
 @RequiredArgsConstructor
