@@ -19,10 +19,13 @@ public class MemberFundingServiceImpl implements MemberFundingService {
 
     private final MemberFundingRepository memberFundingRepository;
 
+    /**
+     * @inheritDoc
+     */
     @Override
     @Transactional
     public int save(int memberNo, int fundingNo, int paymentNo, Integer pointUsageNo,
-                    String approvedAt, int total, boolean opened) {
+                    String createdAt, int total, boolean opened) {
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
 
@@ -31,7 +34,7 @@ public class MemberFundingServiceImpl implements MemberFundingService {
                 .fundingNo(fundingNo)
                 .paymentNo(paymentNo)
                 .pointNo(pointUsageNo)
-                .createdAt(LocalDateTime.parse(approvedAt, formatter))
+                .createdAt(LocalDateTime.parse(createdAt, formatter))
                 .amount(total)
                 .isPublic(opened)
                 .build();
@@ -39,6 +42,9 @@ public class MemberFundingServiceImpl implements MemberFundingService {
         return memberFundingRepository.save(memberFunding).getMemberFundingNo();
     }
 
+    /**
+     * @inheritDoc
+     */
     @Override
     @Transactional
     public int save(PointUsageRequest request, int pointNo, LocalDateTime now) {
