@@ -44,13 +44,13 @@ public class FundingServiceImpl implements FundingService {
      * @inheritDoc
      */
     @Override
-    public List<FundingListRes> getFundingList() {
-        return fundingRepository.getFundingList();
+    public List<FundingListRes> getFundingList(String sort, Integer limit) {
+        return fundingRepository.getFundingList(sort, limit);
     }
 
     @Override
-    public List<MyPageFundingListRes> getFundingList(int memberNo) {
-        return fundingRepository.getFundingList(memberNo);
+    public List<MyPageFundingListRes> getMemberFundingList(int memberNo) {
+        return fundingRepository.getMemberFundingList(memberNo);
     }
 
     /**
@@ -116,8 +116,8 @@ public class FundingServiceImpl implements FundingService {
      * @inheritDoc
      */
     @Override
-    public List<FundingParticipantListRes> getParticipants(int fundingNo) {
-        return fundingRepository.getParticipantList(fundingNo);
+    public List<FundingParticipantListRes> getParticipantsByFunding(int fundingNo) {
+        return fundingRepository.getParticipantListByFunding(fundingNo);
     }
 
     /**
@@ -169,6 +169,16 @@ public class FundingServiceImpl implements FundingService {
     @Override
     public List<FundingUsageListRes> getUsageHistory(int fundingNo) {
         return usageHistoryService.getUsageList(fundingNo);
+    }
+
+    @Override
+    public DonationAmountRes getDonationAmount() {
+        return fundingRepository.getDonationAmount();
+    }
+
+    @Override
+    public List<FundingParticipantListRes> getParticipants(int limit) {
+        return fundingRepository.getParticipantList(limit);
     }
 
     private boolean isExistFundingReview(int fundingNo) {

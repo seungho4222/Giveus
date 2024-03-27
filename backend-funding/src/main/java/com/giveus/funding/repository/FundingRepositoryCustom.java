@@ -1,9 +1,6 @@
 package com.giveus.funding.repository;
 
-import com.giveus.funding.dto.response.FundingDetailRes;
-import com.giveus.funding.dto.response.FundingListRes;
-import com.giveus.funding.dto.response.FundingParticipantListRes;
-import com.giveus.funding.dto.response.MyPageFundingListRes;
+import com.giveus.funding.dto.response.*;
 import org.springframework.data.repository.NoRepositoryBean;
 
 import java.util.List;
@@ -15,13 +12,16 @@ import java.util.Optional;
  */
 @NoRepositoryBean
 public interface FundingRepositoryCustom {
-    List<FundingListRes> getFundingList();
-    List<MyPageFundingListRes> getFundingList(int memberNo);
+    List<FundingListRes> getFundingList(String sort, Integer limit);
+    List<MyPageFundingListRes> getMemberFundingList(int memberNo);
 
     Optional<FundingDetailRes> getFunding(int fundingNo);
 
-    List<FundingParticipantListRes> getParticipantList(int fundingNo);
+    List<FundingParticipantListRes> getParticipantListByFunding(int fundingNo);
 
     List<FundingListRes> getFundingByFundingTitle(String query);
 
+    DonationAmountRes getDonationAmount();
+
+    List<FundingParticipantListRes> getParticipantList(int limit);
 }

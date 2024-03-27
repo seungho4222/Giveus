@@ -15,7 +15,7 @@ public interface FundingService {
      *
      * @return 조회한 펀딩 목록
      */
-    List<FundingListRes> getFundingList();
+    List<FundingListRes> getFundingList(String sort, Integer limit);
 
     /**
      * 회원 고유 번호로 기부에 참여한 펀딩 목록을 조회하는 메서드입니다.
@@ -23,7 +23,7 @@ public interface FundingService {
      * @param memberNo 조회할 회원 고유 번호
      * @return 조회한 펀딩 목록
      */
-    List<MyPageFundingListRes> getFundingList(int memberNo);
+    List<MyPageFundingListRes> getMemberFundingList(int memberNo);
 
 
     /**
@@ -57,7 +57,7 @@ public interface FundingService {
      * @param fundingNo 조회할 펀딩 고유 번호
      * @return 펀딩 참여자 목록
      */
-    List<FundingParticipantListRes> getParticipants(int fundingNo);
+    List<FundingParticipantListRes> getParticipantsByFunding(int fundingNo);
 
     /**
      * 펀딩명으로 펀딩 검색 결과를 조회하는 메서드입니다.
@@ -83,4 +83,19 @@ public interface FundingService {
      * @return 펀딩 고융 번호 기준 기금 사용 내역
      */
     List<FundingUsageListRes> getUsageHistory(int fundingNo);
+
+    /**
+     * 누적 기부 금액을 조회하는 메서드입니다.
+     * 
+     * @return 누적 기부 금액
+     */
+    DonationAmountRes getDonationAmount();
+
+    /**
+     * 최근 후원에 참여한 참여자 전체 목록을 조회하는 메서드입니다.
+     * 
+     * @param limit 조회할 갯수
+     * @return 조회한 참여자 전체 목록
+     */
+    List<FundingParticipantListRes> getParticipants(int limit);
 }
