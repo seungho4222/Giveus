@@ -1,3 +1,5 @@
+import { Dispatch, SetStateAction } from 'react'
+
 export type FundingType = {
   fundingNo: number
   registrationNumber: string
@@ -23,7 +25,7 @@ export type FundingDetailType = {
   status: string
   opinion: string
   targetAmount: number
-  endData: string
+  endDate: string
   title: string
   phone: string
   isRegReview: boolean
@@ -31,4 +33,28 @@ export type FundingDetailType = {
   isRegDetail: boolean
   content: string
   thumbnailUrl: string
+}
+
+export type RegDataType = {
+  phone: string
+  targetAmount: number
+  startDate: string
+  endDate: string
+  issueNumber: string
+  registrationNumber: string
+  patientName: string
+  birth: string
+  gender: string
+  diseaseName: string
+  diseaseCode: string
+  diagnosisDate: string
+  opinion: string
+}
+
+export type RegInputType = {
+  id: string
+  label: string
+  placeholder: string
+  value: string
+  setValue: Dispatch<SetStateAction<RegDataType>>
 }

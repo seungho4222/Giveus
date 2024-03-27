@@ -35,7 +35,7 @@ const index = () => {
       <d.Row>{Value('치료내용', fundingDetail.opinion)}</d.Row>
       <d.Row>
         {Value('펀딩 목표 금액', fundingDetail.targetAmount)}
-        {Value('펀딩 종료일', fundingDetail.endData)}
+        {Value('펀딩 종료일', fundingDetail.endDate)}
       </d.Row>
     </d.Container>
   )
