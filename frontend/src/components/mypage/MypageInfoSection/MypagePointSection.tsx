@@ -1,20 +1,10 @@
-import { myPointListState } from '@stores/point'
+import { myPointState } from '@stores/point'
 import * as m from '@components/mypage/MypageInfoSection/MypagePointSection.styled'
 import { useRecoilValue } from 'recoil'
+import { formatAmount } from '@utils/format'
 
-const MypagePointSection = (props: { memberNo: number }) => {
-  const myPointsList = useRecoilValue(myPointListState)
-
-  const { memberNo } = props
-
-  console.log(myPointsList)
-
-  const countPoint = () => {
-    let total = 0
-
-    console.log(memberNo)
-    return '20,000'
-  }
+const MypagePointSection = () => {
+  const myPoint = useRecoilValue(myPointState)
 
   return (
     <m.Container>
@@ -22,7 +12,7 @@ const MypagePointSection = (props: { memberNo: number }) => {
         <img src="/icon/icon_coins.png" />
         <span>보유 포인트</span>
       </m.Top>
-      <m.PointBox>{countPoint()} P</m.PointBox>
+      <m.PointBox>{formatAmount(myPoint)} P</m.PointBox>
       <m.Desc>* 충전한 포인트는 원화로 환전할 수 없습니다</m.Desc>
     </m.Container>
   )
