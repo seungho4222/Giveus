@@ -11,13 +11,6 @@ const HomePage = () => {
       <HomeNav />
       <h.Wrap>
         <HomeHeader />
-
-        <div style={{display:'flex', justifyContent:'center', alignItems:'center'}}>
-        <FundingRegister/>
-        </div>
-        
-        
-        
         <Outlet />
       </h.Wrap>
       <HomeFooter />
