@@ -7,6 +7,7 @@ import { userState } from '@stores/user'
 import { useRecoilValue } from 'recoil'
 import HomeTopSection from '@components/home/HomeTopSection'
 import HomeContributors from '@components/home/HomeContributors'
+import HomeTotalAmount from '@components/home/HomeTotalAmount'
 
 const HomePage = () => {
   const userInfo = useRecoilValue(userState)
@@ -22,6 +23,7 @@ const HomePage = () => {
         <HomeHeader />
         <HomeTopSection />
         <HomeContributors />
+        <HomeTotalAmount />
       </Layout>
       <Navbar current="home" />
     </>

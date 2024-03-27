@@ -10,7 +10,8 @@ export const Container = styled.header`
   top: 0;
   height: 45px;
   z-index: 100;
-  background-color: #fff;
+  background-color: rgba(255, 255, 255, 0.8);
+
   @media only screen and (min-width: 430px) {
     width: 430px;
   }

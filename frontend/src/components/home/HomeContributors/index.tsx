@@ -7,13 +7,15 @@ import { useNavigate } from 'react-router-dom'
 
 const Index = () => {
   const { data } = useQuery<RecentParticipantType[]>({
-    queryKey: ['fetchMemberPoints'],
+    queryKey: ['fetchRecentParticipants'],
     queryFn: () => fetchRecentParticipants(),
   })
 
   const navigate = useNavigate()
 
   const goFunding = () => navigate('/funding')
+
+  console.log(data)
 
   return (
     <h.Container>
