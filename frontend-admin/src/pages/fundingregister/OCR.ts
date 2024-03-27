@@ -2,33 +2,37 @@
 // import * as FormData from 'form-data';
 // const FormData = require('form-data');
 import axios from 'axios'
-
 const uuid = crypto.randomUUID()
 const invokeUrl = 'https://76mjhq6gjw.apigw.ntruss.com/custom/v1/29548/b76957781f2da1d145048bfe53cec9dff5380d89f1a338f6e71daad7f674490a/infer'
 const secretKey = 'U0tLVG1qcnNjZVNsYU9EaFBtUWtSaEx3c1pNVkR3b0I='
 
 
 export function requestWithBase64(base64Data:string) {
+  const message = {
+    version: 'V2',
+    requestId: uuid, // unique string
+    timestamp: 0,
+    lang: 'ko',
+    images: [
+      {
+        format: 'png',
+        data: base64Data, // image base64 string(only need part of data). Example: base64String.split(',')[1]
+        name: 'diagnosis',
+        templateIds: [29548]
+      },
+    ],
+  };
+  console.log('데이터',base64Data)
+  console.log('메시지',message)
+
   axios
     .post(
       invokeUrl, // APIGW Invoke URL
-      {
-        images: [
-          {
-            format: 'PNG', // file format
-            name: 'diagnosis', // image name
-            data: base64Data.split(',')[1], // image base64 string(only need part of data). Example: base64String.split(',')[1]
-            templateIds:[29548]
-          },
-        ],
-        requestId: uuid, // unique string
-        timestamp: Date.now(),
-        version: 'V2',
-        
-      },
+      message,
       {
         headers: {
           'X-OCR-SECRET': secretKey, // Secret Key
+          // 'Content-Type': 'application/json',
         },
       },
     )

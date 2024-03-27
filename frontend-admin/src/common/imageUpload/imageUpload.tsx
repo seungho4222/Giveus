@@ -4,7 +4,7 @@ import { requestWithFile, requestWithBase64 } from '@/pages/fundingregister/OCR'
 
 const ImageUpload = () => {
   const inputRef = useRef<HTMLInputElement | null>(null);
-  const [imageUrl, setImageUrl] = useState<string | null>(null);
+  const [imageData, setImageData] = useState<string | null>(null);
   const [isImageLoaded, setIsImageLoaded] = useState<boolean>(false);
 
   const onUploadImage = useCallback(
@@ -17,7 +17,7 @@ const ImageUpload = () => {
       reader.onload = () => {
         if (reader.result) {
           const base64Data = reader.result.toString();
-          setImageUrl(base64Data);
+          setImageData(base64Data);
           setIsImageLoaded(true); // 이미지 로드 완료 시 상태 변경
         }
       };
@@ -34,17 +34,24 @@ const ImageUpload = () => {
   }, []);
 
   const handleOCRButtonClick = useCallback(() => {
-    if (imageUrl) { // 이미지 URL이 존재하는 경우에만 requestWithBase64 호출
-      console.log(imageUrl);
-      requestWithBase64(imageUrl);
+    if (imageData) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        if (reader.result) {
+          const base64Data = reader.result.toString().split(',')[1];
+          requestWithBase64(base64Data);
+          // console.log('63463나여깃어', base64Data)
+        }
+      };
+      reader.readAsDataURL(new Blob([imageData]));
     }
-  }, [imageUrl]);
+  }, [imageData]);
 
   return (
     <>
-      {imageUrl ? (
+      {imageData ? (
         <img
-          src={imageUrl}
+          src={imageData}
           alt="Uploaded"
           style={{
             maxWidth: '300px',
