@@ -8,7 +8,7 @@ export const Container = styled.div`
   margin-left: 5%;
   position: relative;
   overflow: hidden;
-  padding-bottom: 60px;
+  padding-bottom: 40px;
 `
 
 export const Title = styled.h1`
