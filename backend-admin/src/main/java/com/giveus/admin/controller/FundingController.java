@@ -22,19 +22,27 @@ import static org.springframework.http.HttpStatus.OK;
 
 @Tag(name = "관리자 펀딩 API", description = "Admin")
 @RestController
-@RequestMapping("/api/v1/admin/funding")
+@RequestMapping("/api/v1/admin")
 @RequiredArgsConstructor
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class FundingController {
 
     private final FundingService fundingService;
 
-    @SwaggerApiSuccess(summary = "펀딩 전체 조회", implementation = FundingListRes.class)
-    @GetMapping
-    public ResponseEntity<CommonResponseBody<List<FundingListRes>>> getFundingList(@RequestParam int adminNo) {
+    @SwaggerApiSuccess(summary = "펀딩 전체 목록 조회", implementation = FundingListRes.class)
+    @GetMapping("/{adminNo}/funding")
+    public ResponseEntity<CommonResponseBody<List<FundingListRes>>> getFundingList(@PathVariable int adminNo) {
         return ResponseEntity
                 .status(OK)
                 .body(new CommonResponseBody<>(OK, fundingService.getFundingList(adminNo)));
+    }
+
+    @SwaggerApiSuccess(summary = "펀딩 상세 조회", implementation = FundingDetailsRes.class)
+    @GetMapping("funding/{fundingNo}")
+    public ResponseEntity<CommonResponseBody<FundingDetailsRes>> getFunding(@PathVariable int fundingNo) {
+        return ResponseEntity
+                .status(OK)
+                .body(new CommonResponseBody<>(OK, fundingService.getFunding(fundingNo)));
     }
 
     @SwaggerApiSuccess(summary = "펀딩 1차 등록", implementation = FundingDetailsRes.class)
