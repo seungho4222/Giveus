@@ -4,6 +4,7 @@ import styled from 'styled-components'
 export const Container = styled.div`
   display: flex;
   margin-bottom: 10px;
+  cursor: pointer;
 `
 
 export const Image = styled.img`
@@ -12,7 +13,7 @@ export const Image = styled.img`
   border-radius: 10px;
 `
 
-export const InfoWrap = styled.div`
+export const InfoWrap = styled.div<{ $flag: boolean }>`
   display: flex;
   flex-direction: column;
   padding: 8px;
@@ -20,7 +21,7 @@ export const InfoWrap = styled.div`
   font-weight: 600;
 
   span {
-    color: ${colors.blue01};
+    color: ${props => (props.$flag ? colors.orange01 : colors.blue01)};
     font-size: 0.8em;
     font-weight: 600;
   }
@@ -39,17 +40,17 @@ export const Amount = styled.div`
   color: ${colors.gray05};
 `
 
-export const Percent = styled.div`
+export const Percent = styled.div<{ $flag: boolean }>`
   display: flex;
   margin: auto 0;
   width: 56px;
   height: 56px;
   align-items: center;
   justify-content: center;
-  border: 1px solid ${colors.blue01};
+  border: 1px solid ${props => (props.$flag ? colors.orange01 : colors.blue01)};
   border-radius: 100%;
   margin-left: auto;
   font-size: 0.9em;
-  color: ${colors.blue01};
+  color: ${props => (props.$flag ? colors.orange01 : colors.blue01)};
   font-weight: 700;
 `
