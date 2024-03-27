@@ -1,16 +1,21 @@
+import { RecentParticipantType } from '@/types/fundingType'
+import { elapsedTime } from '@utils/dateMethods'
+import { formatAmount } from '@utils/format'
 import * as c from '@components/home/HomeContributors/ContributorInfo.styled'
 
-const ContributorInfo = () => {
+const ContributorInfo = (props: { item: RecentParticipantType }) => {
+  const { item } = props
+
   return (
     <c.Container>
-      <c.Profile src="/img/img_data.png" alt="" />
+      <c.Profile src={item.imageUrl} alt="" />
       <c.InfoWrap>
-        <b>익명의 쿼카</b>
-        <div>500,000원</div>
+        <b>{item.name}</b>
+        <div>{formatAmount(item.amount)}원</div>
       </c.InfoWrap>
       <c.DateWrap>
-        <div>2024-03-23</div>
-        <div>방금전</div>
+        <div>{item.createdAt.split('T')[0]}</div>
+        <div>{elapsedTime(item.createdAt)}</div>
       </c.DateWrap>
     </c.Container>
   )
