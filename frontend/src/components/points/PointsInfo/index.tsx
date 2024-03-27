@@ -1,7 +1,11 @@
+import { myPointState } from '@stores/point'
 import * as p from '@components/points/PointsInfo/PointsInfo.styled'
 import { useNavigate } from 'react-router'
+import { useRecoilValue } from 'recoil'
+import { formatAmount } from '@utils/format'
 
 const Index = () => {
+  const myPoint = useRecoilValue(myPointState)
   const navigate = useNavigate()
 
   const goRechargePage = () => navigate('/mypage/recharge')
@@ -13,7 +17,8 @@ const Index = () => {
         <span>내 포인트</span>
       </p.Top>
       <p.PointBox>
-        20,000 P <p.ChargeButton onClick={goRechargePage}>충전</p.ChargeButton>
+        {formatAmount(myPoint)} P
+        <p.ChargeButton onClick={goRechargePage}>충전</p.ChargeButton>
       </p.PointBox>
     </p.Container>
   )

@@ -1,3 +1,4 @@
+import { sizes } from '@styles/theme'
 import styled from 'styled-components'
 
 export const Container = styled.div`
@@ -16,8 +17,16 @@ export const Title = styled.div`
 `
 
 export const Form = styled.form`
-  width: 375px;
+  width: 100%;
+  min-width: ${sizes.minWidth};
+  max-width: ${sizes.maxWidth};
   position: fixed;
   bottom: 0;
   padding: 1em;
+  @media only screen and (min-width: 430px) {
+    width: 430px;
+  }
+  @media only screen and (min-width: 600px) {
+    width: 375px;
+  }
 `

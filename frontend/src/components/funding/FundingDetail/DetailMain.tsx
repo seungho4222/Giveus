@@ -12,7 +12,23 @@ import { formatAmount } from '@/utils/format'
 const DetailMain = () => {
   const fundingDetail = useRecoilValue(fundingDetailState)
   const review: boolean = true // test
-  const [open, setOpen] = useState<boolean>(false)
+  const [donateOpen, setDonateOpen] = useState<boolean>(false)
+  const [reviewOpen, setReviewOpen] = useState<boolean>(false)
+
+  const statusButton = () =>
+    fundingDetail.status === '진행중' ? (
+      <FullButton
+        text="후원하기"
+        onClick={() => setDonateOpen(true)}
+        disabled={false}
+      />
+    ) : (
+      <FullButton
+        text={review ? '후기 확인하기' : '작성된 후기가 없습니다'}
+        onClick={() => setReviewOpen(true)}
+        disabled={!review}
+      />
+    )
 
   return (
     <d.Container>
@@ -38,31 +54,16 @@ const DetailMain = () => {
         <d.Note>* 모금 종료시 전액 일시 전달됩니다</d.Note>
       </d.DetailInfo>
       <d.DetailDesc>{fundingDetail.content}</d.DetailDesc>
-      <d.Button>
-        <FullButton
-          text={
-            fundingDetail.status === '진행중'
-              ? '후원하기'
-              : review
-              ? '후기 확인하기'
-              : '작성된 후기가 없습니다'
-          }
-          disabled={fundingDetail.status === '진행완료' && !review}
-          onClick={() => setOpen(true)}
-        />
-      </d.Button>
-      {open && (
-        <Modal
-          name={'후기'}
-          children={
-            fundingDetail.status === '진행완료' && review ? (
-              <Review />
-            ) : (
-              <Donate />
-            )
-          }
-          onClose={() => setOpen(false)}
-        />
+      <d.Button>{statusButton()}</d.Button>
+      {donateOpen && (
+        <Modal name="후원하기" onClose={() => setDonateOpen(false)}>
+          <Donate />
+        </Modal>
+      )}
+      {reviewOpen && (
+        <Modal name="후기" onClose={() => setReviewOpen(false)}>
+          <Review />
+        </Modal>
       )}
     </d.Container>
   )
