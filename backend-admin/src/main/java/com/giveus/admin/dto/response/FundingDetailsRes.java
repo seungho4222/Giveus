@@ -41,9 +41,9 @@ public class FundingDetailsRes {
 
     private LocalDate endDate;
 
-    private LocalDate totalAmount;
+    private int totalAmount;
 
-    private LocalDate targetAmount;
+    private int targetAmount;
 
     private LocalDate createdAt;
 

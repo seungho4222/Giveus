@@ -38,33 +38,33 @@ public class FundingRepositoryImpl extends QuerydslRepositorySupport
         return from(qFunding)
                 .leftJoin(qFundingDetail).on(qFunding.eq(qFundingDetail.funding))
                 .leftJoin(qReview).on(qFunding.eq(qReview.funding))
-                .leftJoin(qUsageHistory).on(qFunding.eq(qUsageHistory.funding))
                 .select(Projections.fields(FundingListRes.class, qFunding.fundingNo,
                         qFunding.registrationNumber, qFunding.patientName,
                         qFunding.birth, qFunding.diseaseName,
                         ExpressionUtils.as(from(qFundingStatusHistory)
                                 .select(qFundingStatusHistory.status)
                                 .where(qFundingStatusHistory.fundingStatusHistoryNo.eq(
-                                        from( qFundingStatusHistory2)
+                                        from(qFundingStatusHistory2)
                                                 .select(qFundingStatusHistory2.fundingStatusHistoryNo.max())
                                                 .where(qFundingStatusHistory2.funding.eq(qFunding)))
                                 ), "status"), qFunding.targetAmount,
                         ExpressionUtils.as(ExpressionUtils.isNotNull(qFundingDetail.fundingDetailNo), "isRegDetail"),
                         ExpressionUtils.as(ExpressionUtils.isNotNull(qReview.reviewNo), "isRegReview"),
-                        ExpressionUtils.as(ExpressionUtils.isNotNull(qUsageHistory.usageHistoryNo), "isRegUsage"))
+                        ExpressionUtils.as(ExpressionUtils.isNotNull(from(qUsageHistory)
+                                .select(qUsageHistory.usageHistoryNo.max())
+                                .where(qUsageHistory.funding.eq(qFunding))), "isRegUsage"))
                 )
                 .where(qFunding.adminNo.eq(adminNo))
                 .fetch();
     }
 
+
     @Override
     public FundingDetailsRes getFunding(int fundingNo) {
         QFundingStatusHistory qFundingStatusHistory2 = QFundingStatusHistory.fundingStatusHistory;
-
         return from(qFunding)
                 .leftJoin(qFundingDetail).on(qFunding.eq(qFundingDetail.funding))
                 .leftJoin(qReview).on(qFunding.eq(qReview.funding))
-                .leftJoin(qUsageHistory).on(qFunding.eq(qUsageHistory.funding))
                 .select(Projections.fields(FundingDetailsRes.class, qFunding.fundingNo,
                         qFunding.issueNumber, qFunding.registrationNumber, qFunding.patientName,
                         qFunding.birth,
@@ -79,14 +79,16 @@ public class FundingRepositoryImpl extends QuerydslRepositorySupport
                         ExpressionUtils.as(from(qMemberFunding)
                                 .select(qMemberFunding.amount.sum())
                                 .where(qMemberFunding.funding.fundingNo.eq(fundingNo)), "totalAmount"),
-                        qFunding.targetAmount,qFunding.createdAt, qFunding.phone,
+                        qFunding.targetAmount, qFunding.createdAt, qFunding.phone,
                         ExpressionUtils.as(ExpressionUtils.isNotNull(qFundingDetail.fundingDetailNo), "isRegDetail"),
                         ExpressionUtils.as(ExpressionUtils.isNotNull(qReview.reviewNo), "isRegReview"),
-                        ExpressionUtils.as(ExpressionUtils.isNotNull(qUsageHistory.usageHistoryNo), "isRegUsage"),
+                        ExpressionUtils.as(ExpressionUtils.isNotNull(from(qUsageHistory)
+                                .select(qUsageHistory.usageHistoryNo.max())
+                                .where(qUsageHistory.funding.eq(qFunding))), "isRegUsage"),
                         qFundingDetail.content, qFundingDetail.thumbnailUrl)
                 )
                 .where(qFunding.fundingNo.eq(fundingNo))
-                .fetchJoin().fetchOne();
+                .fetchOne();
     }
 
 }
