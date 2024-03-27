@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Setter
@@ -13,15 +15,23 @@ public class FundingListRes {
 
     private int fundingNo;
 
-    private String issueNumber;
-
     private String registrationNumber;
 
     private String patientName;
 
+    private LocalDate birth;
+
+    private String diseaseName;
+
     private String status;
 
-    private String title;
+    private int targetAmount;
 
-    private Boolean isCompleted;
+    private Boolean isRegDetail;
+
+    private Boolean isRegReview;
+
+    private Boolean isRegUsage;
+
+
 }

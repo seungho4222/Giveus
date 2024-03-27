@@ -3,6 +3,7 @@ package com.giveus.admin.service.impl;
 import com.giveus.admin.common.dto.CreateSuccessDto;
 import com.giveus.admin.dto.request.FundingCreateReq;
 import com.giveus.admin.dto.request.FundingUsageCreateReq;
+import com.giveus.admin.dto.response.FundingDetailsRes;
 import com.giveus.admin.dto.response.FundingListRes;
 import com.giveus.admin.entity.Funding;
 import com.giveus.admin.entity.FundingStatusHistory;
@@ -74,6 +75,11 @@ public class FundingServiceImpl implements FundingService {
     @Transactional
     public CreateSuccessDto createFundingUsage(FundingUsageCreateReq req) {
         return usageHistoryService.createFundingUsage(findFundingEntity(req.getFundingNo()), req);
+    }
+
+    @Override
+    public FundingDetailsRes getFunding(int fundingNo) {
+        return fundingRepository.getFunding(fundingNo);
     }
 
 }
