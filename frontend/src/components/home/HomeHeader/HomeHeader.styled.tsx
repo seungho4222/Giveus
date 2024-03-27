@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { colors, sizes } from '@styles/theme'
+import { sizes } from '@styles/theme'
 
 export const Container = styled.header`
   display: flex;
@@ -28,7 +28,11 @@ export const Wrap = styled.div`
 `
 
 export const Logo = styled.div`
-  font-weight: 700;
-  font-size: 1.2em;
-  color: ${colors.blue01};
+  width: 100px;
+  height: 35px;
+
+  img {
+    width: 100%;
+    height: 100%;
+  }
 `
