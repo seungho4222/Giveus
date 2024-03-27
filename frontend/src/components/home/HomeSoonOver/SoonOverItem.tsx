@@ -1,14 +1,19 @@
-import { formatAmount } from '@/utils/format'
+import { FundingType } from '@/types/fundingType'
+import { formatAmount } from '@utils/format'
 import * as s from '@components/home/HomeSoonOver/SoonOverItem.styled'
 
-const SoonOverItem = () => {
+const SoonOverItem = (props: { item: FundingType }) => {
+  const { item } = props
+
   return (
     <s.Container>
-      <s.Image src="/img/img_data.png" alt="" />
+      <s.Image src={item.thumbnailUrl} alt="" />
       <s.InfoWrap>
-        <span>모금 임박</span>
-        <s.Name>소아암 6세(남) 펀딩</s.Name>
-        <s.Amount>모금액 {formatAmount(50000000)}원</s.Amount>
+        <span>
+          {item.totalAmount === item.targetAmount ? '모금 완료' : '모금 임박'}
+        </span>
+        <s.Name>{item.title}</s.Name>
+        <s.Amount>모금액 {formatAmount(item.totalAmount)}원</s.Amount>
       </s.InfoWrap>
       <s.Percent>98%</s.Percent>
     </s.Container>
