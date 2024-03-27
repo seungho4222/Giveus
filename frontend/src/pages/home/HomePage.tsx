@@ -8,6 +8,7 @@ import { useRecoilValue } from 'recoil'
 import HomeTopSection from '@components/home/HomeTopSection'
 import HomeContributors from '@components/home/HomeContributors'
 import HomeTotalAmount from '@components/home/HomeTotalAmount'
+import HomeReview from '@components/home/HomeReview'
 
 const HomePage = () => {
   const userInfo = useRecoilValue(userState)
@@ -24,6 +25,7 @@ const HomePage = () => {
         <HomeTopSection />
         <HomeContributors />
         <HomeTotalAmount />
+        <HomeReview />
       </Layout>
       <Navbar current="home" />
     </>

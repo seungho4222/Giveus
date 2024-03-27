@@ -15,8 +15,6 @@ const Index = () => {
 
   const goFunding = () => navigate('/funding')
 
-  console.log(data)
-
   return (
     <h.Container>
       <h.Title>실시간 기부 참여자</h.Title>
