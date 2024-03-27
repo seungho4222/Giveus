@@ -1,12 +1,10 @@
 package com.giveus.funding.repository.impl;
 
-import com.giveus.funding.dto.response.FundingDetailRes;
-import com.giveus.funding.dto.response.FundingListRes;
-import com.giveus.funding.dto.response.FundingParticipantListRes;
-import com.giveus.funding.dto.response.MyPageFundingListRes;
+import com.giveus.funding.dto.response.*;
 import com.giveus.funding.entity.*;
 import com.giveus.funding.repository.FundingRepositoryCustom;
 import com.querydsl.core.types.ExpressionUtils;
+import com.querydsl.core.types.OrderSpecifier;
 import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.JPQLQuery;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
@@ -31,14 +29,37 @@ public class FundingRepositoryImpl extends QuerydslRepositorySupport implements 
     }
 
     @Override
-    public List<FundingListRes> getFundingList() {
+    public List<FundingListRes> getFundingList(String sort, Integer limit) {
 
         return getFundingListResJPQLQuery()
+                .orderBy()
+                .limit(isLimit(limit))
                 .fetch();
     }
 
+    private OrderSpecifier<?> isSorting(String sort) {
+        if (sort.isBlank()) {
+            return null;
+        }
+
+//        if (sort.equals("startDate")) {
+//            return qFunding.startDate
+//        }
+//
+//        if (sort.equals("endDate")) {
+//
+//        }
+
+        return null;
+    }
+
+    private long isLimit(Integer limit) {
+        return 0;
+    }
+
+
     @Override
-    public List<MyPageFundingListRes> getFundingList(int memberNo) {
+    public List<MyPageFundingListRes> getMemberFundingList(int memberNo) {
 
         QFundingStatusHistory qFundingStatusHistory2 = QFundingStatusHistory.fundingStatusHistory;
 
@@ -83,7 +104,7 @@ public class FundingRepositoryImpl extends QuerydslRepositorySupport implements 
     }
 
     @Override
-    public List<FundingParticipantListRes> getParticipantList(int fundingNo) {
+    public List<FundingParticipantListRes> getParticipantListByFunding(int fundingNo) {
         return from(qMemberFunding)
                 .innerJoin(qMemberFunding.member, qMember)
                 .on(qMemberFunding.funding.fundingNo.eq(fundingNo))
@@ -92,8 +113,9 @@ public class FundingRepositoryImpl extends QuerydslRepositorySupport implements 
                         qMemberFunding.isPublic.when(true).then(qMember.name)
                                 .when(false).then(qMember.nickname)
                                 .otherwise("").as("name"),
-                        qMemberFunding.amount, qMemberFunding.createdAt,
-                        qMemberFunding.isPublic, qMember.imageUrl))
+                        qMemberFunding.amount, qMemberFunding.createdAt, qMemberFunding.isPublic,
+                        qMemberFunding.isPublic.when(true).then(qMember.imageUrl)
+                                .otherwise("").as("imageUrl")))
                 .orderBy(qMemberFunding.createdAt.desc())
                 .fetch();
     }
@@ -102,6 +124,30 @@ public class FundingRepositoryImpl extends QuerydslRepositorySupport implements 
     public List<FundingListRes> getFundingByFundingTitle(String query) {
         return getFundingListResJPQLQuery()
                 .where(qFunding.title.contains(query))
+                .fetch();
+    }
+
+    @Override
+    public DonationAmountRes getDonationAmount() {
+        return from(qMemberFunding)
+                .select(Projections.constructor(DonationAmountRes.class,
+                        qMemberFunding.amount.sum()))
+                .fetchOne();
+    }
+
+    @Override
+    public List<FundingParticipantListRes> getParticipantList(int limit) {
+        return from(qMemberFunding)
+                .innerJoin(qMemberFunding.member, qMember)
+                .select(Projections.fields(FundingParticipantListRes.class,
+                        qMemberFunding.memberFundingNo,
+                        qMemberFunding.isPublic.when(true).then(qMember.name)
+                                .otherwise(qMember.nickname).as("name"),
+                        qMemberFunding.amount, qMemberFunding.createdAt, qMemberFunding.isPublic,
+                        qMemberFunding.isPublic.when(true).then(qMember.imageUrl)
+                                .otherwise("").as("imageUrl")))
+                .orderBy(qMemberFunding.createdAt.desc())
+                .limit(limit)
                 .fetch();
     }
 

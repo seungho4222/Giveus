@@ -28,7 +28,7 @@ public class MypageController {
     public ResponseEntity<CommonResponseBody<List<MyPageFundingListRes>>> getFundingListByMember(@PathVariable int memberNo) {
         return ResponseEntity
                 .status(OK)
-                .body(new CommonResponseBody<>(OK, fundingService.getFundingList(memberNo)));
+                .body(new CommonResponseBody<>(OK, fundingService.getMemberFundingList(memberNo)));
     }
 
 }
