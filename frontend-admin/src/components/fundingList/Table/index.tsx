@@ -45,8 +45,15 @@ const index = (props: { columns: any; data: FundingType[] }) => {
       case '번호':
         return parseInt(cell.row.id) + 1
       case '펀딩상태':
-        const status = cell.render('Cell')
-        return <t.StatusButton>{status}</t.StatusButton>
+        const original = cell.row.original
+        const status = !original.isRegDetail
+          ? '2차 등록 대기'
+          : original.isRegUsage
+            ? '기금 사용 내역 등록'
+            : original.isRegReview
+              ? '후기 등록'
+              : '진행 중'
+        return <t.StatusButton $status={status}>{status}</t.StatusButton>
       case '목표금액':
         return cell.value.toLocaleString() + '원'
       default:
