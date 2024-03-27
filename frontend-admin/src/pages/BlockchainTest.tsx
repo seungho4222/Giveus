@@ -5,9 +5,7 @@ import Button from '@/common/button/Button'
 import { Input } from '@/common/input/Input'
 
 const BlockchainTest = () => {
-  const [block, setBlock] = useState<object>({})
-  const chainId = 31221
-  const blockNumber = 3452873
+
   const ETHEREUM_RPC_URL = 'https://rpc.ssafy-blockchain.com'
   const privateKey =
     'ccde9fd1e91c71a46ebca973189dec872dfc408852dd2078244b7e5c61b5990c'
