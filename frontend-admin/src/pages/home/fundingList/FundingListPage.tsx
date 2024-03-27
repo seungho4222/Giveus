@@ -8,23 +8,24 @@ import { useSetRecoilState } from 'recoil'
 import { dummyColumns, dummyData } from './data'
 
 const FundingListPage = () => {
-  // const setFunding = useSetRecoilState(fundingState)
+  const setFunding = useSetRecoilState(fundingState)
 
-  // const { data, isLoading } = useQuery({
-  //   queryKey: ['FundingList'],
-  //   queryFn: () => fetchFundingList(1),
-  // })
+  const { data, isLoading } = useQuery({
+    queryKey: ['FundingList'],
+    queryFn: () => fetchFundingList(1),
+  })
 
-  // useEffect(() => {
-  //   !isLoading && setFunding(data)
-  // }, [data, isLoading])
+  useEffect(() => {
+    !isLoading && setFunding(data)
+    console.log(data);
+  }, [data, isLoading])
 
   const columns = useMemo(() => dummyColumns, [])
-  const data = useMemo(() => dummyData, [])
+  const dataa = useMemo(() => dummyData, [])
 
   return (
     <f.Container>
-      <Table columns={columns} data={data} />
+      <Table columns={columns} data={dataa} />
     </f.Container>
   )
 }

@@ -6,6 +6,7 @@ export const Container = styled.div``
 export const Table = styled.table`
   width: 100%;
   border-collapse: collapse;
+  box-shadow: 4px 4px 10px 0 rgba(0, 0, 0, 0.1);
 `
 
 export const Thead = styled.thead``
@@ -17,7 +18,7 @@ export const Tr = styled.tr``
 export const Th = styled.th`
   padding: 8px;
   border-bottom: 1px solid ${colors.gray03};
-  background-color: rgba(67, 130, 255, 0.7);
+  background-color: rgba(67, 130, 255, 0.6);
   color: white;
   &:nth-child(1) {
     width: 8%;
@@ -43,7 +44,7 @@ export const Th = styled.th`
 `
 
 export const Td = styled.td`
-  padding: 8px;
+  padding: 10px;
   text-align: center;
   border-bottom: 1px solid ${colors.gray03};
   cursor: pointer;

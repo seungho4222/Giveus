@@ -64,7 +64,7 @@ const index = (props: { columns: any; data: FundingType[] }) => {
               {headerGroup.headers.map(column => (
                 <t.Th {...column.getHeaderProps(column.getSortByToggleProps())}>
                   {column.render('Header')}
-                  <span>
+                  <span style={{ fontSize: '0.6em' }}>
                     {column.isSorted
                       ? column.isSortedDesc
                         ? ' 🔻'
