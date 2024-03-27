@@ -27,7 +27,9 @@ const Index = () => {
         바꾸는 기적이 됩니다
       </h.SubTitle>
       <h.Circle>
-        <Lottie options={defaultOptions} />
+        <h.Airplane>
+          <Lottie options={defaultOptions} width={328} height={239} />
+        </h.Airplane>
       </h.Circle>
     </h.Container>
   )
