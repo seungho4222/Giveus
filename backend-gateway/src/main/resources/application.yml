@@ -15,6 +15,7 @@ spring:
           '[/**]':
             allowedOrigins:
               - 'http://localhost:3000'
+              - 'http://localhost:3001'
               - 'http://j10c206.p.ssafy.io:8090'
               - 'http://j10c206.p.ssafy.io:8091'
               - 'http://j10c206.p.ssafy.io'
