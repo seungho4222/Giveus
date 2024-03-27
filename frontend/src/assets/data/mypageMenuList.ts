@@ -1,18 +1,18 @@
 export const mypageMenuList = [
   {
-    key: 'managePoint',
+    key: 'points',
     name: '포인트 관리',
     imgSrc: '/icon/icon_mypage1.png',
     url: '/mypage/points',
   },
   {
-    key: 'regularPayment',
+    key: 'regular',
     name: '정기 결제',
     imgSrc: '/icon/icon_mypage2.png',
-    url: '/mypage/setting',
+    url: '/mypage/regular',
   },
   {
-    key: 'sponsorship',
+    key: 'donate',
     name: '후원내역',
     imgSrc: '/icon/icon_mypage3.png',
     url: '/mypage/donate',

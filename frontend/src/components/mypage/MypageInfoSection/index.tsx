@@ -16,7 +16,7 @@ const Index = () => {
           profile={userInfo.imageUrl}
           email={userInfo.email}
         />
-        <MypagePointSection memberNo={userInfo.memberNo} />
+        <MypagePointSection />
       </m.Wrap>
     </m.Container>
   )

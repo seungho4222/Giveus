@@ -20,4 +20,5 @@ public interface ReviewRepository extends JpaRepository<Review, Integer>, Review
 
     Optional<Review> findByFunding_FundingNo(int fundingNo);
 
+    Optional<Review> findReviewByFunding_FundingNo(int fundingNo);
 }

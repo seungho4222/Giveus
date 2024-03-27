@@ -2,7 +2,6 @@ package com.giveus.payment.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.data.annotation.CreatedDate;
 
 import java.time.LocalDateTime;
 
@@ -27,7 +26,6 @@ public class PointRecharge {
     @Column(name = "amount")
     private Integer amount;
 
-    @CreatedDate
     @Column(name = "created_at")
     private LocalDateTime createdAt;
 

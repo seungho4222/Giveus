@@ -1,27 +1,32 @@
 import * as h from '@components/home/HomeNav/HomeNav.styled'
 import { navbarList } from '@/assets/data/navbarList'
 import { useNavigate } from 'react-router'
-import { useRecoilState } from 'recoil'
+import { useRecoilState, useRecoilValue } from 'recoil'
 import { currentNavState } from '@/store/common'
 import { navType } from '@/types/navType'
+import { selectedFundingNoState } from '@/store/funding'
 
 const index = () => {
   const navigate = useNavigate()
   const [currentNav, setCurrentNav] = useRecoilState(currentNavState)
+  const selectedFundingNo = useRecoilValue(selectedFundingNoState)
 
   const HandlerNav = (item: navType) => {
     setCurrentNav({ name: item.name, url: item.url })
-    navigate(item.url)
+    if (item.name === 'Funding') {
+      navigate(`/admin/funding/${selectedFundingNo}`)
+    } else {
+      navigate(item.url)
+    }
   }
 
   return (
     <h.Container>
       <h.Logo>(로고) GIVEUS</h.Logo>
       {navbarList.map((item, idx) => (
-        <>
+        <div key={item.name}>
           {idx === 3 ? <h.Category>ACCOUNT PAGES</h.Category> : ''}
           <h.Button
-            key={item.name}
             onClick={() => HandlerNav(item)}
             $active={currentNav.url === item.url}
           >
@@ -34,7 +39,7 @@ const index = () => {
             </h.IconBox>
             <h.Text $active={currentNav.url === item.url}>{item.name}</h.Text>
           </h.Button>
-        </>
+        </div>
       ))}
       <h.HelpBox>
         <h.IconBox $active={false}>

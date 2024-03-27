@@ -13,6 +13,11 @@ export const colors = {
   green01: '#02C75A',
 }
 
+export const sizes = {
+  minWidth: '360px',
+  maxWidth: '430px',
+}
+
 export const lightTheme: DefaultTheme = {
   color: {
     text: '#000',

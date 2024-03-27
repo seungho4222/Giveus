@@ -20,6 +20,9 @@ public class PaymentServiceImpl implements PaymentService {
 
     private final PaymentRepository paymentRepository;
 
+    /**
+     * @inheritDoc
+     */
     @Override
     @Transactional
     public int save(KakaoPayApproveResDto kakaoApprove) {

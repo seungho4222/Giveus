@@ -13,8 +13,8 @@ export const Wrap = styled.div`
   flex-direction: column;
   width: 90%;
   height: 100%;
-  margin: 0 auto;
-  padding: 20px 0;
+  margin: auto;
+  padding: 30px 0;
 `
 
 export const Nickname = styled.div`

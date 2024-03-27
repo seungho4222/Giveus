@@ -7,6 +7,11 @@ export const Container = styled.div`
   right: 5%;
   width: 75%;
   margin-bottom: 1%;
+  text-shadow:
+    -1.2px 0 rgb(255, 255, 255, 0.2),
+    0 1.2px rgb(255, 255, 255, 0.2),
+    1.2px 0 rgb(255, 255, 255, 0.2),
+    0 -1.2px rgb(255, 255, 255, 0.2);
 `
 
 export const Wrap = styled.div`
