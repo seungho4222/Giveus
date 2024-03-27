@@ -5,7 +5,6 @@ export const Container = styled.section`
   flex-direction: column;
   margin-left: 6%;
   margin-top: 30px;
-  margin-bottom: 100px;
 `
 
 export const Title = styled.h1`
@@ -17,6 +16,7 @@ export const Title = styled.h1`
 export const Wrap = styled.div`
   display: flex;
   margin-top: 13px;
+  padding-right: 6%;
   overflow-x: scroll;
   overflow-y: hidden;
   -ms-overflow-style: none;

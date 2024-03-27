@@ -16,7 +16,7 @@ export const InfoWrap = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  font-size: 0.8em;
+  font-size: 0.9em;
   gap: 4px;
   font-weight: 500;
   b {
@@ -30,7 +30,7 @@ export const DateWrap = styled.div`
   justify-content: center;
   align-items: flex-end;
   margin-left: auto;
-  font-size: 0.6em;
+  font-size: 0.7em;
   gap: 4px;
   color: ${colors.gray05};
 `
