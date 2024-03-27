@@ -3,16 +3,15 @@ import Layout from '@common/Layout'
 import MypageInfoSection from '@components/mypage/MypageInfoSection'
 import MypageMenu from '@components/mypage/MypageMenu'
 import { useQuery } from '@tanstack/react-query'
-import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil'
+import { useRecoilValue, useSetRecoilState } from 'recoil'
 import { userState } from '@stores/user'
 import { fetchMemberPoints } from '@apis/payment'
 import { PointsListType } from '@/types/mypageType'
-import { myPointState, myPointsListState } from '@stores/point'
+import { myPointState } from '@stores/point'
 import { useEffect } from 'react'
 
 const MyPage = () => {
   const userInfo = useRecoilValue(userState)
-  const [, setMyPointsList] = useRecoilState(myPointsListState)
   const setMyPoint = useSetRecoilState(myPointState)
 
   const { data } = useQuery<PointsListType>({
@@ -21,11 +20,8 @@ const MyPage = () => {
   })
 
   useEffect(() => {
-    data && setMyPointsList(data)
     caculateMyPoint()
   }, [data])
-
-  // 포인트 사용내역 및 충전내역 저장
 
   // 내 포인트 계산
   const caculateMyPoint = () => {

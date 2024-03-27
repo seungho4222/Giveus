@@ -1,43 +1,58 @@
 import * as p from '@components/points/PointsList/PontsList.styled'
 import PointsListItem from '@components/points/PointsList/PointsListItem'
-import { PointsListType, PointItemType } from '@/types/mypageType'
+import { PointItemType, PointsListType } from '@/types/mypageType'
 import { useEffect } from 'react'
-import { useRecoilState, useRecoilValue } from 'recoil'
-import { filteredMyPointListState, myPointListState } from '@stores/point'
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil'
+import {
+  filteredMyPointListState,
+  myPointListState,
+  myPointState,
+} from '@stores/point'
+import { userState } from '@stores/user'
+import { useQuery } from '@tanstack/react-query'
+import { fetchMemberPoints } from '@apis/payment'
 
-const Index = (props: PointsListType) => {
-  const { usageList, rechargeList } = props
+const Index = () => {
   const [, setMyPointList] = useRecoilState(myPointListState)
   const filteredMyPointList = useRecoilValue(filteredMyPointListState)
+  const userInfo = useRecoilValue(userState)
+  const setMyPoint = useSetRecoilState(myPointState)
+
+  const { data } = useQuery<PointsListType>({
+    queryKey: ['fetchMemberPoints'],
+    queryFn: () => fetchMemberPoints(userInfo.memberNo),
+  })
 
   useEffect(() => {
     setDataForm()
-  }, [usageList, rechargeList])
+    caculateMyPoint()
+  }, [data])
 
   const setDataForm = async () => {
     let items: PointItemType[] = []
     // 사용 내역
-    await usageList.map(item => {
-      const obj: PointItemType = {
-        type: '사용',
-        content: item.title,
-        amount: item.amount,
-        createdAt: item.createdAt,
-        total: 0,
-      }
-      items.push(obj)
-    })
-    // 충전 내역
-    await rechargeList.map(item => {
-      const obj: PointItemType = {
-        type: '충전',
-        content: item.content + ' 결제',
-        amount: item.amount,
-        createdAt: item.createdAt,
-        total: 0,
-      }
-      items.push(obj)
-    })
+    data &&
+      data.rechargeList.map(item => {
+        const obj: PointItemType = {
+          type: '충전',
+          content: item.content,
+          amount: item.amount,
+          total: 0,
+          createdAt: item.createdAt,
+        }
+        items.push(obj)
+      })
+    data &&
+      data.usageList.map(item => {
+        const obj: PointItemType = {
+          type: '사용',
+          content: item.title,
+          amount: item.amount,
+          createdAt: item.createdAt,
+          total: 0,
+        }
+        items.push(obj)
+      })
 
     // 과거순 정렬
     items.sort(
@@ -56,6 +71,18 @@ const Index = (props: PointsListType) => {
     items.reverse()
 
     setMyPointList(items)
+  }
+
+  const caculateMyPoint = () => {
+    setMyPoint(0)
+    data &&
+      data.rechargeList.forEach(item => {
+        setMyPoint(old => old + item.amount)
+      })
+    data &&
+      data.usageList.forEach(item => {
+        setMyPoint(old => old - item.amount)
+      })
   }
 
   return (
