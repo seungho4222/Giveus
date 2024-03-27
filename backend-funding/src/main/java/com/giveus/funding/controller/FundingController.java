@@ -28,11 +28,18 @@ public class FundingController {
 
     @SwaggerApiSuccess(summary = "펀딩 전체 목록 조회", implementation = FundingListRes.class)
     @GetMapping
-    public ResponseEntity<CommonResponseBody<List<FundingListRes>>> getFundingList(
-            @RequestParam(required = false) String sort, @RequestParam(required = false) Integer limit) {
+    public ResponseEntity<CommonResponseBody<List<FundingListRes>>> getFundingList() {
         return ResponseEntity
                 .status(OK)
-                .body(new CommonResponseBody<>(OK, fundingService.getFundingList(sort, limit)));
+                .body(new CommonResponseBody<>(OK, fundingService.getFundingList()));
+    }
+
+    @SwaggerApiSuccess(summary = "종료일이 얼마 남지 않은 펀딩 전체 목록 조회", implementation = FundingListRes.class)
+    @GetMapping("soon-over")
+    public ResponseEntity<CommonResponseBody<List<FundingListRes>>> getRecentEndingFundingList(@RequestParam Integer limit) {
+        return ResponseEntity
+                .status(OK)
+                .body(new CommonResponseBody<>(OK, fundingService.getFundingListSortByEndDate(limit)));
     }
 
     @SwaggerApiSuccess(summary = "펀딩 상세(소개) 조회", implementation = FundingDetailRes.class)

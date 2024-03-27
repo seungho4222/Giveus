@@ -9,6 +9,7 @@ import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.JPQLQuery;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -29,11 +30,9 @@ public class FundingRepositoryImpl extends QuerydslRepositorySupport implements 
     }
 
     @Override
-    public List<FundingListRes> getFundingList(String sort, Integer limit) {
+    public List<FundingListRes> getFundingList() {
 
         return getFundingListResJPQLQuery()
-                .orderBy()
-                .limit(isLimit(limit))
                 .fetch();
     }
 
@@ -147,6 +146,16 @@ public class FundingRepositoryImpl extends QuerydslRepositorySupport implements 
                         qMemberFunding.isPublic.when(true).then(qMember.imageUrl)
                                 .otherwise("").as("imageUrl")))
                 .orderBy(qMemberFunding.createdAt.desc())
+                .limit(limit)
+                .fetch();
+    }
+
+    @Override
+    public List<FundingListRes> getFundingListSortByEndDate(Integer limit) {
+
+        return getFundingListResJPQLQuery()
+                .where(qFunding.endDate.loe(LocalDate.now())) // 종료일이 오늘이거나 오늘 이전인 것 중에
+                .orderBy(qFunding.endDate.asc())
                 .limit(limit)
                 .fetch();
     }

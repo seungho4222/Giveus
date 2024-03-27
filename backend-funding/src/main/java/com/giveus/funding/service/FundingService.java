@@ -15,7 +15,7 @@ public interface FundingService {
      *
      * @return 조회한 펀딩 목록
      */
-    List<FundingListRes> getFundingList(String sort, Integer limit);
+    List<FundingListRes> getFundingList();
 
     /**
      * 회원 고유 번호로 기부에 참여한 펀딩 목록을 조회하는 메서드입니다.
@@ -98,4 +98,12 @@ public interface FundingService {
      * @return 조회한 참여자 전체 목록
      */
     List<FundingParticipantListRes> getParticipants(int limit);
+
+    /**
+     * 종료일이 가까운 순의 펀딩 전체 목록을 조회하는 메서드입니다.
+     * 
+     * @param limit 조회할 펀딩 목록 갯수
+     * @return 곧 종료되는 펀딩 목록
+     */
+    List<FundingListRes> getFundingListSortByEndDate(Integer limit);
 }
