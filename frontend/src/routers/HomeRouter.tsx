@@ -5,10 +5,12 @@ import { Route, Routes } from 'react-router-dom'
 import LoginRedirectHandler from '@pages/login/LoginRedirectHandler'
 import SecondRegPage from '@/pages/secondReg/SecondRegPage'
 import SearchPage from '@pages/search/SearchPage'
+import HomePage from '@pages/home/HomePage'
 
 const HomeRouter = () => {
   return (
     <Routes>
+      <Route path="/" element={<HomePage />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/login/oauth2" element={<LoginRedirectHandler />} />
       <Route path="/signup" element={<SignupPage />} />

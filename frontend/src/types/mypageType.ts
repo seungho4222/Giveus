@@ -14,20 +14,23 @@ export type PointsFilterType = {
 // 포인트 사용내역 타입
 export type UsagePointType = {
   pointNo: number
-  memberNo: number
   amount: number
   createdAt: string
-  content: string
+  title: string
 }
 
 // 포인트 충전 내역 타입
 export type RechargePointType = {
+  pointNo: number
+  amount: number
+  createdAt: string
+  content: string
   paymentType?: string
-} & UsagePointType
+}
 
 export type PointsListType = {
-  usageData: UsagePointType[]
-  rechargeData: RechargePointType[]
+  usageList: UsagePointType[]
+  rechargeList: RechargePointType[]
 }
 
 export type PointItemType = {

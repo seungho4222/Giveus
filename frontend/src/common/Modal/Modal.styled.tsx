@@ -1,4 +1,4 @@
-import { colors } from '@/styles/theme'
+import { colors, sizes } from '@styles/theme'
 import styled from 'styled-components'
 
 export const Container = styled.div`
@@ -6,7 +6,9 @@ export const Container = styled.div`
   position: fixed;
   top: 0;
   z-index: 100;
-  width: 375px;
+  width: 100%;
+  min-width: ${sizes.minWidth};
+  max-width: ${sizes.maxWidth};
   height: 100vh;
   background-color: #fff;
   overflow-y: scroll;
@@ -16,6 +18,12 @@ export const Container = styled.div`
     height: 0;
     background: transparent; /* Optional: just make scrollbar invisible */
     -webkit-appearance: none;
+  }
+  @media only screen and (min-width: 430px) {
+    width: 430px;
+  }
+  @media only screen and (min-width: 600px) {
+    width: 375px;
   }
 `
 

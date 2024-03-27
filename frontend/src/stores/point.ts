@@ -6,6 +6,11 @@ import {
 } from '@utils/dateMethods'
 import { atom, selector } from 'recoil'
 
+export const myPointState = atom<number>({
+  key: 'myPointState',
+  default: 0,
+})
+
 export const DefaultMyPointListFilter = {
   startDate: getOneMonthAgoDate(),
   endDate: getTodayDate(),
