@@ -154,7 +154,7 @@ public class FundingRepositoryImpl extends QuerydslRepositorySupport implements 
     public List<FundingListRes> getFundingListSortByEndDate(Integer limit) {
 
         return getFundingListResJPQLQuery()
-                .where(qFunding.endDate.loe(LocalDate.now())) // 종료일이 오늘이거나 오늘 이전인 것 중에
+                .where(qFunding.endDate.goe(LocalDate.now())) // 종료일이 오늘이거나 오늘 이전인 것 중에
                 .orderBy(qFunding.endDate.asc())
                 .limit(limit)
                 .fetch();
