@@ -13,6 +13,12 @@ export const Container = styled.footer`
   background-color: #fff;
   height: 60px;
   box-shadow: 6px 4px 18px 3px rgba(0, 0, 0, 0.11);
+  @media only screen and (min-width: 430px) {
+    width: 430px;
+  }
+  @media only screen and (min-width: 600px) {
+    width: 375px;
+  }
 `
 
 export const Wrap = styled.div`

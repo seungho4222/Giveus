@@ -82,4 +82,10 @@ export const Button = styled.div`
   bottom: 0;
   padding: 1em;
   background-color: white;
+  @media only screen and (min-width: 430px) {
+    width: 430px;
+  }
+  @media only screen and (min-width: 600px) {
+    width: 375px;
+  }
 `

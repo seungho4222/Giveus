@@ -19,6 +19,12 @@ export const Container = styled.div`
     background: transparent; /* Optional: just make scrollbar invisible */
     -webkit-appearance: none;
   }
+  @media only screen and (min-width: 430px) {
+    width: 430px;
+  }
+  @media only screen and (min-width: 600px) {
+    width: 375px;
+  }
 `
 
 export const Wrap = styled.div`

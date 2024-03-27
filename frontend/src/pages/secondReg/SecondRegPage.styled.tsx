@@ -23,4 +23,10 @@ export const Form = styled.form`
   position: fixed;
   bottom: 0;
   padding: 1em;
+  @media only screen and (min-width: 430px) {
+    width: 430px;
+  }
+  @media only screen and (min-width: 600px) {
+    width: 375px;
+  }
 `

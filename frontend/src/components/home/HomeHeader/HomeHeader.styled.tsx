@@ -11,6 +11,12 @@ export const Container = styled.header`
   height: 45px;
   z-index: 100;
   background-color: #fff;
+  @media only screen and (min-width: 430px) {
+    width: 430px;
+  }
+  @media only screen and (min-width: 600px) {
+    width: 375px;
+  }
 `
 
 export const Wrap = styled.div`

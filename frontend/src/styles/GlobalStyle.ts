@@ -31,6 +31,7 @@ export const GlobalStyle = createGlobalStyle`
             -webkit-appearance: none;
         }
     }
+
     #root {
         width: 100%;
         min-width: ${sizes.minWidth};
@@ -40,6 +41,12 @@ export const GlobalStyle = createGlobalStyle`
         background: ${({ theme }: { theme: DefaultTheme }) =>
           theme.color.background};
         color: ${({ theme }: { theme: DefaultTheme }) => theme.color.text};
+        @media only screen and (min-width: 430px) {
+            width: 430px;
+        }
+        @media only screen and (min-width: 600px) {
+            width: 375px;
+        }
     }
     a {
         outline: none;
