@@ -35,3 +35,12 @@ export type FilterBoxType = {
   setFilterOpen: Dispatch<SetStateAction<boolean>>
   setSortrOpen: Dispatch<SetStateAction<boolean>>
 }
+
+export type RecentParticipantType = {
+  memberFundingNo: number
+  name: string
+  amount: number
+  createdAt: string
+  isPublic: boolean
+  imageUrl: string
+}
