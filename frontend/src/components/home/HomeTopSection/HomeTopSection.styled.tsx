@@ -34,7 +34,7 @@ export const SubTitle = styled.h4`
 export const Circle = styled.div`
   position: absolute;
   top: 20px;
-  right: -7%;
+  right: -13%;
   width: 218px;
   height: 218px;
   border-radius: 100%;
@@ -42,5 +42,5 @@ export const Circle = styled.div`
 `
 
 export const Airplane = styled.div`
-  transform: translateX(-60px);
+  transform: translateX(-70px);
 `

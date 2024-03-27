@@ -5,7 +5,6 @@ export const Container = styled.section`
   display: flex;
   background-color: ${colors.blue01};
   min-height: 300px;
-  height: 40vh;
 `
 
 export const Wrap = styled.div`
