@@ -30,5 +30,5 @@ export type FundingDetailType = {
   isRegUsage: boolean
   isRegDetail: boolean
   content: string
-  thumbnail_url: string
+  thumbnailUrl: string
 }
