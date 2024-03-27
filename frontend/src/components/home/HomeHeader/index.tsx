@@ -4,7 +4,9 @@ const Index = () => {
   return (
     <h.Container>
       <h.Wrap>
-        <h.Logo>GIVEUS</h.Logo>
+        <h.Logo>
+          <img src="/img/img_logo.png" alt="logo" />
+        </h.Logo>
       </h.Wrap>
     </h.Container>
   )

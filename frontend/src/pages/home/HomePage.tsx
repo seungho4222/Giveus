@@ -5,6 +5,10 @@ import { handleAllowNotification } from '@/services/notificationPermission'
 import { useEffect } from 'react'
 import { userState } from '@stores/user'
 import { useRecoilValue } from 'recoil'
+import HomeTopSection from '@components/home/HomeTopSection'
+import HomeContributors from '@components/home/HomeContributors'
+import HomeTotalAmount from '@components/home/HomeTotalAmount'
+import HomeReview from '@components/home/HomeReview'
 
 const HomePage = () => {
   const userInfo = useRecoilValue(userState)
@@ -18,6 +22,10 @@ const HomePage = () => {
     <>
       <Layout>
         <HomeHeader />
+        <HomeTopSection />
+        <HomeContributors />
+        <HomeTotalAmount />
+        <HomeReview />
       </Layout>
       <Navbar current="home" />
     </>

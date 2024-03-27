@@ -33,3 +33,19 @@ export const searchFunding = async (query: string) => {
     .then(res => res.data.data)
     .catch(err => err)
 }
+
+// 최근 후원 참여자 내역 조회
+export const fetchRecentParticipants = async () => {
+  return publicRequest
+    .get(`${url}/participants?limit=3`)
+    .then(res => res.data.data)
+    .catch(err => err)
+}
+
+// 누적 기부 금액 조회
+export const fetchTotalDonateAmount = async () => {
+  return publicRequest
+    .get(`${url}/total-amount`)
+    .then(res => res.data.data)
+    .catch(err => err)
+}

@@ -1,4 +1,4 @@
-export const dummyColumns = [
+export const columnsData = [
   {
     accessor: 'fundingNo',
     Header: '번호',
@@ -16,7 +16,7 @@ export const dummyColumns = [
     Header: '생년월일',
   },
   {
-    accessor: 'disease_name',
+    accessor: 'diseaseName',
     Header: '병명',
   },
   {
@@ -24,7 +24,7 @@ export const dummyColumns = [
     Header: '펀딩상태',
   },
   {
-    accessor: 'target_amount',
+    accessor: 'targetAmount',
     Header: '목표금액',
   },
 ]

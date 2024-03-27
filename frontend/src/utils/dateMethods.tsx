@@ -52,3 +52,29 @@ export const donatefilterDatesInRange = (
     return check >= start && check <= end
   })
 }
+
+//  이벤트가 발생한 시점까지의 시간 계산
+export const elapsedTime = (date: string) => {
+  const start = new Date(date)
+  const end = new Date()
+
+  const seconds = Math.floor((end.getTime() - start.getTime()) / 1000)
+
+  if (seconds < 60) return '방금 전'
+  const minutes = seconds / 60
+  if (minutes < 60) return `${Math.floor(minutes)}분 전`
+  const hours = minutes / 60
+  if (hours < 24) return `${Math.floor(hours)}시간 전`
+
+  // 날짜만 고려하여 '몇 일 전' 계산
+  const startDay = new Date(
+    start.getFullYear(),
+    start.getMonth(),
+    start.getDate(),
+  )
+  const endDay = new Date(end.getFullYear(), end.getMonth(), end.getDate())
+  const days = Math.ceil(
+    (endDay.getTime() - startDay.getTime()) / (1000 * 60 * 60 * 24),
+  )
+  return `${days}일 전`
+}
