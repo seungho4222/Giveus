@@ -13,9 +13,11 @@ const SoonOverItem = (props: { item: FundingType }) => {
           {item.totalAmount === item.targetAmount ? '모금 완료' : '모금 임박'}
         </span>
         <s.Name>{item.title}</s.Name>
-        <s.Amount>모금액 {formatAmount(item.totalAmount)}원</s.Amount>
+        <s.Amount>모금액 {formatAmount(item.targetAmount)}원</s.Amount>
       </s.InfoWrap>
-      <s.Percent>98%</s.Percent>
+      <s.Percent>
+        {Math.ceil((item.totalAmount / item.targetAmount) * 100)}%
+      </s.Percent>
     </s.Container>
   )
 }
