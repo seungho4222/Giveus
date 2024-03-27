@@ -12,7 +12,7 @@ import java.util.Optional;
  */
 @NoRepositoryBean
 public interface FundingRepositoryCustom {
-    List<FundingListRes> getFundingList(String sort, Integer limit);
+    List<FundingListRes> getFundingList();
     List<MyPageFundingListRes> getMemberFundingList(int memberNo);
 
     Optional<FundingDetailRes> getFunding(int fundingNo);
@@ -24,4 +24,6 @@ public interface FundingRepositoryCustom {
     DonationAmountRes getDonationAmount();
 
     List<FundingParticipantListRes> getParticipantList(int limit);
+
+    List<FundingListRes> getFundingListSortByEndDate(Integer limit);
 }

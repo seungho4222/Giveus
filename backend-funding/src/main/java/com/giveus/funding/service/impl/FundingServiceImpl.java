@@ -44,8 +44,8 @@ public class FundingServiceImpl implements FundingService {
      * @inheritDoc
      */
     @Override
-    public List<FundingListRes> getFundingList(String sort, Integer limit) {
-        return fundingRepository.getFundingList(sort, limit);
+    public List<FundingListRes> getFundingList() {
+        return fundingRepository.getFundingList();
     }
 
     @Override
@@ -179,6 +179,11 @@ public class FundingServiceImpl implements FundingService {
     @Override
     public List<FundingParticipantListRes> getParticipants(int limit) {
         return fundingRepository.getParticipantList(limit);
+    }
+
+    @Override
+    public List<FundingListRes> getFundingListSortByEndDate(Integer limit) {
+        return fundingRepository.getFundingListSortByEndDate(limit);
     }
 
     private boolean isExistFundingReview(int fundingNo) {
