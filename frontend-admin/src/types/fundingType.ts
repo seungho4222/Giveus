@@ -6,9 +6,9 @@ export type FundingType = {
   diseaseName: string
   status: string
   targetAmount: number
-  // is_reg_review: boolean // 후기 등록 여부
-  // is_reg_usage: boolean // 사용내역 등록 여부
-  // is_reg_detail: boolean // 2차 등록 여부
+  isRegReview: boolean // 후기 등록 여부
+  isRegUsage: boolean // 사용내역 등록 여부
+  isRegDetail: boolean // 2차 등록 여부
 }
 
 export type FundingDetailType = {
@@ -26,9 +26,9 @@ export type FundingDetailType = {
   endData: string
   title: string
   phone: string
-  is_reg_review: boolean
-  is_reg_usage: boolean
-  is_reg_detail: boolean
+  isRegReview: boolean
+  isRegUsage: boolean
+  isRegDetail: boolean
   content: string
   thumbnail_url: string
 }

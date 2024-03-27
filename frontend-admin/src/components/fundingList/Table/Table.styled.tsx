@@ -50,10 +50,18 @@ export const Td = styled.td`
   cursor: pointer;
 `
 
-export const StatusButton = styled.button`
+export const StatusButton = styled.button<{ $status: string }>`
   border-radius: 15px;
-  background-color: ${colors.orange01};
-  width: 70px;
+  background-color: ${props =>
+    props.$status === '2차 등록 대기'
+      ? colors.gray03
+      : props.$status === '기금 사용 내역 등록'
+        ? colors.yellow01
+        : props.$status === '후기 등록'
+          ? colors.blue01
+          : colors.orange01};
+  width: 120px;
+  font-size: 0.8em;
   padding: 4px;
   color: #fff;
 `
