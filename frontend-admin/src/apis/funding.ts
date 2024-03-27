@@ -9,5 +9,16 @@ export const fetchFundingList = async (adminNo: number) => {
 
 // 펀딩 상세 조회
 export const fetchFundingDetail = async (fundingNo: number) => {
-  return authRequest.get(`${url}/funding/${fundingNo}`).then(res => res.data.data)
+  return authRequest
+    .get(`${url}/funding/${fundingNo}`)
+    .then(res => res.data.data)
+}
+
+// 펀딩 1차 등록
+export const createFirstReg = async (data: FormData) => {
+  return authRequest
+    .post(`${url}`, data, {
+      headers: { 'Content-Type': 'multipart/form-data' },
+    })
+    .then(res => res.data.data)
 }
