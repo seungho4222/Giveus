@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+
 @Entity
 @Table(name = "funding_detail")
 @Getter
@@ -13,8 +14,9 @@ import lombok.Setter;
 public class FundingDetail {
 
     @Id
+    @Column(name = "funding_detail_no")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int fundingNo;
+    private int fundingDetailNo;
 
     @OneToOne
     @JoinColumn(name = "funding_no")

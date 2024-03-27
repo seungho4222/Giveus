@@ -1,9 +1,10 @@
+import * as f from '@pages/home/fundingDetail/FundingDetailPage.styled'
 
 const FundingDetailPage = () => {
   return (
-    <div>
+    <f.Container>
       FundingDetailPage
-    </div>
+    </f.Container>
   );
 };
 

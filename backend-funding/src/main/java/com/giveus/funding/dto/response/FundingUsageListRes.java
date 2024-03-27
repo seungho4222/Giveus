@@ -5,18 +5,19 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDate;
-
 @AllArgsConstructor
 @NoArgsConstructor
 @Setter
 @Getter
-public class FundingParticipantsRes {
+public class FundingUsageListRes {
 
-    private int memberFundingNo;
-    private String name;
+    private int usageHistoryNo;
+
+    private String category;
+
+    private String content;
+
+    private int count;
+
     private int amount;
-    private LocalDate createdAt;
-    private Boolean isPublic;
-    private String imageUrl;
 }

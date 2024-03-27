@@ -5,7 +5,6 @@ import MypagePrevHeader from '@components/mypage/MypagePrevHeader'
 import * as p from '@pages/mypage/points/PointsPage.styled'
 import { useState } from 'react'
 import PointsFilterModal from '@components/points/PointsFilter/PointsFilterModal'
-import { rechargePointData, usagePointData } from '@components/points/data'
 
 const PointsPage = () => {
   const [open, setOpen] = useState(false)
@@ -16,10 +15,7 @@ const PointsPage = () => {
         <MypagePrevHeader title="포인트 관리" url="/mypage" />
         <PointsInfo />
         <PointsFilter setOpen={setOpen} />
-        <PointsList
-          usageData={usagePointData}
-          rechargeData={rechargePointData}
-        />
+        <PointsList />
       </p.Container>
       {open && <PointsFilterModal value={open} setValue={setOpen} />}
     </>

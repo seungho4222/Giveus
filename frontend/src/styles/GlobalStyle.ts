@@ -1,6 +1,6 @@
 import { createGlobalStyle, DefaultTheme } from 'styled-components'
 import reset from 'styled-reset'
-import { colors } from './theme'
+import { colors, sizes } from './theme'
 
 export const GlobalStyle = createGlobalStyle`
     ${reset}
@@ -31,13 +31,22 @@ export const GlobalStyle = createGlobalStyle`
             -webkit-appearance: none;
         }
     }
+
     #root {
-        max-width: 375px;
+        width: 100%;
+        min-width: ${sizes.minWidth};
+        max-width: ${sizes.maxWidth};
         min-height: 100vh;
         margin: 0 auto;
         background: ${({ theme }: { theme: DefaultTheme }) =>
           theme.color.background};
         color: ${({ theme }: { theme: DefaultTheme }) => theme.color.text};
+        @media only screen and (min-width: 430px) {
+            width: 430px;
+        }
+        @media only screen and (min-width: 600px) {
+            width: 375px;
+        }
     }
     a {
         outline: none;

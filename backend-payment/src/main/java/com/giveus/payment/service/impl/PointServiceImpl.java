@@ -2,6 +2,7 @@ package com.giveus.payment.service.impl;
 
 import com.giveus.payment.dto.request.PointUsageRequest;
 import com.giveus.payment.dto.response.PointListRes;
+import com.giveus.payment.entity.PointRecharge;
 import com.giveus.payment.entity.PointUsage;
 import com.giveus.payment.repository.PointRechargeRepository;
 import com.giveus.payment.repository.PointUsageRepository;
@@ -22,21 +23,27 @@ public class PointServiceImpl implements PointService {
     private final PointUsageRepository pointUsageRepository;
     private final PointRechargeRepository pointRechargeRepository;
 
+    /**
+     * @inheritDoc
+     */
     @Override
     @Transactional
-    public int saveUsage(int memberNo, int point, String approvedAt) {
+    public int saveUsage(int memberNo, int point, String createdAt) {
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
 
         PointUsage pointUsage = PointUsage.builder()
                 .memberNo(memberNo)
                 .amount(point)
-                .createdAt(LocalDateTime.parse(approvedAt, formatter))
+                .createdAt(LocalDateTime.parse(createdAt, formatter))
                 .build();
 
         return pointUsageRepository.save(pointUsage).getPointNo();
     }
 
+    /**
+     * @inheritDoc
+     */
     @Override
     @Transactional(readOnly = true)
     public PointListRes getPointList(int memberNo) {
@@ -47,6 +54,9 @@ public class PointServiceImpl implements PointService {
                 .build();
     }
 
+    /**
+     * @inheritDoc
+     */
     @Override
     @Transactional
     public int usePoint(PointUsageRequest request, LocalDateTime now) {
@@ -57,5 +67,21 @@ public class PointServiceImpl implements PointService {
                 .build();
 
         return pointUsageRepository.save(pointUsage).getPointNo();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    @Transactional
+    public int saveRecharge(int memberNo, int amount, LocalDateTime now) {
+        PointRecharge pointRecharge = PointRecharge.builder()
+                .memberNo(memberNo)
+                .amount(amount)
+                .content("일반 포인트 충전")
+                .createdAt(now)
+                .paymentType("카카오페이")
+                .build();
+        return pointRechargeRepository.save(pointRecharge).getPointNo();
     }
 }

@@ -20,12 +20,12 @@ export const li = styled.li`
   cursor: pointer;
 
   img {
-    width: 16px;
-    height: 16px;
+    width: 20px;
+    height: 20px;
     margin-right: 24px;
   }
   span {
-    font-size: 0.9em;
+    font-size: 1em;
     font-weight: 500;
   }
 `

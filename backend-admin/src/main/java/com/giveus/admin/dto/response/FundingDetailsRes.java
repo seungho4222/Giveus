@@ -13,15 +13,17 @@ import java.time.LocalDate;
 @Getter
 public class FundingDetailsRes {
 
+    private int fundingNo;
+
     private String issueNumber;
 
     private String registrationNumber;
 
     private String patientName;
 
-    private String status;
-
     private LocalDate birth;
+
+    private String status;
 
     private char gender;
 
@@ -39,11 +41,21 @@ public class FundingDetailsRes {
 
     private LocalDate endDate;
 
-    private LocalDate totalAmount;
+    private int totalAmount;
 
-    private LocalDate targetAmount;
+    private int targetAmount;
 
     private LocalDate createdAt;
 
     private String phone;
+
+    private Boolean isRegDetail;
+
+    private Boolean isRegReview;
+
+    private Boolean isRegUsage;
+
+    private String content;
+
+    private String thumbnailUrl;
 }

@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 export const Container = styled.div`
   display: flex;
-  margin-top: 11%;
+  margin-top: 10%;
   align-items: center;
 
   img {

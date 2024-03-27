@@ -46,6 +46,6 @@ export const fetchUserInfo = async () => {
 export const sendFCMToken = async (req: SendFCMTokenType) => {
   return authRequest
     .post(`${url}/device`, req)
-    .then(res => console.log(res.data.code))
+    .then(res => console.log(res.data.code, 'fcm token 전송'))
     .catch(err => console.log(err))
 }
