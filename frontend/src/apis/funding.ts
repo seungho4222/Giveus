@@ -17,6 +17,11 @@ export const fetchFundingParticipants = async (id: number) => {
   return authRequest.get(`${url}/${id}/participants`).then(res => res.data.data)
 }
 
+// 펀딩 상세 - 기금 사용 내역 조회
+export const fetchFundingUsage = async (id: number) => {
+  return authRequest.get(`${url}/${id}/usage`).then(res => res.data.data)
+}
+
 // 펀딩 2차 등록
 export const createSecondReg = async (data: FormData) => {
   return publicRequest
