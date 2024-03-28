@@ -14,15 +14,15 @@ const index = () => {
           <d.ButtonBox>
             <d.Button
               $isReview={true}
-              $isDisabled={!fundingDetail.isRegReview}
-              disabled={!fundingDetail.isRegReview}
+              $isDisabled={fundingDetail.isRegReview}
+              disabled={fundingDetail.isRegReview}
             >
               후기 등록
             </d.Button>
             <d.Button
               $isReview={false}
-              $isDisabled={!fundingDetail.isRegUsage}
-              disabled={!fundingDetail.isRegUsage}
+              $isDisabled={fundingDetail.isRegUsage}
+              disabled={fundingDetail.isRegUsage}
             >
               기금 사용 내역 등록
             </d.Button>
