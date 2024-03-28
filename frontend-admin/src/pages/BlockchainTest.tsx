@@ -13,7 +13,7 @@ const BlockchainTest = () => {
   const contractAddress = '0xB4718410f291fDeD9DEEb674829FEE9416B21F3B'
   // const LOCAL_RPC_URL = 'HTTP://127.0.0.1:7545';
 
-  // Web3.js를 사용하여 블록체인 네트워크와 연결
+  // Web3.js를 사용하여 블록체인 네트워크와 연결..
   const web3 = new Web3(Web3.givenProvider || ETHEREUM_RPC_URL)
   // const web3 = new Web3(new Web3.providers.HttpProvider(ETHEREUM_RPC_URL));
 
