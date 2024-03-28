@@ -11,26 +11,5 @@ swagger:
   server: https://j10c206.p.ssafy.io
 
 logging:
-  pattern:
-    file: "[%d{HH:mm:ss.SSS}][%-5level][%logger.%method:line%line] - %msg%n"
   file:
-    name: /home/ubuntu/logs/gateway.log
-  level:
-    root: info
-    org:
-      springframework:
-        cloud:
-          gateway:
-            handler:
-              org.springframework.cloud.gateway.handler.RoutePredicateHandlerMapping: debug
-            route:
-              org.springframework.cloud.gateway.route.RouteDefinitionLocator: warn
-              org.springframework.cloud.gateway.route.RouteDefinitionRouteLocator: warn
-        core:
-          env:
-            org.springframework.core.env.PropertySourcesPropertyResolver: warn
-  logback:
-    rollingpolicy:
-      max-history: 7
-      max-file-size: 500MB
-      file-name-pattern: "/home/ubuntu/logs/gateway.%d{yyyy-MM-dd}.%i"
+    path: /home/ubuntu/logs
