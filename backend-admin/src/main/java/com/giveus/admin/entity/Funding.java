@@ -81,7 +81,7 @@ public class Funding {
 
 
     @Builder
-    public Funding(String issueNumber, String registrationNumber, String patientName, LocalDate birth, char gender, String diseaseName, String diseaseCode, LocalDate diagnosisDate, String opinion, String title, LocalDate startDate, LocalDate endDate, int targetAmount, String phone) {
+    public Funding(String issueNumber, String registrationNumber, String patientName, LocalDate birth, char gender, String diseaseName, String diseaseCode, LocalDate diagnosisDate, String opinion, String title, LocalDate startDate, LocalDate endDate, int targetAmount, String phone, int adminNo) {
         this.issueNumber = issueNumber;
         this.registrationNumber = registrationNumber;
         this.patientName = patientName;
@@ -96,6 +96,7 @@ public class Funding {
         this.endDate = endDate;
         this.targetAmount = targetAmount;
         this.phone = phone;
+        this.adminNo = adminNo;
     }
 
     public void addStatus(FundingStatusHistory status) {
