@@ -11,7 +11,7 @@ export const Button = styled.button`
   font-weight: 700;
   font-size: 0.9em;
   height: 49px;
-  border-radius: 5px;
+  border-radius: 20px;
 
   img {
     width: 17px;

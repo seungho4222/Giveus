@@ -3,14 +3,15 @@ import * as l from '@components/login/LoginSection/LoginSection.styled'
 const Index = () => {
   return (
     <l.Container>
-      <l.Logo>GIVEUS</l.Logo>
+      <l.Logo src="/img/img_logo.png" />
       <l.Desc>
-        간편 로그인으로 더 다양한
-        <br /> 서비스를 이용하세요
+        한 마음으로 모인 작은 기적,
+        <br /> 함께 만들어 갑시다
       </l.Desc>
       <l.SubDesc>
-        <img src="icon/icon_bulb.png" alt="" />
-        3초 만에 빠른 회원가입
+        <l.Dash />
+        SNS 계정으로 간편 가입하기
+        <l.Dash />
       </l.SubDesc>
     </l.Container>
   )

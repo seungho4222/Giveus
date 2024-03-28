@@ -7,33 +7,35 @@ export const Container = styled.section`
   margin-bottom: auto;
 `
 
-export const Logo = styled.div`
-  color: ${colors.blue01};
-  font-weight: 900;
-  font-size: 3em;
-  text-align: center;
-  margin-top: 50%;
+export const Logo = styled.img`
+  width: 220px;
+  margin-top: 40%;
+  margin-inline: auto;
 `
 
 export const Desc = styled.div`
-  font-size: 1.4em;
-  font-weight: 700;
-  margin-top: 50px;
+  font-size: 1.1em;
+  font-weight: 600;
+  margin-top: 10px;
   line-height: 1.4;
   text-align: center;
 `
 
 export const SubDesc = styled.div`
-  img {
-    width: 20px;
-    height: 20px;
-    margin-right: 4px;
-  }
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: center;
   color: ${colors.gray04};
   font-weight: 600;
-  font-size: 0.9em;
-  margin-top: 17px;
+  font-size: 0.8em;
+  margin-top: 210px;
+  column-gap: 2%;
+  white-space: nowrap;
+`
+
+export const Dash = styled.div`
+  display: flex;
+  background-color: ${colors.gray04};
+  width: 80px;
+  height: 1px;
 `
