@@ -5,7 +5,7 @@ const Index = () => {
   const { VITE_SERVER_URL } = import.meta.env
 
   const onClick = () => {
-    const kakaoURL = `${VITE_SERVER_URL}/oauth2/authorization/kakao`
+    const kakaoURL = `/oauth2/authorization/kakao`
     //const kakaoURL = `${BASE_URL}/oauth2/authorization/kakao`
     window.location.href = kakaoURL
   }
