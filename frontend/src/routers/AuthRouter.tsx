@@ -16,7 +16,6 @@ import PointsPage from '@/pages/mypage/points/PointsPage'
 import DonatePage from '@/pages/mypage/donate/DonatePage'
 import RechargePage from '@pages/mypage/recharge/RechargePage'
 import RechargeDonePage from '@pages/mypage/recharge/RechargeDonePage'
-import RegularPage from '@/pages/mypage/regular/RegularPage'
 
 const AuthRouter = () => {
   return (
@@ -34,7 +33,7 @@ const AuthRouter = () => {
       <Route path="/mypage/recharge" element={<RechargePage />} />
       <Route path="/mypage/recharge/done" element={<RechargeDonePage />} />
       <Route path="/mypage/donate" element={<DonatePage />} />
-      <Route path="/mypage/regular" element={<RegularPage />} />
+
       <Route path="/funding/:id" element={<FundingDetailPage />}>
         <Route path="detail-main" element={<DetailMainPage />} />
         <Route path="donor-list" element={<DonorListPage />} />

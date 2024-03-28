@@ -6,15 +6,9 @@ export const mypageMenuList = [
     url: '/mypage/points',
   },
   {
-    key: 'regular',
-    name: '정기 결제',
-    imgSrc: '/icon/icon_mypage2.png',
-    url: '/mypage/regular',
-  },
-  {
     key: 'donate',
     name: '후원내역',
-    imgSrc: '/icon/icon_mypage3.png',
+    imgSrc: '/icon/icon_mypage2.png',
     url: '/mypage/donate',
   },
   {
