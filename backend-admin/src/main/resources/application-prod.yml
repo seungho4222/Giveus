@@ -8,7 +8,7 @@ spring:
     url: jdbc:mysql://j10c206.p.ssafy.io:3306/prod?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Seoul&zeroDateTimeBehavior=convertToNull&rewriteBatchedStatements=true
 
 swagger:
-  server: https://j10c206.p.ssafy.io
+  server: https://giveus.site
 
 coolsms:
   env:
