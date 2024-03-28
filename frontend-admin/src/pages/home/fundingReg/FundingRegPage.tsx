@@ -6,12 +6,16 @@ import { RegDataType } from '@/types/fundingType'
 import * as f from '@pages/home/fundingReg/FundingRegPage.styled'
 import { useState } from 'react'
 import { useMutation } from '@tanstack/react-query'
-import { useRecoilValue } from 'recoil'
+import { useRecoilValue, useSetRecoilState } from 'recoil'
 import { createFirstReg } from '@/apis/funding'
 import { useNavigate } from 'react-router-dom'
 import { calculateAge } from '@/utils/calcMethods'
+import { currentNavState } from '@/store/common'
+import { selectedFundingNoState } from '@/store/funding'
 
 const FundingRegPage = () => {
+  const setCurrentNav = useSetRecoilState(currentNavState)
+  const setSelectedFundingNo = useSetRecoilState(selectedFundingNoState)
   const navigate = useNavigate()
   const admin = useRecoilValue(adminState)
   const [regData, setRegData] = useState<RegDataType>({
@@ -35,6 +39,8 @@ const FundingRegPage = () => {
     mutationFn: createFirstReg,
     onSuccess(result) {
       console.log('등록 성공', result)
+      setCurrentNav({ name: 'Funding', url: `/admin/funding/id` })
+      setSelectedFundingNo(result.id)
       navigate(`/admin/funding/${result.id}`)
     },
     onError(error) {
