@@ -7,7 +7,6 @@ import SecondRegPage from '@/pages/secondReg/SecondRegPage'
 import SearchPage from '@pages/search/SearchPage'
 import HomePage from '@pages/home/HomePage'
 import RegOkPage from '@/pages/secondReg/RegOkPage'
-import AdminRedirectHandler from '@pages/admin/AdminRedirectHandler'
 
 const HomeRouter = () => {
   return (
@@ -21,7 +20,6 @@ const HomeRouter = () => {
       <Route path="*" element={<LoginPage />} />
       <Route path="/giveus/:id" element={<SecondRegPage />} />
       <Route path="/giveus/ok" element={<RegOkPage />} />
-      <Route path="/admin/*" element={<AdminRedirectHandler />} />
     </Routes>
   )
 }
