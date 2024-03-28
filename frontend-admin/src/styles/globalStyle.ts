@@ -14,10 +14,11 @@ export const GlobalStyle = createGlobalStyle`
     html, body {
         width: 100%;
         height: 100vh;
-        margin: 0;
+        margin: 0 auto;
         padding: 0;
         font-weight: 400;
         line-height: 1.1;
+        max-width: 1600px;
     }
     a {
         outline: none;

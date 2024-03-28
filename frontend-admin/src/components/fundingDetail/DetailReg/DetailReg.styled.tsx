@@ -38,6 +38,7 @@ export const Img = styled.img`
 
 export const ButtonBox = styled.div`
   display: flex;
+  justify-content: space-between;
   margin-top: 10px;
 `
 
@@ -46,12 +47,12 @@ export const Button = styled.button<{
   $isDisabled: boolean
 }>`
   border-radius: 15px;
-  margin: 5px;
-  padding: 5px 10px;
+  margin: 5px 0;
+  padding: 5px 8px;
   color: #fff;
   background-color: ${props =>
     props.$isReview ? colors.blue01 : colors.orange01};
   font-size: 0.8em;
   opacity: ${props => (props.$isDisabled ? '0.5' : '1')};
-  border: 1px solid gray;
+  border: 0.5px solid gray;
 `
