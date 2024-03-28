@@ -35,15 +35,11 @@ const ImageUpload = () => {
 
   const handleOCRButtonClick = useCallback(() => {
     if (imageData) {
-      const reader = new FileReader();
-      reader.onload = () => {
-        if (reader.result) {
-          const base64Data = reader.result.toString().split(',')[1];
-          requestWithBase64(base64Data);
-          // console.log('63463나여깃어', base64Data)
-        }
-      };
-      reader.readAsDataURL(new Blob([imageData]));
+      const base64Data = imageData.split(',')[1]; 
+      // console.log(base64Data);
+      const ocr_result = requestWithBase64(base64Data);
+      console.log(ocr_result);
+
     }
   }, [imageData]);
 
