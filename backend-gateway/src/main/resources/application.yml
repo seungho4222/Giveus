@@ -9,6 +9,10 @@ spring:
   cloud:
     gateway:
       default-filters:
+        - name: GlobalFilter
+          args:
+            preLogger: true
+            postLogger: true
         - DedupeResponseHeader=Access-Control-Allow-Origin Access-Control-Allow-Credential
       globalcors:
         cors-configurations:
@@ -77,3 +81,4 @@ springdoc:
         name: Payment
       - url: /api/v1/notification/docs
         name: Notification
+
