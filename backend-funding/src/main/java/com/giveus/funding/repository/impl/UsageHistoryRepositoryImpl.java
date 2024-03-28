@@ -1,7 +1,6 @@
 package com.giveus.funding.repository.impl;
 
 import com.giveus.funding.dto.response.FundingUsageListRes;
-import com.giveus.funding.entity.QFunding;
 import com.giveus.funding.entity.QUsageHistory;
 import com.giveus.funding.entity.UsageHistory;
 import com.giveus.funding.repository.UsageHistoryRepositoryCustom;
@@ -12,7 +11,6 @@ import java.util.List;
 
 public class UsageHistoryRepositoryImpl extends QuerydslRepositorySupport implements UsageHistoryRepositoryCustom {
 
-    private static final QFunding qFunding = QFunding.funding;
     private static final QUsageHistory qUsageHistory = QUsageHistory.usageHistory;
 
     public UsageHistoryRepositoryImpl() {
@@ -28,6 +26,7 @@ public class UsageHistoryRepositoryImpl extends QuerydslRepositorySupport implem
                         qUsageHistory.content, qUsageHistory.count,
                         qUsageHistory.amount))
                 .orderBy(qUsageHistory.usageHistoryNo.desc())
+                .where(qUsageHistory.funding.fundingNo.eq(fundingNo))
                 .fetch();
     }
 }

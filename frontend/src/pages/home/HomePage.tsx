@@ -9,6 +9,7 @@ import HomeTopSection from '@components/home/HomeTopSection'
 import HomeContributors from '@components/home/HomeContributors'
 import HomeTotalAmount from '@components/home/HomeTotalAmount'
 import HomeReview from '@components/home/HomeReview'
+import HomeSoonOver from '@components/home/HomeSoonOver'
 
 const HomePage = () => {
   const userInfo = useRecoilValue(userState)
@@ -26,6 +27,7 @@ const HomePage = () => {
         <HomeContributors />
         <HomeTotalAmount />
         <HomeReview />
+        <HomeSoonOver />
       </Layout>
       <Navbar current="home" />
     </>

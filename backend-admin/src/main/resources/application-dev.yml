@@ -12,7 +12,7 @@ swagger:
 
 coolsms:
   env:
-    phone: '01052742656'
+    phone: '01077124919'
   api:
-    key: NCSIQHM6IWPFFB7J
-    secret: CIKC7HDQRH8TH1PHLGAQRR8CLOIHEIAE
+    key: NCSYSZCQO6D1CTLP
+    secret: 9X3M3G3EEEEDSTZJRZKHQWTCUTILFKV8

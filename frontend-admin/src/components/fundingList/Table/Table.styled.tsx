@@ -60,7 +60,7 @@ export const StatusButton = styled.button<{ $status: string }>`
         : props.$status === '후기 등록'
           ? colors.blue01
           : colors.orange01};
-  width: 120px;
+  width: 130px;
   font-size: 0.8em;
   padding: 4px;
   color: #fff;

@@ -1,11 +1,23 @@
 import RegFile from '@/components/fundingReg/RegFile'
 import RegInput from '@/components/fundingReg/RegInput'
 import RegNumber from '@/components/fundingReg/RegNumber'
+import { adminState } from '@/store/user'
 import { RegDataType } from '@/types/fundingType'
 import * as f from '@pages/home/fundingReg/FundingRegPage.styled'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
+import { useMutation } from '@tanstack/react-query'
+import { useRecoilValue, useSetRecoilState } from 'recoil'
+import { createFirstReg } from '@/apis/funding'
+import { useNavigate } from 'react-router-dom'
+import { calculateAge } from '@/utils/calcMethods'
+import { currentNavState } from '@/store/common'
+import { selectedFundingNoState } from '@/store/funding'
 
 const FundingRegPage = () => {
+  const setCurrentNav = useSetRecoilState(currentNavState)
+  const setSelectedFundingNo = useSetRecoilState(selectedFundingNoState)
+  const navigate = useNavigate()
+  const admin = useRecoilValue(adminState)
   const [regData, setRegData] = useState<RegDataType>({
     phone: '',
     targetAmount: 0,
@@ -22,9 +34,31 @@ const FundingRegPage = () => {
     opinion: '',
   })
 
-  useEffect(() => {
-    console.log(regData)
-  }, [regData])
+  const { mutate } = useMutation({
+    mutationKey: ['createFirReg'],
+    mutationFn: createFirstReg,
+    onSuccess(result) {
+      console.log('등록 성공', result)
+      setCurrentNav({ name: 'Funding', url: `/admin/funding/id` })
+      setSelectedFundingNo(result.id)
+      navigate(`/admin/funding/${result.id}`)
+    },
+    onError(error) {
+      console.error('등록 실패:', error)
+      alert('펀딩 등록에 실패하였습니다.내용을 다시 확인해주세요.')
+    },
+  })
+
+  const handleCreateFirstReg = async () => {
+    const age = calculateAge(regData.birth)
+    const gender = regData.gender === 'M' ? '남' : '여'
+
+    mutate({
+      ...regData,
+      adminNo: admin.adminNo,
+      title: `${regData.diseaseName} ${age}세(${gender}) 펀딩`,
+    })
+  }
 
   return (
     <f.Container>
@@ -32,7 +66,7 @@ const FundingRegPage = () => {
       <RegInput
         id="phone"
         label="보호자 휴대폰 번호"
-        placeholder="휴대폰 번호 입력 ( 000-000-0000 )"
+        placeholder="휴대폰 번호 11자리 입력 ( 0000000000 )"
         value={regData.phone}
         setValue={setRegData}
       />
@@ -46,14 +80,14 @@ const FundingRegPage = () => {
       <RegInput
         id="startDate"
         label="펀딩 시작일"
-        placeholder="펀딩 시작일 입력"
+        placeholder="펀딩 시작일 입력 ( YYYY-MM-DD )"
         value={regData.startDate}
         setValue={setRegData}
       />
       <RegInput
         id="endDate"
         label="펀딩 종료일"
-        placeholder="펀딩 종료일 입력"
+        placeholder="펀딩 종료일 입력 ( YYYY-MM-DD )"
         value={regData.endDate}
         setValue={setRegData}
       />
@@ -106,7 +140,7 @@ const FundingRegPage = () => {
       <RegInput
         id="diagnosisDate"
         label="진단일"
-        placeholder="진단일 입력"
+        placeholder="진단일 입력 ( YYYY-MM-DD )"
         value={regData.diagnosisDate}
         setValue={setRegData}
       />
@@ -118,7 +152,7 @@ const FundingRegPage = () => {
         setValue={setRegData}
       />
       <f.Wrap>
-        <f.Button>1차 등록</f.Button>
+        <f.Button onClick={() => handleCreateFirstReg()}>1차 등록</f.Button>
       </f.Wrap>
     </f.Container>
   )

@@ -21,11 +21,9 @@ public class FundingTransfer {
                 .registrationNumber(req.getRegistrationNumber())
                 .startDate(req.getStartDate())
                 .targetAmount(req.getTargetAmount())
+                .adminNo(req.getAdminNo())
                 .build();
 
     }
 
-    public static FundingDetailsRes entityToDto(Funding savedFunding) {
-        return null;
-    }
 }

@@ -6,9 +6,10 @@ import SecondRegContent from '@/components/secondReg/SecondRegContent'
 import { useState } from 'react'
 import { useMutation } from '@tanstack/react-query'
 import { createSecondReg } from '@/apis/funding'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
 const SecondRegPage = () => {
+  const navigate = useNavigate()
   const [text, setText] = useState('')
   const [file, setFile] = useState<File | null>(null)
   const { id } = useParams()
@@ -18,9 +19,11 @@ const SecondRegPage = () => {
     mutationFn: createSecondReg,
     onSuccess(result) {
       console.log('등록 성공', result)
+      navigate('/giveus/ok', { replace: true })
     },
     onError(error) {
       console.error('등록 실패:', error)
+      alert('펀딩 등록에 실패하였습니다.내용을 다시 확인해주세요.')
     },
   })
 
