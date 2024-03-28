@@ -4,7 +4,7 @@ import { recoilPersist } from 'recoil-persist'
 
 const { persistAtom } = recoilPersist({
   key: 'currentNav',
-  storage: localStorage,
+  storage: sessionStorage,
 })
 
 export const currentNavState = atom<navType>({

@@ -63,3 +63,19 @@ export type RegDataMutateType = {
   adminNo: number
   title: string
 } & RegDataType
+
+export type UsageDataType = {
+  fundingNo: number
+  category: string
+  content: string
+  amount: number
+  count: number
+}
+
+export type UsageInputType = {
+  id: string
+  label: string
+  placeholder: string
+  value: string | number
+  setValue: Dispatch<SetStateAction<UsageDataType>>
+}
