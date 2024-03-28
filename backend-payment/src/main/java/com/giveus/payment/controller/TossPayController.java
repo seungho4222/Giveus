@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
 import static org.springframework.http.HttpStatus.OK;
 
 @Tag(name = "토스페이 API", description = "TossPay")
@@ -30,8 +31,13 @@ public class TossPayController {
 
     @PostMapping("/donate/ready")
     public ResponseEntity<?> requestPayment(@RequestBody TossPayDonateReq donateReq) {
-        return ResponseEntity.status(OK)
-                .body(new CommonResponseBody<>(OK, tossPayService.requestPayment(donateReq)));
+        try {
+            return ResponseEntity.status(OK)
+                    .body(new CommonResponseBody<>(OK, tossPayService.requestPayment(donateReq)));
+        } catch (Exception e) {
+            return ResponseEntity.status(INTERNAL_SERVER_ERROR)
+                    .body(new CommonResponseBody<>(INTERNAL_SERVER_ERROR, e.getMessage()));
+        }
     }
 
 }

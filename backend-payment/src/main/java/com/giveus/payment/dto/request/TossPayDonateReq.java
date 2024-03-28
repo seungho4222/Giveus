@@ -9,7 +9,7 @@ public class TossPayDonateReq {
 
     private int memberNo;
     private int fundingNo;
-    private int price;
+    private int amount;
     private int point;
     private String title;
     private boolean opened;
