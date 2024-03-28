@@ -12,6 +12,7 @@ const Index = () => {
 
   return (
     <k.Button onClick={onClick}>
+      {VITE_SERVER_URL}
       <img src="icon/icon_kakao.png" alt="" />
       카카오로 시작하기
     </k.Button>
