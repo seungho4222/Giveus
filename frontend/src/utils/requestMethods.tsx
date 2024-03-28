@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-export const BASE_URL = 'https://j10c206.p.ssafy.io'
+export const BASE_URL = 'https://giveus.site'
 
 export const publicRequest = axios.create({
   baseURL: BASE_URL,
