@@ -10,9 +10,10 @@ export const Container = styled.article`
   height: 69px;
 `
 
-export const Input = styled.input`
+export const Input = styled.input<{ $theme: number }>`
   width: 90%;
-  background-color: ${colors.gray02};
+  background-color: ${props =>
+    props.$theme === 1 ? colors.gray02 : colors.black02};
   border: none;
   padding: 11px 20px;
   border-radius: 20px;

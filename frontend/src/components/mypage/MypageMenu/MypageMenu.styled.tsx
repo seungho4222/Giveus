@@ -19,13 +19,15 @@ export const li = styled.li`
   padding: 2px 0;
   cursor: pointer;
 
-  img {
-    width: 20px;
-    height: 20px;
-    margin-right: 24px;
-  }
   span {
     font-size: 1em;
     font-weight: 500;
   }
+`
+
+export const ImageWrap = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 20px;
+  margin-right: 24px;
 `

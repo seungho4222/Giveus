@@ -1,8 +1,12 @@
 import * as h from '@components/home/HomeTopSection/HomeTopSection.styled'
 import paperairplane from '@assets/lottie/paperplane.json'
 import Lottie from 'react-lottie'
+import { useRecoilValue } from 'recoil'
+import { themeState } from '@stores/theme'
 
 const Index = () => {
+  const theme = useRecoilValue(themeState)
+
   const defaultOptions = {
     loop: true,
     autoplay: true,
@@ -26,7 +30,7 @@ const Index = () => {
         <br />
         바꾸는 기적이 됩니다
       </h.SubTitle>
-      <h.Circle>
+      <h.Circle $theme={theme}>
         <h.Airplane>
           <Lottie options={defaultOptions} width={328} height={239} />
         </h.Airplane>

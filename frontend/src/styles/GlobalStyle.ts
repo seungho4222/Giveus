@@ -66,6 +66,7 @@ export const GlobalStyle = createGlobalStyle`
     input {
         font-size: 1em;
         outline: none;
+        color: ${({ theme }: { theme: DefaultTheme }) => theme.color.text};
         &:focus {
             outline: none;
         }

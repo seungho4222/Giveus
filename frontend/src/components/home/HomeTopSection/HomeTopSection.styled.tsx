@@ -31,14 +31,17 @@ export const SubTitle = styled.h4`
   color: ${colors.gray04};
 `
 
-export const Circle = styled.div`
+export const Circle = styled.div<{ $theme: number }>`
   position: absolute;
   top: 20px;
   right: -13%;
   width: 218px;
   height: 218px;
   border-radius: 100%;
-  background: linear-gradient(rgba(102, 163, 255, 0.1), #fff);
+  background: ${props =>
+    props.$theme === 1
+      ? 'linear-gradient(rgba(102, 163, 255, 0.1), #fff)'
+      : `linear-gradient(rgba(102, 163, 255, 0.1), ${colors.black01})`};
 `
 
 export const Airplane = styled.div`

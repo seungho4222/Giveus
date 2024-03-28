@@ -1,4 +1,5 @@
 import { Dispatch, SetStateAction } from 'react'
+import { CustomToggleType } from '@/types/commonType'
 
 export type DateInputType = {
   startDate: string
@@ -58,3 +59,7 @@ export type DonatedFundingType = {
 export type DonatedFundingListType = {
   donatedFunding: DonatedFundingType[]
 }
+
+export type SettingItemType = {
+  title: string
+} & CustomToggleType
