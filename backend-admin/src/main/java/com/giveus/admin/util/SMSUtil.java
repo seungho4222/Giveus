@@ -30,14 +30,11 @@ public class SMSUtil {
         this.messageService = NurigoApp.INSTANCE.initialize(apiKey, apiSecret, COOLSMS_URL);
     }
 
-    public SingleMessageSentResponse send(String to, String regId) {
+    public SingleMessageSentResponse send(String to, String msg, String regId) {
         Message message = new Message();
         message.setFrom(from);
         message.setTo(to);
-        message.setText("[giveus]\n" +
-                "안녕하세요, 기브어스입니다.\n" +
-                "아래의 링크에서 펀딩 추가정보를 입력해주세요!\n" +
-                "https://j10c206.p.ssafy.io/giveus/" + regId);
+        message.setText(msg + regId);
         SingleMessageSentResponse response = null;
 
 //        try {

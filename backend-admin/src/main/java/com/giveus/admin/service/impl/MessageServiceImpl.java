@@ -11,8 +11,8 @@ public class MessageServiceImpl implements MessageService {
     private final SMSUtil smsUtil;
 
     @Override
-    public void sendMessage(String phoneNumber, String regId) {
-        smsUtil.send(phoneNumber, regId);
+    public void sendMessage(String phoneNumber, String msg, String regId) {
+        smsUtil.send(phoneNumber, msg, regId);
     }
 
 
