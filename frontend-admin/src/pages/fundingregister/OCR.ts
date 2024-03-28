@@ -22,8 +22,9 @@ export function requestWithBase64(base64Data: string) {
   }
 
   // Body에 json으로 변경 후 전송
-  const jsonMessage = JSON.stringify(message);
-  
+  const jsonMessage = JSON.stringify(message)
+  console.log(jsonMessage)
+
   axios
     .post(
       invokeUrl, // APIGW Invoke URL
@@ -93,3 +94,6 @@ export function requestWithFile(imageUrl: string) {
       console.error('Error fetching image:', error)
     })
 }
+
+;
+

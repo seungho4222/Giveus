@@ -1,7 +1,8 @@
 import styled from 'styled-components'
 import { colors } from '@/styles/theme'
 
-import MyPageHeader from '@/components/wallet/walletHeader'
+import WalletHeader from '@components/wallet/walletHeader'
+import WalletSection from '@components/wallet/walletSection'
 
 const StyledWalletContainer = styled.div`
   width: 592px;
@@ -14,16 +15,7 @@ const StyledWalletContainer = styled.div`
   align-items: center;
 `
 
-const StyledWalletHeader = styled.div`
-  width: 592px;
-  height: 124px;
-  z-index: 5;
-  position: absolute;
-  background-color: ${colors.blue01};
-  display: flex;
-  flex-direction: column;
-  color: white;
-`
+
 
 const StyledAddress = styled.div`
   width: 228px;
@@ -34,14 +26,9 @@ const StyledAddress = styled.div`
 const MyPage = () => {
   return (
     <>
-      <StyledWalletContainer>
-        <StyledWalletHeader>
-          싸피 병원 Wallet
-          <StyledAddress>
-            {/* <Img src="/icon/icon_copy_blue.png" /> */}
-          </StyledAddress>
-        </StyledWalletHeader>
-      </StyledWalletContainer>
+      <WalletHeader/>
+      <WalletSection/>
+      
       MyPage
     </>
   )
