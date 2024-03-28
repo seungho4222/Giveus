@@ -9,8 +9,6 @@ swagger:
   server: http://localhost:8081
 
 logging:
-  pattern:
-#    console: "[%d{HH:mm:ss.SSS}][%-5level][%logger.%method:line%line] - %msg%n"
   level:
     org:
       springframework:
@@ -24,3 +22,4 @@ logging:
         core:
           env:
             org.springframework.core.env.PropertySourcesPropertyResolver: warn
+    root: info
