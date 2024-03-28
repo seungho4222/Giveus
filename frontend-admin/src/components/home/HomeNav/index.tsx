@@ -14,7 +14,7 @@ const index = () => {
   const HandlerNav = (item: navType) => {
     setCurrentNav({ name: item.name, url: item.url })
     if (item.name === 'Funding') {
-      navigate(`/admin/funding/${selectedFundingNo}`)
+      navigate(`/funding/${selectedFundingNo}`)
     } else {
       navigate(item.url)
     }
@@ -22,7 +22,7 @@ const index = () => {
 
   return (
     <h.Container>
-      <h.Logo>(로고) GIVEUS</h.Logo>
+      <h.Logo><img src='/img/img_logo.png'/></h.Logo>
       {navbarList.map((item, idx) => (
         <div key={item.name}>
           {idx === 3 ? <h.Category>ACCOUNT PAGES</h.Category> : ''}

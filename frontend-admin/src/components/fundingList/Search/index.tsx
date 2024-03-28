@@ -14,8 +14,8 @@ const index = (props: { onSubmit: (filterValue: string) => void }) => {
   }
 
   const HandlerButton = () => {
-    setCurrentNav({ name: 'Registration', url: '/admin/fundingReg' })
-    navigate('/admin/fundingReg')
+    setCurrentNav({ name: 'Registration', url: '/fundingReg' })
+    navigate('/fundingReg')
   }
 
   return (
