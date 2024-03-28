@@ -6,10 +6,10 @@ import { Route, Routes } from 'react-router-dom'
 const HomeRouter = () => {
   return (
     <Routes>
-      <Route path="/admin/login" element={<LoginPage />} />
+      <Route path="/login" element={<LoginPage />} />
       <Route path="/giveus/review/:id" element={<ReviewRegPage />} />
       <Route path="/giveus/review-ok" element={<ReviewRegOkPage />} />
-      <Route path="/admin/*" element={<LoginPage />} />
+      <Route path="/*" element={<LoginPage />} />
     </Routes>
   )
 }

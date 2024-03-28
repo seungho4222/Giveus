@@ -35,9 +35,9 @@ const index = (props: { columns: any; data: FundingType[] }) => {
   } = useTable({ columns, data }, useGlobalFilter, useSortBy, usePagination)
 
   const HandleTd = (id: number) => {
-    setCurrentNav({ name: 'Funding', url: `/admin/funding/id` })
+    setCurrentNav({ name: 'Funding', url: `/funding/id` })
     setSelectedFundingNo(id)
-    navigate(`/admin/funding/${id}`)
+    navigate(`/funding/${id}`)
   }
 
   const tableData = (cell: Cell<FundingType>) => {

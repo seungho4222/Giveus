@@ -10,7 +10,10 @@ export const Container = styled.div`
 `
 
 export const Logo = styled.div`
-  padding: 5% 5% 15% 5%;
+  img {
+    width: 120px;
+  }
+  padding: 0 5% 15% 5%;
   position: relative;
   &:after {
     content: '';

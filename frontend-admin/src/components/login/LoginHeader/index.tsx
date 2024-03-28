@@ -3,7 +3,7 @@ import * as l from '@components/login/LoginHeader/LoginHeader.styled'
 const index = () => {
   return (
     <l.Container>
-      <l.Logo>(로고) GIVEUS Hospital</l.Logo>
+      <l.Logo><img src='/img/img_logo.png'/></l.Logo>
       <l.Wrap>
         <l.Button>
           <l.Icon src="/icon/icon_signup.png" alt="" />
