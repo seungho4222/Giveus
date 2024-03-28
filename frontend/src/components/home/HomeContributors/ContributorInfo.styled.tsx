@@ -24,7 +24,7 @@ export const InfoWrap = styled.div`
   }
 `
 
-export const DateWrap = styled.div`
+export const DateWrap = styled.div<{ $theme: number }>`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -32,5 +32,5 @@ export const DateWrap = styled.div`
   margin-left: auto;
   font-size: 0.7em;
   gap: 4px;
-  color: ${colors.gray05};
+  color: ${props => (props.$theme ? colors.gray05 : colors.gray03)};
 `
