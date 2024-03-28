@@ -36,6 +36,7 @@ export type FundingDetailType = {
 }
 
 export type RegDataType = {
+  [key: string]: string | number | boolean;
   phone: string
   targetAmount: number
   startDate: string
@@ -49,6 +50,7 @@ export type RegDataType = {
   diseaseCode: string
   diagnosisDate: string
   opinion: string
+  title: string
 }
 
 export type RegInputType = {
@@ -63,3 +65,12 @@ export type RegDataMutateType = {
   adminNo: number
   title: string
 } & RegDataType
+
+export type RegFileType = {
+  onOCRResult: (result:any) => void
+}
+
+export type OCRResult = {
+  name: keyof RegDataType
+  inferText: string
+}

@@ -7,6 +7,8 @@ export const calculateAge = (birth: string) => {
   let date = today.getDate() // 날짜
 
   const createdAtDate = new Date(year + '/' + month + '/' + date)
+  console.log(birthDate)
+  console.log(createdAtDate)
 
   const age = createdAtDate.getFullYear() - birthDate.getFullYear()
 
@@ -19,4 +21,18 @@ export const calculateAge = (birth: string) => {
   } else {
     return age
   }
+}
+
+export const divideBirth = (inferText: string) => {
+  const processedText = inferText.replace(/\s/g, '').split('-')
+  let strBirth: any = processedText[0].split('')
+  strBirth.splice(4, 0, '-')
+  strBirth.splice(2, 0, '-')
+  if (strBirth[0] < 3) {
+    strBirth.unshift('20')
+  } else {
+    strBirth.unshift('19')
+  }
+  strBirth = strBirth.join('')
+  return strBirth
 }
