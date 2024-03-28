@@ -4,6 +4,8 @@ import { useQuery } from '@tanstack/react-query'
 import { RecentParticipantType } from '@/types/fundingType'
 import { fetchRecentParticipants } from '@apis/funding'
 import { useNavigate } from 'react-router-dom'
+import { useRecoilValue } from 'recoil'
+import { themeState } from '@stores/theme'
 
 const Index = () => {
   const { data } = useQuery<RecentParticipantType[]>({
@@ -12,13 +14,14 @@ const Index = () => {
   })
 
   const navigate = useNavigate()
+  const theme = useRecoilValue(themeState)
 
   const goFunding = () => navigate('/funding')
 
   return (
     <h.Container>
       <h.Title>실시간 기부 참여자</h.Title>
-      <h.Wrap>
+      <h.Wrap $theme={theme}>
         {data &&
           data.map(item => (
             <ContributorInfo key={item.memberFundingNo} item={item} />

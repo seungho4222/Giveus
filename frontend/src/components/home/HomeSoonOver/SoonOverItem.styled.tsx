@@ -34,10 +34,10 @@ export const Name = styled.div`
   white-space: nowrap;
 `
 
-export const Amount = styled.div`
+export const Amount = styled.div<{ $theme: number }>`
   margin-top: auto;
   font-size: 0.9em;
-  color: ${colors.gray05};
+  color: ${props => (props.$theme ? colors.gray05 : colors.gray04)};
 `
 
 export const Percent = styled.div<{ $flag: boolean }>`

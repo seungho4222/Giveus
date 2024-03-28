@@ -11,13 +11,10 @@ import '@/services/foregroundMessage'
 
 const App = () => {
   const themeProps = useTheme()
-
   const user = useRecoilValue(userState)
 
   return (
-    <ThemeProvider
-      theme={themeProps.theme === 'light' ? lightTheme : darkTheme}
-    >
+    <ThemeProvider theme={themeProps.theme ? lightTheme : darkTheme}>
       <BrowserRouter>
         <GlobalStyle />
         {user.memberNo !== -1 ? <AuthRouter /> : <HomeRouter />}

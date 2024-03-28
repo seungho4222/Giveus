@@ -1,11 +1,11 @@
 import { colors } from '@/styles/theme'
 import styled from 'styled-components'
 
-export const Wrap = styled.div`
+export const Wrap = styled.div<{ $theme: number }>`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: ${colors.gray02};
+  background-color: ${props => (props.$theme ? colors.gray02 : colors.black02)};
   font-size: 0.9em;
   padding: 9px 13px;
   border-radius: 20px;

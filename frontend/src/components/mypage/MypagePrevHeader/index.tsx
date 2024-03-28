@@ -1,7 +1,10 @@
+import { themeState } from '@stores/theme'
 import * as m from '@components/mypage/MypagePrevHeader/MypagePrevHeader.styled'
 import { useNavigate } from 'react-router-dom'
+import { useRecoilValue } from 'recoil'
 
 const Index = (props: { title: string; url: string }) => {
+  const theme = useRecoilValue(themeState)
   const { title, url } = props
 
   const navigate = useNavigate()
@@ -12,7 +15,7 @@ const Index = (props: { title: string; url: string }) => {
     <m.Container $isDonate={title === '후원 내역'}>
       <m.Image
         src={
-          title === '후원 내역'
+          theme === 0
             ? '/icon/icon_arrow_white.png'
             : '/icon/icon_arrow_black.png'
         }
