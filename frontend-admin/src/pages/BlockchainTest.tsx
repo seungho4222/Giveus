@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import Web3, { Uint } from 'web3'
-import FundRaisingContract from '../../../smart-contracts/build/contracts/FundRaising.json'
+import FundRaisingContract from '../assets/data/FundRaising.json'
 import Button from '@/common/button/Button'
 import { Input } from '@/common/input/Input'
 
