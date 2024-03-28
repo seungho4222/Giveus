@@ -10,12 +10,14 @@ export const Container = styled.div`
 export const DetailInfo = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 1em;
+  width: 90%;
+  margin: 0 auto;
+  padding-top: 30px;
   border-bottom: 2px solid ${colors.gray02};
 `
 
 export const Period = styled.div`
-  font-size: 0.9em;
+  font-size: 1em;
   font-weight: 500;
   margin-bottom: 1em;
 `
@@ -26,7 +28,7 @@ export const Wrap = styled.div`
 `
 
 export const TotalAmount = styled.div`
-  font-size: 1.2em;
+  font-size: 1.3em;
   font-weight: 700;
 `
 
@@ -35,9 +37,9 @@ export const Dday = styled.div`
   font-weight: 700;
 `
 
-export const Progress = styled.div`
+export const Progress = styled.div<{ $theme: number }>`
   position: relative;
-  background-color: ${colors.gray02};
+  background-color: ${props => (props.$theme ? colors.gray02 : colors.black02)};
   border-radius: 20px;
   width: 100%;
   height: 8px;
@@ -54,24 +56,25 @@ export const ProgressStatus = styled.div<{ $width: string }>`
 
 export const Percent = styled.div`
   color: ${colors.orange01};
-  font-size: 0.9em;
+  font-size: 1em;
+  font-weight: 500;
 `
 
-export const TargetAmount = styled.div`
-  color: ${colors.gray05};
-  font-size: 0.8em;
+export const TargetAmount = styled.div<{ $theme: number }>`
+  color: ${props => (props.$theme ? colors.gray05 : colors.gray04)};
+  font-size: 0.9em;
 `
 
 export const Note = styled.div`
   color: ${colors.gray04};
-  font-size: 0.8em;
-  margin-top: 1em;
+  font-size: 0.9em;
+  margin: 20px 0;
 `
 
 // ---------------------------- 하단 ----------------------------
 export const DetailDesc = styled.div`
-  padding: 1em;
-  margin-bottom: 80px; // BottomButton 크기 80px
+  width: 90%;
+  margin: 20px auto 80px;
 `
 
 export const Button = styled.div`
@@ -81,7 +84,6 @@ export const Button = styled.div`
   position: fixed;
   bottom: 0;
   padding: 1em;
-  background-color: white;
   @media only screen and (min-width: 430px) {
     width: 430px;
   }

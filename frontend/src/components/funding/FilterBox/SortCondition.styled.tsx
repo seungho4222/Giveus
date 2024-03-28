@@ -3,22 +3,20 @@ import styled from 'styled-components'
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-  width: 90%;
-  margin: 5% auto 10% auto;
-  row-gap: 1em;
+  padding: 20px;
 `
 
 export const Wrap = styled.div`
   display: flex;
   align-items: center;
-  font-size: 0.8em;
+  font-size: 1em;
   cursor: pointer;
+  height: 40px;
 `
 
 export const RadioInput = styled.input`
-  margin: auto 0.5em auto 0;
+  margin-right: 10px;
   width: 1.2em;
   height: 1.2em;
   cursor: pointer;
-  
 `

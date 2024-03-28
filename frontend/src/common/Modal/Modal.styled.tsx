@@ -1,7 +1,7 @@
 import { colors, sizes } from '@styles/theme'
 import styled from 'styled-components'
 
-export const Container = styled.div`
+export const Container = styled.div<{ $theme: number }>`
   display: flex;
   position: fixed;
   top: 0;
@@ -10,7 +10,7 @@ export const Container = styled.div`
   min-width: ${sizes.minWidth};
   max-width: ${sizes.maxWidth};
   height: 100vh;
-  background-color: #fff;
+  background-color: ${props => (props.$theme ? '#fff' : colors.black01)};
   overflow-y: scroll;
   &::-webkit-scrollbar {
     display: none; /* 크롬, 사파리, 오페라, 엣지 */
@@ -37,7 +37,6 @@ export const ModalName = styled.div`
   display: flex;
   justify-content: center;
   padding-block: 1em;
-  border-bottom: 2px solid ${colors.gray02};
   font-weight: 600;
 `
 

@@ -40,8 +40,7 @@ export const Status = styled.div<{ $status: boolean }>`
   background-color: ${props =>
     props.$status ? colors.orange01 : colors.gray02};
   color: ${props => (props.$status ? 'white' : colors.gray04)};
-  font-size: 0.5em;
-  height: 1rem;
-  padding-inline: 0.5em;
+  font-size: 0.8em;
+  padding: 4px 6px;
   margin-block: auto;
 `

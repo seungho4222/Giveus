@@ -14,7 +14,7 @@ export const Wrap = styled.div`
 `
 
 export const Title = styled.p`
-  font-size: 0.8em;
+  font-size: 1em;
   font-weight: bold;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -22,7 +22,7 @@ export const Title = styled.p`
 `
 
 export const Period = styled.p`
-  font-size: 0.6em;
+  font-size: 0.7em;
   color: ${colors.gray04};
 `
 
@@ -34,7 +34,7 @@ export const Status = styled.div<{ $status: boolean }>`
   background-color: ${props =>
     props.$status ? colors.orange01 : colors.gray02};
   color: ${props => (props.$status ? 'white' : colors.gray04)};
-  font-size: 0.5em;
+  font-size: 0.7em;
   height: 1rem;
   padding-inline: 0.5em;
   margin-left: auto;
