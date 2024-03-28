@@ -7,7 +7,7 @@ export const Container = styled.div<{ $isDonate: boolean }>`
   width: 100%;
   margin: 0 auto;
   padding-inline: 5%;
-  height: 55px;
+  height: 70px;
 `
 
 export const Image = styled.img`

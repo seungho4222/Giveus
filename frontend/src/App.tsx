@@ -14,7 +14,7 @@ const App = () => {
   const user = useRecoilValue(userState)
 
   return (
-    <ThemeProvider theme={themeProps.theme === 1 ? lightTheme : darkTheme}>
+    <ThemeProvider theme={themeProps.theme ? lightTheme : darkTheme}>
       <BrowserRouter>
         <GlobalStyle />
         {user.memberNo !== -1 ? <AuthRouter /> : <HomeRouter />}

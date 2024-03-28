@@ -13,6 +13,10 @@ export enum ThemeFlag {
 
 export const themeState = atom<ThemeFlag>({
   key: 'themeState',
-  default: ThemeFlag.light,
+  default:
+    window.matchMedia &&
+    window.matchMedia('(prefers-color-scheme: dark)').matches
+      ? ThemeFlag.dark
+      : ThemeFlag.light,
   effects_UNSTABLE: [persistAtom],
 })

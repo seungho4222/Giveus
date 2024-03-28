@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import { colors, sizes } from '@styles/theme'
 import styled from 'styled-components'
 
-export const Container = styled.footer`
+export const Container = styled.footer<{ $theme: number }>`
   position: fixed;
   width: 100%;
   min-width: ${sizes.minWidth};
@@ -10,7 +10,7 @@ export const Container = styled.footer`
   bottom: 0;
   z-index: 100;
   border-top: 1px solid #f7f7f7;
-  // background-color: #fff;
+  background-color: ${props => (props.$theme === 1 ? '#fff' : colors.black01)};
   height: 60px;
   box-shadow: 6px 4px 18px 3px rgba(0, 0, 0, 0.11);
   @media only screen and (min-width: 430px) {
