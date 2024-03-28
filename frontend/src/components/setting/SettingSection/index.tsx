@@ -1,15 +1,17 @@
 import * as s from '@components/setting/SettingSection/SettingSection.styled'
 import SettingItem from './SettingItem'
-import { useRecoilState } from 'recoil'
-import { ThemeFlag, themeState } from '@/stores/theme'
 import { useState } from 'react'
+import useTheme from '@hooks/useTheme'
+import { ThemeFlag } from '@/stores/theme'
 
 const Index = () => {
-  const [theme, setTheme] = useRecoilState(themeState)
-  const [isDark, setIsDark] = useState<boolean>(theme === ThemeFlag.dark)
+  const themeProps = useTheme()
+  const [isDark, setIsDark] = useState<boolean>(
+    themeProps.theme === ThemeFlag.dark,
+  )
 
   const changeTheme = () => {
-    isDark ? setTheme(ThemeFlag.light) : setTheme(ThemeFlag.dark)
+    themeProps.onChangeTheme()
     setIsDark(!isDark)
   }
 

@@ -1,9 +1,11 @@
 import { userState } from '@stores/user'
 import { useNavigate } from 'react-router-dom'
-import { useResetRecoilState } from 'recoil'
+import { useRecoilValue, useResetRecoilState } from 'recoil'
 import * as l from '@components/setting/LogoutSection/LogoutSection.styled'
+import { themeState } from '@stores/theme'
 
 const Index = () => {
+  const theme = useRecoilValue(themeState)
   const navigate = useNavigate()
 
   const resetUserState = useResetRecoilState(userState)
@@ -15,7 +17,9 @@ const Index = () => {
 
   return (
     <l.Container>
-      <l.Button onClick={logout}>로그아웃</l.Button>
+      <l.Button onClick={logout} $theme={theme}>
+        로그아웃
+      </l.Button>
     </l.Container>
   )
 }

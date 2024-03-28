@@ -3,7 +3,8 @@ import styled from 'styled-components'
 
 export const Container = styled.div<{ $selected: boolean }>`
   width: 70px;
-  background-color: ${props => (props.$selected ? colors.blue01 : '#fff')};
+  background-color: ${props =>
+    props.$selected ? colors.blue01 : colors.black01};
   cursor: pointer;
   user-select: none;
   border-radius: 24px;

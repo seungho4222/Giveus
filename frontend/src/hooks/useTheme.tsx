@@ -6,7 +6,7 @@ const useTheme = () => {
   const [theme, setTheme] = useRecoilState(themeState)
   const onChangeTheme = useCallback(() => {
     setTheme(prevTheme =>
-      prevTheme === ThemeFlag.light ? ThemeFlag.dark : ThemeFlag.dark,
+      prevTheme === ThemeFlag.light ? ThemeFlag.dark : ThemeFlag.light,
     )
   }, [])
 
@@ -16,11 +16,12 @@ const useTheme = () => {
       window.matchMedia &&
       window.matchMedia('(prefers-color-scheme: dark)').matches
     ) {
-      setTheme(ThemeFlag.dark)
+      theme === ThemeFlag.dark && setTheme(ThemeFlag.dark)
     } else {
-      setTheme(ThemeFlag.light)
+      theme === ThemeFlag.light && setTheme(ThemeFlag.light)
     }
   }, [])
+
   return {
     theme,
     onChangeTheme,

@@ -7,6 +7,7 @@ export const Container = styled.div`
   height: 50px;
 `
 
-export const Button = styled.button`
+export const Button = styled.button<{ $theme: number }>`
   font-weight: 500;
+  color: ${props => (props.$theme === 1 ? '#000' : '#fff')};
 `
