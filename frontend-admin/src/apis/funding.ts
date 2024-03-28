@@ -1,3 +1,4 @@
+import { RegDataMutateType } from '@/types/fundingType'
 import { authRequest } from '@utils/requestMethods'
 
 const url = '/api/v1/admin'
@@ -15,10 +16,6 @@ export const fetchFundingDetail = async (fundingNo: number) => {
 }
 
 // 펀딩 1차 등록
-export const createFirstReg = async (data: FormData) => {
-  return authRequest
-    .post(`${url}`, data, {
-      headers: { 'Content-Type': 'multipart/form-data' },
-    })
-    .then(res => res.data.data)
+export const createFirstReg = async (params: RegDataMutateType) => {
+  return authRequest.post(`${url}`, params).then(res => res.data.data)
 }

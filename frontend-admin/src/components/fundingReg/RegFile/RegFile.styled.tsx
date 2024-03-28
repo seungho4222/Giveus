@@ -35,6 +35,13 @@ export const Text = styled.div`
   margin-top: 20px;
 `
 
+export const Input = styled.input`
+  width: 0;
+  height: 0;
+  margin: 0;
+  overflow: hidden;
+`
+
 export const Button = styled.button`
   display: flex;
   align-items: center;
@@ -46,4 +53,12 @@ export const Button = styled.button`
   border-radius: 5px;
   font-size: 1em;
   margin-block: 10px;
+`
+
+export const PreviewImage = styled.img`
+  width: 90%;
+  height: 90%;
+  margin: auto;
+  border-radius: 8px;
+  cursor: pointer;
 `

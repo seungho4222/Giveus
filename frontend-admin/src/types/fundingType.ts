@@ -58,3 +58,8 @@ export type RegInputType = {
   value: string
   setValue: Dispatch<SetStateAction<RegDataType>>
 }
+
+export type RegDataMutateType = {
+  adminNo: number
+  title: string
+} & RegDataType
