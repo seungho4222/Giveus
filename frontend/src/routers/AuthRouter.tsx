@@ -33,7 +33,6 @@ const AuthRouter = () => {
       <Route path="/mypage/recharge" element={<RechargePage />} />
       <Route path="/mypage/recharge/done" element={<RechargeDonePage />} />
       <Route path="/mypage/donate" element={<DonatePage />} />
-
       <Route path="/funding/:id" element={<FundingDetailPage />}>
         <Route path="detail-main" element={<DetailMainPage />} />
         <Route path="donor-list" element={<DonorListPage />} />
