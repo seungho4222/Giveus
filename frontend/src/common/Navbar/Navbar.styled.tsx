@@ -9,7 +9,8 @@ export const Container = styled.footer<{ $theme: number }>`
   max-width: ${sizes.maxWidth};
   bottom: 0;
   z-index: 100;
-  border-top: 1px solid #f7f7f7;
+  border-top: 1px solid
+    ${props => (props.$theme === 1 ? '#f7f7f7' : colors.black02)};
   background-color: ${props => (props.$theme === 1 ? '#fff' : colors.black01)};
   height: 60px;
   box-shadow: 6px 4px 18px 3px rgba(0, 0, 0, 0.11);

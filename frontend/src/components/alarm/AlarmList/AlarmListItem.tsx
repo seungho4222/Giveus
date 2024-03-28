@@ -1,7 +1,10 @@
+import { themeState } from '@stores/theme'
 import { AlarmType } from '@/types/alarmType'
 import * as a from '@components/alarm/AlarmList/AlarmListItem.styled'
+import { useRecoilValue } from 'recoil'
 
 const AlarmListItem = (props: { item: AlarmType }) => {
+  const theme = useRecoilValue(themeState)
   const { item } = props
 
   const setImage = (category: string) => {
@@ -28,9 +31,9 @@ const AlarmListItem = (props: { item: AlarmType }) => {
   }
 
   return (
-    <a.Container $isRead={item.isRead}>
+    <a.Container $isRead={item.isRead} $theme={theme}>
       <a.Wrap>
-        <a.ImgWrap $isRead={item.isRead}>
+        <a.ImgWrap $isRead={item.isRead} $theme={theme}>
           <img
             src={setImage(item.category)?.src}
             alt=""
