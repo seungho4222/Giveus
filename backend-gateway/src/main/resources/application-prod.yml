@@ -16,7 +16,7 @@ logging:
   file:
     name: /home/ubuntu/logs/gateway.log
   level:
-#    root: info
+    root: info
     org:
       springframework:
         cloud:
