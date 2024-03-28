@@ -80,7 +80,7 @@ public interface FundingService {
      * 펀딩 기금 사용 내역을 조회하는 메서드입니다.
      *
      * @param fundingNo 조회할 펀딩 고유 번호
-     * @return 펀딩 고융 번호 기준 기금 사용 내역
+     * @return 펀딩 고유 번호 기준 기금 사용 내역
      */
     List<FundingUsageListRes> getUsageHistory(int fundingNo);
 
