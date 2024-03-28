@@ -31,7 +31,7 @@ public class UsageHistoryServiceImpl implements UsageHistoryService {
         String msg = "[giveus]\n" +
                 "안녕하세요, 기브어스입니다.\n" +
                 "아래의 링크에서 후원 후기를 나눠주세요!\n" +
-                "https://j10c206.p.ssafy.io/giveus/review/";
+                "https://giveus.site/giveus/review/";
         messageService.sendMessage(funding.getPhone(), msg , funding.getRegId());
 
         return new CreateSuccessDto(savedUsageHistory.getUsageHistoryNo());
