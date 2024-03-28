@@ -14,13 +14,15 @@ export const Title = styled.h1`
   padding-left: 4px;
 `
 
-export const Wrap = styled.div`
+export const Wrap = styled.div<{ $theme: number }>`
   display: flex;
   flex-direction: column;
   margin-top: 16px;
   padding: 23px 20px;
-  box-shadow: 0px 0px 20px 2px rgba(149, 157, 177, 0.2);
+  box-shadow: 0px 0px 20px 2px
+    rgba(149, 157, 177, ${props => (props.$theme ? '0.2' : '0.1')});
   border-radius: 10px;
+  background-color: ${props => (props.$theme ? '#fff' : colors.black02)};
 `
 
 export const Line = styled.div`

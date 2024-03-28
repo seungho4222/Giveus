@@ -9,6 +9,10 @@ spring:
   cloud:
     gateway:
       default-filters:
+        - name: GlobalFilter
+          args:
+            preLogger: true
+            postLogger: true
         - DedupeResponseHeader=Access-Control-Allow-Origin Access-Control-Allow-Credential
       globalcors:
         cors-configurations:
@@ -16,13 +20,13 @@ spring:
             allowedOrigins:
               - 'http://localhost:3000'
               - 'http://localhost:3001'
-              - 'http://j10c206.p.ssafy.io:8090'
-              - 'http://j10c206.p.ssafy.io:8091'
-              - 'http://j10c206.p.ssafy.io'
-              - 'http://j10c206.p.ssafy.io:8081'
-              - 'https://j10c206.p.ssafy.io'
-              - 'https://j10c206.p.ssafy.io:443'
-              - 'https://j10c206.p.ssafy.io:8090'
+              - 'http://giveus.site:8090'
+              - 'http://giveus.site:8091'
+              - 'http://giveus.site'
+              - 'http://giveus.site:8081'
+              - 'https://giveus.site'
+              - 'https://giveus.site:443'
+              - 'https://giveus.site:8090'
               - 'http://172.17.0.11:8081'
               - 'http://172.17.0.11:8091'
               - 'http://172.17.0.11:8086'
@@ -77,3 +81,4 @@ springdoc:
         name: Payment
       - url: /api/v1/notification/docs
         name: Notification
+

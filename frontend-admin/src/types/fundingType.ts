@@ -66,6 +66,7 @@ export type RegDataMutateType = {
   title: string
 } & RegDataType
 
+
 export type RegFileType = {
   onOCRResult: (result:any) => void
 }
@@ -73,4 +74,20 @@ export type RegFileType = {
 export type OCRResult = {
   name: keyof RegDataType
   inferText: string
+}
+
+export type UsageDataType = {
+  fundingNo: number
+  category: string
+  content: string
+  amount: number
+  count: number
+}
+
+export type UsageInputType = {
+  id: string
+  label: string
+  placeholder: string
+  value: string | number
+  setValue: Dispatch<SetStateAction<UsageDataType>>
 }

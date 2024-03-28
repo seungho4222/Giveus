@@ -38,3 +38,8 @@ export type ModalType = {
   children: React.ReactNode
   onClose: () => void
 }
+
+export type CustomToggleType = {
+  selected: boolean
+  onClick: () => void
+}

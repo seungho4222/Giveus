@@ -10,7 +10,7 @@ import FundingRegister from '@/pages/fundingregister/FundingRegister'
 const AuthRouter = () => {
   return (
     <Routes>
-      <Route path="/admin" element={<HomePage />}>
+      <Route path="/" element={<HomePage />}>
         <Route path="fundingReg" element={<FundingRegPage />} />
         <Route path="funding" element={<FundingListPage />} />
         <Route path="funding/:id" element={<FundingDetailPage />} />
@@ -18,7 +18,7 @@ const AuthRouter = () => {
         <Route path="blockchain-test" element={<BlockchainTest />} />
         <Route path="funding-register" element={<FundingRegister />} />
       </Route>
-      <Route path="/admin/*" element={<HomePage />} />
+      <Route path="/*" element={<HomePage />} />
     </Routes>
   )
 }

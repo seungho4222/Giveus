@@ -10,14 +10,17 @@ export const Wrap = styled.div`
   display: flex;
 `
 
-export const Tap = styled.div<{ $active: boolean }>`
+export const Tap = styled.div<{ $active: boolean; $theme: number }>`
   display: flex;
   justify-content: center;
   width: 100%;
   padding-block: 1.4em;
-  border-bottom: 2px solid ${props => (props.$active ? 'black' : `${colors.gray02}`)};
-  color: ${props => (props.$active ? 'black' : `${colors.gray04}`)};
-  font-size: 0.8em;
+  border-bottom: 2px solid
+    ${props =>
+      props.$active ? (props.$theme ? '#000' : '#fff') : colors.gray04};
+  color: ${props =>
+    props.$active ? (props.$theme ? '#000' : '#fff') : colors.gray04};
+  font-size: 1em;
   font-weight: 600;
   cursor: pointer;
 `

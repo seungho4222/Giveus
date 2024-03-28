@@ -1,8 +1,11 @@
+import { themeState } from '@stores/theme'
 import { SearchFormType } from '@/types/searchType'
 import * as s from '@components/search/SearchForm/SearchForm.styled'
 import { KeyboardEvent } from 'react'
+import { useRecoilValue } from 'recoil'
 
 const Index = (props: SearchFormType) => {
+  const theme = useRecoilValue(themeState)
   const { value, setValue, onSearch, resetKeyword } = props
 
   const onKeyDown = (e: KeyboardEvent<Element>) => onSearch(value, e)
@@ -16,9 +19,18 @@ const Index = (props: SearchFormType) => {
         type="search"
         enterKeyHint="search"
         onKeyDown={onKeyDown}
+        $theme={theme}
       />
       <s.Xbutton>
-        <img src="/icon/icon_close_black.png" alt="" onClick={resetKeyword} />
+        <img
+          src={
+            theme === 1
+              ? '/icon/icon_close_black.png'
+              : '/icon/icon_close_white.png'
+          }
+          alt=""
+          onClick={resetKeyword}
+        />
       </s.Xbutton>
     </s.Container>
   )

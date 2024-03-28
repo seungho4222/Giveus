@@ -10,6 +10,7 @@ export const Container = styled.div`
 
 export const Condition = styled.div`
   font-weight: 600;
+  font-size: 1em;
 `
 
 export const Wrap = styled.div`
@@ -22,7 +23,7 @@ export const Button = styled.button<{ $checked: boolean }>`
   border: 1px solid ${props => (props.$checked ? colors.blue01 : colors.gray04)};
   border-radius: 20px;
   padding: 0.5em;
-  font-size: 0.8em;
+  font-size: 0.9em;
   color: ${props => (props.$checked ? colors.blue01 : colors.gray04)};
 `
 
@@ -59,7 +60,6 @@ export const Footer = styled.div`
   position: fixed;
   bottom: 0;
   padding: 1em;
-  background-color: white;
   @media only screen and (min-width: 430px) {
     width: 430px;
   }
