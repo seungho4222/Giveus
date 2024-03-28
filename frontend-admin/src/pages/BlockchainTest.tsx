@@ -7,9 +7,10 @@ import { Input } from '@/common/input/Input'
 const BlockchainTest = () => {
 
   const ETHEREUM_RPC_URL = 'https://rpc.ssafy-blockchain.com'
-  const privateKey =
-    'ccde9fd1e91c71a46ebca973189dec872dfc408852dd2078244b7e5c61b5990c'
+  const privateKey = 'ccde9fd1e91c71a46ebca973189dec872dfc408852dd2078244b7e5c61b5990c'
+  // const testPrivateKey = '71033e180d0ff797e3510cf0e25153b77d041e0826feb59703370dddb02ac674'
   const hospitalAddress = '0x395950AD0039Df7232a37EE11FA92ec93F58F1fa'
+  // const testHospitalAddress = '0x9b54e7db71a3616ae97ca4d5eccceff896655f30'
   const contractAddress = '0xB4718410f291fDeD9DEEb674829FEE9416B21F3B'
   // const LOCAL_RPC_URL = 'HTTP://127.0.0.1:7545';
 
@@ -77,7 +78,7 @@ const BlockchainTest = () => {
   // 펀딩 정보 조회 함수 추가
   const getFundingInfo = async () => {
     try {
-      const index = 0 // 조회할 펀딩 인덱스 설정
+      const index = 2 // 조회할 펀딩 인덱스 설정
       const result = await contractInstance.methods.getFunding(index).call()
       console.log('펀딩 정보:', result)
     } catch (error) {
