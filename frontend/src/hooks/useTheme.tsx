@@ -4,6 +4,7 @@ import { useRecoilState } from 'recoil'
 
 const useTheme = () => {
   const [theme, setTheme] = useRecoilState(themeState)
+
   const onChangeTheme = useCallback(() => {
     setTheme(prevTheme =>
       prevTheme === ThemeFlag.light ? ThemeFlag.dark : ThemeFlag.light,

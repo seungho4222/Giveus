@@ -6,6 +6,7 @@ export const Container = styled.div`
   width: 90%;
   margin: 0 auto;
   column-gap: 2%;
+  padding: 4px 0;
 `
 
 export const Button = styled.button`
@@ -14,7 +15,7 @@ export const Button = styled.button`
   border-radius: 20px;
   padding-inline: 1em;
   padding-block: 0.2em;
-  font-size: 0.75em;
+  font-size: 0.9em;
   color: ${colors.blue01};
   margin-bottom: 1em;
   white-space: nowrap;

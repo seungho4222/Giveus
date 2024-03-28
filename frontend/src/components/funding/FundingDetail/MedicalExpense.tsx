@@ -1,10 +1,12 @@
-import * as m from '@/components/funding/FundingDetail/MedicalExpense.styled'
-import { medicalExpenseState } from '@/stores/funding'
+import * as m from '@components/funding/FundingDetail/MedicalExpense.styled'
+import { medicalExpenseState } from '@stores/funding'
+import { themeState } from '@stores/theme'
 import { MedicalExpenseType } from '@/types/fundingType'
-import { formatAmount } from '@/utils/format'
+import { formatAmount } from '@utils/format'
 import { useRecoilValue } from 'recoil'
 
 const MedicalExpense = () => {
+  const theme = useRecoilValue(themeState)
   const medicalExpense = useRecoilValue(medicalExpenseState)
 
   const totalExpense = () => {
@@ -18,11 +20,9 @@ const MedicalExpense = () => {
     <m.Container>
       {medicalExpense.length ? (
         <m.ExpenseTrue>
-          <m.TotalExpense>
-            합계 {formatAmount(totalExpense())}원
-          </m.TotalExpense>
+          <m.TotalExpense>합계 {formatAmount(totalExpense())}원</m.TotalExpense>
           {medicalExpense.map(item => (
-            <m.Card key={item.usageHistoryNo}>
+            <m.Card key={item.usageHistoryNo} $theme={theme}>
               <m.Icon src="/icon/icon_document_blue.png" />
               <m.Wrap>
                 <m.Category>{item.category}</m.Category>

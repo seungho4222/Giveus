@@ -14,7 +14,7 @@ export const Wrap = styled.div`
 
 export const Text = styled.div`
   display: flex;
-  font-size: 0.7em;
+  font-size: 0.8em;
 `
 
 export const Percent = styled.div`
@@ -22,9 +22,9 @@ export const Percent = styled.div`
   margin-right: 6px;
 `
 
-export const Progress = styled.div`
+export const Progress = styled.div<{ $theme: number }>`
   position: relative;
-  background-color: ${colors.gray02};
+  background-color: ${props => (props.$theme ? colors.gray02 : colors.black02)};
   border-radius: 20px;
   width: 100%;
   height: 8px;
@@ -35,5 +35,5 @@ export const ProgressStatus = styled.div<{ $width: string }>`
   background-color: ${colors.blue01};
   border-radius: 20px;
   height: 8px;
-  width: ${props => (props.$width)};
+  width: ${props => props.$width};
 `
