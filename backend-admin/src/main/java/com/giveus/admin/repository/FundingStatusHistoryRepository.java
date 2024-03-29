@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface FundingStatusHistoryRepository extends JpaRepository<FundingStatusHistory, Integer> {
-
+    FundingStatusHistory findDistinctByFundingOrderByCreatedAtDesc(Funding funding);
 }
