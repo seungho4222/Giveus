@@ -3,13 +3,11 @@ package com.giveus.funding.domain.funding.application;
 import com.giveus.funding.domain.donation.dto.DonationAmountRes;
 import com.giveus.funding.domain.donation.dto.DonationListRes;
 import com.giveus.funding.domain.donation.dto.MemberDonationListRes;
+import com.giveus.funding.domain.funding.domain.Funding;
+import com.giveus.funding.domain.funding.dto.FundingCreateReq;
 import com.giveus.funding.domain.funding.dto.FundingDetailRes;
 import com.giveus.funding.domain.funding.dto.FundingListRes;
-import com.giveus.funding.domain.usage.dto.FundingUsageListRes;
 import com.giveus.funding.global.common.response.CreateSuccessDto;
-import com.giveus.funding.domain.funding.dto.FundingCreateReq;
-import com.giveus.funding.domain.review.dto.ReviewCreateReq;
-import com.giveus.funding.domain.funding.domain.Funding;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
@@ -72,22 +70,6 @@ public interface FundingService {
      */
     List<FundingListRes> getFundingSearchList(String query);
 
-    /**
-     * 펀딩 후기를 등록하는 메서드입니다.
-     *
-     * @param reviewCreateReq 등록할 후기 정보
-     * @param file 후기 사진
-     * @return 등록한 후기의 고유 번호
-     */
-    CreateSuccessDto createReview(ReviewCreateReq reviewCreateReq, MultipartFile file);
-
-    /**
-     * 펀딩 기금 사용 내역을 조회하는 메서드입니다.
-     *
-     * @param fundingNo 조회할 펀딩 고유 번호
-     * @return 펀딩 고유 번호 기준 기금 사용 내역
-     */
-    List<FundingUsageListRes> getUsageHistory(int fundingNo);
 
     /**
      * 누적 기부 금액을 조회하는 메서드입니다.

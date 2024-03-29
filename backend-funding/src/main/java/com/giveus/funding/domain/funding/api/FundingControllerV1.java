@@ -6,7 +6,6 @@ import com.giveus.funding.domain.funding.application.FundingService;
 import com.giveus.funding.domain.funding.dto.FundingCreateReq;
 import com.giveus.funding.domain.funding.dto.FundingDetailRes;
 import com.giveus.funding.domain.funding.dto.FundingListRes;
-import com.giveus.funding.domain.usage.dto.FundingUsageListRes;
 import com.giveus.funding.global.common.response.CommonResponseBody;
 import com.giveus.funding.global.common.response.CreateSuccessDto;
 import com.giveus.funding.global.config.SwaggerApiSuccess;
@@ -95,13 +94,7 @@ public class FundingControllerV1 {
                 .body(new CommonResponseBody<>(OK, fundingService.getParticipantsByFunding(fundingNo)));
     }
 
-    @SwaggerApiSuccess(summary = "펀딩 기금 사용 내역 조회", implementation = FundingUsageListRes.class)
-    @GetMapping("/{fundingNo}/usage")
-    public ResponseEntity<CommonResponseBody<List<FundingUsageListRes>>> getFundingUsage(@PathVariable int fundingNo) {
-        return ResponseEntity
-                .status(OK)
-                .body(new CommonResponseBody<>(OK, fundingService.getUsageHistory(fundingNo)));
-    }
+
 
 
 }
