@@ -1,7 +1,7 @@
 package com.giveus.payment.service;
 
-import com.giveus.payment.dto.request.TossPayDonateReq;
-import com.giveus.payment.dto.request.TossPayRechargeReq;
+import com.giveus.payment.dto.request.KakaoPayDonateReq;
+import com.giveus.payment.dto.request.KakaoPayRechargeReq;
 import com.giveus.payment.dto.response.TossPayConfirmRes;
 import com.giveus.payment.dto.response.TossPayReadyRes;
 import com.giveus.payment.entity.Member;
@@ -45,20 +45,20 @@ public class TossPayService {
     private String rechargeFailUrl;
 
     @Transactional
-    public TossPayReadyRes requestDonatePayment(TossPayDonateReq donateReq) {
+    public TossPayReadyRes requestDonatePayment(KakaoPayDonateReq req) {
 
-        Member member = memberRepository.findById(donateReq.getMemberNo());
+        Member member = memberRepository.findById(req.getMemberNo());
         return TossPayReadyRes.builder()
-                .amount(donateReq.getAmount())
-                .orderId("F" + donateReq.getFundingNo() + "M" + donateReq.getMemberNo() + "_" + UUID.randomUUID().toString())
-                .orderName(donateReq.getTitle())
+                .amount(req.getAmount())
+                .orderId("F" + req.getFundingNo() + "M" + req.getMemberNo() + "_" + UUID.randomUUID().toString())
+                .orderName(req.getTitle())
                 .customerEmail(member.getEmail())
                 .customerName(member.getName())
                 .successUrl(donateSuccessUrl
-                        + "?memberNo=" + donateReq.getMemberNo()
-                        + "&fundingNo=" + donateReq.getFundingNo()
-                        + "&point=" + donateReq.getPoint()
-                        + "&opened=" + donateReq.isOpened())
+                        + "?memberNo=" + req.getMemberNo()
+                        + "&fundingNo=" + req.getFundingNo()
+                        + "&point=" + req.getPoint()
+                        + "&opened=" + req.isOpened())
                 .failUrl(donateFailUrl)
                 .build();
     }
@@ -82,16 +82,16 @@ public class TossPayService {
     }
 
     @Transactional
-    public TossPayReadyRes requestRechargePayment(TossPayRechargeReq rechargeReq) {
-        Member member = memberRepository.findById(rechargeReq.getMemberNo());
+    public TossPayReadyRes requestRechargePayment(KakaoPayRechargeReq req) {
+        Member member = memberRepository.findById(req.getMemberNo());
         return TossPayReadyRes.builder()
-                .amount(rechargeReq.getAmount())
-                .orderId("TOSS_M" + rechargeReq.getMemberNo() + "_" + UUID.randomUUID().toString())
+                .amount(req.getAmount())
+                .orderId("TOSS_M" + req.getMemberNo() + "_" + UUID.randomUUID().toString())
                 .orderName("일반 포인트 충전")
                 .customerEmail(member.getEmail())
                 .customerName(member.getName())
                 .successUrl(rechargeSuccessUrl
-                        + "?memberNo=" + rechargeReq.getMemberNo())
+                        + "?memberNo=" + req.getMemberNo())
                 .failUrl(rechargeFailUrl)
                 .build();
     }

@@ -14,7 +14,7 @@ public class PointUsageReq {
     private int fundingNo;
     @Schema(description = "사용 금액(1포인트 이상)", example = "1000")
     private int amount;
-
+    @Schema(description = "공개 여부", example = "true")
     private boolean opened;
 
 }
