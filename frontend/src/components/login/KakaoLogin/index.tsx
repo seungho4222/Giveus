@@ -10,7 +10,7 @@ const Index = () => {
     //const kakaoURL = `${BASE_URL}/oauth2/authorization/kakao`
     window.location.href = kakaoURL
   }
-
+  console.log('dev', DEV)
   return (
     <k.Button onClick={onClick}>
       <img src="icon/icon_kakao.png" alt="" />
