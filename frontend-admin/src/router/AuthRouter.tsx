@@ -6,6 +6,7 @@ import MyPage from '@/pages/home/myPage/MyPage'
 import { Route, Routes } from 'react-router-dom'
 import BlockchainTest from '@/pages/BlockchainTest'
 import LoginPage from '@pages/login/LoginPage'
+import FundingRegister from '@/pages/fundingregister/FundingRegister'
 
 const AuthRouter = () => {
   return (
@@ -15,7 +16,8 @@ const AuthRouter = () => {
         <Route path="funding" element={<FundingListPage />} />
         <Route path="funding/:id" element={<FundingDetailPage />} />
         <Route path="myPage" element={<MyPage />} />
-        <Route path="/admin/blockchain-test" element={<BlockchainTest />} />
+        <Route path="blockchain-test" element={<BlockchainTest />} />
+        <Route path="funding-register" element={<FundingRegister />} />
       </Route>
       <Route path="/login" element={<LoginPage />} />
       <Route path="/*" element={<HomePage />} />

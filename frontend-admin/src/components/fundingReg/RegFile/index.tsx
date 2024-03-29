@@ -1,10 +1,13 @@
 import * as r from '@/components/fundingReg/RegFile/RegFile.styled'
-import { useRef, useState } from 'react'
+import { requestWithBase64 } from '@/apis/ocr/ocr'
+import { useCallback, useEffect, useRef, useState } from 'react'
+import { RegFileType } from '@/types/fundingType'
 
-const index = () => {
+const index = ({onOCRResult}:RegFileType) => {
   const file = false
   const fileInput = useRef<HTMLInputElement | null>(null)
   const [previewImage, setPreviewImage] = useState<string | null>(null)
+
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFile = e.target.files?.[0]
@@ -16,6 +19,20 @@ const index = () => {
       reader.readAsDataURL(selectedFile)
     }
   }
+
+  const onRequestOCR = useCallback(async () => {
+    if (previewImage) {
+      const base64Data = previewImage.split(',')[1]
+      try {
+        const response = await requestWithBase64(base64Data)
+        onOCRResult(response)
+      } catch (err) {
+        console.error('OCR 요청 실패', err)
+      }
+    }
+  }, [previewImage, onOCRResult])
+
+  
 
   return (
     <r.Container>
@@ -42,6 +59,7 @@ const index = () => {
         onChange={handleFileChange}
       />
       <r.Button onClick={() => fileInput.current?.click()}>파일 선택</r.Button>
+      <r.Button onClick={onRequestOCR}>OCR 검사</r.Button>
     </r.Container>
   )
 }

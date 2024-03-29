@@ -59,3 +59,9 @@ springdoc:
 #      max-history: 7
 #      max-file-size: 100MB
 #      total-size-cap: 0
+
+jwt:
+  secret: dyAeHubOOc8KaOfYB6XEQoEj1QzRlVgtjNL8PYs1A1tymZvvqkcEU7L1imkKHeDa
+  expiration:
+    access: 3600000 # 1시간
+    refresh: 1296000000 # 2주

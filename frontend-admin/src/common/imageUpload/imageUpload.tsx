@@ -1,10 +1,11 @@
 import { useRef, useCallback, useState } from 'react'
 import Button from '../button/Button'
-
+import { requestWithFile, requestWithBase64 } from '@/apis/ocr/ocr'
 
 const ImageUpload = () => {
   const inputRef = useRef<HTMLInputElement | null>(null)
-  const [imageUrl, setImageUrl] = useState<string | null>(null)
+  const [imageData, setImageData] = useState<string | null>(null)
+  const [isImageLoaded, setIsImageLoaded] = useState<boolean>(false)
 
   const onUploadImage = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -12,8 +13,15 @@ const ImageUpload = () => {
         return
       }
       const file = e.target.files[0]
-      const fileUrl = URL.createObjectURL(file) // 파일의 URL 생성
-      setImageUrl(fileUrl) // 이미지 URL 설정
+      const reader = new FileReader()
+      reader.onload = () => {
+        if (reader.result) {
+          const base64Data = reader.result.toString()
+          setImageData(base64Data)
+          setIsImageLoaded(true) // 이미지 로드 완료 시 상태 변경
+        }
+      }
+      reader.readAsDataURL(file)
     },
     [],
   )
@@ -25,11 +33,20 @@ const ImageUpload = () => {
     inputRef.current.click()
   }, [])
 
+  const handleOCRButtonClick = useCallback(() => {
+    if (imageData) {
+      const base64Data = imageData.split(',')[1]
+      // console.log(base64Data);
+      const ocr_result = requestWithBase64(base64Data)
+      console.log(ocr_result)
+    }
+  }, [imageData])
+
   return (
     <>
-      {imageUrl ? (
+      {imageData ? (
         <img
-          src={imageUrl}
+          src={imageData}
           alt="Uploaded"
           style={{
             maxWidth: '300px',
@@ -37,6 +54,7 @@ const ImageUpload = () => {
             border: '1px #cacfd9 solid',
             borderRadius: '10px',
           }}
+          onLoad={() => setIsImageLoaded(true)} // 이미지 로드 완료 시 상태 변경
         />
       ) : (
         <div
@@ -47,8 +65,7 @@ const ImageUpload = () => {
             borderRadius: '10px',
           }}
         ></div>
-      )}{' '}
-      {/* 이미지 표시 */}
+      )}
       <input
         type="file"
         accept="image/*"
@@ -62,6 +79,15 @@ const ImageUpload = () => {
         height={'50px'}
         $borderRadius={'10px'}
         $children={'파일 선택'}
+      />
+      <Button
+        onButtonClick={handleOCRButtonClick}
+        $backgroundColor={'#4382ff'}
+        width={'300px'}
+        height={'50px'}
+        $borderRadius={'10px'}
+        $children={'OCR 검사'}
+        disabled={!isImageLoaded} // 이미지 로드 전까지 버튼 비활성화
       />
     </>
   )
