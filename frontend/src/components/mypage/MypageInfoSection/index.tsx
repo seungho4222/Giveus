@@ -9,25 +9,25 @@ const Index = () => {
   const theme = useRecoilValue(themeState)
   const navigate = useNavigate()
 
+  const isUser = userInfo.memberNo !== -1
+
   const goLogin = () => navigate('/login')
 
   return (
     <m.Container>
+      {isUser ? '유저 있음' : '유저 없음'}
+      {isUser && userInfo.name}
       <m.Profile
-        src={
-          userInfo.memberNo !== -1
-            ? userInfo.imageUrl
-            : '/img/img_default_profile.png'
-        }
+        src={isUser ? userInfo.imageUrl : '/img/img_default_profile.png'}
         alt=""
       />
       <m.InfoWrap>
         <m.Name>
-          {userInfo.memberNo !== -1 ? (
+          {isUser ? (
             userInfo.name
           ) : (
             <span onClick={goLogin}>
-              로그인 필요{' '}
+              로그인 필요
               <img
                 src={
                   '/icon/icon_arrow_right' +
