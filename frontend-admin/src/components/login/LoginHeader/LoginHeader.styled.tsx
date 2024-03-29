@@ -22,6 +22,10 @@ export const Container = styled.div`
 `
 
 export const Logo = styled.div`
+  img {
+    width: 120px;
+  }
+  margin-left: 20px;
   cursor: pointer;
 `
 

@@ -59,4 +59,7 @@ pay:
     cid: TC0ONETIME
     secret-key: DEV8BED019BC61B73FE2595FB95EC2E08D8A824D
   toss:
-    secret-key: "test_sk_yL0qZ4G1VOdvqNwkoXKoroWb2MQY:"
+    client-key: test_ck_ALnQvDd2VJLgDMn6Xv6P8Mj7X41m
+    secret-key: test_sk_yL0qZ4G1VOdvqNwkoXKoroWb2MQY
+    success_url: ${host.address}/api/v1/payment/toss/success
+    fail_url: ${host.address}/api/v1/payment/toss/fail

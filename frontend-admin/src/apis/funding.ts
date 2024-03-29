@@ -1,4 +1,4 @@
-import { RegDataMutateType } from '@/types/fundingType'
+import { RegDataMutateType, UsageDataType } from '@/types/fundingType'
 import { authRequest } from '@utils/requestMethods'
 
 const url = '/api/v1/admin'
@@ -18,4 +18,18 @@ export const fetchFundingDetail = async (fundingNo: number) => {
 // 펀딩 1차 등록
 export const createFirstReg = async (params: RegDataMutateType) => {
   return authRequest.post(`${url}`, params).then(res => res.data.data)
+}
+
+// 펀딩 상세 - 기금 사용 내역 등록
+export const createFundingUsage = async (params: UsageDataType) => {
+  return authRequest.post(`${url}/usage`, params).then(res => res.data.data)
+}
+
+// 펀딩 후기 등록
+export const createReview = async (data: FormData) => {
+  return authRequest
+    .post(`${url}`, data, {
+      headers: { 'Content-Type': 'multipart/form-data' },
+    })
+    .then(res => res.data)
 }

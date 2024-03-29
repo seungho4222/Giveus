@@ -3,10 +3,12 @@ import FundingInfo from './FundingInfo'
 import FundingStatus from './FundingStatus'
 import { FundingType } from '@/types/fundingType'
 import { useNavigate } from 'react-router-dom'
-import { useSetRecoilState } from 'recoil'
-import { prevUrlState } from '@/stores/funding'
+import { useRecoilValue, useSetRecoilState } from 'recoil'
+import { prevUrlState } from '@stores/funding'
+import { themeState } from '@stores/theme'
 
 const Index = (props: { data: FundingType }) => {
+  const theme = useRecoilValue(themeState)
   const { data } = props
   const navigate = useNavigate()
   const setPrevUrl = useSetRecoilState(prevUrlState)
@@ -17,7 +19,7 @@ const Index = (props: { data: FundingType }) => {
   }
 
   return (
-    <c.Container onClick={() => onClickHanlder()}>
+    <c.Container onClick={() => onClickHanlder()} $theme={theme}>
       <c.Img src={data.thumbnailUrl} alt="" />
       <c.Wrap>
         <FundingInfo data={data} />

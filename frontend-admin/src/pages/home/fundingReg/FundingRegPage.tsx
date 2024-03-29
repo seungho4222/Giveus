@@ -2,14 +2,14 @@ import RegFile from '@/components/fundingReg/RegFile'
 import RegInput from '@/components/fundingReg/RegInput'
 import RegNumber from '@/components/fundingReg/RegNumber'
 import { adminState } from '@/store/user'
-import { RegDataType } from '@/types/fundingType'
+import { OCRResult, RegDataType } from '@/types/fundingType'
 import * as f from '@pages/home/fundingReg/FundingRegPage.styled'
 import { useState } from 'react'
 import { useMutation } from '@tanstack/react-query'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
 import { createFirstReg } from '@/apis/funding'
 import { useNavigate } from 'react-router-dom'
-import { calculateAge } from '@/utils/calcMethods'
+import { calculateAge, divideBirth } from '@/utils/calcMethods'
 import { currentNavState } from '@/store/common'
 import { selectedFundingNoState } from '@/store/funding'
 
@@ -23,6 +23,7 @@ const FundingRegPage = () => {
     targetAmount: 0,
     startDate: '',
     endDate: '',
+
     issueNumber: '',
     registrationNumber: '',
     patientName: '',
@@ -32,7 +33,30 @@ const FundingRegPage = () => {
     diseaseCode: '',
     diagnosisDate: '',
     opinion: '',
+
+    title: '',
   })
+
+  const handleOCRResult = (results: OCRResult[]) => {
+    if (results) {
+      console.log('결과 받았어', results)
+      const updatedRegData = { ...regData }
+
+      results.forEach(result => {
+        const { name, inferText } = result
+        if (name === 'birth') {
+          const birth = divideBirth(inferText)
+          updatedRegData['birth'] = birth
+          updatedRegData['gender'] = inferText.replace(/\s/g, '').split('-')[1].startsWith('1' || '3') ? 'M' : 'F'
+        } else if (name === 'diagnosisDate') {
+          updatedRegData['diagnosisDate'] = inferText.replace(/\s/g, '').replace('년','-').replace('월','-').replace('일','-')
+        } else {
+          updatedRegData[name] = inferText
+        }
+      })
+      setRegData(updatedRegData)
+    }
+  }
 
   const { mutate } = useMutation({
     mutationKey: ['createFirReg'],
@@ -52,12 +76,16 @@ const FundingRegPage = () => {
   const handleCreateFirstReg = async () => {
     const age = calculateAge(regData.birth)
     const gender = regData.gender === 'M' ? '남' : '여'
+    console.log(`title : ${regData.diseaseName} ${age}세(${gender}) 펀딩` )
+    console.log(regData)
+
 
     mutate({
       ...regData,
       adminNo: admin.adminNo,
       title: `${regData.diseaseName} ${age}세(${gender}) 펀딩`,
     })
+
   }
 
   return (
@@ -92,7 +120,8 @@ const FundingRegPage = () => {
         setValue={setRegData}
       />
       {/* 진단서 파일 등록 */}
-      <RegFile />
+      <RegFile onOCRResult={handleOCRResult} />
+
       <RegInput
         id="issueNumber"
         label="발행번호"
@@ -153,6 +182,7 @@ const FundingRegPage = () => {
       />
       <f.Wrap>
         <f.Button onClick={() => handleCreateFirstReg()}>1차 등록</f.Button>
+        <f.Button onClick={() => console.log(regData)}>테스트</f.Button>
       </f.Wrap>
     </f.Container>
   )

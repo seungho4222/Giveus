@@ -1,47 +1,46 @@
-import { useRef, useCallback, useState } from 'react';
-import Button from '../button/Button';
-import { requestWithFile, requestWithBase64 } from '@/pages/fundingregister/OCR';
+import { useRef, useCallback, useState } from 'react'
+import Button from '../button/Button'
+import { requestWithFile, requestWithBase64 } from '@/apis/ocr/ocr'
 
 const ImageUpload = () => {
-  const inputRef = useRef<HTMLInputElement | null>(null);
-  const [imageData, setImageData] = useState<string | null>(null);
-  const [isImageLoaded, setIsImageLoaded] = useState<boolean>(false);
+  const inputRef = useRef<HTMLInputElement | null>(null)
+  const [imageData, setImageData] = useState<string | null>(null)
+  const [isImageLoaded, setIsImageLoaded] = useState<boolean>(false)
 
   const onUploadImage = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       if (!e.target.files) {
-        return;
+        return
       }
-      const file = e.target.files[0];
-      const reader = new FileReader();
+      const file = e.target.files[0]
+      const reader = new FileReader()
       reader.onload = () => {
         if (reader.result) {
-          const base64Data = reader.result.toString();
-          setImageData(base64Data);
-          setIsImageLoaded(true); // 이미지 로드 완료 시 상태 변경
+          const base64Data = reader.result.toString()
+          setImageData(base64Data)
+          setIsImageLoaded(true) // 이미지 로드 완료 시 상태 변경
         }
-      };
-      reader.readAsDataURL(file);
+      }
+      reader.readAsDataURL(file)
     },
     [],
-  );
+  )
 
   const onUploadImageButtonClick = useCallback(() => {
     if (!inputRef.current) {
-      return;
+      return
     }
-    inputRef.current.click();
-  }, []);
+    inputRef.current.click()
+  }, [])
 
   const handleOCRButtonClick = useCallback(() => {
     if (imageData) {
-      const base64Data = imageData.split(',')[1]; 
+      const base64Data = imageData.split(',')[1]
       // console.log(base64Data);
-      const ocr_result = requestWithBase64(base64Data);
-      console.log(ocr_result);
-
+      const ocr_result = requestWithBase64(base64Data)
+      console.log(ocr_result)
     }
-  }, [imageData]);
+  }, [imageData])
 
   return (
     <>
@@ -91,7 +90,7 @@ const ImageUpload = () => {
         disabled={!isImageLoaded} // 이미지 로드 전까지 버튼 비활성화
       />
     </>
-  );
-};
+  )
+}
 
-export default ImageUpload;
+export default ImageUpload

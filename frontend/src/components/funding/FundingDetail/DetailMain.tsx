@@ -7,9 +7,11 @@ import { useState } from 'react'
 import Donate from '../Donate'
 import FullButton from '@/common/FullButton'
 import Review from '../Review'
-import { formatAmount } from '@/utils/format'
+import { formatAmount } from '@utils/format'
+import { themeState } from '@stores/theme'
 
 const DetailMain = () => {
+  const theme = useRecoilValue(themeState)
   const fundingDetail = useRecoilValue(fundingDetailState)
   const review: boolean = true // test
   const [donateOpen, setDonateOpen] = useState<boolean>(false)
@@ -42,12 +44,12 @@ const DetailMain = () => {
           </d.TotalAmount>
           <d.Dday>{dDay(fundingDetail)}</d.Dday>
         </d.Wrap>
-        <d.Progress>
+        <d.Progress $theme={theme}>
           <d.ProgressStatus $width={percent(fundingDetail)}></d.ProgressStatus>
         </d.Progress>
         <d.Wrap>
           <d.Percent>{percent(fundingDetail)} 달성</d.Percent>
-          <d.TargetAmount>
+          <d.TargetAmount $theme={theme}>
             {formatAmount(fundingDetail.targetAmount)}원
           </d.TargetAmount>
         </d.Wrap>

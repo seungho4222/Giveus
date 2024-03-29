@@ -1,8 +1,6 @@
 package com.giveus.admin.service;
 
-import com.giveus.admin.entity.Funding;
-
 public interface MessageService {
 
-    void sendMessage(String phoneNumber, String regId);
+    void sendMessage(String phoneNumber, String msg, String regId);
 }

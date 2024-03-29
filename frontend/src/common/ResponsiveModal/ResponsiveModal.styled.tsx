@@ -20,7 +20,7 @@ export const BlackBox = styled.div`
   }
 `
 
-export const Container = styled.div`
+export const Container = styled.div<{ $theme: number }>`
   display: flex;
   position: fixed;
   bottom: 0;
@@ -28,7 +28,7 @@ export const Container = styled.div`
   width: 100%;
   min-width: ${sizes.minWidth};
   max-width: ${sizes.maxWidth};
-  background-color: #fff;
+  background-color: ${props => (props.$theme ? '#fff' : colors.black01)};
   border-radius: 12px 12px 0 0;
   overflow-y: scroll;
   &::-webkit-scrollbar {
@@ -56,7 +56,6 @@ export const ModalName = styled.div`
   display: flex;
   justify-content: center;
   padding-block: 1em;
-  border-bottom: 2px solid ${colors.gray02};
   font-weight: 600;
 `
 

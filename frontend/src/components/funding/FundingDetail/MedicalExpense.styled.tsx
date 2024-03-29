@@ -4,7 +4,9 @@ import styled from 'styled-components'
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 1em;
+  width: 90%;
+  margin: 0 auto;
+  padding-top: 30px;
 `
 
 export const ExpenseFalse = styled.div`
@@ -18,10 +20,10 @@ export const TotalExpense = styled.div`
   font-weight: 600;
 `
 
-export const Card = styled.div`
+export const Card = styled.div<{ $theme: number }>`
   display: flex;
   padding: 1em;
-  background-color: ${colors.gray02};
+  background-color: ${props => (props.$theme ? colors.gray02 : colors.black02)};
   border-radius: 12px;
   margin-block: 1em;
 `
@@ -37,11 +39,11 @@ export const Wrap = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  row-gap: 5px;
+  row-gap: 10px;
 `
 
 export const Category = styled.div`
-  font-size: 0.8em;
+  font-size: 1em;
   font-weight: 600;
 `
 
@@ -51,7 +53,7 @@ export const SubWrap = styled.div`
 `
 
 export const Content = styled.div`
-  font-size: 0.8em;
+  font-size: 0.9em;
   color: ${colors.gray04};
 `
 

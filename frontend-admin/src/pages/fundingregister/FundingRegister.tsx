@@ -8,7 +8,6 @@ import {
   StyledBirthContainer,
   StyledInputContainer,
 } from './FundingRegister.styled'
-import calculateAge from '@/utils/calculateAge'
 // import { firstFunding } from '@/apis/user/funding'
 
 const FundingRegister = () => {
@@ -102,7 +101,7 @@ const FundingRegister = () => {
     // useState는 바로 처리 안되니까, 새로 찍은 데이터는 바로 보내주기
     const funding = {
       ...registrationData,
-      title: `${registrationData.diseaseName} ${calculateAge(registrationData.birth, registrationData.gender)}세${item.titleGender} 펀딩`,
+      // title: `${registrationData.diseaseName} ${calculateAge(registrationData.birth, registrationData.gender)}세${item.titleGender} 펀딩`,
       gender: item.gender,
     }
     console.log(funding)

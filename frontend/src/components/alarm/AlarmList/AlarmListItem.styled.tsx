@@ -1,11 +1,14 @@
 import { colors } from '@/styles/theme'
 import styled from 'styled-components'
 
-export const Container = styled.div<{ $isRead: number }>`
+export const Container = styled.div<{ $isRead: number; $theme: number }>`
   display: flex;
-  border-bottom: 1px solid ${colors.gray02};
-  border-top: 1px solid ${colors.gray02};
-  background-color: ${props => props.$isRead === 0 && '#EFF3FA'};
+  border-bottom: 1px solid
+    ${props => (props.$theme ? colors.gray02 : colors.gray05)};
+  border-top: 1px solid
+    ${props => (props.$theme ? colors.gray02 : colors.gray05)};
+  background-color: ${props =>
+    props.$isRead === 0 && (props.$theme ? '#EFF3FA' : colors.black02)};
   cursor: pointer;
 `
 
@@ -16,14 +19,21 @@ export const Wrap = styled.div`
   padding: 18px 0;
 `
 
-export const ImgWrap = styled.div<{ $isRead: number }>`
+export const ImgWrap = styled.div<{ $isRead: number; $theme: number }>`
   display: flex;
   align-items: center;
   justify-content: center;
   width: 40px;
   height: 40px;
   border-radius: 6px;
-  background-color: ${props => (props.$isRead === 0 ? '#fff' : colors.gray02)};
+  background-color: ${props =>
+    props.$isRead === 0
+      ? props.$theme
+        ? '#fff'
+        : colors.black01
+      : props.$theme
+      ? colors.gray02
+      : colors.black02};
 `
 
 export const Right = styled.div`

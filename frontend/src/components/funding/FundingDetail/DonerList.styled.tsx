@@ -4,7 +4,9 @@ import styled from 'styled-components'
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 1em;
+  width: 90%;
+  margin: 0 auto;
+  padding-top: 30px;
 `
 
 export const ListFalse = styled.div`
@@ -13,15 +15,19 @@ export const ListFalse = styled.div`
 
 export const ListTrue = styled.div`
   padding-bottom: 0.5em;
-  font-size: 0.9em;
+  font-size: 1em;
   font-weight: 600;
+  span {
+    color: ${colors.orange01};
+  }
 `
 
-export const Card = styled.div`
+export const Card = styled.div<{ $theme: number }>`
   display: flex;
   flex-direction: column;
-  border-bottom: 2px solid ${colors.gray02};
-  padding-block: 0.5em;
+  border-bottom: 2px solid
+    ${props => (props.$theme ? colors.gray02 : colors.black02)};
+  padding: 10px 0;
 `
 
 export const Wrap = styled.div`
@@ -30,16 +36,16 @@ export const Wrap = styled.div`
   margin-block: 5px;
 `
 
-export const Date = styled.div`
+export const Date = styled.div<{ $theme: number }>`
   display: flex;
   align-items: center;
-  font-size: 0.7em;
-  color: ${colors.gray05};
+  font-size: 0.8em;
+  color: ${props => (props.$theme ? colors.gray05 : colors.gray04)};
 `
 
 export const Desc = styled.div`
   color: ${colors.blue01};
-  font-size: 0.8em;
+  font-size: 0.9em;
 `
 
 export const SubWrap = styled.div`
@@ -48,20 +54,20 @@ export const SubWrap = styled.div`
 `
 
 export const Img = styled.img`
-  border-radius: 50%;
-  width: 1.5em;
-  height: 1.5em;
+  border-radius: 100%;
+  width: 40px;
+  height: 40px;
 `
 
 export const Nickname = styled.div`
   display: flex;
   align-items: center;
-  font-size: 0.8em;
+  font-size: 1em;
 `
 
 export const Amount = styled.div`
   display: flex;
   align-items: center;
-  font-size: 0.8em;
+  font-size: 0.9em;
   font-weight: 600;
 `
