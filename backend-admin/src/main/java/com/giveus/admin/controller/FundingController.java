@@ -16,6 +16,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 
 import java.util.List;
 
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -58,13 +59,20 @@ public class FundingController {
                 .body(new CommonResponseBody<>(CREATED, fundingService.createFunding(req)));
     }
 
-
-    @SwaggerApiSuccess(summary = "회원가입 추가 정보 입력", implementation = AdminInfoRes.class)
+    @SwaggerApiSuccess(summary = "병원 회원가입 추가 정보 입력", implementation = AdminInfoRes.class)
     @PutMapping("/join")
     public ResponseEntity<CommonResponseBody<AdminInfoRes>> updateMember(@RequestBody AdminJoinPostReq adminJoinPostReq) {
         return ResponseEntity
                 .status(OK)
                 .body(new CommonResponseBody<>(OK, adminService.updateAdmin(adminJoinPostReq)));
+    }
+
+    @SwaggerApiSuccess(summary = "병원 정보 조회 (엑세스 토큰 이용)", implementation = AdminInfoRes.class)
+    @GetMapping("/info")
+    public ResponseEntity<CommonResponseBody<AdminInfoRes>> findByAccessToken(HttpServletRequest httpServletRequest) {
+        return ResponseEntity
+                .status(OK)
+                .body(new CommonResponseBody<>(OK, adminService.findByAccessToken(httpServletRequest)));
     }
 
 }
