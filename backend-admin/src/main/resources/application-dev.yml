@@ -11,7 +11,7 @@ spring:
       client:
         registration:
           kakao:
-            client-id: 84b84bfba356cb44c40c484007117fe2 #
+            client-id: 5b58cb5c937215cb68194d123d242c8b #
             client-authentication-method: client_secret_post #
             authorization-grant-type: authorization_code #
             scope:
