@@ -19,6 +19,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import static org.springframework.http.HttpStatus.*;
 
@@ -87,14 +88,14 @@ public class KakaoPayController {
                                                  @RequestParam("opened") boolean opened,
                                                  @RequestParam("pg_token") String pgToken) {
         try {
-            KakaoPayApproveResDto kakaoApprove = kakaoPayService.getApprove(pgToken, memberNo, fundingNo);
-            Integer pointUsageNo = point > 0 ? pointService.saveUsage(memberNo, point, kakaoApprove.getApproved_at()) : null;
-            int paymentNo = paymentService.save(kakaoApprove);
+            KakaoPayApproveResDto res = kakaoPayService.getApprove(pgToken, memberNo, fundingNo);
+            Integer pointUsageNo = point > 0 ? pointService.saveUsage(memberNo, point, res.getApproved_at(), DateTimeFormatter.ISO_LOCAL_DATE_TIME) : null;
+            int paymentNo = paymentService.save(res.getApproved_at(), "카카오페이", res.getAmount().getTotal(), DateTimeFormatter.ISO_LOCAL_DATE_TIME);
             memberFundingService.save(memberNo, fundingNo, paymentNo, pointUsageNo,
-                    kakaoApprove.getApproved_at(), kakaoApprove.getAmount().getTotal() + point, opened);
+                    res.getApproved_at(), res.getAmount().getTotal() + point, opened, DateTimeFormatter.ISO_LOCAL_DATE_TIME);
 
             return ResponseEntity.status(OK)
-                    .body(new CommonResponseBody<>(OK, kakaoApprove));
+                    .body(new CommonResponseBody<>(OK, res));
         } catch (Exception e) {
             return ResponseEntity.status(INTERNAL_SERVER_ERROR)
                     .body(new CommonResponseBody<>(INTERNAL_SERVER_ERROR, e.getMessage()));

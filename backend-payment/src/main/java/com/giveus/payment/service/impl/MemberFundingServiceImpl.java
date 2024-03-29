@@ -25,9 +25,7 @@ public class MemberFundingServiceImpl implements MemberFundingService {
     @Override
     @Transactional
     public int save(int memberNo, int fundingNo, int paymentNo, Integer pointUsageNo,
-                    String createdAt, int total, boolean opened) {
-
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
+                    String createdAt, int total, boolean opened, DateTimeFormatter formatter) {
 
         MemberFunding memberFunding = MemberFunding.builder()
                 .memberNo(memberNo)

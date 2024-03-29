@@ -4,6 +4,7 @@ import com.giveus.payment.dto.request.PointUsageRequest;
 import com.giveus.payment.dto.response.PointListRes;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public interface PointService {
     /**
@@ -13,7 +14,7 @@ public interface PointService {
      * @param createdAt 사용 일자
      * @return 포인트 사용내역 PK
      */
-    int saveUsage(int memberNo, int point, String createdAt);
+    int saveUsage(int memberNo, int point, String createdAt, DateTimeFormatter formatter);
 
     /**
      * 회원 포인트 내역을 조회하기 위해 사용하는 메서드 입니다.
@@ -39,12 +40,4 @@ public interface PointService {
      */
     int saveRecharge(int memberNo, int amount, LocalDateTime now);
 
-    /**
-     *
-     * @param memberNo
-     * @param point
-     * @param createdAt
-     * @return
-     */
-    int saveUsage(int memberNo, int point, LocalDateTime createdAt);
 }

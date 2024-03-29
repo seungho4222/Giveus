@@ -47,12 +47,12 @@ public class TossPayService {
                 .orderName(donateReq.getTitle())
                 .customerEmail(member.getEmail())
                 .customerName(member.getName())
-                .successUrl(hostAddress + "/payment/donate/success"
+                .successUrl(hostAddress + "/api/v1/payment/toss/donate/success"
                         + "?memberNo=" + donateReq.getMemberNo()
                         + "&fundingNo=" + donateReq.getFundingNo()
                         + "&point=" + donateReq.getPoint()
                         + "&opened=" + donateReq.isOpened())
-                .failUrl(hostAddress + "/payment/donate/fail")
+                .failUrl(hostAddress + "/api/v1//payment/toss/donate/fail")
                 .build();
 
         log.info("res: {}", res);
@@ -79,12 +79,10 @@ public class TossPayService {
         params.put("paymentKey", paymentKey);
         HttpEntity<Map<String, Object>> httpEntity = new HttpEntity<>(params, headers);
         RestTemplate restTemplate = new RestTemplate();
-        TossPayConfirmRes res = restTemplate.postForObject(
+        return restTemplate.postForObject(
                 "https://api.tosspayments.com/v1/payments/confirm",
                 httpEntity,
                 TossPayConfirmRes.class
         );
-
-        return res;
     }
 }

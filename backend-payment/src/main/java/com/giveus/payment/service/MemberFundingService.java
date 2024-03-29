@@ -3,6 +3,7 @@ package com.giveus.payment.service;
 import com.giveus.payment.dto.request.PointUsageRequest;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public interface MemberFundingService {
     /**
@@ -16,7 +17,7 @@ public interface MemberFundingService {
      * @param opened 공개 여부(후원 내역에 회원 프로필 공개할지 말지 선택여부)
      * @return 회원_펀딩 PK
      */
-    int save(int memberNo, int fundingNo, int paymentNo, Integer pointUsageNo, String createdAt, int total, boolean opened);
+    int save(int memberNo, int fundingNo, int paymentNo, Integer pointUsageNo, String createdAt, int total, boolean opened, DateTimeFormatter formatter);
 
     /**
      * 포인트로만 결제 완료 시 회원 펀딩 DB 테이블에 회원의 후원 정보 데이터를 저장하기 위해 사용하는 메서드 입니다.
