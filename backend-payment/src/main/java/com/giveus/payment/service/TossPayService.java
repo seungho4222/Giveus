@@ -1,8 +1,10 @@
 package com.giveus.payment.service;
 
-import com.giveus.payment.common.repository.TidRepository;
 import com.giveus.payment.dto.request.TossPayDonateReq;
-import com.giveus.payment.dto.response.TossPayCreateRes;
+import com.giveus.payment.dto.response.TossPayConfirmRes;
+import com.giveus.payment.dto.response.TossPayReadyRes;
+import com.giveus.payment.entity.Member;
+import com.giveus.payment.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -24,7 +26,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class TossPayService {
 
-    private final TidRepository tidRepository;
+    private final MemberRepository memberRepository;
 
     @Value("${host.address}")
     private String hostAddress;
@@ -32,41 +34,30 @@ public class TossPayService {
     @Value("${pay.toss.secret-key}")
     private String secretKey;
 
+    @Value("${pay.toss.api_url}")
+    private String apiUrl;
 
     @Transactional
-    public TossPayCreateRes requestPayment(TossPayDonateReq donateReq) {
+    public TossPayReadyRes requestPayment(TossPayDonateReq donateReq) {
 
-        log.info("sdfdsfa");
-
-        String orderId = "TOSS_F" + donateReq.getFundingNo() + "M" + donateReq.getMemberNo();
-
-        /** 요청 헤더 */
-        HttpHeaders headers = getRequestHttpHeaders();
-
-        /** 요청 바디 */
-        Map<String, Object> params = new HashMap<>();
-        // 상점 주문 번호 : 추후 상점 주문 번호와 결제 정보를 매칭하기 위해 필요합니다.
-        params.put("paymentKey", UUID.randomUUID().toString());
-        params.put("orderId", orderId);
-        // 결제 금액 : 손님으로부터 받을 총 결제금액
-        params.put("amount", donateReq.getAmount());
-
-        /** Header와 Body 합쳐서 RestTemplate로 보내기 위한 밑작업 */
-        HttpEntity<Map<String, Object>> httpEntity = new HttpEntity<>(params, headers);
-
-        /** RestTemplate로 Response 받아와서 DTO로 변환후 return */
-        RestTemplate restTemplate = new RestTemplate();
-        Object res = restTemplate.postForObject(
-                "https://api.tosspayments.com/v1/payments/confirm",
-                httpEntity,
-                Object.class);
+        Member member = memberRepository.findById(donateReq.getMemberNo());
+        TossPayReadyRes res = TossPayReadyRes.builder()
+                .amount(donateReq.getAmount())
+                .orderId("F" + donateReq.getFundingNo() + "M" + donateReq.getMemberNo() + "_" + UUID.randomUUID().toString())
+                .orderName(donateReq.getTitle())
+                .customerEmail(member.getEmail())
+                .customerName(member.getName())
+                .successUrl(hostAddress + "/payment/donate/success"
+                        + "?memberNo=" + donateReq.getMemberNo()
+                        + "&fundingNo=" + donateReq.getFundingNo()
+                        + "&point=" + donateReq.getPoint()
+                        + "&opened=" + donateReq.isOpened())
+                .failUrl(hostAddress + "/payment/donate/fail")
+                .build();
 
         log.info("res: {}", res);
 
-        /** Tid Redis에 10분간 저장 */
-//        tidRepository.save(orderNo, res.getPayToken(), 10L);
-
-        return null;
+        return res;
     }
 
     private HttpHeaders getRequestHttpHeaders() {
@@ -77,5 +68,23 @@ public class TossPayService {
         httpHeaders.setBasicAuth(encodedSecretKey);
         return httpHeaders;
 
+    }
+
+    @Transactional
+    public TossPayConfirmRes donateSuccess(String orderId, String paymentKey, int amount) {
+        HttpHeaders headers = getRequestHttpHeaders();
+        Map<String, Object> params = new HashMap<>();
+        params.put("orderId", orderId);
+        params.put("amount", amount);
+        params.put("paymentKey", paymentKey);
+        HttpEntity<Map<String, Object>> httpEntity = new HttpEntity<>(params, headers);
+        RestTemplate restTemplate = new RestTemplate();
+        TossPayConfirmRes res = restTemplate.postForObject(
+                "https://api.tosspayments.com/v1/payments/confirm",
+                httpEntity,
+                TossPayConfirmRes.class
+        );
+
+        return res;
     }
 }

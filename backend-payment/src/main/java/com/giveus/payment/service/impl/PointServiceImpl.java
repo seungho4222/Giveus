@@ -84,4 +84,9 @@ public class PointServiceImpl implements PointService {
                 .build();
         return pointRechargeRepository.save(pointRecharge).getPointNo();
     }
+
+    @Override
+    public int saveUsage(int memberNo, int point, LocalDateTime createdAt) {
+        return 0;
+    }
 }
