@@ -1,7 +1,7 @@
 // import { JoinUserType } from '@/types/reqType'
 import { authRequest, publicRequest } from '@utils/requestMethods'
 
-const url = '/api/v1/auth'
+const url = '/api/v1/admin'
 
 // 5분에 한 번 저장
 const JWT_EXPIRY_TIME = 3600 * 1000

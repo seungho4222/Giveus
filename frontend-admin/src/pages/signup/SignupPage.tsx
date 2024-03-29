@@ -15,6 +15,8 @@ const SignupPage = () => {
     console.log(name)
     joinUser({ name }).then(res => {
       setUserState(res.data)
+      // 지갑 생성
+      // 성공 페이지 이동
       navigate('/')
     })
   }
