@@ -12,3 +12,18 @@ swagger:
 
 host:
   address: http://localhost:8081
+
+pay:
+  kakao:
+    donate:
+      success_url: ${host.address}/api/v1/payment/kakao/donate/success
+      cancel_url: ${host.address}/api/v1/payment/kakao/donate/cancel
+      fail_url: ${host.address}/api/v1/payment/kakao/donate/fail
+    recharge:
+      success_url: ${host.address}/api/v1/payment/kakao/recharge/success
+      cancel_url: ${host.address}/api/v1/payment/kakao/recharge/cancel
+      fail_url: ${host.address}/api/v1/payment/kakao/recharge/fail
+  toss:
+    donate:
+      success_url: ${host.address}/api/v1/payment/toss/donate/success
+      fail_url: ${host.address}/api/v1/payment/toss/donate/fail

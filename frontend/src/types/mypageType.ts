@@ -63,3 +63,14 @@ export type DonatedFundingListType = {
 export type SettingItemType = {
   title: string
 } & CustomToggleType
+
+export type MypageMenuItemType = {
+  title: string
+  imgSrc: string
+  imgSrc_dark: string
+  width: number
+  height: number
+  text?: string
+  url?: string
+  onClick?: () => void
+}

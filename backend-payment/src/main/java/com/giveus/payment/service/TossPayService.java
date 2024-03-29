@@ -1,8 +1,10 @@
 package com.giveus.payment.service;
 
-import com.giveus.payment.common.repository.TidRepository;
 import com.giveus.payment.dto.request.TossPayDonateReq;
-import com.giveus.payment.dto.response.TossPayCreateRes;
+import com.giveus.payment.dto.response.TossPayConfirmRes;
+import com.giveus.payment.dto.response.TossPayReadyRes;
+import com.giveus.payment.entity.Member;
+import com.giveus.payment.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -24,49 +26,52 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class TossPayService {
 
-    private final TidRepository tidRepository;
-
-    @Value("${host.address}")
-    private String hostAddress;
+    private final MemberRepository memberRepository;
 
     @Value("${pay.toss.secret-key}")
     private String secretKey;
 
+    @Value("${pay.toss.donate.success_url}")
+    private String donateSuccessUrl;
+
+    @Value("${pay.toss.donate.fail_url}")
+    private String donateFailUrl;
 
     @Transactional
-    public TossPayCreateRes requestPayment(TossPayDonateReq donateReq) {
+    public TossPayReadyRes requestPayment(TossPayDonateReq donateReq) {
 
-        log.info("sdfdsfa");
+        Member member = memberRepository.findById(donateReq.getMemberNo());
+        return TossPayReadyRes.builder()
+                .amount(donateReq.getAmount())
+                .orderId("F" + donateReq.getFundingNo() + "M" + donateReq.getMemberNo() + "_" + UUID.randomUUID().toString())
+                .orderName(donateReq.getTitle())
+                .customerEmail(member.getEmail())
+                .customerName(member.getName())
+                .successUrl(donateSuccessUrl
+                        + "?memberNo=" + donateReq.getMemberNo()
+                        + "&fundingNo=" + donateReq.getFundingNo()
+                        + "&point=" + donateReq.getPoint()
+                        + "&opened=" + donateReq.isOpened())
+                .failUrl(donateFailUrl)
+                .build();
+    }
 
-        String orderId = "TOSS_F" + donateReq.getFundingNo() + "M" + donateReq.getMemberNo();
+    @Transactional
+    public TossPayConfirmRes donateSuccess(String orderId, String paymentKey, int amount) {
 
-        /** 요청 헤더 */
+        log.info("donateSuccessUrl: {}", donateSuccessUrl);
         HttpHeaders headers = getRequestHttpHeaders();
-
-        /** 요청 바디 */
         Map<String, Object> params = new HashMap<>();
-        // 상점 주문 번호 : 추후 상점 주문 번호와 결제 정보를 매칭하기 위해 필요합니다.
-        params.put("paymentKey", UUID.randomUUID().toString());
         params.put("orderId", orderId);
-        // 결제 금액 : 손님으로부터 받을 총 결제금액
-        params.put("amount", donateReq.getAmount());
-
-        /** Header와 Body 합쳐서 RestTemplate로 보내기 위한 밑작업 */
+        params.put("amount", amount);
+        params.put("paymentKey", paymentKey);
         HttpEntity<Map<String, Object>> httpEntity = new HttpEntity<>(params, headers);
-
-        /** RestTemplate로 Response 받아와서 DTO로 변환후 return */
         RestTemplate restTemplate = new RestTemplate();
-        Object res = restTemplate.postForObject(
+        return restTemplate.postForObject(
                 "https://api.tosspayments.com/v1/payments/confirm",
                 httpEntity,
-                Object.class);
-
-        log.info("res: {}", res);
-
-        /** Tid Redis에 10분간 저장 */
-//        tidRepository.save(orderNo, res.getPayToken(), 10L);
-
-        return null;
+                TossPayConfirmRes.class
+        );
     }
 
     private HttpHeaders getRequestHttpHeaders() {
@@ -76,6 +81,5 @@ public class TossPayService {
         httpHeaders.setContentType(MediaType.APPLICATION_JSON);
         httpHeaders.setBasicAuth(encodedSecretKey);
         return httpHeaders;
-
     }
 }

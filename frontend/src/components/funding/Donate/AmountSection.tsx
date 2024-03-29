@@ -1,17 +1,47 @@
+import { fetchMemberPoints } from '@/apis/payment'
 import * as a from '@/components/funding/Donate/AmountSection.styled'
+import { myPointState } from '@/stores/point'
+import { userState } from '@/stores/user'
 import { DonateAmountSectionType } from '@/types/donateType'
-import { useState } from 'react'
+import { PointsListType } from '@/types/mypageType'
+import { useQuery } from '@tanstack/react-query'
+import { useEffect, useState } from 'react'
+import { useRecoilState, useRecoilValue } from 'recoil'
 
 const AmountSection = (props: DonateAmountSectionType) => {
   const { amount, setAmount, point, setPoint } = props
-  const userPoint: number = 36000 // 더미데이터
+  const userInfo = useRecoilValue(userState)
+  const [myPoint, setMyPoint] = useRecoilState(myPointState)
 
   const cashList: number[] = [5000, 10000, 50000, 100000]
   const [targetCash, setTargetCash] = useState(5000)
+
   const onClickCash = (e: React.SyntheticEvent) => {
     const clickedValue = Number(e.currentTarget.innerHTML.replace(',', ''))
     setTargetCash(clickedValue)
     setAmount(prevValue => prevValue + clickedValue)
+  }
+
+  const { data } = useQuery<PointsListType>({
+    queryKey: ['fetchMemberPoints'],
+    queryFn: () => fetchMemberPoints(userInfo.memberNo),
+  })
+
+  useEffect(() => {
+    caculateMyPoint()
+  }, [data])
+
+  // 내 포인트 계산
+  const caculateMyPoint = () => {
+    setMyPoint(0)
+    data &&
+      data.rechargeList.forEach(item => {
+        setMyPoint(old => old + item.amount)
+      })
+    data &&
+      data.usageList.forEach(item => {
+        setMyPoint(old => old - item.amount)
+      })
   }
 
   return (
@@ -41,19 +71,26 @@ const AmountSection = (props: DonateAmountSectionType) => {
       </a.Wrap>
       <a.Desc>보유 포인트 사용</a.Desc>
       <a.SubDesc>
-        총 <a.Orange>{userPoint.toLocaleString('ko-KR')}P</a.Orange> 보유
+        총 <a.Orange>{myPoint.toLocaleString('ko-KR')}P</a.Orange> 보유
       </a.SubDesc>
       <a.Wrap>
         <a.Input
           type="number"
           placeholder="0"
           value={point > 0 ? point : ''}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-            setPoint(Number(e.target.value))
-          }
-          max={userPoint}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+            const inputValue = Number(e.target.value)
+            if (inputValue > myPoint) {
+              setPoint(myPoint)
+              alert('사용 가능한 포인트를 초과하였습니다.')
+            } else {
+              setPoint(inputValue)
+            }
+          }}
         />
-        <a.SmallButton onClick={() => setPoint(userPoint)}>전액사용</a.SmallButton>
+        <a.SmallButton onClick={() => setPoint(myPoint)}>
+          전액사용
+        </a.SmallButton>
       </a.Wrap>
     </a.Container>
   )

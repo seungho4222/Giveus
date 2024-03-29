@@ -1,13 +1,10 @@
+import { BASE_URL } from '@utils/requestMethods'
 import * as k from '@components/login/KakaoLogin/KakaoLogin.styled'
 
 const Index = () => {
-  const { DEV, VITE_SERVER_URL } = import.meta.env
   const onClick = () => {
-    const kakaoURL = DEV
-      ? `${VITE_SERVER_URL}/oauth2/authorization/kakao`
-      : '/oauth2/authorization/kakao'
-
-    //const kakaoURL = `${BASE_URL}/oauth2/authorization/kakao`
+    //const LOCAL_URL = 'http://localhost:8081'
+    const kakaoURL = `${BASE_URL}/oauth2/authorization/kakao`
     window.location.href = kakaoURL
   }
 

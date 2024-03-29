@@ -11,7 +11,7 @@ const ContributorInfo = (props: { item: RecentParticipantType }) => {
 
   return (
     <c.Container>
-      <c.Profile src={item.imageUrl} alt="" />
+      <c.Profile src={item.imageUrl || '/img/img_default_profile.png'} alt="" />
       <c.InfoWrap>
         <b>{item.name}</b>
         <div>{formatAmount(item.amount)}원</div>

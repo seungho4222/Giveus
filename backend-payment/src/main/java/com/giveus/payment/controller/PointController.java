@@ -2,7 +2,7 @@ package com.giveus.payment.controller;
 
 import com.giveus.payment.common.dto.CommonResponseBody;
 import com.giveus.payment.common.swagger.SwaggerApiSuccess;
-import com.giveus.payment.dto.request.PointUsageRequest;
+import com.giveus.payment.dto.request.PointUsageReq;
 import com.giveus.payment.dto.response.PointListRes;
 import com.giveus.payment.service.MemberFundingService;
 import com.giveus.payment.service.PointService;
@@ -38,7 +38,7 @@ public class PointController {
 
     @SwaggerApiSuccess(summary = "단건 결제 포인트", implementation = Object.class)
     @PostMapping
-    public ResponseEntity<CommonResponseBody<String>> payPoint(@RequestBody PointUsageRequest request) {
+    public ResponseEntity<CommonResponseBody<String>> payPoint(@RequestBody PointUsageReq request) {
         try {
             LocalDateTime now = LocalDateTime.now();
             int pointNo = pointService.usePoint(request, now);

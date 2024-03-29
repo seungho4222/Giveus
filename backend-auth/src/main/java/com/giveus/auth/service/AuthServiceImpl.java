@@ -5,6 +5,7 @@ import com.giveus.auth.common.util.JwtUtil;
 import com.giveus.auth.dto.request.AuthJoinPostReq;
 import com.giveus.auth.dto.request.MemberDevicePostReq;
 import com.giveus.auth.dto.response.MemberInfoRes;
+import com.giveus.auth.dto.response.NicknameExistRes;
 import com.giveus.auth.entity.Member;
 import com.giveus.auth.entity.MemberDevice;
 import com.giveus.auth.exception.NoMemberExistException;
@@ -96,6 +97,16 @@ public class AuthServiceImpl implements AuthService {
 
         return new CreateSuccessDto(memberDevicePostReq.getMemberNo());
 
+    }
+
+    @Override
+    public NicknameExistRes findByNickname(String nickname) {
+        log.info("=== AuthServiceImpl - findByNickname === \n nickname : {}", nickname);
+        Optional<Member> member = authMemberRepository.findByNickname(nickname);
+        if(member.isPresent())
+            return new NicknameExistRes(nickname, true);
+        else
+            return new NicknameExistRes(nickname, false);
     }
 
 }

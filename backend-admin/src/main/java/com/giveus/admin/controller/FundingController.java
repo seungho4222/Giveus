@@ -3,16 +3,20 @@ package com.giveus.admin.controller;
 import com.giveus.admin.common.dto.CommonResponseBody;
 import com.giveus.admin.common.dto.CreateSuccessDto;
 import com.giveus.admin.common.swagger.SwaggerApiSuccess;
+import com.giveus.admin.dto.request.AdminJoinPostReq;
 import com.giveus.admin.dto.request.FundingCreateReq;
 import com.giveus.admin.dto.request.FundingUsageCreateReq;
+import com.giveus.admin.dto.response.AdminInfoRes;
 import com.giveus.admin.dto.response.FundingDetailsRes;
 import com.giveus.admin.dto.response.FundingListRes;
+import com.giveus.admin.service.AdminService;
 import com.giveus.admin.service.FundingService;
 import com.giveus.admin.service.UsageHistoryService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 import java.util.List;
 
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,10 +28,12 @@ import static org.springframework.http.HttpStatus.OK;
 @RestController
 @RequestMapping("/api/v1/admin")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "*", allowedHeaders = "*")
+//@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class FundingController {
 
     private final FundingService fundingService;
+
+    private final AdminService adminService;
 
     @SwaggerApiSuccess(summary = "펀딩 전체 목록 조회", implementation = FundingListRes.class)
     @GetMapping("/{adminNo}/funding")
@@ -53,12 +59,20 @@ public class FundingController {
                 .body(new CommonResponseBody<>(CREATED, fundingService.createFunding(req)));
     }
 
-    @SwaggerApiSuccess(summary = "펀딩 사용 내역 등록", implementation = FundingDetailsRes.class)
-    @PostMapping("/usage")
-    public ResponseEntity<CommonResponseBody<CreateSuccessDto>> createFundingUsage(@RequestBody FundingUsageCreateReq req) {
+    @SwaggerApiSuccess(summary = "병원 회원가입 추가 정보 입력", implementation = AdminInfoRes.class)
+    @PutMapping("/join")
+    public ResponseEntity<CommonResponseBody<AdminInfoRes>> updateMember(@RequestBody AdminJoinPostReq adminJoinPostReq) {
         return ResponseEntity
-                .status(CREATED)
-                .body(new CommonResponseBody<>(CREATED, fundingService.createFundingUsage(req)));
+                .status(OK)
+                .body(new CommonResponseBody<>(OK, adminService.updateAdmin(adminJoinPostReq)));
+    }
+
+    @SwaggerApiSuccess(summary = "병원 정보 조회 (엑세스 토큰 이용)", implementation = AdminInfoRes.class)
+    @GetMapping("/info")
+    public ResponseEntity<CommonResponseBody<AdminInfoRes>> findByAccessToken(HttpServletRequest httpServletRequest) {
+        return ResponseEntity
+                .status(OK)
+                .body(new CommonResponseBody<>(OK, adminService.findByAccessToken(httpServletRequest)));
     }
 
 }
