@@ -17,36 +17,13 @@ import java.util.List;
 
 import static org.springframework.http.HttpStatus.OK;
 
-@Tag(name = "펀딩 후기 API v1")
+@Tag(name = "펀딩 후기 API V2")
 @RestController
-@RequestMapping("/api/v1/review")
+@RequestMapping("/api/v2/funding/reviews")
 @RequiredArgsConstructor
 @CrossOrigin(origins = "*", allowedHeaders = "*")
-public class ReviewControllerV1 {
+public class ReviewControllerV2 {
     private final ReviewService reviewService;
-
-    /**
-     * 펀딩 후기 목록 조회 api입니다. limit개의 후기를 조회합니다.
-     *
-     * @param count limit 개수
-     * @return 조회한 후기 목록
-     */
-    @SwaggerApiSuccess(summary = "펀딩 후기 전체 조회", implementation = ReviewDetailRes.class)
-    @GetMapping("/findAll/{count}")
-    public ResponseEntity<CommonResponseBody<List<ReviewDetailRes>>> getReviewList(@PathVariable int count) {
-        return ResponseEntity
-                .status(OK)
-                .body(new CommonResponseBody<>(OK, reviewService.getReviewList(count)));
-    }
-
-    // 펀딩 후기 상세 조회 api 생성
-    @SwaggerApiSuccess(summary = "펀딩 후기 상세 조회", implementation = ReviewDetailRes.class)
-    @GetMapping("/{fundingNo}")
-    public ResponseEntity<CommonResponseBody<ReviewDetailRes>> getReview(@PathVariable int fundingNo) {
-        return ResponseEntity
-                .status(OK)
-                .body(new CommonResponseBody<>(OK, reviewService.getReview(fundingNo)));
-    }
 
     @SwaggerApiSuccess(summary = "펀딩 후기 등록", implementation = CreateSuccessDto.class)
     @PostMapping
@@ -57,5 +34,20 @@ public class ReviewControllerV1 {
                 .body(new CommonResponseBody<>(OK, reviewService.createReview(reviewCreateReq, file)));
     }
 
+    @SwaggerApiSuccess(summary = "펀딩 후기 전체 조회", implementation = ReviewDetailRes.class)
+    @GetMapping
+    public ResponseEntity<CommonResponseBody<List<ReviewDetailRes>>> getReviewList(@RequestParam int size) {
+        return ResponseEntity
+                .status(OK)
+                .body(new CommonResponseBody<>(OK, reviewService.getReviewList(size)));
+    }
+
+    @SwaggerApiSuccess(summary = "펀딩 후기 상세 조회", implementation = ReviewDetailRes.class)
+    @GetMapping("/{fundingNo}")
+    public ResponseEntity<CommonResponseBody<ReviewDetailRes>> getReview(@PathVariable int fundingNo) {
+        return ResponseEntity
+                .status(OK)
+                .body(new CommonResponseBody<>(OK, reviewService.getReview(fundingNo)));
+    }
 
 }
