@@ -23,19 +23,19 @@ export const loginSuccess = async (res: { accessToken: string }) => {
 }
 
 // 회원가입
-// export const joinUser = async (req: JoinUserType) => {
-//   const storage = localStorage.getItem('register')
-//   const email = storage && JSON.parse(storage).email
-//   const provider = storage && JSON.parse(storage).provider
+export const joinUser = async (req: { name: string }) => {
+  const storage = localStorage.getItem('register')
+  const email = storage && JSON.parse(storage).email
+  const provider = storage && JSON.parse(storage).provider
 
-//   return publicRequest
-//     .put(`${url}/join`, {
-//       ...req,
-//       email: email || '',
-//       provider: provider || '',
-//     })
-//     .then(res => res)
-// }
+  return publicRequest
+    .put(`${url}/join`, {
+      ...req,
+      email: email || '',
+      provider: provider || '',
+    })
+    .then(res => res)
+}
 
 // 회원 정보 조회
 export const fetchUserInfo = async () => {

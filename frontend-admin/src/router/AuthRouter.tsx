@@ -7,6 +7,7 @@ import { Route, Routes } from 'react-router-dom'
 import BlockchainTest from '@/pages/BlockchainTest'
 import LoginPage from '@pages/login/LoginPage'
 import FundingRegister from '@/pages/fundingregister/FundingRegister'
+import SignupPage from '@pages/signup/SignupPage'
 
 const AuthRouter = () => {
   return (
@@ -20,6 +21,7 @@ const AuthRouter = () => {
         <Route path="funding-register" element={<FundingRegister />} />
       </Route>
       <Route path="/login" element={<LoginPage />} />
+      <Route path="/signup" element={<SignupPage />} />
       <Route path="/*" element={<HomePage />} />
     </Routes>
   )

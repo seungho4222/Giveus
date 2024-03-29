@@ -11,7 +11,6 @@ const defaultUser = {
   memberNo: -1,
   email: '',
   name: '',
-  nickname: '',
   createdAt: '',
   imageUrl: '/img/img_default_profile.png',
   provider: '',
