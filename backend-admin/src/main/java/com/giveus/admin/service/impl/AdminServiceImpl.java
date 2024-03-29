@@ -24,13 +24,13 @@ public class AdminServiceImpl implements AdminService {
     private final JwtUtil jwtUtil;
 
     @Override
-    public AdminInfoRes updateAdmin(AdminJoinPostReq userJoinPostReq) {
-        String email = userJoinPostReq.getEmail();
-        String provider = userJoinPostReq.getProvider();
+    public AdminInfoRes updateAdmin(AdminJoinPostReq adminJoinPostReq) {
+        String email = adminJoinPostReq.getEmail();
+        String provider = adminJoinPostReq.getProvider();
 
         log.info("email = {}, provider = {}", email, provider);
         Admin admin = authAdminRepository.findByProviderAndEmail(provider, email).orElseThrow(NoAdminExistException::new);
-        admin.updateName(userJoinPostReq.getName());
+        admin.updateName(adminJoinPostReq.getName());
 
         authAdminRepository.save(admin);
 
