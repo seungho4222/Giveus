@@ -1,10 +1,11 @@
 package com.giveus.funding.domain.funding.dto;
 
-import java.time.LocalDate;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.time.LocalDate;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -31,4 +32,6 @@ public class FundingListRes {
     private LocalDate createdAt;
 
     private LocalDate birth;
+
+    private long donationCnt;
 }
