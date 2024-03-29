@@ -2,7 +2,6 @@ package com.giveus.payment.dto.response;
 
 import lombok.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -11,7 +10,7 @@ import java.util.List;
 @ToString
 public class PointListRes {
 
-    private List<PointUsageResDto> usageList;
-    private List<PointRechargeResDto> rechargeList;
+    private List<PointUsageRes> usageList;
+    private List<PointRechargeRes> rechargeList;
 
 }

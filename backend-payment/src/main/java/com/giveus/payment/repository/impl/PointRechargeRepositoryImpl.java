@@ -1,6 +1,6 @@
 package com.giveus.payment.repository.impl;
 
-import com.giveus.payment.dto.response.PointRechargeResDto;
+import com.giveus.payment.dto.response.PointRechargeRes;
 import com.giveus.payment.entity.QPointRecharge;
 import com.giveus.payment.repository.PointRechargeRepositoryCustom;
 import com.querydsl.core.types.Projections;
@@ -16,9 +16,9 @@ public class PointRechargeRepositoryImpl implements PointRechargeRepositoryCusto
     QPointRecharge qPointRecharge = QPointRecharge.pointRecharge;
 
     @Override
-    public List<PointRechargeResDto> getRechargeList(int memberNo) {
+    public List<PointRechargeRes> getRechargeList(int memberNo) {
         return jpaQueryFactory.from(qPointRecharge)
-                .select(Projections.fields(PointRechargeResDto.class,
+                .select(Projections.fields(PointRechargeRes.class,
                         qPointRecharge.pointNo, qPointRecharge.amount, qPointRecharge.createdAt, qPointRecharge.content, qPointRecharge.paymentType))
                 .where(qPointRecharge.memberNo.eq(memberNo))
                 .fetch();

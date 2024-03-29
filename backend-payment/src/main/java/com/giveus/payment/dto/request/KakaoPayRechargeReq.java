@@ -5,11 +5,9 @@ import lombok.ToString;
 
 @Getter
 @ToString
-public class PointUsageRequest {
+public class KakaoPayRechargeReq {
 
     private int memberNo;
-    private int fundingNo;
     private int amount;
-    private boolean opened;
 
 }

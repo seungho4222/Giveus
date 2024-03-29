@@ -41,7 +41,7 @@ public class TossPayService {
     public TossPayReadyRes requestPayment(TossPayDonateReq donateReq) {
 
         Member member = memberRepository.findById(donateReq.getMemberNo());
-        TossPayReadyRes res = TossPayReadyRes.builder()
+        return TossPayReadyRes.builder()
                 .amount(donateReq.getAmount())
                 .orderId("F" + donateReq.getFundingNo() + "M" + donateReq.getMemberNo() + "_" + UUID.randomUUID().toString())
                 .orderName(donateReq.getTitle())
@@ -54,20 +54,6 @@ public class TossPayService {
                         + "&opened=" + donateReq.isOpened())
                 .failUrl(donateFailUrl)
                 .build();
-
-        log.info("res: {}", res);
-
-        return res;
-    }
-
-    private HttpHeaders getRequestHttpHeaders() {
-        String encodedSecretKey = Base64.getEncoder().encodeToString((secretKey + ":").getBytes());
-
-        HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.setContentType(MediaType.APPLICATION_JSON);
-        httpHeaders.setBasicAuth(encodedSecretKey);
-        return httpHeaders;
-
     }
 
     @Transactional
@@ -84,5 +70,14 @@ public class TossPayService {
                 httpEntity,
                 TossPayConfirmRes.class
         );
+    }
+
+    private HttpHeaders getRequestHttpHeaders() {
+        String encodedSecretKey = Base64.getEncoder().encodeToString((secretKey + ":").getBytes());
+
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.setContentType(MediaType.APPLICATION_JSON);
+        httpHeaders.setBasicAuth(encodedSecretKey);
+        return httpHeaders;
     }
 }

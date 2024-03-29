@@ -1,6 +1,6 @@
 package com.giveus.payment.repository.impl;
 
-import com.giveus.payment.dto.response.PointUsageResDto;
+import com.giveus.payment.dto.response.PointUsageRes;
 import com.giveus.payment.entity.QFunding;
 import com.giveus.payment.entity.QMemberFunding;
 import com.giveus.payment.entity.QPointUsage;
@@ -20,11 +20,11 @@ public class PointUsageRepositoryImpl implements PointUsageRepositoryCustom {
     private QFunding qFunding = QFunding.funding;
 
     @Override
-    public List<PointUsageResDto> getUsageList(int memberNo) {
+    public List<PointUsageRes> getUsageList(int memberNo) {
         return jpaQueryFactory.from(qPointUsage)
                 .leftJoin(qMemberFunding).on(qPointUsage.pointNo.eq(qMemberFunding.pointNo))
                 .leftJoin(qFunding).on(qMemberFunding.fundingNo.eq(qFunding.fundingNo))
-                .select(Projections.fields(PointUsageResDto.class,
+                .select(Projections.fields(PointUsageRes.class,
                         qPointUsage.pointNo, qPointUsage.amount, qPointUsage.createdAt, qFunding.title))
                 .where(qPointUsage.memberNo.eq(memberNo))
                 .fetch();

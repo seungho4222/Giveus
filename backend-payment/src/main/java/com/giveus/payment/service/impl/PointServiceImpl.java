@@ -1,6 +1,6 @@
 package com.giveus.payment.service.impl;
 
-import com.giveus.payment.dto.request.PointUsageRequest;
+import com.giveus.payment.dto.request.PointUsageReq;
 import com.giveus.payment.dto.response.PointListRes;
 import com.giveus.payment.entity.PointRecharge;
 import com.giveus.payment.entity.PointUsage;
@@ -57,7 +57,7 @@ public class PointServiceImpl implements PointService {
      */
     @Override
     @Transactional
-    public int usePoint(PointUsageRequest request, LocalDateTime now) {
+    public int usePoint(PointUsageReq request, LocalDateTime now) {
         PointUsage pointUsage = PointUsage.builder()
                 .memberNo(request.getMemberNo())
                 .amount(request.getAmount())

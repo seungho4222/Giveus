@@ -1,6 +1,6 @@
 package com.giveus.payment.service;
 
-import com.giveus.payment.dto.request.PointUsageRequest;
+import com.giveus.payment.dto.request.PointUsageReq;
 import com.giveus.payment.dto.response.PointListRes;
 
 import java.time.LocalDateTime;
@@ -29,7 +29,7 @@ public interface PointService {
      * @param now 사용 일자
      * @return 포인트 사용내역 PK
      */
-    int usePoint(PointUsageRequest request, LocalDateTime now);
+    int usePoint(PointUsageReq request, LocalDateTime now);
 
     /**
      * 일반 포인트 충전 완료 시 포인트 충전내역 DB 테이블에 데이터를 저장하기 위해 사용하는 메서드 입니다.

@@ -5,7 +5,7 @@ import lombok.ToString;
 
 @Getter
 @ToString
-public class KakaoPayFailResDto {
+public class KakaoPayFailRes {
     private int error_code;
     private String error_message;
     private Extras extras;
