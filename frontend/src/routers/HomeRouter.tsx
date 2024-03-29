@@ -7,6 +7,7 @@ import SecondRegPage from '@/pages/secondReg/SecondRegPage'
 import SearchPage from '@pages/search/SearchPage'
 import HomePage from '@pages/home/HomePage'
 import RegOkPage from '@/pages/secondReg/RegOkPage'
+import MyPage from '@pages/mypage/MyPage'
 
 const HomeRouter = () => {
   return (
@@ -17,6 +18,7 @@ const HomeRouter = () => {
       <Route path="/signup" element={<SignupPage />} />
       <Route path="/funding" element={<FundingPage />} />
       <Route path="/search" element={<SearchPage />} />
+      <Route path="/mypage" element={<MyPage />} />
       <Route path="*" element={<LoginPage />} />
       <Route path="/giveus/:id" element={<SecondRegPage />} />
       <Route path="/giveus/ok" element={<RegOkPage />} />
