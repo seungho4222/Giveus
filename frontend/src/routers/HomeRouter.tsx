@@ -8,6 +8,7 @@ import SearchPage from '@pages/search/SearchPage'
 import HomePage from '@pages/home/HomePage'
 import RegOkPage from '@/pages/secondReg/RegOkPage'
 import MyPage from '@pages/mypage/MyPage'
+import SettingPage from '@pages/mypage/setting/SettingPage'
 
 const HomeRouter = () => {
   return (
@@ -19,6 +20,7 @@ const HomeRouter = () => {
       <Route path="/funding" element={<FundingPage />} />
       <Route path="/search" element={<SearchPage />} />
       <Route path="/mypage" element={<MyPage />} />
+      <Route path="/mypage/setting" element={<SettingPage />} />
       <Route path="*" element={<LoginPage />} />
       <Route path="/giveus/:id" element={<SecondRegPage />} />
       <Route path="/giveus/ok" element={<RegOkPage />} />

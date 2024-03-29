@@ -1,13 +1,17 @@
 import * as m from '@components/mypage/MypageInfoSection/MypageInfoSection.styled'
-import MypageBasicInfo from '@components/mypage/MypageInfoSection/MypageBasicInfo'
-import MypagePointSection from '@components/mypage/MypageInfoSection/MypagePointSection'
 import { useRecoilValue } from 'recoil'
 import { userState } from '@stores/user'
+import { themeState } from '@stores/theme'
+import { useNavigate } from 'react-router-dom'
 
 const Index = () => {
   const userInfo = useRecoilValue(userState)
+  const theme = useRecoilValue(themeState)
+  const navigate = useNavigate()
 
   const isUser = userInfo.memberNo !== -1
+
+  const goLogin = () => navigate('/login')
 
   return (
     <m.Container>
@@ -16,8 +20,24 @@ const Index = () => {
         alt=""
       />
       <m.InfoWrap>
-        <m.Name>{isUser ? userInfo.name : <span>로그인 필요</span>}</m.Name>
-        <m.NickName>
+        <m.Name>
+          {isUser ? (
+            userInfo.name
+          ) : (
+            <span onClick={goLogin}>
+              로그인 필요{' '}
+              <img
+                src={
+                  '/icon/icon_arrow_right' +
+                  (theme ? '_black' : '_white') +
+                  '.png'
+                }
+                alt=""
+              />
+            </span>
+          )}
+        </m.Name>
+        <m.NickName $theme={theme}>
           {isUser
             ? userInfo.nickname
             : '원활한 서비스를 위해 로그인을 해주세요'}
