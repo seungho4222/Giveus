@@ -1,23 +1,34 @@
 import { colors } from '@styles/theme'
 import styled from 'styled-components'
 
-export const Container = styled.section`
+export const Container = styled.div`
   display: flex;
-  background-color: ${colors.blue01};
-  min-height: 300px;
+  align-items: center;
+  width: 85%;
+  margin: 0 auto;
+  padding: 20px 0;
 `
 
-export const Wrap = styled.div`
+export const Profile = styled.img`
+  width: 60px;
+  height: 60px;
+  margin-right: 17px;
+  border-radius: 100%;
+`
+
+export const InfoWrap = styled.div`
   display: flex;
   flex-direction: column;
-  width: 90%;
-  height: 100%;
-  margin: auto;
-  padding: 30px 0;
 `
 
-export const Nickname = styled.div`
-  color: #fff;
+export const Name = styled.div`
   font-weight: 600;
-  font-size: 1.3em;
+  font-size: 1.1em;
+  margin-bottom: 8px;
+`
+
+export const NickName = styled.div`
+  font-weight: 500;
+  font-size: 0.9em;
+  color: ${colors.gray05};
 `

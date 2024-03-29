@@ -13,29 +13,29 @@ import MypageHeader from '@components/mypage/MypageHeader'
 
 const MyPage = () => {
   const userInfo = useRecoilValue(userState)
-  const setMyPoint = useSetRecoilState(myPointState)
+  // const setMyPoint = useSetRecoilState(myPointState)
 
-  const { data } = useQuery<PointsListType>({
-    queryKey: ['fetchMemberPoints'],
-    queryFn: () => fetchMemberPoints(userInfo.memberNo),
-  })
+  // const { data } = useQuery<PointsListType>({
+  //   queryKey: ['fetchMemberPoints'],
+  //   queryFn: () => fetchMemberPoints(userInfo.memberNo),
+  // })
 
-  useEffect(() => {
-    caculateMyPoint()
-  }, [data])
+  // useEffect(() => {
+  //   caculateMyPoint()
+  // }, [data])
 
-  // 내 포인트 계산
-  const caculateMyPoint = () => {
-    setMyPoint(0)
-    data &&
-      data.rechargeList.forEach(item => {
-        setMyPoint(old => old + item.amount)
-      })
-    data &&
-      data.usageList.forEach(item => {
-        setMyPoint(old => old - item.amount)
-      })
-  }
+  // // 내 포인트 계산
+  // const caculateMyPoint = () => {
+  //   setMyPoint(0)
+  //   data &&
+  //     data.rechargeList.forEach(item => {
+  //       setMyPoint(old => old + item.amount)
+  //     })
+  //   data &&
+  //     data.usageList.forEach(item => {
+  //       setMyPoint(old => old - item.amount)
+  //     })
+  // }
 
   return (
     <>
