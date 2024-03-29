@@ -10,39 +10,20 @@ import { PointsListType } from '@/types/mypageType'
 import { myPointState } from '@stores/point'
 import { useEffect } from 'react'
 import MypageHeader from '@components/mypage/MypageHeader'
+import MypagePoint from '@components/mypage/MypagePoint'
+import MypageActivity from '@components/mypage/MypageActivity'
 
 const MyPage = () => {
   const userInfo = useRecoilValue(userState)
-  // const setMyPoint = useSetRecoilState(myPointState)
-
-  // const { data } = useQuery<PointsListType>({
-  //   queryKey: ['fetchMemberPoints'],
-  //   queryFn: () => fetchMemberPoints(userInfo.memberNo),
-  // })
-
-  // useEffect(() => {
-  //   caculateMyPoint()
-  // }, [data])
-
-  // // 내 포인트 계산
-  // const caculateMyPoint = () => {
-  //   setMyPoint(0)
-  //   data &&
-  //     data.rechargeList.forEach(item => {
-  //       setMyPoint(old => old + item.amount)
-  //     })
-  //   data &&
-  //     data.usageList.forEach(item => {
-  //       setMyPoint(old => old - item.amount)
-  //     })
-  // }
 
   return (
     <>
       <Layout>
         <MypageHeader />
         <MypageInfoSection />
-        <MypageMenu />
+        {userInfo.memberNo !== -1 && <MypagePoint />}
+        <MypageActivity />
+        {/* <MypageMenu /> */}
       </Layout>
       <Navbar current="mypage" />
     </>

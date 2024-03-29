@@ -68,11 +68,11 @@ pipeline {
     stage('Clean image') {
       steps {
         script {
-            try {
-              sh 'docker rmi $repository' // jenkins 컨테이너에 있는 docker image 제거
-            } catch (Exception e) {
-              sh 'echo "fail to remove Docker Image"'
-            }
+          try {
+            sh 'docker rmi $repository' // jenkins 컨테이너에 있는 docker image 제거
+          } catch (Exception e) {
+            sh 'echo "fail to remove Docker Image"'
+          }
         }
       }
     }
