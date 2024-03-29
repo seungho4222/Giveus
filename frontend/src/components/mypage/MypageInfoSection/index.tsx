@@ -9,19 +9,21 @@ const Index = () => {
   const theme = useRecoilValue(themeState)
   const navigate = useNavigate()
 
-  const isUser = userInfo.memberNo !== -1
-
   const goLogin = () => navigate('/login')
 
   return (
     <m.Container>
       <m.Profile
-        src={isUser ? userInfo.imageUrl : '/img/img_default_profile.png'}
+        src={
+          userInfo.memberNo !== -1
+            ? userInfo.imageUrl
+            : '/img/img_default_profile.png'
+        }
         alt=""
       />
       <m.InfoWrap>
         <m.Name>
-          {isUser ? (
+          {userInfo.memberNo !== -1 ? (
             userInfo.name
           ) : (
             <span onClick={goLogin}>
@@ -38,23 +40,12 @@ const Index = () => {
           )}
         </m.Name>
         <m.NickName $theme={theme}>
-          {isUser
+          {userInfo.memberNo !== -1
             ? userInfo.nickname
             : '원활한 서비스를 위해 로그인을 해주세요'}
         </m.NickName>
       </m.InfoWrap>
     </m.Container>
-    // <m.Container>
-    //   <m.Wrap>
-    //     <m.Nickname>{userInfo.nickname}님</m.Nickname>
-    //     <MypageBasicInfo
-    //       name={userInfo.name}
-    //       profile={userInfo.imageUrl}
-    //       email={userInfo.email}
-    //     />
-    //     <MypagePointSection />
-    //   </m.Wrap>
-    // </m.Container>
   )
 }
 
