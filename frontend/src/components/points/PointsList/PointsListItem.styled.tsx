@@ -4,7 +4,6 @@ import styled from 'styled-components'
 export const Container = styled.div<{ $theme: number }>`
   display: flex;
   padding: 16px 16px;
-  height: 80px;
   justify-content: space-between;
   border-bottom: 1px solid
     ${props => (props.$theme ? '#eeeeee' : colors.black02)};
@@ -26,6 +25,7 @@ export const ContentWrap = styled.div`
   flex-direction: column;
   justify-content: space-between;
   margin-left: 9px;
+  row-gap: 20px;
 `
 
 export const Type = styled.div`

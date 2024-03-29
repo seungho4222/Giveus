@@ -16,12 +16,10 @@ const PointsPage = () => {
     <>
       <p.Container>
         <MypagePrevHeader title="포인트 관리" url="/mypage" />
-        <p.Wrap>
-          <PointsInfo />
-          <PointsFilter setOpen={setOpen} />
-          <p.Line $theme={theme} />
-          <PointsList />
-        </p.Wrap>
+        <PointsInfo />
+        <PointsFilter setOpen={setOpen} />
+        <p.Line $theme={theme} />
+        <PointsList />
       </p.Container>
       {open && <PointsFilterModal value={open} setValue={setOpen} />}
     </>
