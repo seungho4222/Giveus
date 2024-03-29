@@ -2,6 +2,10 @@ package com.giveus.payment.controller;
 
 import com.giveus.payment.common.dto.CommonResponseBody;
 import com.giveus.payment.dto.request.TossPayDonateReq;
+import com.giveus.payment.dto.response.TossPayConfirmRes;
+import com.giveus.payment.service.MemberFundingService;
+import com.giveus.payment.service.PaymentService;
+import com.giveus.payment.service.PointService;
 import com.giveus.payment.service.TossPayService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -22,15 +26,12 @@ import static org.springframework.http.HttpStatus.OK;
 public class TossPayController {
 
     private final TossPayService tossPayService;
-
-    @GetMapping
-    public ResponseEntity<?> test() {
-        return ResponseEntity.status(OK)
-                .body(new CommonResponseBody<>(OK, "요청 잘들어옴."));
-    }
+    private final PaymentService paymentService;
+    private final MemberFundingService memberFundingService;
+    private final PointService pointService;
 
     @PostMapping("/donate/ready")
-    public ResponseEntity<?> requestPayment(@RequestBody TossPayDonateReq donateReq) {
+    public ResponseEntity<?> donateReady(@RequestBody TossPayDonateReq donateReq) {
         try {
             return ResponseEntity.status(OK)
                     .body(new CommonResponseBody<>(OK, tossPayService.requestPayment(donateReq)));
@@ -38,6 +39,32 @@ public class TossPayController {
             return ResponseEntity.status(INTERNAL_SERVER_ERROR)
                     .body(new CommonResponseBody<>(INTERNAL_SERVER_ERROR, e.getMessage()));
         }
+    }
+
+    @GetMapping("/donate/success")
+    public ResponseEntity<?> donateSuccess(@RequestParam("memberNo") int memberNo,
+                                           @RequestParam("fundingNo") int fundingNo,
+                                           @RequestParam("point") int point,
+                                           @RequestParam("opened") boolean opened,
+                                           @RequestParam("orderId") String orderId,
+                                           @RequestParam("paymentKey") String paymentKey,
+                                           @RequestParam("amount") int amount) {
+
+        TossPayConfirmRes res = tossPayService.donateSuccess(orderId, paymentKey, amount);
+        Integer pointUsageNo = point > 0 ? pointService.saveUsage(memberNo, point, res.getApprovedAt()) : null;
+        return ResponseEntity.status(OK)
+                .body(new CommonResponseBody<>(OK, "결제성공"));
+    }
+
+    @GetMapping("/donate/fail")
+    public ResponseEntity<?> donateFail(@RequestParam("code") String errorCode,
+                                        @RequestParam("message") String errorMessage,
+                                        @RequestParam("orderId") String orderId) {
+        log.info("에러코드: {}", errorCode);
+        log.info("에러메시지: {}", errorMessage);
+        log.info("주문번호: {}", orderId);
+        return ResponseEntity.status(OK)
+                .body(new CommonResponseBody<>(OK, "실패!!!!"));
     }
 
 }
