@@ -6,6 +6,9 @@ import com.giveus.payment.dto.request.PointUsageReq;
 import com.giveus.payment.dto.response.PointListRes;
 import com.giveus.payment.service.MemberFundingService;
 import com.giveus.payment.service.PointService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -28,15 +31,21 @@ public class PointController {
 
     private final PointService pointService;
     private final MemberFundingService memberFundingService;
-
-    @SwaggerApiSuccess(summary = "회원 포인트 충전 및 사용 내역 조회", implementation = PointListRes.class)
+    @Operation(summary = "회원 포인트 충전 및 사용 내역 조회", description = "회원의 포인트 충전 내역 및 사용 내역을 조회하는 API 메서드 입니다.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "성공", useReturnTypeSchema = true)
+    })
     @GetMapping("/{memberNo}")
     public ResponseEntity<CommonResponseBody<PointListRes>> getPointList(@PathVariable("memberNo") int memberNo) {
         return ResponseEntity.status(OK)
                 .body(new CommonResponseBody<>(OK, pointService.getPointList(memberNo)));
     }
 
-    @SwaggerApiSuccess(summary = "포인트 펀딩 후원", implementation = String.class)
+    @Operation(summary = "포인트 펀딩 후원", description = "포인트만 사용하여 펀딩에 후원하는 API 메서드 입니다.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "성공", useReturnTypeSchema = true),
+            @ApiResponse(responseCode = "417", description = "실패", useReturnTypeSchema = true)
+    })
     @PostMapping
     public ResponseEntity<CommonResponseBody<String>> payPoint(@RequestBody PointUsageReq request) {
         try {

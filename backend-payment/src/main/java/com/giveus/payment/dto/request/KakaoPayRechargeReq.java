@@ -6,7 +6,7 @@ import lombok.ToString;
 
 @Getter
 @ToString
-@Schema(description = "카카오페이 포인트 충전 준비")
+@Schema(description = "카카오페이 포인트 충전 요청")
 public class KakaoPayRechargeReq {
     @Schema(description = "회원 PK", example = "1")
     private int memberNo;

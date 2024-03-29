@@ -1,8 +1,6 @@
 package com.giveus.payment.common.swagger;
 
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.media.Content;
-import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 
@@ -15,10 +13,11 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Operation()
 @ApiResponses(value = {
-        @ApiResponse(
-                responseCode = "404",
-                content = @Content(schema = @Schema(implementation = Error.class))
-        )
+        @ApiResponse(responseCode = "404")
 })
-public @interface SwaggerApiNotFoundError {
+public @interface SwaggerApiInternalServerError {
+
+        String summary() default "";
+
+        Class<?> implementation();
 }
