@@ -46,6 +46,7 @@ public class SecurityConfig {
                 )
                 // OAuth2 로그인 설정
                 .oauth2Login(config -> config
+                        .authorizationEndpoint(config4->config4.baseUri("/admin/oauth2/authorization/**"))
                         .redirectionEndpoint(config3 -> config3.baseUri("/admin/login/oauth2/code/kakao"))
 //                        .loginPage("/api/auth/noAuth")
                         .userInfoEndpoint(config2 -> config2.userService(customOAuth2UserService)) // OAuth2 로그인시 사용자 정보를 가져오는 엔드포인트와 사용자 서비스를 설정
