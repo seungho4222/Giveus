@@ -51,7 +51,7 @@ spring:
         - id: backend-admin
           uri: lb://BACKEND-ADMIN
           predicates:
-            - Path=/api/v1/admin/**
+            - Path=/api/v1/admin/**, /login/oauth2/code/**, /oauth2/authorization/**
         - id: backend-payment
           uri: lb://BACKEND-PAYMENT
           predicates:
