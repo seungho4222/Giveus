@@ -3,6 +3,7 @@ import HomeHeader from '@/components/home/HomeHeader'
 import HomeNav from '@/components/home/HomeNav'
 import * as h from '@pages/home/HomePage.styled'
 import { Outlet } from 'react-router'
+import FundingRegister from '../fundingregister/FundingRegister'
 
 const HomePage = () => {
   return (

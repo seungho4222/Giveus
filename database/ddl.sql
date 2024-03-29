@@ -3,12 +3,12 @@ DROP TABLE IF EXISTS `admin`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `admin` (
   `admin_no` int NOT NULL AUTO_INCREMENT,
-  `id` varchar(20) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `name` varchar(30) NOT NULL,
-  `created_at` datetime NOT NULL,
-  PRIMARY KEY (`admin_no`),
-  UNIQUE KEY `id_UNIQUE` (`id`)
+  `email` varchar(30) NOT NULL,
+  `name` varchar(30) DEFAULT NULL,
+  `created_at` datetime NOT NULL DEFAULT (curdate()),
+  `provider` varchar(10) NOT NULL,
+  `sns_key` varchar(255) NOT NULL,
+  PRIMARY KEY (`admin_no`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
