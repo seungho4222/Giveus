@@ -1,10 +1,12 @@
 import * as a from '@/components/funding/Donate/AmountSection.styled'
+import { myPointState } from '@/stores/point'
 import { DonateAmountSectionType } from '@/types/donateType'
 import { useState } from 'react'
+import { useRecoilValue } from 'recoil'
 
 const AmountSection = (props: DonateAmountSectionType) => {
   const { amount, setAmount, point, setPoint } = props
-  const userPoint: number = 36000 // 더미데이터
+  const myPoint = useRecoilValue(myPointState)
 
   const cashList: number[] = [5000, 10000, 50000, 100000]
   const [targetCash, setTargetCash] = useState(5000)
@@ -41,7 +43,7 @@ const AmountSection = (props: DonateAmountSectionType) => {
       </a.Wrap>
       <a.Desc>보유 포인트 사용</a.Desc>
       <a.SubDesc>
-        총 <a.Orange>{userPoint.toLocaleString('ko-KR')}P</a.Orange> 보유
+        총 <a.Orange>{myPoint.toLocaleString('ko-KR')}P</a.Orange> 보유
       </a.SubDesc>
       <a.Wrap>
         <a.Input
@@ -51,9 +53,9 @@ const AmountSection = (props: DonateAmountSectionType) => {
           onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
             setPoint(Number(e.target.value))
           }
-          max={userPoint}
+          max={myPoint}
         />
-        <a.SmallButton onClick={() => setPoint(userPoint)}>전액사용</a.SmallButton>
+        <a.SmallButton onClick={() => setPoint(myPoint)}>전액사용</a.SmallButton>
       </a.Wrap>
     </a.Container>
   )

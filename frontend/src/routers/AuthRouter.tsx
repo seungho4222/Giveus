@@ -11,11 +11,13 @@ import DonorListPage from '@/pages/funding/DonorListPage'
 import MedicalExpensePage from '@/pages/funding/MedicalExpensePage'
 import SettingPage from '@pages/mypage/setting/SettingPage'
 import SignupPage from '@pages/signup/SignupPage'
-import LoginRedirectHandler from '@pages/login/LoginRedirectHandler'
+import LoginRedirectHandler from '@/pages/redirect/LoginRedirectHandler'
 import PointsPage from '@/pages/mypage/points/PointsPage'
 import DonatePage from '@/pages/mypage/donate/DonatePage'
 import RechargePage from '@pages/mypage/recharge/RechargePage'
 import RechargeDonePage from '@pages/mypage/recharge/RechargeDonePage'
+import PaymentRedirectHandler from '@/pages/redirect/PaymentRedirectHandler'
+import DonateDonePage from '@/pages/funding/DonateDonePage'
 
 const AuthRouter = () => {
   return (
@@ -33,11 +35,14 @@ const AuthRouter = () => {
       <Route path="/mypage/recharge" element={<RechargePage />} />
       <Route path="/mypage/recharge/done" element={<RechargeDonePage />} />
       <Route path="/mypage/donate" element={<DonatePage />} />
+      <Route path="/funding/donate/done" element={<DonateDonePage />} />
       <Route path="/funding/:id" element={<FundingDetailPage />}>
         <Route path="detail-main" element={<DetailMainPage />} />
         <Route path="donor-list" element={<DonorListPage />} />
         <Route path="medical-expense" element={<MedicalExpensePage />} />
       </Route>
+      <Route path="/payment/donate/success" element={<PaymentRedirectHandler />} />
+      <Route path="/payment/recharge/success" element={<PaymentRedirectHandler />} />
       <Route path="*" element={<HomePage />} />
     </Routes>
   )
