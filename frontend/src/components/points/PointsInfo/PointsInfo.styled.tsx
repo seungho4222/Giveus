@@ -1,51 +1,53 @@
 import { colors } from '@/styles/theme'
 import styled from 'styled-components'
 
-export const Container = styled.section`
+export const Container = styled.section<{ $theme: number }>`
   display: flex;
   flex-direction: column;
-  width: 90%;
-  margin: 10px auto;
+  justify-content: space-between;
+  width: 88%;
+  margin: 0 auto;
+  background-color: ${props => (props.$theme ? colors.blue01 : colors.black02)};
+  border-radius: 10px;
+  height: 123px;
+  padding: 14px 15px;
+  box-shadow: 0px 0px 20px 2px
+    rgba(149, 157, 177, ${props => (props.$theme ? '0.2' : '0.1')});
 `
 
 export const Top = styled.div`
   display: flex;
-  align-items: center;
-
+  color: #fff;
+  font-size: 0.8em;
   img {
-    width: 20px;
-    height: 20px;
+    width: 14px;
+    height: 14px;
     margin-right: 8px;
   }
+`
+
+export const PointWrap = styled.div<{ $theme: number }>`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   span {
-    font-size: 1.1em;
+    color: #fff;
+    font-size: 1.4em;
+    font-weight: 600;
+  }
+  button {
+    width: 67px;
+    height: 27px;
+    background-color: ${props => (props.$theme ? '#fff' : colors.blue01)};
+    color: ${props => (props.$theme ? colors.blue01 : '#fff')};
+    border-radius: 12px;
     font-weight: 500;
+    font-size: 0.9em;
   }
 `
 
-export const PointBox = styled.div`
-  position: relative;
-  display: flex;
-  width: 100%;
-  background-color: ${colors.blue02};
-  align-items: center;
-  justify-content: center;
-  border-radius: 12px;
-  height: 70px;
-  margin: 16px 0 10px 0;
-  color: #fff;
-  font-weight: 600;
-  font-size: 1.4em;
-`
-
-export const ChargeButton = styled.button`
-  position: absolute;
-  background-color: #fff;
-  color: ${colors.blue01};
-  right: 13px;
-  border-radius: 12px;
-  width: 52px;
-  height: 27px;
+export const Desc = styled.div<{ $theme: number }>`
   font-size: 0.7em;
-  font-weight: 500;
+  color: ${props => (props.$theme ? colors.gray01 : colors.gray04)};
+  font-weight: 300;
 `

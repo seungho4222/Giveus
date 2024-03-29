@@ -15,8 +15,6 @@ const Index = () => {
 
   return (
     <m.Container>
-      {isUser ? '유저 있음' : '유저 없음'}
-      {isUser && userInfo.name}
       <m.Profile
         src={isUser ? userInfo.imageUrl : '/img/img_default_profile.png'}
         alt=""

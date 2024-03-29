@@ -33,7 +33,6 @@ const LoginRedirectHandler = () => {
         loginSuccess({ accessToken })
           .then(() =>
             fetchUserInfo().then(res => {
-              console.log('유저 정보', res.data)
               setUserState(res.data.data)
               navigate('/')
             }),
