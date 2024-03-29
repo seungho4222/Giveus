@@ -20,6 +20,9 @@ spring:
             allowedOrigins:
               - 'http://localhost:3000'
               - 'http://localhost:3001'
+              - 'https://admin.giveus.site'
+              - 'http://admin.giveus.site:8091'
+              - 'http://admin.giveus.site'
               - 'http://giveus.site:8090'
               - 'http://giveus.site:8091'
               - 'http://giveus.site'
