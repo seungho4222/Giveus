@@ -1,12 +1,11 @@
 package com.giveus.payment.service.impl;
 
 import com.giveus.payment.dto.request.PointUsageReq;
+import com.giveus.payment.entity.Funding;
 import com.giveus.payment.entity.MemberFunding;
 import com.giveus.payment.entity.Payment;
 import com.giveus.payment.entity.PointUsage;
-import com.giveus.payment.repository.MemberFundingRepository;
-import com.giveus.payment.repository.PaymentRepository;
-import com.giveus.payment.repository.PointUsageRepository;
+import com.giveus.payment.repository.*;
 import com.giveus.payment.service.MemberFundingService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -24,6 +23,8 @@ public class MemberFundingServiceImpl implements MemberFundingService {
     private final MemberFundingRepository memberFundingRepository;
     private final PaymentRepository paymentRepository;
     private final PointUsageRepository pointUsageRepository;
+    private final FundingStatusHistoryRepository fundingStatusHistoryRepository;
+    private final FundingRepository fundingRepository;
 
     /**
      * @inheritDoc
@@ -31,7 +32,7 @@ public class MemberFundingServiceImpl implements MemberFundingService {
     @Override
     @Transactional
     public int save(int memberNo, int fundingNo, String method,
-                    String createdAt, int amount, int point, boolean opened, DateTimeFormatter formatter) {
+                    String createdAt, int amount, int point, boolean opened, DateTimeFormatter formatter) throws Exception {
 
         Integer pointUsageNo = null;
         if (point > 0) {
@@ -59,7 +60,17 @@ public class MemberFundingServiceImpl implements MemberFundingService {
                 .isPublic(opened)
                 .build();
 
-        return memberFundingRepository.save(memberFunding).getMemberFundingNo();
+        int memberFundingNo = memberFundingRepository.save(memberFunding).getMemberFundingNo();
+
+        Funding funding = fundingRepository.findById(fundingNo).orElseThrow(() -> new IllegalArgumentException("펀딩이 존재하지 않습니다."));
+
+        Integer totalAmount = memberFundingRepository.getTotalAmount(fundingNo);
+
+        if (totalAmount >= funding.getTargetAmount()) {
+            fundingStatusHistoryRepository.updateFundingStatusToFinish(fundingNo);
+        }
+
+        return memberFundingNo;
     }
 
     /**

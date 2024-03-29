@@ -58,6 +58,8 @@ public class TossPayService {
 
     @Transactional
     public TossPayConfirmRes donateSuccess(String orderId, String paymentKey, int amount) {
+
+        log.info("donateSuccessUrl: {}", donateSuccessUrl);
         HttpHeaders headers = getRequestHttpHeaders();
         Map<String, Object> params = new HashMap<>();
         params.put("orderId", orderId);
