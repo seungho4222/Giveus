@@ -1,8 +1,11 @@
 import { PointItemType } from '@/types/mypageType'
 import { formatAmount } from '@utils/format'
 import * as p from '@components/points/PointsList/PointsListItem.styled'
+import { useRecoilValue } from 'recoil'
+import { themeState } from '@stores/theme'
 
 const PointsListItem = (props: { item: PointItemType }) => {
+  const theme = useRecoilValue(themeState)
   const { createdAt, type, content, amount, total } = props.item
 
   const formattDate = () => {
@@ -14,7 +17,7 @@ const PointsListItem = (props: { item: PointItemType }) => {
   }
 
   return (
-    <p.Container>
+    <p.Container $theme={theme}>
       <p.Left>
         <p.Date>{formattDate()}</p.Date>
         <p.ContentWrap>
@@ -26,7 +29,7 @@ const PointsListItem = (props: { item: PointItemType }) => {
         <p.Pay $type={type}>
           {type === '충전' ? '+' : '-'} {formatAmount(amount)}원
         </p.Pay>
-        <p.Amount>{formatAmount(total)}원</p.Amount>
+        <p.Amount $theme={theme}>{formatAmount(total)}원</p.Amount>
       </p.AmountWrap>
     </p.Container>
   )

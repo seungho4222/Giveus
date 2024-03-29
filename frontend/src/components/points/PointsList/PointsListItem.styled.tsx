@@ -1,14 +1,13 @@
 import { colors } from '@styles/theme'
 import styled from 'styled-components'
 
-export const Container = styled.div`
+export const Container = styled.div<{ $theme: number }>`
   display: flex;
-  border: 1px solid #eee;
-  border-radius: 10px;
-  padding: 13px 16px;
-  height: 72px;
+  padding: 16px 16px;
+  height: 80px;
   justify-content: space-between;
-  margin-bottom: 10px;
+  border-bottom: 1px solid
+    ${props => (props.$theme ? '#eeeeee' : colors.black02)};
 `
 
 export const Left = styled.div`
@@ -31,13 +30,12 @@ export const ContentWrap = styled.div`
 
 export const Type = styled.div`
   font-size: 0.7em;
-  font-weight: 500;
+  font-weight: 400;
 `
 
 export const Content = styled.div`
   font-size: 1em;
-  font-weight: 600;
-  padding-bottom: 2%px;
+  font-weight: 500;
 `
 
 export const AmountWrap = styled.div`
@@ -48,13 +46,13 @@ export const AmountWrap = styled.div`
 `
 
 export const Pay = styled.div<{ $type: string }>`
-  font-size: 1.2em;
-  font-weight: 700;
+  font-size: 1.1em;
+  font-weight: 600;
   color: ${props => (props.$type === '충전' ? colors.blue01 : '#676F83')};
 `
 
-export const Amount = styled.div`
+export const Amount = styled.div<{ $theme: number }>`
   font-weight: 500;
   font-size: 0.8em;
-  color: ${colors.gray04};
+  color: ${props => (props.$theme ? colors.gray04 : colors.gray05)};
 `
