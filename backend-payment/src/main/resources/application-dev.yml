@@ -27,3 +27,6 @@ pay:
     donate:
       success_url: ${host.address}/api/v1/payment/toss/donate/success
       fail_url: ${host.address}/api/v1/payment/toss/donate/fail
+    recharge:
+      success_url: ${host.address}/api/v1/payment/toss/recharge/success
+      fail_url: ${host.address}/api/v1/payment/toss/recharge/fail

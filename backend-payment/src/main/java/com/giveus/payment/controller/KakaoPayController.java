@@ -16,7 +16,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 import static org.springframework.http.HttpStatus.*;
@@ -35,8 +34,8 @@ public class KakaoPayController {
 
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
 
-    @SwaggerApiSuccess(summary = "포인트 충전 - 카카오페이 단건 결제 준비", implementation = KakaoPayReadyRes.class)
-    @PostMapping("/point/ready")
+    @SwaggerApiSuccess(summary = "카카오페이 포인트 충전 준비", implementation = KakaoPayReadyRes.class)
+    @PostMapping("/recharge/ready")
     public ResponseEntity<?> readyRecharge(@RequestBody KakaoPayRechargeReq rechargeReq) {
         try {
             return ResponseEntity.status(OK)
@@ -47,7 +46,7 @@ public class KakaoPayController {
         }
     }
 
-    @SwaggerApiSuccess(summary = "후원하기 - 카카오페이 단결 결제 준비", implementation = KakaoPayReadyRes.class)
+    @SwaggerApiSuccess(summary = "카카오페이 펀딩 후원 준비", implementation = KakaoPayReadyRes.class)
     @PostMapping("/donate/ready")
     public ResponseEntity<?> readyDonate(@RequestBody KakaoPayDonateReq donateReq) {
         try {
@@ -59,14 +58,13 @@ public class KakaoPayController {
         }
     }
 
-    @SwaggerApiSuccess(summary = "포인트 충전 - 카카오페이 단건 결제 성공", implementation = KakaoPayApproveRes.class)
-    @GetMapping("/point/success")
+    @SwaggerApiSuccess(summary = "카카오페이 포인트 충전 성공", implementation = KakaoPayApproveRes.class)
+    @GetMapping("/recharge/success")
     public ResponseEntity<CommonResponseBody<?>> approveRecharge(@RequestParam("member_no") int memberNo,
-                                                                 @RequestParam("amount") int amount,
                                                                  @RequestParam("pg_token") String pgToken) {
         try {
             KakaoPayApproveRes res = kakaoPayService.getApprove(pgToken, memberNo);
-            pointService.saveRecharge(memberNo, amount, LocalDateTime.now());
+            pointService.saveRecharge(memberNo, res.getAmount().getTotal(), "카카오페이", res.getItem_name(), res.getApproved_at(), FORMATTER);
             return ResponseEntity.status(OK)
                     .body(new CommonResponseBody<>(OK, res));
         } catch (Exception e) {
@@ -75,7 +73,7 @@ public class KakaoPayController {
         }
     }
 
-    @SwaggerApiSuccess(summary = "후원하기 - 카카오페이 단건 결제 성공", implementation = KakaoPayApproveRes.class)
+    @SwaggerApiSuccess(summary = "카카오페이 펀딩 후원 성공", implementation = KakaoPayApproveRes.class)
     @GetMapping("/donate/success")
     public ResponseEntity<CommonResponseBody<?>> approveDonate(@RequestParam("member_no") int memberNo,
                                                                @RequestParam("funding_no") int fundingNo,
@@ -95,14 +93,14 @@ public class KakaoPayController {
         }
     }
 
-    @SwaggerApiSuccess(summary = "후원하기 - 카카오페이 결제 취소", implementation = String.class)
+    @SwaggerApiSuccess(summary = "카카오페이 펀딩 후원 취소", implementation = String.class)
     @GetMapping("/donate/cancel")
     public ResponseEntity<CommonResponseBody<String>> cancelDonate() {
         return ResponseEntity.status(EXPECTATION_FAILED)
                 .body(new CommonResponseBody<>(EXPECTATION_FAILED, "사용자가 결제를 취소했습니다."));
     }
 
-    @SwaggerApiSuccess(summary = "후원하기 - 카카오페이 결제 오류", implementation = String.class)
+    @SwaggerApiSuccess(summary = "카카오페이 펀딩 후원 실패", implementation = String.class)
     @GetMapping("/donate/fail")
     public ResponseEntity<CommonResponseBody<String>> failDonate() {
         return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED)

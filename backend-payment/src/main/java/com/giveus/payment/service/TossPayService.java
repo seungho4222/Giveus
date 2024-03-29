@@ -1,6 +1,7 @@
 package com.giveus.payment.service;
 
 import com.giveus.payment.dto.request.TossPayDonateReq;
+import com.giveus.payment.dto.request.TossPayRechargeReq;
 import com.giveus.payment.dto.response.TossPayConfirmRes;
 import com.giveus.payment.dto.response.TossPayReadyRes;
 import com.giveus.payment.entity.Member;
@@ -37,8 +38,14 @@ public class TossPayService {
     @Value("${pay.toss.donate.fail_url}")
     private String donateFailUrl;
 
+    @Value("${pay.toss.recharge.success_url}")
+    private String rechargeSuccessUrl;
+
+    @Value("${pay.toss.recharge.fail_url}")
+    private String rechargeFailUrl;
+
     @Transactional
-    public TossPayReadyRes requestPayment(TossPayDonateReq donateReq) {
+    public TossPayReadyRes requestDonatePayment(TossPayDonateReq donateReq) {
 
         Member member = memberRepository.findById(donateReq.getMemberNo());
         return TossPayReadyRes.builder()
@@ -57,7 +64,7 @@ public class TossPayService {
     }
 
     @Transactional
-    public TossPayConfirmRes donateSuccess(String orderId, String paymentKey, int amount) {
+    public TossPayConfirmRes paymentConfirm(String orderId, String paymentKey, int amount) {
 
         log.info("donateSuccessUrl: {}", donateSuccessUrl);
         HttpHeaders headers = getRequestHttpHeaders();
@@ -72,6 +79,21 @@ public class TossPayService {
                 httpEntity,
                 TossPayConfirmRes.class
         );
+    }
+
+    @Transactional
+    public TossPayReadyRes requestRechargePayment(TossPayRechargeReq rechargeReq) {
+        Member member = memberRepository.findById(rechargeReq.getMemberNo());
+        return TossPayReadyRes.builder()
+                .amount(rechargeReq.getAmount())
+                .orderId("TOSS_M" + rechargeReq.getMemberNo() + "_" + UUID.randomUUID().toString())
+                .orderName("일반 포인트 충전")
+                .customerEmail(member.getEmail())
+                .customerName(member.getName())
+                .successUrl(rechargeSuccessUrl
+                        + "?memberNo=" + rechargeReq.getMemberNo())
+                .failUrl(rechargeFailUrl)
+                .build();
     }
 
     private HttpHeaders getRequestHttpHeaders() {
