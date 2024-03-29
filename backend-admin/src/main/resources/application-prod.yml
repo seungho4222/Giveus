@@ -18,7 +18,7 @@ spring:
               - profile_nickname
               - profile_image
               - account_email
-            redirect-uri: "https://admin.giveus.site/login/oauth2/code/kakao" #
+            redirect-uri: "https://admin.giveus.site/admin/login/oauth2/code/kakao" #
             client-name: Kakao
         provider:
           kakao:
