@@ -9,7 +9,6 @@ import com.giveus.funding.domain.funding.dto.FundingDetailRes;
 import com.giveus.funding.domain.funding.dto.FundingListRes;
 import com.giveus.funding.domain.funding.exception.AlreadyExistFundingException;
 import com.giveus.funding.domain.funding.exception.FundingNotFoundException;
-import com.giveus.funding.domain.usage.application.UsageHistoryService;
 import com.giveus.funding.global.common.enums.Folder;
 import com.giveus.funding.global.common.response.CreateSuccessDto;
 import com.giveus.funding.global.error.exception.InvalidRequestDataException;
@@ -30,16 +29,18 @@ public class FundingServiceImpl implements FundingService {
     private final FundingRepository fundingRepository;
     private final FundingDetailRepository fundingDetailRepository;
     private final FileUtil fileUtil;
-    private final UsageHistoryService usageHistoryService;
 
     /**
      * @inheritDoc
      */
     @Override
-    public List<FundingListRes> getFundingList() {
-        return fundingRepository.getFundingList();
-    }
+    public List<FundingListRes> getFundingList(String sort, int size) {
 
+        if (sort == null) {
+            return fundingRepository.getFundingList();
+        }
+        return fundingRepository.getFundingListSortByEndDate(size);
+    }
 
 
     /**
@@ -100,7 +101,6 @@ public class FundingServiceImpl implements FundingService {
 
         return new CreateSuccessDto(funding.getFundingNo());
     }
-
 
 
     /**

@@ -13,10 +13,11 @@ public interface FundingService {
     /**
      * 펀딩 목록을 조회하는 메서드입니다.
      *
+     * @param sort 정렬 기준
+     * @param size 조회할 갯수
      * @return 조회한 펀딩 목록
      */
-    List<FundingListRes> getFundingList();
-
+    List<FundingListRes> getFundingList(String sort, int size);
 
     /**
      * 펀딩 번호로 펀딩 상세 조회하는 메서드입니다.
@@ -53,12 +54,9 @@ public interface FundingService {
     List<FundingListRes> getFundingSearchList(String query);
 
 
-
-
-
     /**
      * 종료일이 가까운 순의 펀딩 전체 목록을 조회하는 메서드입니다.
-     * 
+     *
      * @param limit 조회할 펀딩 목록 갯수
      * @return 곧 종료되는 펀딩 목록
      */

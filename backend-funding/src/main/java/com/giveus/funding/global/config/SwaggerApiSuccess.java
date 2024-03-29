@@ -17,7 +17,5 @@ public @interface SwaggerApiSuccess {
 
     String summary() default "";
 
-    String description() default "";
-
     Class<?> implementation();
 }

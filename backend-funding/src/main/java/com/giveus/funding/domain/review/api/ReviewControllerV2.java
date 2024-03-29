@@ -17,7 +17,7 @@ import java.util.List;
 
 import static org.springframework.http.HttpStatus.OK;
 
-@Tag(name = "펀딩 후기 API V2")
+@Tag(name = "[v2] 펀딩 후기 API")
 @RestController
 @RequestMapping("/api/v2/funding/reviews")
 @RequiredArgsConstructor

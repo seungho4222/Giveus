@@ -44,8 +44,7 @@ public class ReviewServiceImpl implements ReviewService {
      */
     @Override
     public ReviewDetailRes getReview(int fundingNo) {
-        Review review = reviewRepository.findReviewByFunding_FundingNo(fundingNo)
-                .orElseThrow(ReviewNotFoundException::new);
+        Review review = getReviewEntity(fundingNo);
 
         return ReviewDetailRes.builder()
                 .reviewNo(review.getReviewNo())
@@ -55,6 +54,11 @@ public class ReviewServiceImpl implements ReviewService {
                 .createdAt(review.getCreatedAt())
                 .url(review.getUrl())
                 .build();
+    }
+
+    private Review getReviewEntity(int fundingNo) {
+        return reviewRepository.findReviewByFunding_FundingNo(fundingNo)
+                .orElseThrow(ReviewNotFoundException::new);
     }
 
 

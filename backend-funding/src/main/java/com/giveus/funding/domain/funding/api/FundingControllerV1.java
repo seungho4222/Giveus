@@ -7,6 +7,8 @@ import com.giveus.funding.domain.funding.application.FundingService;
 import com.giveus.funding.domain.funding.dto.FundingCreateReq;
 import com.giveus.funding.domain.funding.dto.FundingDetailRes;
 import com.giveus.funding.domain.funding.dto.FundingListRes;
+import com.giveus.funding.domain.usage.application.UsageHistoryService;
+import com.giveus.funding.domain.usage.dto.FundingUsageListRes;
 import com.giveus.funding.global.common.response.CommonResponseBody;
 import com.giveus.funding.global.common.response.CreateSuccessDto;
 import com.giveus.funding.global.config.SwaggerApiSuccess;
@@ -21,7 +23,7 @@ import java.util.List;
 
 import static org.springframework.http.HttpStatus.OK;
 
-@Tag(name = "사용자 펀딩 API")
+@Tag(name = " [v1] 사용자 펀딩 API")
 @RestController
 @RequestMapping("/api/v1/funding")
 @RequiredArgsConstructor
@@ -30,13 +32,15 @@ public class FundingControllerV1 {
 
     private final FundingService fundingService;
     private final DonationService donationService;
+    private final UsageHistoryService usageService;
+
 
     @SwaggerApiSuccess(summary = "펀딩 전체 목록 조회", implementation = FundingListRes.class)
     @GetMapping
     public ResponseEntity<CommonResponseBody<List<FundingListRes>>> getFundingList() {
         return ResponseEntity
                 .status(OK)
-                .body(new CommonResponseBody<>(OK, fundingService.getFundingList()));
+                .body(new CommonResponseBody<>(OK, fundingService.getFundingList(null, 0)));
     }
 
     @SwaggerApiSuccess(summary = "종료일이 얼마 남지 않은 펀딩 전체 목록 조회", implementation = FundingListRes.class)
@@ -80,6 +84,13 @@ public class FundingControllerV1 {
                 .body(new CommonResponseBody<>(OK, fundingService.createFunding(fundingCreateReq, file)));
     }
 
+    @SwaggerApiSuccess(summary = "최근 후원 참여자 내역 조회", implementation = DonationListRes.class)
+    @GetMapping("/participants")
+    public ResponseEntity<CommonResponseBody<List<DonationListRes>>> getRecentFundingParticipants(@RequestParam int limit) {
+        return ResponseEntity
+                .status(OK)
+                .body(new CommonResponseBody<>(OK, donationService.getDonationList(limit)));
+    }
 
     @SwaggerApiSuccess(summary = "펀딩 후원 참여자 내역 조회", implementation = DonationListRes.class)
     @GetMapping("/{fundingNo}/participants")
@@ -87,6 +98,14 @@ public class FundingControllerV1 {
         return ResponseEntity
                 .status(OK)
                 .body(new CommonResponseBody<>(OK, donationService.getDonationListByFunding(fundingNo)));
+    }
+
+    @SwaggerApiSuccess(summary = "펀딩 기금 사용 내역 조회", implementation = FundingUsageListRes.class)
+    @GetMapping("/{fundingNo}/usage")
+    public ResponseEntity<CommonResponseBody<List<FundingUsageListRes>>> getFundingUsage(@PathVariable int fundingNo) {
+        return ResponseEntity
+                .status(OK)
+                .body(new CommonResponseBody<>(OK, usageService.getUsageList(fundingNo)));
     }
 
 

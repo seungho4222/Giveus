@@ -44,6 +44,8 @@ springdoc:
     display-request-duration: true
     operations-sorter: alpha
     path: /docs
+    tags-sorter: alpha
+    doc-expansion: none
   api-docs:
     path: /api/funding/docs
 
