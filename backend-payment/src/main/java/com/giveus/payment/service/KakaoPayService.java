@@ -66,15 +66,15 @@ public class KakaoPayService {
         // 상품 비과세 금액
         params.put("tax_free_amount", 0);
         // 결제 성공 시 redirect url, 최대 255자
-        params.put("approval_url", hostAddress + "/api/v1/payment/kakao/donate/success"
+        params.put("approval_url", hostAddress + "/payment/donate/success"
                 + "?member_no=" + kakaoPayInfoDto.getMemberNo()
                 + "&funding_no=" + kakaoPayInfoDto.getFundingNo()
                 + "&point=" + kakaoPayInfoDto.getPoint()
                 + "&opened=" + kakaoPayInfoDto.isOpened());
         // 결제 취소 시 redirect url, 최대 255자
-        params.put("cancel_url", hostAddress + "/api/v1/payment/kakao/donate/cancel");
+        params.put("cancel_url", hostAddress + "/payment/donate/cancel");
         // 결제 실패 시 redirect url, 최대 255자
-        params.put("fail_url", hostAddress + "/api/v1/payment/kakao/donate/fail");
+        params.put("fail_url", hostAddress + "/payment/donate/fail");
 
         /** Header와 Body 합쳐서 RestTemplate로 보내기 위한 밑작업 */
         HttpEntity<Map<String, Object>> httpEntity = new HttpEntity<>(params, headers);
@@ -173,13 +173,13 @@ public class KakaoPayService {
         // 상품 비과세 금액
         params.put("tax_free_amount", 0);
         // 결제 성공 시 redirect url, 최대 255자
-        params.put("approval_url", hostAddress + "/api/v1/payment/kakao/point/success"
+        params.put("approval_url", hostAddress + "/payment/recharge/success"
                 + "?member_no=" + rechargeReq.getMemberNo()
                 + "&amount=" + rechargeReq.getAmount());
         // 결제 취소 시 redirect url, 최대 255자
-        params.put("cancel_url", hostAddress + "/api/v1/payment/kakao/point/cancel");
+        params.put("cancel_url", hostAddress + "/payment/recharge/cancel");
         // 결제 실패 시 redirect url, 최대 255자
-        params.put("fail_url", hostAddress + "/api/v1/payment/kakao/point/fail");
+        params.put("fail_url", hostAddress + "/payment/recharge/fail");
 
         /** Header와 Body 합쳐서 RestTemplate로 보내기 위한 밑작업 */
         HttpEntity<Map<String, Object>> httpEntity = new HttpEntity<>(params, headers);
