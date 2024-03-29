@@ -16,6 +16,12 @@ import { fundingDetailState } from '@/stores/funding'
 import { userState } from '@/stores/user'
 import { useNavigate } from 'react-router-dom'
 
+declare global {
+  interface Window {
+    TossPayments: any
+  }
+}
+
 const Index = () => {
   const navigate = useNavigate()
   const fundingDetail = useRecoilValue(fundingDetailState)
@@ -25,6 +31,7 @@ const Index = () => {
   const [payment, setPayment] = useState<'toss' | 'kakao'>('toss')
   const [isPublic, setIsPublic] = useState(true)
 
+  // 카카오페이 결제
   const { mutate: kakaoMutate } = useMutation({
     mutationKey: ['kakaoPayReady'],
     mutationFn: kakaoPayDonateReady,
@@ -38,11 +45,17 @@ const Index = () => {
     },
   })
 
+  // 토스페이 결제
+  const clientKey = 'test_ck_ALnQvDd2VJLgDMn6Xv6P8Mj7X41m'
+  const tossPayments = window.TossPayments(clientKey)
+
   const { mutate: tossMutate } = useMutation({
     mutationKey: ['tossPayReady'],
     mutationFn: tossPayDonateReady,
     onSuccess(result) {
       console.log('등록 성공', result)
+      const paymentData = result.data
+      tossPayments.requestPayment('CARD', paymentData)
     },
     onError(error) {
       console.error('등록 실패:', error)
@@ -50,6 +63,7 @@ const Index = () => {
     },
   })
 
+  // 포인트로만 결제
   const { mutate: pointMutate } = useMutation({
     mutationKey: ['pointPay'],
     mutationFn: pointDonate,
@@ -80,7 +94,7 @@ const Index = () => {
       let donateData = {
         memberNo: 1,
         fundingNo: fundingDetail.fundingNo,
-        price: amount,
+        amount: amount,
         point: point,
         title: fundingDetail.title,
         opened: isPublic,
@@ -88,7 +102,9 @@ const Index = () => {
 
       if (payment === 'kakao') {
         kakaoMutate(donateData)
-      } else tossMutate(donateData)
+      } else {
+        tossMutate(donateData)
+      }
     }
   }
 

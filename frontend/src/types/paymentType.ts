@@ -1,7 +1,7 @@
 export type PaymentType = {
   memberNo: number
   fundingNo: number
-  price: number
+  amount: number
   point: number
   title: string
   opened: boolean

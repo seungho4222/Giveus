@@ -15,6 +15,7 @@ const RechargePage = () => {
   const [amount, setAmount] = useState<string>('0')
   const [payment, setPayment] = useState<string>('toss')
 
+  // 카카오페이 충전
   const { mutate: kakaoMutate } = useMutation({
     mutationKey: ['kakaoPayReady'],
     mutationFn: kakaoPayPointReady,
@@ -28,11 +29,17 @@ const RechargePage = () => {
     },
   })
 
+  // 토스페이 충전
+  const clientKey = 'test_ck_ALnQvDd2VJLgDMn6Xv6P8Mj7X41m'
+  const tossPayments = window.TossPayments(clientKey)
+
   const { mutate: tossMutate } = useMutation({
     mutationKey: ['tossPayReady'],
     mutationFn: tossPayPointReady,
     onSuccess(result) {
       console.log('등록 성공', result)
+      const paymentData = result.data
+      tossPayments.requestPayment('CARD', paymentData)
     },
     onError(error) {
       console.error('등록 실패:', error)
