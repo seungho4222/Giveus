@@ -111,6 +111,7 @@ public class FundingRepositoryImpl extends QuerydslRepositorySupport implements 
                                 .select(qMemberFunding.memberFundingNo.count())
                                 .where(qMemberFunding.funding.eq(qFunding)), "donationCnt")
                         , qFunding.startDate, qFunding.endDate, qFunding.createdAt, qFunding.birth))
+                .where(qFunding.endDate.goe(LocalDate.now()))
                 ;
     }
 }
