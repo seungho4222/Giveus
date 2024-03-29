@@ -1,7 +1,10 @@
+import { themeState } from '@stores/theme'
 import { StringStateType } from '@/types/commonType'
 import * as r from '@components/recharge/RechargePay/RechargePay.styled'
+import { useRecoilValue } from 'recoil'
 
 const Index = (props: StringStateType) => {
+  const theme = useRecoilValue(themeState)
   const { value, setValue } = props
 
   return (
@@ -15,7 +18,9 @@ const Index = (props: StringStateType) => {
             readOnly
             checked={value === 'toss'}
           />
-          <r.Logo src="/img/img_logo_tosspay.png" />
+          <r.Logo
+            src={'/img/img_logo_tosspay' + (theme ? '' : '_white') + '.png'}
+          />
         </r.Label>
         <r.Label $active={value === 'kakao'} onClick={() => setValue('kakao')}>
           <r.RadioInut
