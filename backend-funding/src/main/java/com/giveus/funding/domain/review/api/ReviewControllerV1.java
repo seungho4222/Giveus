@@ -1,12 +1,12 @@
 package com.giveus.funding.domain.review.api;
 
+import com.giveus.funding.domain.funding.application.FundingService;
+import com.giveus.funding.domain.review.application.ReviewService;
+import com.giveus.funding.domain.review.dto.ReviewCreateReq;
+import com.giveus.funding.domain.review.dto.ReviewDetailRes;
 import com.giveus.funding.global.common.response.CommonResponseBody;
 import com.giveus.funding.global.common.response.CreateSuccessDto;
 import com.giveus.funding.global.config.SwaggerApiSuccess;
-import com.giveus.funding.domain.review.dto.ReviewCreateReq;
-import com.giveus.funding.domain.review.dto.ReviewDetailRes;
-import com.giveus.funding.domain.funding.application.FundingService;
-import com.giveus.funding.domain.review.application.ReviewService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -23,7 +23,7 @@ import static org.springframework.http.HttpStatus.OK;
 @RequestMapping("/api/v1/review")
 @RequiredArgsConstructor
 @CrossOrigin(origins = "*", allowedHeaders = "*")
-public class ReviewController {
+public class ReviewControllerV1 {
     private final FundingService fundingService;
     private final ReviewService reviewService;
 
@@ -51,7 +51,7 @@ public class ReviewController {
     }
 
     @SwaggerApiSuccess(summary = "펀딩 후기 등록", implementation = CreateSuccessDto.class)
-    @PostMapping("/review")
+    @PostMapping
     public ResponseEntity<CommonResponseBody<CreateSuccessDto>> createReview(
             @Valid @RequestPart ReviewCreateReq reviewCreateReq, @RequestPart(required = false) MultipartFile file) {
         return ResponseEntity

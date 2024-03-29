@@ -1,10 +1,10 @@
 package com.giveus.funding.domain.donation.api;
 
-import com.giveus.funding.global.common.response.CommonResponseBody;
-import com.giveus.funding.global.config.SwaggerApiSuccess;
-import com.giveus.funding.domain.funding.dto.FundingListRes;
 import com.giveus.funding.domain.donation.dto.MemberDonationListRes;
 import com.giveus.funding.domain.funding.application.FundingService;
+import com.giveus.funding.domain.funding.dto.FundingListRes;
+import com.giveus.funding.global.common.response.CommonResponseBody;
+import com.giveus.funding.global.config.SwaggerApiSuccess;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +19,7 @@ import static org.springframework.http.HttpStatus.OK;
 @RequestMapping("/api/v1/funding/mypage")
 @RequiredArgsConstructor
 @CrossOrigin(origins = "*", allowedHeaders = "*")
-public class MypageController {
+public class MypageControllerV1 {
 
     private final FundingService fundingService;
 

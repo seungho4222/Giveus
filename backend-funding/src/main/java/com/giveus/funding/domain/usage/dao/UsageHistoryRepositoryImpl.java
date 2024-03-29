@@ -1,8 +1,8 @@
 package com.giveus.funding.domain.usage.dao;
 
-import com.giveus.funding.domain.usage.dto.FundingUsageListRes;
-import com.giveus.funding.entity.QUsageHistory;
+import com.giveus.funding.domain.usage.domain.QUsageHistory;
 import com.giveus.funding.domain.usage.domain.UsageHistory;
+import com.giveus.funding.domain.usage.dto.FundingUsageListRes;
 import com.querydsl.core.types.Projections;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
 

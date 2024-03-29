@@ -2,14 +2,14 @@ package com.giveus.funding.domain.funding.api;
 
 import com.giveus.funding.domain.donation.dto.DonationAmountRes;
 import com.giveus.funding.domain.donation.dto.DonationListRes;
+import com.giveus.funding.domain.funding.application.FundingService;
+import com.giveus.funding.domain.funding.dto.FundingCreateReq;
 import com.giveus.funding.domain.funding.dto.FundingDetailRes;
 import com.giveus.funding.domain.funding.dto.FundingListRes;
 import com.giveus.funding.domain.usage.dto.FundingUsageListRes;
 import com.giveus.funding.global.common.response.CommonResponseBody;
 import com.giveus.funding.global.common.response.CreateSuccessDto;
 import com.giveus.funding.global.config.SwaggerApiSuccess;
-import com.giveus.funding.domain.funding.dto.FundingCreateReq;
-import com.giveus.funding.domain.funding.application.FundingService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -26,7 +26,7 @@ import static org.springframework.http.HttpStatus.OK;
 @RequestMapping("/api/v1/funding")
 @RequiredArgsConstructor
 @CrossOrigin(origins = "*", allowedHeaders = "*")
-public class FundingController {
+public class FundingControllerV1 {
 
     private final FundingService fundingService;
 

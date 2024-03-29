@@ -1,12 +1,16 @@
 package com.giveus.funding.domain.funding.dao;
 
+import com.giveus.funding.domain.donation.domain.QMember;
+import com.giveus.funding.domain.donation.domain.QMemberFunding;
 import com.giveus.funding.domain.donation.dto.DonationAmountRes;
 import com.giveus.funding.domain.donation.dto.DonationListRes;
 import com.giveus.funding.domain.donation.dto.MemberDonationListRes;
 import com.giveus.funding.domain.funding.domain.Funding;
+import com.giveus.funding.domain.funding.domain.QFunding;
+import com.giveus.funding.domain.funding.domain.QFundingDetail;
+import com.giveus.funding.domain.funding.domain.QFundingStatusHistory;
 import com.giveus.funding.domain.funding.dto.FundingDetailRes;
 import com.giveus.funding.domain.funding.dto.FundingListRes;
-import com.giveus.funding.entity.*;
 import com.querydsl.core.types.ExpressionUtils;
 import com.querydsl.core.types.OrderSpecifier;
 import com.querydsl.core.types.Projections;
