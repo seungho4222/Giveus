@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class PointUsageResDto {
+public class PointUsageRes {
 
     private int pointNo;
     private int amount;

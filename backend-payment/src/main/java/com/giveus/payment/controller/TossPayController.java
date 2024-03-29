@@ -34,6 +34,8 @@ public class TossPayController {
     private final MemberFundingService memberFundingService;
     private final PointService pointService;
 
+    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ISO_OFFSET_DATE_TIME;
+
     @PostMapping("/donate/ready")
     public ResponseEntity<?> donateReady(@RequestBody TossPayDonateReq donateReq) {
         try {
@@ -56,10 +58,8 @@ public class TossPayController {
 
         try {
             TossPayConfirmRes res = tossPayService.donateSuccess(orderId, paymentKey, amount);
-            Integer pointUsageNo = point > 0 ? pointService.saveUsage(memberNo, point, res.getApprovedAt(), DateTimeFormatter.ISO_OFFSET_DATE_TIME) : null;
-            int paymentNo = paymentService.save(res.getApprovedAt(), "토스페이", res.getTotalAmount(), DateTimeFormatter.ISO_OFFSET_DATE_TIME);
-            memberFundingService.save(memberNo, fundingNo, paymentNo, pointUsageNo,
-                    res.getApprovedAt(), res.getTotalAmount() + point, opened, DateTimeFormatter.ISO_OFFSET_DATE_TIME);
+            memberFundingService.save(memberNo, fundingNo, "토스페이",
+                    res.getApprovedAt(), res.getTotalAmount(), point, opened, FORMATTER);
 
             return ResponseEntity.status(OK)
                 .body(new CommonResponseBody<>(OK, "토스페이 결제성공"));

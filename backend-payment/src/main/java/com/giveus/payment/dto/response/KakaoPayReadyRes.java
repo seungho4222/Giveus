@@ -11,7 +11,7 @@ import lombok.ToString;
 @Getter
 @ToString
 @Schema(description = "카카오페이 결제 준비 응답")
-public class KakaoPayReadyResDto {
+public class KakaoPayReadyRes {
     @Schema(description = "결제 고유 번호, 20자", example = "T1234567890123456789")
     private String tid;
     @Schema(description = "요청한 클라이언트가 PC 웹일 경우, 카카오톡으로 결제 요청 메시지(TMS)를 보내기 위한 사용자 정보 입력 화면 Redirect URL", example = "https://mockup-pg-web.kakao.com/v1/xxxxxxxxxx/info")

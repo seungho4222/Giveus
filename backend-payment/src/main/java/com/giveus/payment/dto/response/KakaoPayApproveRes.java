@@ -11,7 +11,7 @@ import lombok.ToString;
 @Getter
 @ToString
 @Schema(description = "카카오페이 결제 승인 응답")
-public class KakaoPayApproveResDto {
+public class KakaoPayApproveRes {
     @Schema(description = "요청 고유 번호 - 승인/취소가 구분된 결제번호", example = "A5678901234567890123")
     private String aid;
     @Schema(description = "결제 고유 번호 - 승인/취소가 동일한 결제번호", example = "T1234567890123456789")

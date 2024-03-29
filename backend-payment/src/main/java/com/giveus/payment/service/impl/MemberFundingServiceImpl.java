@@ -1,8 +1,12 @@
 package com.giveus.payment.service.impl;
 
-import com.giveus.payment.dto.request.PointUsageRequest;
+import com.giveus.payment.dto.request.PointUsageReq;
 import com.giveus.payment.entity.MemberFunding;
+import com.giveus.payment.entity.Payment;
+import com.giveus.payment.entity.PointUsage;
 import com.giveus.payment.repository.MemberFundingRepository;
+import com.giveus.payment.repository.PaymentRepository;
+import com.giveus.payment.repository.PointUsageRepository;
 import com.giveus.payment.service.MemberFundingService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -18,14 +22,32 @@ import java.time.format.DateTimeFormatter;
 public class MemberFundingServiceImpl implements MemberFundingService {
 
     private final MemberFundingRepository memberFundingRepository;
+    private final PaymentRepository paymentRepository;
+    private final PointUsageRepository pointUsageRepository;
 
     /**
      * @inheritDoc
      */
     @Override
     @Transactional
-    public int save(int memberNo, int fundingNo, int paymentNo, Integer pointUsageNo,
-                    String createdAt, int total, boolean opened, DateTimeFormatter formatter) {
+    public int save(int memberNo, int fundingNo, String method,
+                    String createdAt, int amount, int point, boolean opened, DateTimeFormatter formatter) {
+
+        Integer pointUsageNo = null;
+        if (point > 0) {
+            PointUsage pointUsage = PointUsage.builder()
+                    .memberNo(memberNo)
+                    .amount(point)
+                    .createdAt(LocalDateTime.parse(createdAt, formatter))
+                    .build();
+            pointUsageNo = pointUsageRepository.save(pointUsage).getPointNo();
+        }
+        Payment payment = Payment.builder()
+                .createdAt(LocalDateTime.parse(createdAt, formatter))
+                .method(method)
+                .amount(amount)
+                .build();
+        int paymentNo = paymentRepository.save(payment).getPaymentNo();
 
         MemberFunding memberFunding = MemberFunding.builder()
                 .memberNo(memberNo)
@@ -33,7 +55,7 @@ public class MemberFundingServiceImpl implements MemberFundingService {
                 .paymentNo(paymentNo)
                 .pointNo(pointUsageNo)
                 .createdAt(LocalDateTime.parse(createdAt, formatter))
-                .amount(total)
+                .amount(amount + point)
                 .isPublic(opened)
                 .build();
 
@@ -45,7 +67,7 @@ public class MemberFundingServiceImpl implements MemberFundingService {
      */
     @Override
     @Transactional
-    public int save(PointUsageRequest request, int pointNo, LocalDateTime now) {
+    public int save(PointUsageReq request, int pointNo, LocalDateTime now) {
         MemberFunding memberFunding = MemberFunding.builder()
                 .memberNo(request.getMemberNo())
                 .fundingNo(request.getFundingNo())
