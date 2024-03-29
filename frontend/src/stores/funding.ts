@@ -2,6 +2,10 @@ import { atom } from 'recoil'
 import { DonerType, FundingType, MedicalExpenseType } from '@/types/fundingType'
 import { recoilPersist } from 'recoil-persist'
 
+const { persistAtom } = recoilPersist({
+  key: 'prevUrl',
+  storage: localStorage,
+})
 export const fundingState = atom<FundingType[]>({
   key: 'fundingState',
   default: [],
@@ -22,6 +26,7 @@ export const fundingDetailState = atom<FundingType>({
     createdAt: '',
     content: '',
   },
+  effects_UNSTABLE: [persistAtom],
 })
 
 export const donerListState = atom<DonerType[]>({
@@ -32,11 +37,6 @@ export const donerListState = atom<DonerType[]>({
 export const medicalExpenseState = atom<MedicalExpenseType[]>({
   key: 'medicalExpenseState',
   default: [],
-})
-
-const { persistAtom } = recoilPersist({
-  key: 'prevUrl',
-  storage: localStorage,
 })
 
 export const prevUrlState = atom<string>({

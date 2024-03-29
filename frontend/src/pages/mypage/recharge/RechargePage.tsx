@@ -49,7 +49,7 @@ const RechargePage = () => {
 
   const onRecharge = () => {
     let pointData = {
-      memberNo: 1,
+      memberNo: user.memberNo,
       amount: Number(amount),
     }
     if (payment === 'kakao') {
