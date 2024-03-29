@@ -42,7 +42,7 @@ const DetailMain = () => {
           <d.TotalAmount>
             {formatAmount(fundingDetail.totalAmount)}원
           </d.TotalAmount>
-          <d.Dday>{dDay(fundingDetail)}</d.Dday>
+          <d.Dday>{dDay(fundingDetail.endDate)}</d.Dday>
         </d.Wrap>
         <d.Progress $theme={theme}>
           <d.ProgressStatus $width={percent(fundingDetail)}></d.ProgressStatus>

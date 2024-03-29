@@ -1,13 +1,13 @@
-import { DonatedFundingListType, DonatedFundingType } from '@/types/mypageType'
+import { UserDonationsType } from '@/types/fundingType'
 import { formatAmount } from '@/utils/format'
 import * as d from '@components/donate/DonateTotal/DonateTotal.styled'
 
-const Index = (props: DonatedFundingListType) => {
-  const { donatedFunding } = props
+const Index = (props: { userDonations: UserDonationsType[] }) => {
+  const { userDonations } = props
 
   const totalAmount = () => {
-    return donatedFunding.reduce(
-      (acc: number, cur: DonatedFundingType) => acc + cur.amount,
+    return userDonations.reduce(
+      (acc: number, cur: UserDonationsType) => acc + cur.amount,
       0,
     )
   }

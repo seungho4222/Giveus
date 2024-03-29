@@ -42,24 +42,6 @@ export type PointItemType = {
   total: number
 }
 
-export type DonatedFundingType = {
-  fundingNo: number
-  thumbnailUrl: string
-  title: string
-  birth: string
-  status: string
-  startDate: string
-  endDate: string
-  totalAmount: number
-  targetAmount: number
-  createdAt: string
-  amount: number
-}
-
-export type DonatedFundingListType = {
-  donatedFunding: DonatedFundingType[]
-}
-
 export type SettingItemType = {
   title: string
 } & CustomToggleType

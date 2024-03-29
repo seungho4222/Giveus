@@ -10,7 +10,8 @@ export const donatedFundingData = [
     totalAmount: 400000,
     targetAmount: 1000000,
     createdAt: '2024-03-01',
-    amount: 100000
+    amount: 100000,
+    memberFundingNo: 14
   },
   {
     fundingNo: 2,
@@ -23,6 +24,7 @@ export const donatedFundingData = [
     totalAmount: 100000,
     targetAmount: 300000,
     createdAt: '2024-03-11',
-    amount: 50000
+    amount: 50500,
+    memberFundingNo: 14
   },
 ]
