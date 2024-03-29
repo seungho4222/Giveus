@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react'
-import Web3, { Uint } from 'web3'
+
+import Web3 from 'web3'
 import FundRaisingContract from '../assets/data/FundRaising.json'
 import Button from '@/common/button/Button'
-import { Input } from '@/common/input/Input'
+
 
 const BlockchainTest = () => {
 
@@ -78,7 +78,7 @@ const BlockchainTest = () => {
   // 펀딩 정보 조회 함수 추가
   const getFundingInfo = async () => {
     try {
-      const index = 2 // 조회할 펀딩 인덱스 설정
+      const index = 6 // 조회할 펀딩 인덱스 설정
       const result = await contractInstance.methods.getFunding(index).call()
       console.log('펀딩 정보:', result)
     } catch (error) {
@@ -154,7 +154,6 @@ const BlockchainTest = () => {
         $children={'펀딩 데이터 조회'}
         onButtonClick={getFundingInfo}
       ></Button>
-      {/* <Input id={''} placeholder={''} value={''} onInputChange={handleAddDonor} /> */}
       <Button
         $backgroundColor={'blue'}
         width={'200px'}

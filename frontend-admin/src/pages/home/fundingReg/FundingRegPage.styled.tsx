@@ -34,7 +34,7 @@ export const Wrap = styled.div`
   height: 300px;
 `
 
-export const Button = styled.button`
+export const BlueButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -45,4 +45,67 @@ export const Button = styled.button`
   border-radius: 5px;
   font-size: 1em;
   margin-block: 30px;
+`
+
+export const OrangeButton = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  background-color: ${colors.orange01};
+  color: #fff;
+  height: 49px;
+  border-radius: 5px;
+  font-size: 1em;
+  margin-block: 30px;
+`
+
+
+
+
+
+
+export const BirthContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-block: 20px 0px;
+`
+
+export const BirthWrap = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 400px;
+`
+
+export const BirthLabel = styled.label`
+  margin-bottom: 5px;
+  font-size: 0.8em;
+`
+
+export const BirthInput = styled.input`
+  width: 190px;
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid ${colors.gray03};
+`
+
+export const BirthMinus = styled.div`
+  margin: auto;
+`
+
+export const BirthSubWrap = styled.div`
+  display: flex;
+`
+
+export const BirthGenderInput = styled.input`
+  width: 40px;
+  text-align: center;
+  border-radius: 8px;
+  border: 1px solid ${colors.gray03};
+`
+
+export const BirthStar = styled.div`
+  margin: 8px 0 0 5px;
+  font-size: 3em;
+  color: ${colors.gray04};
 `

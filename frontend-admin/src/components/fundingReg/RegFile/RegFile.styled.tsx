@@ -42,12 +42,25 @@ export const Input = styled.input`
   overflow: hidden;
 `
 
-export const Button = styled.button`
+export const BlueButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
+  width: 45%;
   background-color: ${colors.blue01};
+  color: #fff;
+  height: 49px;
+  border-radius: 5px;
+  font-size: 1em;
+  margin-block: 10px;
+`
+
+export const OrangeButton = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 45%;
+  background-color: ${colors.orange01};
   color: #fff;
   height: 49px;
   border-radius: 5px;
@@ -61,4 +74,9 @@ export const PreviewImage = styled.img`
   margin: auto;
   border-radius: 8px;
   cursor: pointer;
+`
+
+export const BtnLayout = styled.div`
+  display: flex;
+  gap: 10%;
 `

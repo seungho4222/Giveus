@@ -1,4 +1,3 @@
-import React from 'react';
 import * as wa from '@components/wallet/walletHeader/walletHeader.styled'
 
 

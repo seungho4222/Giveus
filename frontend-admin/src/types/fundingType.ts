@@ -36,7 +36,7 @@ export type FundingDetailType = {
 }
 
 export type RegDataType = {
-  [key: string]: string | number | boolean;
+  [key: string]: string | number | boolean
   phone: string
   targetAmount: number
   startDate: string
@@ -61,14 +61,21 @@ export type RegInputType = {
   setValue: Dispatch<SetStateAction<RegDataType>>
 }
 
+export type RegInputTypeString = {
+  id: string
+  label: string
+  placeholder: string
+  value: string
+  setValue: Dispatch<SetStateAction<string>>
+}
+
 export type RegDataMutateType = {
   adminNo: number
   title: string
 } & RegDataType
 
-
 export type RegFileType = {
-  onOCRResult: (result:any) => void
+  onOCRResult: (result: any) => void
 }
 
 export type OCRResult = {
@@ -90,4 +97,12 @@ export type UsageInputType = {
   placeholder: string
   value: string | number
   setValue: Dispatch<SetStateAction<UsageDataType>>
+}
+
+export type BlocStoreType = {
+  goalAmount: number
+  startTime: string
+  endTime: string
+  title: string
+  hospitalName: string
 }
