@@ -6,14 +6,15 @@ import { useNavigate } from 'react-router-dom'
 
 const Index = (props: MypageMenuItemType) => {
   const theme = useRecoilValue(themeState)
-  const { title, imgSrc, imgSrc_dark, url, text, width, height } = props
+  const { title, imgSrc, imgSrc_dark, url, text, width, height, onClick } =
+    props
 
   const navigate = useNavigate()
 
   const goPage = () => url && navigate(url)
 
   return (
-    <m.Container onClick={goPage}>
+    <m.Container onClick={url ? goPage : onClick}>
       <m.Left>
         <m.ImageWrap>
           <img

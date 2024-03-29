@@ -72,4 +72,5 @@ export type MypageMenuItemType = {
   height: number
   text?: string
   url?: string
+  onClick?: () => void
 }
