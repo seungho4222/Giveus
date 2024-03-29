@@ -38,4 +38,13 @@ public interface PointService {
      * @return 포인트 충전내역 PK
      */
     int saveRecharge(int memberNo, int amount, LocalDateTime now);
+
+    /**
+     *
+     * @param memberNo
+     * @param point
+     * @param createdAt
+     * @return
+     */
+    int saveUsage(int memberNo, int point, LocalDateTime createdAt);
 }

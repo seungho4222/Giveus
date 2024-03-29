@@ -3,10 +3,13 @@ package com.giveus.admin.controller;
 import com.giveus.admin.common.dto.CommonResponseBody;
 import com.giveus.admin.common.dto.CreateSuccessDto;
 import com.giveus.admin.common.swagger.SwaggerApiSuccess;
+import com.giveus.admin.dto.request.AdminJoinPostReq;
 import com.giveus.admin.dto.request.FundingCreateReq;
 import com.giveus.admin.dto.request.FundingUsageCreateReq;
+import com.giveus.admin.dto.response.AdminInfoRes;
 import com.giveus.admin.dto.response.FundingDetailsRes;
 import com.giveus.admin.dto.response.FundingListRes;
+import com.giveus.admin.service.AdminService;
 import com.giveus.admin.service.FundingService;
 import com.giveus.admin.service.UsageHistoryService;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -28,6 +31,8 @@ import static org.springframework.http.HttpStatus.OK;
 public class FundingController {
 
     private final FundingService fundingService;
+
+    private final AdminService adminService;
 
     @SwaggerApiSuccess(summary = "펀딩 전체 목록 조회", implementation = FundingListRes.class)
     @GetMapping("/{adminNo}/funding")
@@ -59,6 +64,14 @@ public class FundingController {
         return ResponseEntity
                 .status(CREATED)
                 .body(new CommonResponseBody<>(CREATED, fundingService.createFundingUsage(req)));
+    }
+
+    @SwaggerApiSuccess(summary = "회원가입 추가 정보 입력", implementation = AdminInfoRes.class)
+    @PutMapping("/join")
+    public ResponseEntity<CommonResponseBody<AdminInfoRes>> updateMember(@RequestBody AdminJoinPostReq adminJoinPostReq) {
+        return ResponseEntity
+                .status(OK)
+                .body(new CommonResponseBody<>(OK, adminService.updateAdmin(adminJoinPostReq)));
     }
 
 }
