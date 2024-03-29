@@ -5,6 +5,7 @@ import FundingRegPage from '@/pages/home/fundingReg/FundingRegPage'
 import MyPage from '@/pages/home/myPage/MyPage'
 import { Route, Routes } from 'react-router-dom'
 import BlockchainTest from '@/pages/BlockchainTest'
+import LoginPage from '@pages/login/LoginPage'
 
 const AuthRouter = () => {
   return (
@@ -16,6 +17,7 @@ const AuthRouter = () => {
         <Route path="myPage" element={<MyPage />} />
         <Route path="/admin/blockchain-test" element={<BlockchainTest />} />
       </Route>
+      <Route path="/login" element={<LoginPage />} />
       <Route path="/*" element={<HomePage />} />
     </Routes>
   )
