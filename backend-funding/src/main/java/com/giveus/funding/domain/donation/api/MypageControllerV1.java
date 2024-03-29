@@ -1,7 +1,7 @@
 package com.giveus.funding.domain.donation.api;
 
+import com.giveus.funding.domain.donation.application.DonationService;
 import com.giveus.funding.domain.donation.dto.MemberDonationListRes;
-import com.giveus.funding.domain.funding.application.FundingService;
 import com.giveus.funding.domain.funding.dto.FundingListRes;
 import com.giveus.funding.global.common.response.CommonResponseBody;
 import com.giveus.funding.global.config.SwaggerApiSuccess;
@@ -21,14 +21,14 @@ import static org.springframework.http.HttpStatus.OK;
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class MypageControllerV1 {
 
-    private final FundingService fundingService;
+    private final DonationService donationService;
 
     @SwaggerApiSuccess(summary = "회원 펀딩 참여 내역 조회", implementation = FundingListRes.class)
     @GetMapping("/{memberNo}")
     public ResponseEntity<CommonResponseBody<List<MemberDonationListRes>>> getFundingListByMember(@PathVariable int memberNo) {
         return ResponseEntity
                 .status(OK)
-                .body(new CommonResponseBody<>(OK, fundingService.getMemberFundingList(memberNo)));
+                .body(new CommonResponseBody<>(OK, donationService.getDonationListByMember(memberNo)));
     }
 
 }

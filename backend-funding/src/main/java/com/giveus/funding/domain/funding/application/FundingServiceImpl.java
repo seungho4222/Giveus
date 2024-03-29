@@ -1,8 +1,5 @@
 package com.giveus.funding.domain.funding.application;
 
-import com.giveus.funding.domain.donation.dto.DonationAmountRes;
-import com.giveus.funding.domain.donation.dto.DonationListRes;
-import com.giveus.funding.domain.donation.dto.MemberDonationListRes;
 import com.giveus.funding.domain.funding.dao.FundingDetailRepository;
 import com.giveus.funding.domain.funding.dao.FundingRepository;
 import com.giveus.funding.domain.funding.domain.Funding;
@@ -43,10 +40,7 @@ public class FundingServiceImpl implements FundingService {
         return fundingRepository.getFundingList();
     }
 
-    @Override
-    public List<MemberDonationListRes> getMemberFundingList(int memberNo) {
-        return fundingRepository.getMemberFundingList(memberNo);
-    }
+
 
     /**
      * @inheritDoc
@@ -107,13 +101,7 @@ public class FundingServiceImpl implements FundingService {
         return new CreateSuccessDto(funding.getFundingNo());
     }
 
-    /**
-     * @inheritDoc
-     */
-    @Override
-    public List<DonationListRes> getParticipantsByFunding(int fundingNo) {
-        return fundingRepository.getParticipantListByFunding(fundingNo);
-    }
+
 
     /**
      * @inheritDoc
@@ -123,16 +111,6 @@ public class FundingServiceImpl implements FundingService {
         return fundingRepository.getFundingByFundingTitle(query);
     }
 
-
-    @Override
-    public DonationAmountRes getDonationAmount() {
-        return fundingRepository.getDonationAmount();
-    }
-
-    @Override
-    public List<DonationListRes> getParticipants(int limit) {
-        return fundingRepository.getParticipantList(limit);
-    }
 
     @Override
     public List<FundingListRes> getFundingListSortByEndDate(Integer limit) {
