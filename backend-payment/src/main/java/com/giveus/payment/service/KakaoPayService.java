@@ -26,14 +26,29 @@ public class KakaoPayService {
 
     private final TidRepository tidRepository;
 
-    @Value("${host.address}")
-    private String hostAddress;
-
     @Value("${pay.kakao.cid}")
     private String cid;
 
     @Value("${pay.kakao.secret-key}")
     private String secretKey;
+
+    @Value("${pay.kakao.donate.success_url}")
+    private String donateSuccessUrl;
+
+    @Value("${pay.kakao.donate.cancel_url}")
+    private String donateCancelUrl;
+
+    @Value("${pay.kakao.donate.fail_url}")
+    private String donateFailUrl;
+
+    @Value("${pay.kakao.recharge.success_url}")
+    private String rechargeSuccessUrl;
+
+    @Value("${pay.kakao.recharge.cancel_url}")
+    private String rechargeCancelUrl;
+
+    @Value("${pay.kakao.recharge.fail_url}")
+    private String rechargeFailUrl;
 
     /**
      * 카카오페이 결제를 시작하기 위해 상세 정보를 카카오페이 서버에 전달하고 결제 고유 번호(TID)를 받는 단계입니다.
@@ -66,15 +81,15 @@ public class KakaoPayService {
         // 상품 비과세 금액
         params.put("tax_free_amount", 0);
         // 결제 성공 시 redirect url, 최대 255자
-        params.put("approval_url", hostAddress + "/payment/donate/success"
+        params.put("approval_url", donateSuccessUrl
                 + "?member_no=" + kakaoPayInfoDto.getMemberNo()
                 + "&funding_no=" + kakaoPayInfoDto.getFundingNo()
                 + "&point=" + kakaoPayInfoDto.getPoint()
                 + "&opened=" + kakaoPayInfoDto.isOpened());
         // 결제 취소 시 redirect url, 최대 255자
-        params.put("cancel_url", hostAddress + "/payment/donate/cancel");
+        params.put("cancel_url", donateCancelUrl);
         // 결제 실패 시 redirect url, 최대 255자
-        params.put("fail_url", hostAddress + "/payment/donate/fail");
+        params.put("fail_url", donateFailUrl);
 
         /** Header와 Body 합쳐서 RestTemplate로 보내기 위한 밑작업 */
         HttpEntity<Map<String, Object>> httpEntity = new HttpEntity<>(params, headers);
@@ -173,13 +188,13 @@ public class KakaoPayService {
         // 상품 비과세 금액
         params.put("tax_free_amount", 0);
         // 결제 성공 시 redirect url, 최대 255자
-        params.put("approval_url", hostAddress + "/payment/recharge/success"
+        params.put("approval_url", rechargeSuccessUrl
                 + "?member_no=" + rechargeReq.getMemberNo()
                 + "&amount=" + rechargeReq.getAmount());
         // 결제 취소 시 redirect url, 최대 255자
-        params.put("cancel_url", hostAddress + "/payment/recharge/cancel");
+        params.put("cancel_url", rechargeCancelUrl);
         // 결제 실패 시 redirect url, 최대 255자
-        params.put("fail_url", hostAddress + "/payment/recharge/fail");
+        params.put("fail_url", rechargeFailUrl);
 
         /** Header와 Body 합쳐서 RestTemplate로 보내기 위한 밑작업 */
         HttpEntity<Map<String, Object>> httpEntity = new HttpEntity<>(params, headers);

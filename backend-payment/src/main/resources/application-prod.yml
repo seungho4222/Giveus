@@ -14,3 +14,18 @@ swagger:
 
 host:
   address: https://giveus.site
+
+pay:
+  kakao:
+    donate:
+      success_url: ${host.address}/payment/kakao/donate/success
+      cancel_url: ${host.address}/payment/kakao/donate/cancel
+      fail_url: ${host.address}/payment/kakao/donate/fail
+    recharge:
+      success_url: ${host.address}/payment/kakao/recharge/success
+      cancel_url: ${host.address}/payment/kakao/recharge/cancel
+      fail_url: ${host.address}/payment/kakao/recharge/fail
+  toss:
+    donate:
+      success_url: ${host.address}/payment/toss/donate/success
+      fail_url: ${host.address}/payment/toss/donate/fail
