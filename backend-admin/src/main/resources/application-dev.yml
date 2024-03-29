@@ -18,7 +18,7 @@ spring:
               - profile_nickname
               - profile_image
               - account_email
-            redirect-uri: "http://localhost:8086/login/oauth2/code/kakao" #
+            redirect-uri: "http://localhost:8086/admin/login/oauth2/code/kakao" #
             client-name: Kakao
         provider:
           kakao:
