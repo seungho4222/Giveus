@@ -2,16 +2,15 @@ package com.giveus.admin.service.impl;
 
 import com.giveus.admin.common.dto.CreateSuccessDto;
 import com.giveus.admin.dto.request.FundingCreateReq;
-import com.giveus.admin.dto.request.FundingUsageCreateReq;
 import com.giveus.admin.dto.response.FundingDetailsRes;
 import com.giveus.admin.dto.response.FundingListRes;
 import com.giveus.admin.entity.Funding;
 import com.giveus.admin.entity.FundingStatusHistory;
 import com.giveus.admin.exception.FundingNotFoundException;
 import com.giveus.admin.repository.FundingRepository;
+import com.giveus.admin.repository.FundingStatusHistoryRepository;
 import com.giveus.admin.service.FundingService;
 import com.giveus.admin.service.MessageService;
-import com.giveus.admin.service.UsageHistoryService;
 import com.giveus.admin.transfer.FundingStatusHistoryTransfer;
 import com.giveus.admin.transfer.FundingTransfer;
 import lombok.RequiredArgsConstructor;
@@ -26,7 +25,7 @@ import java.util.UUID;
 @Transactional(readOnly = true)
 public class FundingServiceImpl implements FundingService {
     private final FundingRepository fundingRepository;
-    private final UsageHistoryService usageHistoryService;
+    private final FundingStatusHistoryRepository fundingStatusRepository;
     private final MessageService messageService;
 
     @Override
@@ -69,21 +68,22 @@ public class FundingServiceImpl implements FundingService {
     }
 
     @Override
-    public Funding findFundingEntity(int fundingNo) {
+    public Funding getFundingEntity(int fundingNo) {
         return
                 fundingRepository.findFundingByFundingNo(fundingNo)
                         .orElseThrow(FundingNotFoundException::new);
     }
 
-    @Override
-    @Transactional
-    public CreateSuccessDto createFundingUsage(FundingUsageCreateReq req) {
-        return usageHistoryService.createFundingUsage(findFundingEntity(req.getFundingNo()), req);
-    }
 
     @Override
     public FundingDetailsRes getFunding(int fundingNo) {
         return fundingRepository.getFunding(fundingNo);
+    }
+
+    @Override
+    public boolean isDoneFunding(Funding funding) {
+        FundingStatusHistory status = fundingStatusRepository.findDistinctByFundingOrderByCreatedAtDesc(funding).get(0);
+        return !status.getStatus().equals("진행중");
     }
 
 }

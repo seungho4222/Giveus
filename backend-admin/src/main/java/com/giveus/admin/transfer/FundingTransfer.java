@@ -6,12 +6,14 @@ import com.giveus.admin.entity.Funding;
 
 public class FundingTransfer {
     public static Funding dtoToEntity(FundingCreateReq req) {
+        String phone = req.getPhone();
+        phone = phone.replace("-", "");
         return Funding.builder()
                 .issueNumber(req.getIssueNumber())
                 .birth(req.getBirth())
                 .diagnosisDate(req.getDiagnosisDate())
                 .diseaseCode(req.getDiseaseCode())
-                .phone(req.getPhone())
+                .phone(phone)
                 .diseaseName(req.getDiseaseName())
                 .endDate(req.getEndDate())
                 .gender(req.getGender())

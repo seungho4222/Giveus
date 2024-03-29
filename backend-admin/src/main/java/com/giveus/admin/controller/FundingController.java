@@ -58,13 +58,6 @@ public class FundingController {
                 .body(new CommonResponseBody<>(CREATED, fundingService.createFunding(req)));
     }
 
-    @SwaggerApiSuccess(summary = "펀딩 사용 내역 등록", implementation = FundingDetailsRes.class)
-    @PostMapping("/usage")
-    public ResponseEntity<CommonResponseBody<CreateSuccessDto>> createFundingUsage(@RequestBody FundingUsageCreateReq req) {
-        return ResponseEntity
-                .status(CREATED)
-                .body(new CommonResponseBody<>(CREATED, fundingService.createFundingUsage(req)));
-    }
 
     @SwaggerApiSuccess(summary = "회원가입 추가 정보 입력", implementation = AdminInfoRes.class)
     @PutMapping("/join")
