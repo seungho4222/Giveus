@@ -13,7 +13,7 @@ COPY . .
 RUN npm install
 
 # npm start 스크립트 실행
-CMD ["npm", "run", "dev"]
+CMD ["npm", "run", "build"]
 
 # 3000번 포트 노출
 EXPOSE 3000
