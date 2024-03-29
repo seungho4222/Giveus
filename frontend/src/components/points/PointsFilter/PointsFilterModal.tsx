@@ -4,13 +4,15 @@ import LargeButton from '@common/LargeButton'
 import * as p from '@components/points/PointsFilter/PointsFilterModal.styled'
 import { useState } from 'react'
 import { BooleanStateType } from '@/types/commonType'
-import { useRecoilState } from 'recoil'
+import { useRecoilState, useRecoilValue } from 'recoil'
 import { DefaultMyPointListFilter, myPointListFilterState } from '@stores/point'
 import { pointTypeList } from '@assets/data/pointTypeList'
+import { themeState } from '@stores/theme'
 
 const PointsFilterModal = (props: BooleanStateType) => {
   const { setValue } = props
 
+  const theme = useRecoilValue(themeState)
   const [myPointListFilter, setMyPointListFilter] = useRecoilState(
     myPointListFilterState,
   )
@@ -38,12 +40,14 @@ const PointsFilterModal = (props: BooleanStateType) => {
         <p.Title>조회 기간</p.Title>
         <p.DateWrap>
           <p.SelectDate
+            $theme={theme}
             type="date"
             value={values.startDate}
             onChange={e => setValues({ ...values, startDate: e.target.value })}
           />
           <div>-</div>
           <p.SelectDate
+            $theme={theme}
             type="date"
             value={values.endDate}
             onChange={e => setValues({ ...values, endDate: e.target.value })}
