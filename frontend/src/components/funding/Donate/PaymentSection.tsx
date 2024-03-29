@@ -1,11 +1,14 @@
-import * as p from '@/components/funding/Donate/PaymentSection.styled'
+import * as p from '@components/funding/Donate/PaymentSection.styled'
+import { themeState } from '@stores/theme'
 import { DonatePaymentSectionType } from '@/types/donateType'
+import { useRecoilValue } from 'recoil'
 
 const PaymentSection = (props: DonatePaymentSectionType) => {
   const { payment, setPayment } = props
+  const theme = useRecoilValue(themeState)
 
   return (
-    <p.Container>
+    <p.Container $theme={theme}>
       <p.SectionTitle>결제 수단</p.SectionTitle>
       <p.Wrap>
         <p.Button
@@ -18,7 +21,9 @@ const PaymentSection = (props: DonatePaymentSectionType) => {
             checked={payment === 'toss'}
             readOnly
           />
-          <p.Logo src="/img/img_logo_tosspay.png" />
+          <p.Logo
+            src={'/img/img_logo_tosspay' + (theme ? '' : '_white') + '.png'}
+          />
         </p.Button>
         <p.Button
           $active={payment === 'kakao'}
