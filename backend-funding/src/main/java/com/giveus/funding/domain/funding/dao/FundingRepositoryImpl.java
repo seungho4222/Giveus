@@ -54,10 +54,11 @@ public class FundingRepositoryImpl extends QuerydslRepositorySupport implements 
                                         .eq(from(qFundingStatusHistory2)
                                                 .select(qFundingStatusHistory2.fundingStatusHistoryNo.max())
                                                 .where(qFundingStatusHistory2.funding.fundingNo.eq(fundingNo)))), "status")
-                        , qFunding.targetAmount, ExpressionUtils.as(from(qMemberFunding)
+                        , qFunding.targetAmount, qFunding.startDate, qFunding.endDate,
+                        ExpressionUtils.as(from(qMemberFunding)
                                 .select(qMemberFunding.amount.sum())
                                 .where(qMemberFunding.funding.fundingNo.eq(fundingNo)), "totalAmount")
-                        , qFunding.startDate, qFunding.endDate, qFunding.createdAt, qFunding.birth, qFundingDetail.content))
+                        , qFunding.createdAt, qFunding.birth, qFundingDetail.content))
                 .where(qFundingDetail.funding.fundingNo.eq(fundingNo)).fetchOne());
     }
 
@@ -71,13 +72,13 @@ public class FundingRepositoryImpl extends QuerydslRepositorySupport implements 
     @Override
     public List<FundingListRes> getFundingListSortByEndDate(Integer size) {
 
-        if(size<=0) {
+        if (size <= 0) {
             return getFundingListResJPQLQuery()
                     .where(qFunding.endDate.goe(LocalDate.now())) // 종료일이 오늘이거나 오늘 이전인 것 중에
                     .orderBy(qFunding.endDate.asc())
                     .fetch();
         }
-        return getFundingListResJPQLQuery(                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      )
+        return getFundingListResJPQLQuery()
                 .where(qFunding.endDate.goe(LocalDate.now())) // 종료일이 오늘이거나 오늘 이전인 것 중에
                 .orderBy(qFunding.endDate.asc())
                 .limit(size)
@@ -105,7 +106,10 @@ public class FundingRepositoryImpl extends QuerydslRepositorySupport implements 
                                                 .where(qFundingStatusHistory2.funding.eq(qFunding)))), "status"),
                         qFunding.targetAmount, ExpressionUtils.as(from(qMemberFunding)
                                 .select(qMemberFunding.amount.sum())
-                                .where(qMemberFunding.funding.eq(qFunding)), "totalAmount")
+                                .where(qMemberFunding.funding.eq(qFunding)), "totalAmount"),
+                        ExpressionUtils.as(from(qMemberFunding)
+                                .select(qMemberFunding.memberFundingNo.count())
+                                .where(qMemberFunding.funding.eq(qFunding)), "donationCnt")
                         , qFunding.startDate, qFunding.endDate, qFunding.createdAt, qFunding.birth))
                 ;
     }
