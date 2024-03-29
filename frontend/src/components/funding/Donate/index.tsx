@@ -6,12 +6,14 @@ import FinalAmountSection from './FinalAmountSection'
 import { useState } from 'react'
 import FullButton from '@/common/FullButton'
 import { useMutation } from '@tanstack/react-query'
-import { kakaoPayReady, pointPay, tossPayReady } from '@/apis/payment'
+import { kakaoPayDonateReady, pointDonate, tossPayDonateReady } from '@/apis/payment'
 import { useRecoilValue } from 'recoil'
 import { fundingDetailState } from '@/stores/funding'
 import { userState } from '@/stores/user'
+import { useNavigate } from 'react-router-dom'
 
 const Index = () => {
+  const navigate = useNavigate()
   const fundingDetail = useRecoilValue(fundingDetailState)
   const user = useRecoilValue(userState)
   const [amount, setAmount] = useState(0)
@@ -21,7 +23,7 @@ const Index = () => {
 
   const { mutate: kakaoMutate } = useMutation({
     mutationKey: ['kakaoPayReady'],
-    mutationFn: kakaoPayReady,
+    mutationFn: kakaoPayDonateReady,
     onSuccess(result) {
       console.log('등록 성공', result)
       window.location.href = result.data.next_redirect_pc_url
@@ -34,7 +36,7 @@ const Index = () => {
 
   const { mutate: tossMutate } = useMutation({
     mutationKey: ['tossPayReady'],
-    mutationFn: tossPayReady,
+    mutationFn: tossPayDonateReady,
     onSuccess(result) {
       console.log('등록 성공', result)
     },
@@ -46,9 +48,10 @@ const Index = () => {
 
   const { mutate: pointMutate } = useMutation({
     mutationKey: ['pointPay'],
-    mutationFn: pointPay,
+    mutationFn: pointDonate,
     onSuccess(result) {
       console.log('등록 성공', result)
+      navigate('/funding/donate/done')
     },
     onError(error) {
       console.error('등록 실패:', error)

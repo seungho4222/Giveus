@@ -6,7 +6,7 @@ import { useState } from 'react'
 const Index = (props: { amount: string; onRecharge: () => void }) => {
   const { amount, onRecharge } = props
 
-  const [checked, setChecked] = useState<number>(1)
+  const [checked, setChecked] = useState<number>(0)
 
   return (
     <r.Container>

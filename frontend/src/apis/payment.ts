@@ -1,10 +1,10 @@
-import { PaymentType, PointPayType } from '@/types/paymentType'
+import { PaymentType, PointChargeType, PointPayType } from '@/types/paymentType'
 import { authRequest } from '@/utils/requestMethods'
 
 const url = '/api/v1/payment'
 
 // 카카오페이 결제
-export const kakaoPayReady = async (params: PaymentType) =>
+export const kakaoPayDonateReady = async (params: PaymentType) =>
   authRequest
     .post(`${url}/kakao/donate/ready`, params)
     .then(res => {
@@ -12,8 +12,8 @@ export const kakaoPayReady = async (params: PaymentType) =>
     })
     .catch(err => console.log(err))
 
-// 토스 페이 결제
-export const tossPayReady = async (params: PaymentType) =>
+// 토스페이 결제
+export const tossPayDonateReady = async (params: PaymentType) =>
   authRequest
     .post(`${url}/toss/donate/ready`, params)
     .then(res => {
@@ -22,9 +22,27 @@ export const tossPayReady = async (params: PaymentType) =>
     .catch(err => console.log(err))
 
 // 포인트로만 결제
-export const pointPay = async (params: PointPayType) =>
+export const pointDonate = async (params: PointPayType) =>
   authRequest
     .post(`${url}/point`, params)
+    .then(res => {
+      return res.data
+    })
+    .catch(err => console.log(err))
+
+// 카카오페이 포인트 충전
+export const kakaoPayPointReady = async (params: PointChargeType) =>
+  authRequest
+    .post(`${url}/kakao/point/ready`, params)
+    .then(res => {
+      return res.data
+    })
+    .catch(err => console.log(err))
+
+// 토스페이 포인트 충전
+export const tossPayPointReady = async (params: PointChargeType) =>
+  authRequest
+    .post(`${url}/toss/point/ready`, params)
     .then(res => {
       return res.data
     })
