@@ -28,14 +28,14 @@ public class TossPayService {
 
     private final MemberRepository memberRepository;
 
-    @Value("${host.address}")
-    private String hostAddress;
-
     @Value("${pay.toss.secret-key}")
     private String secretKey;
 
-    @Value("${pay.toss.api_url}")
-    private String apiUrl;
+    @Value("${pay.toss.donate.success_url}")
+    private String donateSuccessUrl;
+
+    @Value("${pay.toss.donate.fail_url}")
+    private String donateFailUrl;
 
     @Transactional
     public TossPayReadyRes requestPayment(TossPayDonateReq donateReq) {
@@ -47,12 +47,12 @@ public class TossPayService {
                 .orderName(donateReq.getTitle())
                 .customerEmail(member.getEmail())
                 .customerName(member.getName())
-                .successUrl(hostAddress + "/api/v1/payment/toss/donate/success"
+                .successUrl(donateSuccessUrl
                         + "?memberNo=" + donateReq.getMemberNo()
                         + "&fundingNo=" + donateReq.getFundingNo()
                         + "&point=" + donateReq.getPoint()
                         + "&opened=" + donateReq.isOpened())
-                .failUrl(hostAddress + "/api/v1//payment/toss/donate/fail")
+                .failUrl(donateFailUrl)
                 .build();
 
         log.info("res: {}", res);
