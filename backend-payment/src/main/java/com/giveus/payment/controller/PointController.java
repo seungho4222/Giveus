@@ -29,14 +29,14 @@ public class PointController {
     private final PointService pointService;
     private final MemberFundingService memberFundingService;
 
-    @SwaggerApiSuccess(summary = "회원 포인트 내역 조회", implementation = PointListRes.class)
+    @SwaggerApiSuccess(summary = "회원 포인트 충전 및 사용 내역 조회", implementation = PointListRes.class)
     @GetMapping("/{memberNo}")
     public ResponseEntity<CommonResponseBody<PointListRes>> getPointList(@PathVariable("memberNo") int memberNo) {
         return ResponseEntity.status(OK)
                 .body(new CommonResponseBody<>(OK, pointService.getPointList(memberNo)));
     }
 
-    @SwaggerApiSuccess(summary = "단건 결제 포인트", implementation = Object.class)
+    @SwaggerApiSuccess(summary = "포인트 펀딩 후원", implementation = String.class)
     @PostMapping
     public ResponseEntity<CommonResponseBody<String>> payPoint(@RequestBody PointUsageReq request) {
         try {
@@ -44,10 +44,10 @@ public class PointController {
             int pointNo = pointService.usePoint(request, now);
             int memberFundingNo = memberFundingService.save(request, pointNo, now);
             return ResponseEntity.status(OK)
-                    .body(new CommonResponseBody<>(OK, "포인트 단건 결제에 성공했습니다."));
+                    .body(new CommonResponseBody<>(OK, "포인트 펀딩 후원에 성공했습니다."));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED)
-                    .body(new CommonResponseBody<>(EXPECTATION_FAILED, "포인트 단건 결제에 실패했습니다."));
+                    .body(new CommonResponseBody<>(EXPECTATION_FAILED, "포인트 펀딩 후원에 실패했습니다."));
         }
     }
 }

@@ -10,7 +10,7 @@ import lombok.ToString;
  * React에게서 받아오는 내용으로 가격과, 상품이름 받아오도록 설정했음.
  * 카카오 API에 Request로 보내고 싶은 정보를 더 추가해서 Custom해서 사용하면 될듯.
  */
-@Schema(description = "카카오페이 결제 준비 요청")
+@Schema(description = "카카오페이 펀딩 후원 준비")
 @Getter
 @ToString
 public class KakaoPayDonateReq {
