@@ -1,10 +1,20 @@
 import * as m from '@components/mypage/MypageSetting/MypageSetting.styled'
 import MypageMenuItem from '@components/mypage/MypageMenuItem'
-import { useRecoilValue } from 'recoil'
+import { useRecoilValue, useResetRecoilState } from 'recoil'
 import { userState } from '@stores/user'
+import { useNavigate } from 'react-router-dom'
 
 const Index = () => {
   const userInfo = useRecoilValue(userState)
+  const navigate = useNavigate()
+
+  const resetUserState = useResetRecoilState(userState)
+
+  const logout = () => {
+    resetUserState()
+    alert('로그아웃 되었습니다.')
+    navigate('/')
+  }
 
   return (
     <m.Container>
@@ -24,6 +34,7 @@ const Index = () => {
           imgSrc_dark="/icon/icon_mypage5_dark.png"
           width={14}
           height={15}
+          onClick={logout}
         />
       )}
     </m.Container>
