@@ -6,6 +6,7 @@ import com.giveus.auth.common.swagger.SwaggerApiSuccess;
 import com.giveus.auth.dto.request.AuthJoinPostReq;
 import com.giveus.auth.dto.request.MemberDevicePostReq;
 import com.giveus.auth.dto.response.MemberInfoRes;
+import com.giveus.auth.dto.response.NicknameExistRes;
 import com.giveus.auth.service.AuthService;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
@@ -42,7 +43,7 @@ public class AuthController {
                 .body(new CommonResponseBody<>(OK, authService.findByMemberNo(memberNo)));
     }
 
-    @SwaggerApiSuccess(summary = "회원 정보 조회 (엑세시 토큰 이용)", implementation = MemberInfoRes.class)
+    @SwaggerApiSuccess(summary = "회원 정보 조회 (엑세스 토큰 이용)", implementation = MemberInfoRes.class)
     @GetMapping("/info")
     public ResponseEntity<CommonResponseBody<MemberInfoRes>> findByAccessToken(HttpServletRequest httpServletRequest) {
         return ResponseEntity
@@ -56,6 +57,14 @@ public class AuthController {
         return ResponseEntity
                 .status(OK)
                 .body(new CommonResponseBody<>(OK, authService.createMemberDevice(memberDevicePostReq)));
+    }
+
+    @SwaggerApiSuccess(summary = "닉네임 중복검사 (엑세스 토큰 이용)", implementation = NicknameExistRes.class)
+    @GetMapping("/nickname")
+    public ResponseEntity<CommonResponseBody<NicknameExistRes>> findByNickname(@RequestParam String nickname) {
+        return ResponseEntity
+                .status(OK)
+                .body(new CommonResponseBody<>(OK, authService.findByNickname(nickname)));
     }
 
 }
