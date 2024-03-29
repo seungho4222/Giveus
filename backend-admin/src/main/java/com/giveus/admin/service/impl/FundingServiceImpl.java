@@ -2,7 +2,6 @@ package com.giveus.admin.service.impl;
 
 import com.giveus.admin.common.dto.CreateSuccessDto;
 import com.giveus.admin.dto.request.FundingCreateReq;
-import com.giveus.admin.dto.request.FundingUsageCreateReq;
 import com.giveus.admin.dto.response.FundingDetailsRes;
 import com.giveus.admin.dto.response.FundingListRes;
 import com.giveus.admin.entity.Funding;
@@ -12,7 +11,6 @@ import com.giveus.admin.repository.FundingRepository;
 import com.giveus.admin.repository.FundingStatusHistoryRepository;
 import com.giveus.admin.service.FundingService;
 import com.giveus.admin.service.MessageService;
-import com.giveus.admin.service.UsageHistoryService;
 import com.giveus.admin.transfer.FundingStatusHistoryTransfer;
 import com.giveus.admin.transfer.FundingTransfer;
 import lombok.RequiredArgsConstructor;
@@ -84,7 +82,7 @@ public class FundingServiceImpl implements FundingService {
 
     @Override
     public boolean isDoneFunding(Funding funding) {
-        FundingStatusHistory status = fundingStatusRepository.findDistinctByFundingOrderByCreatedAtDesc(funding);
+        FundingStatusHistory status = fundingStatusRepository.findDistinctByFundingOrderByCreatedAtDesc(funding).get(0);
         return !status.getStatus().equals("진행중");
     }
 

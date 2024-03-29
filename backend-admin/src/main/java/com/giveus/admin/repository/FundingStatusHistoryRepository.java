@@ -5,7 +5,9 @@ import com.giveus.admin.entity.FundingStatusHistory;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface FundingStatusHistoryRepository extends JpaRepository<FundingStatusHistory, Integer> {
-    FundingStatusHistory findDistinctByFundingOrderByCreatedAtDesc(Funding funding);
+    List<FundingStatusHistory> findDistinctByFundingOrderByCreatedAtDesc(Funding funding);
 }
