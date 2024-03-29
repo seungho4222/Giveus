@@ -78,7 +78,7 @@ const BlockchainTest = () => {
   // 펀딩 정보 조회 함수 추가
   const getFundingInfo = async () => {
     try {
-      const index = 6 // 조회할 펀딩 인덱스 설정
+      const index = 0 // 조회할 펀딩 인덱스 설정
       const result = await contractInstance.methods.getFunding(index).call()
       console.log('펀딩 정보:', result)
     } catch (error) {

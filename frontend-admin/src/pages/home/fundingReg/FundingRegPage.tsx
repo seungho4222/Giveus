@@ -23,7 +23,6 @@ const FundingRegPage = () => {
   const navigate = useNavigate()
   const admin = useRecoilValue(adminState)
   const [birthValue, setBirthValue] = useState<string>('')
-  const [birthValue1, setBirthValue1] = useState<string>('')
   const [genderValue, setGenderValue] = useState<string>('')
   const [regData, setRegData] = useState<RegDataType>({
     phone: '',
@@ -96,6 +95,9 @@ const FundingRegPage = () => {
   const handleCreateFirstReg = async () => {
     const age = calculateAge(regData.birth)
     const gender = regData.gender === 'M' ? '남' : '여'
+
+    // 여기서 gender -> 1,3 -> M 수정 
+    // 970227 -> 19970227
 
     mutate({
       ...regData,

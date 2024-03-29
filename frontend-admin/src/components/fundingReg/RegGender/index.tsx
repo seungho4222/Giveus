@@ -10,13 +10,12 @@ const index = (props: RegInputTypeString) => {
     e.preventDefault()
     setValue(e.target.value)
 
-    // setGender(e.target.value)
-    // let strGender = 'F'
-    // if (e.target.value === '1' || e.target.value === '3') strGender = 'M'
-    // setValue(prevData => ({
-    //   ...prevData,
-    //   gender: strGender,
-    // }))
+    let strGender = 'F'
+    if (e.target.value === '1' || e.target.value === '3') strGender = 'M'
+    setValue(prevData => ({
+      ...prevData,
+      gender: strGender,
+    }))
   }
 
   return (

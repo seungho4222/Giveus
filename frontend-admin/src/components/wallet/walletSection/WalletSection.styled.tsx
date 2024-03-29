@@ -5,6 +5,9 @@ export const Container = styled.div`
   width: 592px;
   height: 536px;
   background-color: ${colors.gray02};
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
 
 `
 
