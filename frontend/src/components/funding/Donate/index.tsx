@@ -6,7 +6,11 @@ import FinalAmountSection from './FinalAmountSection'
 import { useState } from 'react'
 import FullButton from '@/common/FullButton'
 import { useMutation } from '@tanstack/react-query'
-import { kakaoPayDonateReady, pointDonate, tossPayDonateReady } from '@/apis/payment'
+import {
+  kakaoPayDonateReady,
+  pointDonate,
+  tossPayDonateReady,
+} from '@/apis/payment'
 import { useRecoilValue } from 'recoil'
 import { fundingDetailState } from '@/stores/funding'
 import { userState } from '@/stores/user'
@@ -102,7 +106,7 @@ const Index = () => {
       <d.Button>
         <FullButton
           text="결제하기"
-          disabled={false}
+          disabled={amount + point <= 0}
           onClick={() => HandleDonate()}
         />
       </d.Button>
