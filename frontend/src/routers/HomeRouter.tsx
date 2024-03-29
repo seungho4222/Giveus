@@ -9,8 +9,9 @@ import HomePage from '@pages/home/HomePage'
 import RegOkPage from '@/pages/secondReg/RegOkPage'
 import MyPage from '@pages/mypage/MyPage'
 import SettingPage from '@pages/mypage/setting/SettingPage'
+import PrivateRoute from '@routers/PrivateRoute'
 
-const HomeRouter = () => {
+const HomeRouter = (props: { user: boolean }) => {
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />
@@ -21,9 +22,14 @@ const HomeRouter = () => {
       <Route path="/search" element={<SearchPage />} />
       <Route path="/mypage" element={<MyPage />} />
       <Route path="/mypage/setting" element={<SettingPage />} />
-      <Route path="*" element={<LoginPage />} />
       <Route path="/giveus/:id" element={<SecondRegPage />} />
       <Route path="/giveus/ok" element={<RegOkPage />} />
+      <Route
+        path="*"
+        element={
+          <PrivateRoute authenticated={props.user} Component={<LoginPage />} />
+        }
+      />
     </Routes>
   )
 }

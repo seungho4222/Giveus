@@ -1,8 +1,41 @@
+import { themeState } from '@stores/theme'
+import { MypageMenuItemType } from '@/types/mypageType'
 import * as m from '@components/mypage/MypageMenuItem/MypageMenuItem.styled'
-const Index = () => {
+import { useRecoilValue } from 'recoil'
+import { useNavigate } from 'react-router-dom'
+
+const Index = (props: MypageMenuItemType) => {
+  const theme = useRecoilValue(themeState)
+  const { title, imgSrc, imgSrc_dark, url, text, width, height } = props
+
+  const navigate = useNavigate()
+
+  const goPage = () => url && navigate(url)
+
   return (
-    <m.Container>
-      <div>메뉴1</div>
+    <m.Container onClick={goPage}>
+      <m.Left>
+        <m.ImageWrap>
+          <img
+            src={theme ? imgSrc : imgSrc_dark}
+            width={width}
+            height={height}
+          />
+        </m.ImageWrap>
+        <span>{title}</span>
+      </m.Left>
+      <m.Right>
+        {url ? (
+          <img
+            src={
+              '/icon/icon_arrow_right_' + (theme ? 'black' : 'white') + '.png'
+            }
+            alt=""
+          />
+        ) : (
+          text
+        )}
+      </m.Right>
     </m.Container>
   )
 }

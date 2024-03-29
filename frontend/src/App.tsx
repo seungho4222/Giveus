@@ -17,7 +17,11 @@ const App = () => {
     <ThemeProvider theme={themeProps.theme ? lightTheme : darkTheme}>
       <BrowserRouter>
         <GlobalStyle />
-        {user.memberNo !== -1 ? <AuthRouter /> : <HomeRouter />}
+        {user.memberNo !== -1 ? (
+          <AuthRouter />
+        ) : (
+          <HomeRouter user={user.memberNo !== -1} />
+        )}
       </BrowserRouter>
     </ThemeProvider>
   )
