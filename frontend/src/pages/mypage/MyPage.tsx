@@ -9,6 +9,7 @@ import { fetchMemberPoints } from '@apis/payment'
 import { PointsListType } from '@/types/mypageType'
 import { myPointState } from '@stores/point'
 import { useEffect } from 'react'
+import MypageHeader from '@components/mypage/MypageHeader'
 
 const MyPage = () => {
   const userInfo = useRecoilValue(userState)
@@ -39,6 +40,7 @@ const MyPage = () => {
   return (
     <>
       <Layout>
+        <MypageHeader />
         <MypageInfoSection />
         <MypageMenu />
       </Layout>
