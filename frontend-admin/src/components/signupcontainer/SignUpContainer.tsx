@@ -1,10 +1,13 @@
-import styled from 'styled-components'
 import { StyledInputContainer } from '@/pages/fundingregister/FundingRegister.styled'
 import { Label } from '@/common/input/Input.styled'
 import { Input } from '@/common/input/Input'
 import Button from '@/common/button/Button'
 import { useState } from 'react'
-import { StyledSignUpContainer, StyledSignUpH1Tag, StyledSignUpPTag } from './SignUpContainer.styled'
+import {
+  StyledSignUpContainer,
+  StyledSignUpH1Tag,
+  StyledSignUpPTag,
+} from './SignUpContainer.styled'
 
 const SignUpContainer = () => {
   const [signUpData, setSignUpData] = useState({
@@ -28,9 +31,7 @@ const SignUpContainer = () => {
   const onSignUp = () => {
     try {
       // const response = await userSignUp(signUpData)
-    } catch {
-
-    }
+    } catch {}
   }
 
   return (
@@ -74,9 +75,7 @@ const SignUpContainer = () => {
         $children={'SIGN IN'}
         onButtonClick={onSignUp}
       ></Button>
-      <StyledSignUpPTag>
-        Already have an account? Sign in
-      </StyledSignUpPTag>
+      <StyledSignUpPTag>Already have an account? Sign in</StyledSignUpPTag>
     </StyledSignUpContainer>
   )
 }

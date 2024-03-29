@@ -5,7 +5,10 @@ import FundingRegPage from '@/pages/home/fundingReg/FundingRegPage'
 import MyPage from '@/pages/home/myPage/MyPage'
 import { Route, Routes } from 'react-router-dom'
 import BlockchainTest from '@/pages/BlockchainTest'
+import LoginPage from '@pages/login/LoginPage'
 import FundingRegister from '@/pages/fundingregister/FundingRegister'
+import SignupPage from '@pages/signup/SignupPage'
+import LoginRedirectHandler from '@pages/login/LoginRedirectHandler'
 
 const AuthRouter = () => {
   return (
@@ -18,6 +21,9 @@ const AuthRouter = () => {
         <Route path="blockchain-test" element={<BlockchainTest />} />
         <Route path="funding-register" element={<FundingRegister />} />
       </Route>
+      <Route path="/login" element={<LoginPage />} />
+      <Route path="/login/oauth2" element={<LoginRedirectHandler />} />
+      <Route path="/signup" element={<SignupPage />} />
       <Route path="/*" element={<HomePage />} />
     </Routes>
   )

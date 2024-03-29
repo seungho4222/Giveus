@@ -1,8 +1,10 @@
+import { BASE_URL } from '@utils/requestMethods'
 import * as l from '@components/login/LoginSection/LoginSection.styled'
 
 const index = () => {
   const onClick = () => {
-    const kakaoURL = `https://j10c206.p.ssafy.io/oauth2/authorization/kakao`
+    const LOCAL_URL = 'http://localhost:8086'
+    const kakaoURL = `${LOCAL_URL}/oauth2/authorization/kakao`
     window.location.href = kakaoURL
   }
   return (
