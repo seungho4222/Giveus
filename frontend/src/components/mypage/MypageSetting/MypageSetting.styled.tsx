@@ -1,11 +1,11 @@
-import { colors } from '@/styles/theme'
+import { colors } from '@styles/theme'
 import styled from 'styled-components'
 
 export const Container = styled.section`
   display: flex;
   flex-direction: column;
   width: 85%;
-  margin: 20px auto 0;
+  margin: 26px auto 0;
 `
 
 export const Title = styled.div`
