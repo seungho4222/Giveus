@@ -64,7 +64,7 @@ pipeline {
             sh 'echo "fail to stop and remove container"'
           }
           sh 'docker pull $repository:latest'
-          sh 'docker run --name giveus_frontend_admin -d -p 8091:3001 $repository -e TZ=Asia/Seoul'
+          sh 'docker run --name giveus_frontend_admin -d -p 8091:3001 $repository'
         }
       }
     }
