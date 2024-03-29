@@ -3,8 +3,8 @@ import * as l from '@components/login/LoginSection/LoginSection.styled'
 
 const index = () => {
   const onClick = () => {
-    const LOCAL_URL = 'http://localhost:8086'
-    const kakaoURL = `${LOCAL_URL}/oauth2/authorization/kakao`
+    // const LOCAL_URL = 'http://localhost:8086'
+    const kakaoURL = `${BASE_URL}/oauth2/authorization/kakao`
     window.location.href = kakaoURL
   }
   return (
