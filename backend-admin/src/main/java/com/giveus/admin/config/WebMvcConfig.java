@@ -18,7 +18,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
         CorsConfiguration configuration = new CorsConfiguration();
 
         configuration.setAllowedOrigins(
-                List.of("http://localhost:3000", "http://localhost:3001/**", "http://localhost:5173", "http://localhost:8081", "http://localhost:8082",
+                List.of("http://localhost:3000", "http://localhost:3001", "http://localhost:5173", "http://localhost:8081", "http://localhost:8082",
                         "https://giveus.site", "http://giveus.site:8081"));
         configuration.setAllowedOriginPatterns(
                 List.of("http://localhost:3000/**", "http://localhost:3001/**", "http://localhost:5173/**", "http://localhost:8081/**", "http://localhost:8082/**",
