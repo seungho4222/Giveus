@@ -52,15 +52,15 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public AdminInfoRes findByAccessToken(HttpServletRequest httpServletRequest) {
-        String accessToken = httpServletRequest.getHeader("Authorization").replace("Bearer", "");
+        String accessToken = httpServletRequest.getHeader("Authorization").replace("Bearer ", "");
 
         String provider = jwtUtil.getProvider(accessToken);
         String snsKey = jwtUtil.getSnsKey(accessToken);
 
         log.info("=== AuthServiceImpl - findByAccessToken === \n provider : {}, snsKey : {} ", provider, snsKey);
-        Admin member = authAdminRepository.findByProviderAndKey(provider, snsKey).orElseThrow(NoAdminExistException::new);
+        Admin admin = authAdminRepository.findByProviderAndKey(provider, snsKey).orElseThrow(NoAdminExistException::new);
 
-        return AdminInfoRes.from(member);
+        return AdminInfoRes.from(admin);
     }
 
 }
