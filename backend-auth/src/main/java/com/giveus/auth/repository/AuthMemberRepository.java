@@ -12,4 +12,5 @@ public interface AuthMemberRepository extends JpaRepository<Member, Integer> {
 
     Optional<Member> findByMemberNo(int memberNo);
 
+    Optional<Member> findByNickname(String nickname);
 }
