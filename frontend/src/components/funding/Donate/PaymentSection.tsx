@@ -8,7 +8,7 @@ const PaymentSection = (props: DonatePaymentSectionType) => {
   const theme = useRecoilValue(themeState)
 
   return (
-    <p.Container>
+    <p.Container $theme={theme}>
       <p.SectionTitle>결제 수단</p.SectionTitle>
       <p.Wrap>
         <p.Button

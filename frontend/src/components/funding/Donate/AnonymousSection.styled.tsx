@@ -1,11 +1,12 @@
 import { colors } from '@/styles/theme'
 import styled from 'styled-components'
 
-export const Container = styled.div`
+export const Container = styled.div<{ $theme: number }>`
   display: flex;
   flex-direction: column;
   padding: 1em;
-  border-bottom: 2px solid ${colors.gray02};
+  border-bottom: 2px solid
+    ${props => (props.$theme ? colors.gray02 : colors.black02)};
 `
 
 export const SectionTitle = styled.div`
@@ -16,7 +17,7 @@ export const SectionTitle = styled.div`
 export const Note = styled.div`
   color: ${colors.gray04};
   font-size: 0.7em;
-  margin-block: 1px;
+  margin-block: 2px;
 `
 
 export const Wrap = styled.div`
@@ -38,24 +39,26 @@ export const Button = styled.button<{ $active: boolean }>`
 
 export const SubWrap = styled.div`
   display: flex;
-  margin-block: 0.5em;
+  align-items: center;
+  margin-top: 4px;
 `
 
 export const RadioInput = styled.input`
   margin-block: auto;
   cursor: pointer;
+  margin-right: 4px;
 `
 
-export const Img = styled.div`
-  margin-inline: auto;
-  width: 50px;
-  height: 50px;
+export const Img = styled.img`
+  margin: 20px auto;
+  width: 60px;
+  height: 60px;
   border-radius: 100%;
   background-color: pink;
-  margin-block: 0.5em;
 `
 
 export const Name = styled.div`
   margin-inline: auto;
   margin-bottom: 0.5em;
+  font-weight: 500;
 `

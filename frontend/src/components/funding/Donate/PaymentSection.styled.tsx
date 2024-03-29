@@ -1,11 +1,12 @@
 import { colors } from '@/styles/theme'
 import styled from 'styled-components'
 
-export const Container = styled.div`
+export const Container = styled.div<{ $theme: number }>`
   display: flex;
   flex-direction: column;
   padding: 1em;
-  border-bottom: 2px solid ${colors.gray02};
+  border-bottom: 2px solid
+    ${props => (props.$theme ? colors.gray02 : colors.black02)};
 `
 
 export const SectionTitle = styled.div`
