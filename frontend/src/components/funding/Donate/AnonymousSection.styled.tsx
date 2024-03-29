@@ -46,12 +46,11 @@ export const RadioInput = styled.input`
   cursor: pointer;
 `
 
-export const Img = styled.div`
+export const Img = styled.img`
   margin-inline: auto;
   width: 50px;
   height: 50px;
   border-radius: 100%;
-  background-color: pink;
   margin-block: 0.5em;
 `
 

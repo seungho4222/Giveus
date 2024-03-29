@@ -20,6 +20,6 @@ export const Container = styled.div`
 
 export const Text = styled.div`
   width: 90%;
-  margin-inline: auto;
+  margin: 0 auto 10px auto;
   font-weight: 600;
 `

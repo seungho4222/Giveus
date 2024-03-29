@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from 'react'
 
-export type FundingType = {
+type FundingCommonType = {
   fundingNo: number
   thumbnailUrl: string
   title: string
@@ -11,8 +11,11 @@ export type FundingType = {
   totalAmount: number
   targetAmount: number
   createdAt: string
-  content: string
 }
+
+export type FundingType = {
+  content: string
+} & FundingCommonType
 
 export type DonerType = {
   memberFundingNo: number
@@ -44,3 +47,8 @@ export type RecentParticipantType = {
   isPublic: boolean
   imageUrl: string
 }
+
+export type UserDonationsType = {
+  memberFundingNo: number
+  amount: number
+} & FundingCommonType
