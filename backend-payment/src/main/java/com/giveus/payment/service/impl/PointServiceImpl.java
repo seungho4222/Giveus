@@ -28,9 +28,7 @@ public class PointServiceImpl implements PointService {
      */
     @Override
     @Transactional
-    public int saveUsage(int memberNo, int point, String createdAt) {
-
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
+    public int saveUsage(int memberNo, int point, String createdAt, DateTimeFormatter formatter) {
 
         PointUsage pointUsage = PointUsage.builder()
                 .memberNo(memberNo)
@@ -83,10 +81,5 @@ public class PointServiceImpl implements PointService {
                 .paymentType("카카오페이")
                 .build();
         return pointRechargeRepository.save(pointRecharge).getPointNo();
-    }
-
-    @Override
-    public int saveUsage(int memberNo, int point, LocalDateTime createdAt) {
-        return 0;
     }
 }

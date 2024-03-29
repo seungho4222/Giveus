@@ -14,6 +14,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
+import java.util.Map;
+
 import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
 import static org.springframework.http.HttpStatus.OK;
 
@@ -50,21 +54,31 @@ public class TossPayController {
                                            @RequestParam("paymentKey") String paymentKey,
                                            @RequestParam("amount") int amount) {
 
-        TossPayConfirmRes res = tossPayService.donateSuccess(orderId, paymentKey, amount);
-        Integer pointUsageNo = point > 0 ? pointService.saveUsage(memberNo, point, res.getApprovedAt()) : null;
-        return ResponseEntity.status(OK)
-                .body(new CommonResponseBody<>(OK, "결제성공"));
+        try {
+            TossPayConfirmRes res = tossPayService.donateSuccess(orderId, paymentKey, amount);
+            Integer pointUsageNo = point > 0 ? pointService.saveUsage(memberNo, point, res.getApprovedAt(), DateTimeFormatter.ISO_OFFSET_DATE_TIME) : null;
+            int paymentNo = paymentService.save(res.getApprovedAt(), "토스페이", res.getTotalAmount(), DateTimeFormatter.ISO_OFFSET_DATE_TIME);
+            memberFundingService.save(memberNo, fundingNo, paymentNo, pointUsageNo,
+                    res.getApprovedAt(), res.getTotalAmount() + point, opened, DateTimeFormatter.ISO_OFFSET_DATE_TIME);
+
+            return ResponseEntity.status(OK)
+                .body(new CommonResponseBody<>(OK, "토스페이 결제성공"));
+        } catch (Exception e) {
+            return ResponseEntity.status(INTERNAL_SERVER_ERROR)
+                    .body(new CommonResponseBody<>(INTERNAL_SERVER_ERROR, e.getMessage()));
+        }
     }
 
     @GetMapping("/donate/fail")
     public ResponseEntity<?> donateFail(@RequestParam("code") String errorCode,
                                         @RequestParam("message") String errorMessage,
                                         @RequestParam("orderId") String orderId) {
-        log.info("에러코드: {}", errorCode);
-        log.info("에러메시지: {}", errorMessage);
-        log.info("주문번호: {}", orderId);
+        Map<String, String> map = new HashMap<>();
+        map.put("에러코드", errorCode);
+        map.put("에러메시지", errorMessage);
+        map.put("주문번호", orderId);
         return ResponseEntity.status(OK)
-                .body(new CommonResponseBody<>(OK, "실패!!!!"));
+                .body(new CommonResponseBody<>(OK, map));
     }
 
 }
