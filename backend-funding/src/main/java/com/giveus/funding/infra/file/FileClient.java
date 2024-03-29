@@ -1,5 +1,6 @@
 package com.giveus.funding.infra.file;
 
+import com.giveus.funding.global.common.enums.Folder;
 import org.springframework.web.multipart.MultipartFile;
 
 /**
@@ -15,7 +16,7 @@ public interface FileClient {
      * @param folderName 업로드 할 버킷 폴더명
      * @return 업로드 한 S3 url
      */
-    String uploadFile(MultipartFile file, String objectName, String folderName);
+    String uploadFile(MultipartFile file, String objectName, Folder folderName);
 
     /**
      * 파일 URL을 생성하는 메서드입니다.
@@ -24,7 +25,7 @@ public interface FileClient {
      * @param fileName   파일명
      * @return url
      */
-    String getFileUrl(String folderName, String fileName);
+    String getFileUrl(Folder folderName, String fileName);
 
     /**
      * 파일을 삭제하는 메서드입니다.
@@ -32,5 +33,5 @@ public interface FileClient {
      * @param objectName 삭제 할 오브젝트명
      * @param folderName 삭제 할 버킷 폴더명
      */
-    void deleteFile(String objectName, String folderName);
+    void deleteFile(String objectName, Folder folderName);
 }

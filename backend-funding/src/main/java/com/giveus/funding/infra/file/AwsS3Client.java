@@ -2,6 +2,7 @@ package com.giveus.funding.infra.file;
 
 import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.model.ObjectMetadata;
+import com.giveus.funding.global.common.enums.Folder;
 import com.giveus.funding.global.error.exception.FileUploadException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -13,7 +14,7 @@ import java.io.IOException;
 
 @Component
 @RequiredArgsConstructor
-public class AwsS3Client implements FileClient{
+public class AwsS3Client implements FileClient {
 
     private final AmazonS3Client amazonS3Client;
     private final String HTTPS = "https://";
@@ -30,7 +31,7 @@ public class AwsS3Client implements FileClient{
 
 
     @Override
-    public String uploadFile(MultipartFile file, String objectName, String folderName) {
+    public String uploadFile(MultipartFile file, String objectName, Folder folderName) {
         try {
             String extension = StringUtils.getFilenameExtension(file.getOriginalFilename());
             String fileName = objectName + DOT + extension;
@@ -51,14 +52,14 @@ public class AwsS3Client implements FileClient{
 
 
     @Override
-    public String getFileUrl(String folderName, String fileName) {
-        return HTTPS + bucket + S3 + region + AMAZON_AWS + SLASH + folderName + SLASH + fileName;
+    public String getFileUrl(Folder folderName, String fileName) {
+        return HTTPS + bucket + S3 + region + AMAZON_AWS + SLASH + folderName.getName() + SLASH + fileName;
     }
 
 
     @Override
-    public void deleteFile(String objectName, String folderName) {
-        String bucketName = bucket + SLASH + folderName;
+    public void deleteFile(String objectName, Folder folderName) {
+        String bucketName = bucket + SLASH + folderName.getName();
         amazonS3Client.deleteObject(bucketName, objectName);
     }
 }
