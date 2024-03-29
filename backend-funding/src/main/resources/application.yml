@@ -41,10 +41,11 @@ eureka:
 
 springdoc:
   swagger-ui:
+    display-request-duration: true
     operations-sorter: alpha
     path: /docs
   api-docs:
-    path: /api/v1/funding/docs
+    path: /api/funding/docs
 
 cloud:
   aws:
