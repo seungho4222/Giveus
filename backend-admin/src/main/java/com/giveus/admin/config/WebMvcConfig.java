@@ -18,10 +18,10 @@ public class WebMvcConfig implements WebMvcConfigurer {
         CorsConfiguration configuration = new CorsConfiguration();
 
         configuration.setAllowedOrigins(
-                List.of("http://localhost:3000", "http://localhost:5173", "http://localhost:8081", "http://localhost:8082",
+                List.of("http://localhost:3000", "http://localhost:3001/**", "http://localhost:5173", "http://localhost:8081", "http://localhost:8082",
                         "https://giveus.site", "http://giveus.site:8081"));
         configuration.setAllowedOriginPatterns(
-                List.of("http://localhost:3000/**", "http://localhost:5173/**", "http://localhost:8081/**", "http://localhost:8082/**",
+                List.of("http://localhost:3000/**", "http://localhost:3001/**", "http://localhost:5173/**", "http://localhost:8081/**", "http://localhost:8082/**",
                         "https://giveus.site", "http://giveus.site:8081"));
         configuration.setAllowedMethods(Collections.singletonList("*"));
         configuration.setAllowedHeaders(Collections.singletonList("*"));
@@ -37,7 +37,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-                .allowedOrigins("http://localhost:3000", "http://localhost:5173", "http://localhost:8081", "http://localhost:8082",
+                .allowedOrigins("http://localhost:3000", "http://localhost:3001", "http://localhost:5173", "http://localhost:8081", "http://localhost:8082",
                                 "https://giveus.site", "http://giveus.site:8081")
                 .allowedMethods("HEAD", "GET", "POST", "PUT", "DELETE", "OPTIONS")
                 .allowCredentials(true) // 쿠키 인증 요청 허용
