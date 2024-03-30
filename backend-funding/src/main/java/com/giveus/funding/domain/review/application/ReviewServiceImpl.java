@@ -6,6 +6,7 @@ import com.giveus.funding.domain.review.dao.ReviewRepository;
 import com.giveus.funding.domain.review.domain.Review;
 import com.giveus.funding.domain.review.dto.ReviewCreateReq;
 import com.giveus.funding.domain.review.dto.ReviewDetailRes;
+import com.giveus.funding.domain.review.dto.ReviewListRes;
 import com.giveus.funding.domain.review.exception.AlreadyExistReviewException;
 import com.giveus.funding.domain.review.exception.ReviewNotFoundException;
 import com.giveus.funding.global.common.enums.Folder;
@@ -35,7 +36,7 @@ public class ReviewServiceImpl implements ReviewService {
      * @inheritDoc
      */
     @Override
-    public List<ReviewDetailRes> getReviewList(int count) {
+    public List<ReviewListRes> getReviewList(int count) {
         return reviewRepository.getReviewList(count);
     }
 
