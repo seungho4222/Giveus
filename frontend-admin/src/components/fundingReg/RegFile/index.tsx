@@ -1,5 +1,5 @@
 import * as r from '@/components/fundingReg/RegFile/RegFile.styled'
-import { requestWithBase64 } from '@/apis/ocr/ocr'
+import { requestWithBase64 } from '@/apis/ocr'
 import { useCallback, useRef, useState } from 'react'
 import { RegFileType } from '@/types/fundingType'
 

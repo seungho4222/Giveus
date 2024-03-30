@@ -23,7 +23,7 @@ export const loginSuccess = async (res: { accessToken: string }) => {
 }
 
 // 회원가입
-export const joinUser = async (req: { name: string }) => {
+export const joinUser = async (req: { name: string, address: string }) => {
   const storage = localStorage.getItem('register')
   const email = storage && JSON.parse(storage).email
   const provider = storage && JSON.parse(storage).provider

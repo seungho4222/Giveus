@@ -8,9 +8,9 @@ const BlockchainTest = () => {
 
   const ETHEREUM_RPC_URL = 'https://rpc.ssafy-blockchain.com'
   const privateKey = 'ccde9fd1e91c71a46ebca973189dec872dfc408852dd2078244b7e5c61b5990c'
-  // const testPrivateKey = '71033e180d0ff797e3510cf0e25153b77d041e0826feb59703370dddb02ac674'
+  // const testprivateKey = '8f4a1699f0cd44b5358e163f342891ca7522c3087861ddaf4449e688aa7f80f0'
   const hospitalAddress = '0x395950AD0039Df7232a37EE11FA92ec93F58F1fa'
-  // const testHospitalAddress = '0x9b54e7db71a3616ae97ca4d5eccceff896655f30'
+  // const testhospitalAddress = '0xe0dd43afe7d66175b9588fbb1a2b9883e4f77faa'
   const contractAddress = '0xB4718410f291fDeD9DEEb674829FEE9416B21F3B'
   // const LOCAL_RPC_URL = 'HTTP://127.0.0.1:7545';
 

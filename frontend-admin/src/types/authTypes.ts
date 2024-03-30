@@ -1,6 +1,7 @@
 // 회원
 export type userType = {
-  memberNo: number
+  adminNo: number
+  id: string
   email: string
   name: string
   createdAt: string

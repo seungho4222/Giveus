@@ -27,7 +27,6 @@ const MyPage = () => {
   return (
     <>
       <WalletHeader/>
-      
       <WalletSection/>
       
       MyPage

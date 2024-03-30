@@ -1,11 +1,11 @@
-import { userState } from '@recoil/atoms/UserAtom'
+import { adminState } from '@/store/user'
 import { fetchUserInfo, loginSuccess } from '@apis/auth'
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useSetRecoilState } from 'recoil'
 
 const LoginRedirectHandler = () => {
-  const setUserState = useSetRecoilState(userState)
+  const setadminState = useSetRecoilState(adminState)
   const url = new URL(window.location.href).searchParams
 
   const navigate = useNavigate()
@@ -33,7 +33,9 @@ const LoginRedirectHandler = () => {
         loginSuccess({ accessToken })
           .then(() =>
             fetchUserInfo().then(res => {
-              setUserState(res.data.data)
+              console.log('로그인 성공');
+              console.log(res.data);
+              setadminState(res.data.data)
               navigate('/')
             }),
           )
