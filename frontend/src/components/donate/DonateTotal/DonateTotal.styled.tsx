@@ -6,12 +6,10 @@ export const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  row-gap: 8%;
-  width: 100%;
-  height: 18%;
+  row-gap: 8px;
   background-color: ${colors.blue01};
   color: #fff;
-  padding-block: 5% 10%;
+  height: 14vh;
 `
 
 export const Desc = styled.div`

@@ -6,8 +6,8 @@ export const Container = styled.div`
   width: 90%;
   margin: 0 auto;
   padding-bottom: 20px;
-  height: 60%;
-  overflow-y: scroll;
+  height: 100%;
+  /* overflow-y: scroll;
   -ms-overflow-style: none;
   scrollbar-width: none;
 
@@ -17,5 +17,5 @@ export const Container = styled.div`
     height: 0;
     background: transparent;
     -webkit-appearance: none;
-  }
+  } */
 `

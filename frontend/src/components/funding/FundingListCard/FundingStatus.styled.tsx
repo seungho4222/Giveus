@@ -14,7 +14,7 @@ export const Wrap = styled.div`
 
 export const Text = styled.div`
   display: flex;
-  font-size: 0.8em;
+  font-size: 0.9em;
 `
 
 export const Percent = styled.div`

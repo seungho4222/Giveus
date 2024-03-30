@@ -37,7 +37,7 @@ export const Name = styled.div`
 
 export const Amount = styled.div<{ $theme: number }>`
   margin-top: auto;
-  font-size: 1em;
+  font-size: 0.9em;
   color: ${props => (props.$theme ? colors.gray05 : colors.gray04)};
 `
 
@@ -48,7 +48,7 @@ export const Percent = styled.div<{ $flag: boolean }>`
   height: 56px;
   align-items: center;
   justify-content: center;
-  border: 1px solid ${props => (props.$flag ? colors.orange01 : colors.blue01)};
+  border: 2px solid ${props => (props.$flag ? colors.orange01 : colors.blue01)};
   border-radius: 100%;
   margin-left: auto;
   font-size: 0.9em;

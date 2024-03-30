@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 export const Container = styled.div<{ $theme: number }>`
   display: flex;
-  padding: 16px 16px;
+  padding: 16px;
   justify-content: space-between;
   border-bottom: 1px solid
     ${props => (props.$theme ? '#eeeeee' : colors.black02)};
@@ -29,13 +29,18 @@ export const ContentWrap = styled.div`
 `
 
 export const Type = styled.div`
-  font-size: 0.7em;
+  font-size: 0.8em;
   font-weight: 400;
+  color: ${colors.gray04};
 `
 
 export const Content = styled.div`
   font-size: 1em;
   font-weight: 500;
+  width: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `
 
 export const AmountWrap = styled.div`
@@ -48,7 +53,7 @@ export const AmountWrap = styled.div`
 export const Pay = styled.div<{ $type: string }>`
   font-size: 1.1em;
   font-weight: 600;
-  color: ${props => (props.$type === '충전' ? colors.blue01 : '#676F83')};
+  color: ${props => (props.$type === '충전' ? colors.blue01 : colors.orange01)};
 `
 
 export const Amount = styled.div<{ $theme: number }>`

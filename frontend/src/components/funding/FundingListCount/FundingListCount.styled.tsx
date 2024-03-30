@@ -7,6 +7,6 @@ export const Container = styled.div`
 `
 
 export const TotalCount = styled.div`
-  font-size: 0.8em;
+  font-size: 1em;
   font-weight: 700;
 `

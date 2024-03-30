@@ -6,7 +6,7 @@ export const Container = styled.div`
 `
 
 export const Wrap = styled.div`
-  height: 100vh;
+  height: 100%;
   padding-bottom: 60px;
   overflow-y: scroll;
   -ms-overflow-style: none;

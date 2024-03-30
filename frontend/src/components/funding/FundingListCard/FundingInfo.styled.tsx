@@ -22,7 +22,7 @@ export const Title = styled.p`
 `
 
 export const Period = styled.p`
-  font-size: 0.7em;
+  font-size: 0.8em;
   color: ${colors.gray04};
 `
 

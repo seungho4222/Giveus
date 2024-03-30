@@ -1,6 +1,7 @@
+import { colors } from '@styles/theme'
 import styled from 'styled-components'
 
-export const Container = styled.div<{ $isDonate: boolean }>`
+export const Container = styled.div<{ $theme: number }>`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -8,6 +9,9 @@ export const Container = styled.div<{ $isDonate: boolean }>`
   margin: 0 auto;
   padding-inline: 5%;
   height: 70px;
+  position: sticky;
+  top: 0;
+  background-color: ${props => (props.$theme ? '#fff' : colors.black01)};
 `
 
 export const Image = styled.img`

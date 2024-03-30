@@ -16,6 +16,7 @@ import { filteredFundingState } from '@/stores/filterAndSort'
 import { useQuery } from '@tanstack/react-query'
 import { fetchFundingList } from '@/apis/funding'
 import FundingListBox from '@/components/funding/FundingListCard/FundingListBox'
+import * as f from '@pages/funding/FundingPage.styled'
 
 const FundingPage = () => {
   const setFunding = useSetRecoilState(fundingState)
@@ -43,11 +44,11 @@ const FundingPage = () => {
           />
           <FilterArea />
           <FundingListCount data={filteredFunding} />
-          <div>
+          <f.Wrap>
             {filteredFunding.map((item, idx) => (
               <FundingListCard key={idx} data={item} />
             ))}
-          </div>
+          </f.Wrap>
         </FundingListBox>
       </Layout>
       <Navbar current="funding" />
