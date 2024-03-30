@@ -1,3 +1,4 @@
+import { colors } from '@/styles/theme'
 import styled from 'styled-components'
 
 export const Container = styled.section`
@@ -18,10 +19,12 @@ export const Title = styled.div`
   font-weight: 500;
 `
 
-export const Input = styled.input`
+export const Input = styled.input<{ $theme: number }>`
   margin-top: 37px;
   border: none;
   padding: 11px;
-  border-bottom: 1px solid #cbcbcb;
+  border-bottom: 1px solid
+    ${props => (props.$theme ? '#cbcbcb' : colors.gray04)};
   font-weight: 500;
+  background-color: ${props => (props.$theme ? '#fff' : colors.black01)};
 `
