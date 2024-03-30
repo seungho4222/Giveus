@@ -44,7 +44,7 @@ public class ReviewRepositoryImpl extends QuerydslRepositorySupport implements R
                 .select(Projections.fields(ReviewListRes.class,
                         qFunding.fundingNo, qFunding.title, qFunding.targetAmount,
                         ExpressionUtils.as(from(qUsageHistory)
-                                .rightJoin(qUsageHistory.funding, qFunding)
+                                .where(qUsageHistory.funding.eq(qFunding))
                                 .select(new CaseBuilder()
                                         .when(qUsageHistory.usageHistoryNo.max().isNotNull())
                                         .then(true)
@@ -55,18 +55,5 @@ public class ReviewRepositoryImpl extends QuerydslRepositorySupport implements R
                         ExpressionUtils.as(from(qReview)
                                 .where(qReview.funding.eq(qFunding))
                                 .select(qReview.reviewNo), "reviewNo")));
-//        return from(qReview)
-//                .leftJoin(qReview.funding, qFunding)
-//                .select(Projections.fields(ReviewListRes.class,
-//                        qFunding.fundingNo, qFunding.title, qFunding.targetAmount,
-//                        ExpressionUtils.as(from(qUsageHistory)
-//                                .rightJoin(qUsageHistory.funding, qFunding)
-//                                .select(qUsageHistory.usageHistoryNo.max()), "existUsageHistory"),
-//                        ExpressionUtils.as(from(qMemberFunding)
-//                                .where(qMemberFunding.funding.eq(qFunding))
-//                                .select(qMemberFunding.memberFundingNo.count()), "memberFundingCount"),
-//                        ExpressionUtils.as(from(qReview)
-//                                .where(qReview.funding.eq(qFunding))
-//                                .select(qReview.reviewNo), "reviewNo")));
     }
 }
