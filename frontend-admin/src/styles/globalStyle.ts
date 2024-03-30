@@ -5,7 +5,7 @@ export const GlobalStyle = createGlobalStyle`
     ${reset}
     :root {
         font-family: 'Pretendard';
-        font-size: 16px;
+        font-size: 20px;
     }
     * {
         padding: 0;

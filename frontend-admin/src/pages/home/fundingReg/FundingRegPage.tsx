@@ -1,6 +1,9 @@
 import RegFile from '@/components/fundingReg/RegFile'
 import RegInput from '@/components/fundingReg/RegInput'
 import RegNumber from '@/components/fundingReg/RegNumber'
+import RegGender from '@components/fundingReg/RegGender'
+import OCRInput from '@components/fundingReg/OCRInput'
+import OCRTextArea from '@components/fundingReg/OCRTextArea'
 import { adminState } from '@/store/user'
 import { OCRResult, RegDataType } from '@/types/fundingType'
 import * as f from '@pages/home/fundingReg/FundingRegPage.styled'
@@ -12,12 +15,15 @@ import { useNavigate } from 'react-router-dom'
 import { calculateAge, divideBirth } from '@/utils/calcMethods'
 import { currentNavState } from '@/store/common'
 import { selectedFundingNoState } from '@/store/funding'
+import { createFunding } from '@/utils/blocStoreMethod'
 
 const FundingRegPage = () => {
   const setCurrentNav = useSetRecoilState(currentNavState)
   const setSelectedFundingNo = useSetRecoilState(selectedFundingNoState)
   const navigate = useNavigate()
   const admin = useRecoilValue(adminState)
+  const [birthValue, setBirthValue] = useState<string>('')
+  const [genderValue, setGenderValue] = useState<string>('')
   const [regData, setRegData] = useState<RegDataType>({
     phone: '',
     targetAmount: 0,
@@ -45,15 +51,28 @@ const FundingRegPage = () => {
       results.forEach(result => {
         const { name, inferText } = result
         if (name === 'birth') {
+          setBirthValue(inferText.split('-')[0])
+          setGenderValue(inferText.split('-')[1][0])
+
           const birth = divideBirth(inferText)
           updatedRegData['birth'] = birth
-          updatedRegData['gender'] = inferText.replace(/\s/g, '').split('-')[1].startsWith('1' || '3') ? 'M' : 'F'
+          updatedRegData['gender'] = inferText
+            .replace(/\s/g, '')
+            .split('-')[1]
+            .startsWith('1' || '3')
+            ? 'M'
+            : 'F'
         } else if (name === 'diagnosisDate') {
-          updatedRegData['diagnosisDate'] = inferText.replace(/\s/g, '').replace('년','-').replace('월','-').replace('일','-')
+          updatedRegData['diagnosisDate'] = inferText
+            .replace(/\s/g, '')
+            .replace('년', '-')
+            .replace('월', '-')
+            .replace('일', '')
         } else {
           updatedRegData[name] = inferText
         }
       })
+      console.log(updatedRegData)
       setRegData(updatedRegData)
     }
   }
@@ -76,9 +95,9 @@ const FundingRegPage = () => {
   const handleCreateFirstReg = async () => {
     const age = calculateAge(regData.birth)
     const gender = regData.gender === 'M' ? '남' : '여'
-    console.log(`title : ${regData.diseaseName} ${age}세(${gender}) 펀딩` )
-    console.log(regData)
 
+    // 여기서 gender -> 1,3 -> M 수정 
+    // 970227 -> 19970227
 
     mutate({
       ...regData,
@@ -86,6 +105,14 @@ const FundingRegPage = () => {
       title: `${regData.diseaseName} ${age}세(${gender}) 펀딩`,
     })
 
+    // 펀딩 정보 블록체인 저장
+    createFunding({
+      goalAmount: regData.targetAmount,
+      startTime: regData.startDate,
+      endTime: regData.endDate,
+      title: `${regData.diseaseName} ${age}세(${gender}) 펀딩`,
+      hospitalName: '싸피병원',
+    })
   }
 
   return (
@@ -122,21 +149,21 @@ const FundingRegPage = () => {
       {/* 진단서 파일 등록 */}
       <RegFile onOCRResult={handleOCRResult} />
 
-      <RegInput
+      <OCRInput
         id="issueNumber"
         label="발행번호"
         placeholder="발행번호 입력"
         value={regData.issueNumber}
         setValue={setRegData}
       />
-      <RegInput
+      <OCRInput
         id="registrationNumber"
         label="환자번호"
         placeholder="환자번호 입력"
         value={regData.registrationNumber}
         setValue={setRegData}
       />
-      <RegInput
+      <OCRInput
         id="patientName"
         label="환자 성명"
         placeholder="환자 성명 입력"
@@ -144,36 +171,47 @@ const FundingRegPage = () => {
         setValue={setRegData}
       />
 
-      <RegNumber
-        id="regNumber"
-        label="환자 주민등록번호"
-        placeholder="생년월일 6자리"
-        value={''}
-        setValue={setRegData}
-      />
+      <f.BirthContainer>
+        <f.BirthWrap>
+          <RegNumber
+            id="regNumber"
+            label="환자 주민등록번호"
+            placeholder="생년월일 6자리"
+            value={birthValue}
+            setValue={setBirthValue}
+          />
+          <RegGender
+            id={'regGender'}
+            label={''}
+            placeholder={''}
+            value={genderValue}
+            setValue={setGenderValue}
+          />
+        </f.BirthWrap>
+      </f.BirthContainer>
 
-      <RegInput
+      <OCRInput
         id="diseaseName"
         label="질병명"
         placeholder="질병명 입력"
         value={regData.diseaseName}
         setValue={setRegData}
       />
-      <RegInput
+      <OCRInput
         id="diseaseCode"
         label="병명 코드"
         placeholder="병명 코드 입력"
         value={regData.diseaseCode}
         setValue={setRegData}
       />
-      <RegInput
+      <OCRInput
         id="diagnosisDate"
         label="진단일"
         placeholder="진단일 입력 ( YYYY-MM-DD )"
         value={regData.diagnosisDate}
         setValue={setRegData}
       />
-      <RegInput
+      <OCRTextArea
         id="opinion"
         label="치료 내용 / 향후 치료에 대한 소견"
         placeholder="치료 내용 입력"
@@ -181,8 +219,12 @@ const FundingRegPage = () => {
         setValue={setRegData}
       />
       <f.Wrap>
-        <f.Button onClick={() => handleCreateFirstReg()}>1차 등록</f.Button>
-        <f.Button onClick={() => console.log(regData)}>테스트</f.Button>
+        <f.BlueButton onClick={() => handleCreateFirstReg()}>
+          1차 등록
+        </f.BlueButton>
+        <f.OrangeButton onClick={() => console.log(regData)}>
+          테스트
+        </f.OrangeButton>
       </f.Wrap>
     </f.Container>
   )

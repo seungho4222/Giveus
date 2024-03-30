@@ -29,16 +29,17 @@ function getEthereumAddress(publicKey) {
     var address = '0x' + keccak256(publickeyBuffer.slice(1)).substring(26);
     return address;
 }
-// 생성된 개인키 출력
-// const privateKey:string = generatePrivateKey();
 var privateKey = generatePrivateKey();
 var publicKey = getPublicKey(privateKey);
 var address = getEthereumAddress(publicKey);
-console.log('개인키:', privateKey);
-console.log('공개키:', publicKey);
-console.log('주소:', address);
-
-
+console.log('생성된 개인키:', privateKey);
+console.log('생성된 개인키:', publicKey);
+console.log('생성된 개인키:', address);
+/**
+ * 마스터링 이더리움 4장의 개인키를 입력으로 사용
+ * k = f8f8a2f43c8376ccb0871305060d7b27b0554d2cc72bccf41b2705608452f315
+ * 참고 링크 https://github.com/ethereumbook/ethereumbook/blob/develop/04keys-addresses.asciidoc#ethereum-addresses
+ */
 // 생성된 개인키를 이용하여 공개키 및 이더리움 주소 출력
 if (!privateKey) {
     console.error("[Error] Enter Private Key");

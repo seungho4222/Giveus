@@ -1,15 +1,16 @@
-import { useEffect, useState } from 'react'
-import Web3, { Uint } from 'web3'
+
+import Web3 from 'web3'
 import FundRaisingContract from '../assets/data/FundRaising.json'
 import Button from '@/common/button/Button'
-import { Input } from '@/common/input/Input'
+
 
 const BlockchainTest = () => {
 
   const ETHEREUM_RPC_URL = 'https://rpc.ssafy-blockchain.com'
-  const privateKey =
-    'ccde9fd1e91c71a46ebca973189dec872dfc408852dd2078244b7e5c61b5990c'
+  const privateKey = 'ccde9fd1e91c71a46ebca973189dec872dfc408852dd2078244b7e5c61b5990c'
+  // const testprivateKey = '8f4a1699f0cd44b5358e163f342891ca7522c3087861ddaf4449e688aa7f80f0'
   const hospitalAddress = '0x395950AD0039Df7232a37EE11FA92ec93F58F1fa'
+  // const testhospitalAddress = '0xe0dd43afe7d66175b9588fbb1a2b9883e4f77faa'
   const contractAddress = '0xB4718410f291fDeD9DEEb674829FEE9416B21F3B'
   // const LOCAL_RPC_URL = 'HTTP://127.0.0.1:7545';
 
@@ -153,7 +154,6 @@ const BlockchainTest = () => {
         $children={'펀딩 데이터 조회'}
         onButtonClick={getFundingInfo}
       ></Button>
-      {/* <Input id={''} placeholder={''} value={''} onInputChange={handleAddDonor} /> */}
       <Button
         $backgroundColor={'blue'}
         width={'200px'}
