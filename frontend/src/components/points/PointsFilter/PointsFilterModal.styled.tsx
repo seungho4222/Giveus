@@ -39,16 +39,19 @@ export const TypeItem = styled.div<{ $active: boolean }>`
   cursor: pointer;
 `
 
-export const SelectDate = styled.input`
+export const SelectDate = styled.input<{ $theme: number }>`
   display: flex;
   align-items: center;
   justify-content: center;
   height: 32px;
   width: 45%;
-  border: 1px solid ${colors.gray04};
+  border: 1px solid ${props => (props.$theme ? colors.gray04 : colors.gray04)};
   border-radius: 20px;
   font-size: 0.8em;
   font-weight: 500;
+  color-scheme: ${props => !props.$theme && 'dark'};
+  color: ${props => (props.$theme ? '#000' : colors.gray03)};
+  background-color: ${props => (props.$theme ? '#fff' : colors.black01)};
 `
 
 export const ButtonWrap = styled.div`

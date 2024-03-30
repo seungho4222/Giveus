@@ -17,6 +17,7 @@ public class Review {
 
     @Id
     @Column(name = "review_no")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int reviewNo;
 
     @OneToOne

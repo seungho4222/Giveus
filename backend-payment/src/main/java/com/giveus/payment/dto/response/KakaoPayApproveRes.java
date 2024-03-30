@@ -10,7 +10,7 @@ import lombok.ToString;
  */
 @Getter
 @ToString
-@Schema(description = "카카오페이 결제 승인 응답")
+@Schema(description = "카카오페이 결제 수단 승인 성공 응답")
 public class KakaoPayApproveRes {
     @Schema(description = "요청 고유 번호 - 승인/취소가 구분된 결제번호", example = "A5678901234567890123")
     private String aid;

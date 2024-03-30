@@ -174,7 +174,7 @@ public class KakaoPayService {
         // 가맹점 회원 ID, 최대 100자
         params.put("partner_user_id", "Giveus");
         // 상품명, 최대 100자
-        params.put("item_name", "카카오페이 포인트 충전");
+        params.put("item_name", "일반 포인트 충전");
         // 상품 수량
         params.put("quantity", 1);
         // 상품 총액
@@ -183,8 +183,7 @@ public class KakaoPayService {
         params.put("tax_free_amount", 0);
         // 결제 성공 시 redirect url, 최대 255자
         params.put("approval_url", rechargeSuccessUrl
-                + "?member_no=" + rechargeReq.getMemberNo()
-                + "&amount=" + rechargeReq.getAmount());
+                + "?member_no=" + rechargeReq.getMemberNo());
         // 결제 취소 시 redirect url, 최대 255자
         params.put("cancel_url", rechargeCancelUrl);
         // 결제 실패 시 redirect url, 최대 255자

@@ -6,12 +6,17 @@ importScripts(
 )
 
 self.addEventListener('install', function (e) {
-  self.skipWaiting()
+  // self.skipWaiting()
+  console.log('[Service Worker] installed')
 })
 
 self.addEventListener('activate', function (e) {
   e.waitUntil(self.clients.claim())
   console.log('fcm service worker가 실행되었습니다.')
+})
+
+self.addEventListener('fetch', e => {
+  console.log('[Service Worker] fetched resource ' + e.request.url)
 })
 
 const firebaseConfig = {

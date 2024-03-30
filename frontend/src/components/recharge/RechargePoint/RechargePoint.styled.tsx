@@ -21,9 +21,15 @@ export const ButtonWrap = styled.div`
   margin-bottom: 20px;
 `
 
-export const Button = styled.button<{ $active: boolean }>`
-  background-color: ${props => (props.$active ? colors.blue01 : colors.gray02)};
-  color: ${props => (props.$active ? '#fff' : '#000')};
+export const Button = styled.button<{ $active: boolean; $theme: number }>`
+  background-color: ${props =>
+    props.$active
+      ? colors.blue01
+      : props.$theme
+      ? colors.gray02
+      : colors.black02};
+  color: ${props =>
+    props.$active ? '#fff' : props.$theme ? '#000' : colors.gray04};
   height: 32px;
   border-radius: 6px;
   display: flex;
@@ -33,13 +39,14 @@ export const Button = styled.button<{ $active: boolean }>`
   font-weight: 500;
 `
 
-export const Input = styled.input`
+export const Input = styled.input<{ $theme: number }>`
   height: 33px;
   border-radius: 6px;
-  border: 1px solid #cacfd9;
+  border: ${props => (props.$theme ? '1px solid #cacfd9' : 'none')};
   text-align: end;
   padding: 10px 15px;
   font-size: 0.9em;
+  background-color: ${props => (props.$theme ? '#fff' : colors.black02)};
 
   &::-webkit-outer-spin-button,
   &::-webkit-inner-spin-button {

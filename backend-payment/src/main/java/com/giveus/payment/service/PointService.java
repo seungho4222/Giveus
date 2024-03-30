@@ -35,9 +35,11 @@ public interface PointService {
      * 일반 포인트 충전 완료 시 포인트 충전내역 DB 테이블에 데이터를 저장하기 위해 사용하는 메서드 입니다.
      * @param memberNo 회원 PK
      * @param amount 충전 금액
-     * @param now 충전 일자
+     * @param paymentType 결제 수단
+     * @param content 충전 내용
+     * @param createdAt 충전 일자
+     * @param formatter 날짜 포맷
      * @return 포인트 충전내역 PK
      */
-    int saveRecharge(int memberNo, int amount, LocalDateTime now);
-
+    int saveRecharge(int memberNo, int amount, String paymentType, String content, String createdAt, DateTimeFormatter formatter);
 }

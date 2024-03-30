@@ -62,3 +62,11 @@ export const fetchSoonOver = async () => {
     .then(res => res.data.data)
     .catch(err => err)
 }
+
+// 회원 펀딩 참여 내역 조회
+export const fetchUserDonations = async (memberNo: number) => {
+  return authRequest
+    .get(`${url}/mypage/${memberNo}`)
+    .then(res => res.data.data)
+    .catch(err => err)
+}

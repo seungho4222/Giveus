@@ -1,6 +1,7 @@
 package com.giveus.payment.service;
 
-import com.giveus.payment.dto.request.TossPayDonateReq;
+import com.giveus.payment.dto.request.KakaoPayDonateReq;
+import com.giveus.payment.dto.request.KakaoPayRechargeReq;
 import com.giveus.payment.dto.response.TossPayConfirmRes;
 import com.giveus.payment.dto.response.TossPayReadyRes;
 import com.giveus.payment.entity.Member;
@@ -37,27 +38,33 @@ public class TossPayService {
     @Value("${pay.toss.donate.fail_url}")
     private String donateFailUrl;
 
-    @Transactional
-    public TossPayReadyRes requestPayment(TossPayDonateReq donateReq) {
+    @Value("${pay.toss.recharge.success_url}")
+    private String rechargeSuccessUrl;
 
-        Member member = memberRepository.findById(donateReq.getMemberNo());
+    @Value("${pay.toss.recharge.fail_url}")
+    private String rechargeFailUrl;
+
+    @Transactional
+    public TossPayReadyRes requestDonatePayment(KakaoPayDonateReq req) {
+
+        Member member = memberRepository.findById(req.getMemberNo());
         return TossPayReadyRes.builder()
-                .amount(donateReq.getAmount())
-                .orderId("F" + donateReq.getFundingNo() + "M" + donateReq.getMemberNo() + "_" + UUID.randomUUID().toString())
-                .orderName(donateReq.getTitle())
+                .amount(req.getAmount())
+                .orderId("F" + req.getFundingNo() + "M" + req.getMemberNo() + "_" + UUID.randomUUID().toString())
+                .orderName(req.getTitle())
                 .customerEmail(member.getEmail())
                 .customerName(member.getName())
                 .successUrl(donateSuccessUrl
-                        + "?memberNo=" + donateReq.getMemberNo()
-                        + "&fundingNo=" + donateReq.getFundingNo()
-                        + "&point=" + donateReq.getPoint()
-                        + "&opened=" + donateReq.isOpened())
+                        + "?memberNo=" + req.getMemberNo()
+                        + "&fundingNo=" + req.getFundingNo()
+                        + "&point=" + req.getPoint()
+                        + "&opened=" + req.isOpened())
                 .failUrl(donateFailUrl)
                 .build();
     }
 
     @Transactional
-    public TossPayConfirmRes donateSuccess(String orderId, String paymentKey, int amount) {
+    public TossPayConfirmRes paymentConfirm(String orderId, String paymentKey, int amount) {
 
         log.info("donateSuccessUrl: {}", donateSuccessUrl);
         HttpHeaders headers = getRequestHttpHeaders();
@@ -72,6 +79,21 @@ public class TossPayService {
                 httpEntity,
                 TossPayConfirmRes.class
         );
+    }
+
+    @Transactional
+    public TossPayReadyRes requestRechargePayment(KakaoPayRechargeReq req) {
+        Member member = memberRepository.findById(req.getMemberNo());
+        return TossPayReadyRes.builder()
+                .amount(req.getAmount())
+                .orderId("TOSS_M" + req.getMemberNo() + "_" + UUID.randomUUID().toString())
+                .orderName("일반 포인트 충전")
+                .customerEmail(member.getEmail())
+                .customerName(member.getName())
+                .successUrl(rechargeSuccessUrl
+                        + "?memberNo=" + req.getMemberNo())
+                .failUrl(rechargeFailUrl)
+                .build();
     }
 
     private HttpHeaders getRequestHttpHeaders() {

@@ -68,18 +68,19 @@ public class PointServiceImpl implements PointService {
     }
 
     /**
-     * @inheritDoc
+     * inheritDoc
      */
     @Override
     @Transactional
-    public int saveRecharge(int memberNo, int amount, LocalDateTime now) {
+    public int saveRecharge(int memberNo, int amount, String paymentType, String content, String createdAt, DateTimeFormatter formatter) {
         PointRecharge pointRecharge = PointRecharge.builder()
                 .memberNo(memberNo)
                 .amount(amount)
-                .content("일반 포인트 충전")
-                .createdAt(now)
-                .paymentType("카카오페이")
+                .createdAt(LocalDateTime.parse(createdAt, formatter))
+                .content(content)
+                .paymentType(paymentType)
                 .build();
+
         return pointRechargeRepository.save(pointRecharge).getPointNo();
     }
 }

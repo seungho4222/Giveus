@@ -80,7 +80,7 @@ const Index = () => {
   const HandleDonate = () => {
     if (!amount && point > 0) {
       let pointData = {
-        memberNo: 1,
+        memberNo: user.memberNo,
         fundingNo: fundingDetail.fundingNo,
         amount: point,
         opened: isPublic,
@@ -92,7 +92,7 @@ const Index = () => {
 
     if (amount) {
       let donateData = {
-        memberNo: 1,
+        memberNo: user.memberNo,
         fundingNo: fundingDetail.fundingNo,
         amount: amount,
         point: point,

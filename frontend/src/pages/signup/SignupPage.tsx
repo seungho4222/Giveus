@@ -24,7 +24,7 @@ const SignupPage = () => {
 
   const singup = () => {
     joinUser({ name, nickname }).then(res => {
-      setUserState(res.data)
+      setUserState(res.data.data)
       navigate('/')
     })
   }

@@ -3,9 +3,10 @@ import styled from 'styled-components'
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-  height: 70vh;
   width: 90%;
   margin: 0 auto;
+  padding-bottom: 20px;
+  height: 60%;
   overflow-y: scroll;
   -ms-overflow-style: none;
   scrollbar-width: none;

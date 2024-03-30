@@ -1,4 +1,5 @@
-import { DonatedFundingType, PointItemType } from '@/types/mypageType'
+import { UserDonationsType } from '@/types/fundingType'
+import { PointItemType } from '@/types/mypageType'
 
 const today = new Date()
 
@@ -40,7 +41,7 @@ export const filterDatesInRange = (
 }
 
 export const donatefilterDatesInRange = (
-  dates: DonatedFundingType[],
+  dates: UserDonationsType[],
   startDate: string,
   endDate: string,
 ) => {

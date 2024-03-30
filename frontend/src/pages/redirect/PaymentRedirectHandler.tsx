@@ -1,8 +1,8 @@
 import {
   kakaoPayDonateSuccess,
-  kakaoPayPointSuccess,
+  kakaoPayRechargeSuccess,
   tossPayDonateSuccess,
-  tossPayPointSuccess,
+  tossPayRechargeSuccess,
 } from '@/apis/payment'
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -18,12 +18,11 @@ const PaymentRedirectHandler = () => {
       try {
         if (urlPathname.includes('recharge')) {
           if (urlPathname.includes('kakao')) {
-            await kakaoPayPointSuccess(urlParams)
-            navigate('/mypage/recharge/done')
+            await kakaoPayRechargeSuccess(urlParams)
           } else {
-            await tossPayPointSuccess(urlParams)
-            navigate('/mypage/recharge/done')
+            await tossPayRechargeSuccess(urlParams)
           }
+          navigate('/mypage/recharge/done')
         } else {
           if (urlPathname.includes('kakao')) {
             await kakaoPayDonateSuccess(urlParams)
