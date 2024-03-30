@@ -15,6 +15,7 @@ type FundingCommonType = {
 
 export type FundingType = {
   content: string
+  donationCnt: number
 } & FundingCommonType
 
 export type DonerType = {
