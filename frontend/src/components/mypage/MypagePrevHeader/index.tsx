@@ -12,7 +12,7 @@ const Index = (props: { title: string; url: string }) => {
   const goPage = () => navigate(url)
 
   return (
-    <m.Container $isDonate={title === '후원 내역'}>
+    <m.Container $theme={theme}>
       <m.Image
         src={
           theme === 0

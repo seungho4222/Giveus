@@ -11,7 +11,7 @@ export const Badge = styled.div`
   position: absolute;
   top: 10px;
   left: 10px;
-  font-size: 0.6em;
+  font-size: 0.7em;
   color: #fff;
   background-color: ${colors.orange01};
   padding: 3px 4px;

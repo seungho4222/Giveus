@@ -13,7 +13,7 @@ export const Container = styled.div<{ $theme: number }>`
 
 export const Img = styled.img`
   width: 30%;
-  height: 10vh;
+  height: 85px;
   border-radius: 6px;
 `
 
@@ -23,4 +23,5 @@ export const Wrap = styled.div`
   justify-content: space-between;
   width: 68%;
   margin-left: auto;
+  padding: 2px 0;
 `
