@@ -11,7 +11,7 @@ self.addEventListener('install', function (e) {
 })
 
 self.addEventListener('activate', function (e) {
-  e.waitUntil(self.clients.claim())
+  // e.waitUntil(self.clients.claim())
   console.log('fcm service worker가 실행되었습니다.')
 })
 

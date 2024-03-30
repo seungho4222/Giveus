@@ -32,7 +32,7 @@ export const TitleWrap = styled.div`
   padding: 0 2px;
 
   h3 {
-    font-size: 0.8em;
+    font-size: 0.9em;
     font-weight: 500;
     width: 120px;
     text-overflow: ellipsis;
@@ -42,13 +42,13 @@ export const TitleWrap = styled.div`
 
   span {
     color: ${colors.gray04};
-    font-size: 0.6em;
+    font-size: 0.8em;
   }
 `
 
 export const Amount = styled.h3`
   padding: 0 2px;
   margin-top: 4px;
-  font-size: 0.8em;
+  font-size: 0.9em;
   font-weight: 500;
 `

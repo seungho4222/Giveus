@@ -14,7 +14,7 @@ export const Container = styled.div`
 export const Title = styled.h1`
   margin-top: 26px;
   padding-left: 4px;
-  font-size: 1.7em;
+  font-size: 1.8em;
   font-weight: 700;
   line-height: 1.4;
   b {
@@ -25,10 +25,11 @@ export const Title = styled.h1`
 export const SubTitle = styled.h4`
   margin-top: 13px;
   padding-left: 4px;
-  font-size: 0.8em;
+  font-size: 1em;
   font-weight: 600;
   line-height: 1.4;
   color: ${colors.gray04};
+  z-index: 2;
 `
 
 export const Circle = styled.div<{ $theme: number }>`

@@ -24,11 +24,12 @@ export const Title = styled.div`
   font-weight: 700;
   color: #5d68f8;
   line-height: 1.2;
+  font-size: 1.1em;
 `
 
 export const Desc = styled.div<{ $theme: number }>`
   color: ${props => (props.$theme ? colors.gray05 : colors.gray03)};
   font-weight: 500;
-  font-size: 0.7em;
+  font-size: 0.9em;
   margin-top: 13px;
 `
