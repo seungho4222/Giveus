@@ -15,4 +15,6 @@ public class AdminJoinPostReq {
 
     private String name;
 
+    private String ethAddress;
+
 }

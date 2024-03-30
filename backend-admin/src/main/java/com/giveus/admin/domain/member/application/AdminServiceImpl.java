@@ -30,6 +30,7 @@ public class AdminServiceImpl implements AdminService {
         log.info("email = {}, provider = {}", email, provider);
         Admin admin = authAdminRepository.findByProviderAndEmail(provider, email).orElseThrow(NoAdminExistException::new);
         admin.updateName(adminJoinPostReq.getName());
+        admin.updateEthAddress(adminJoinPostReq.getEthAddress());
 
         authAdminRepository.save(admin);
 

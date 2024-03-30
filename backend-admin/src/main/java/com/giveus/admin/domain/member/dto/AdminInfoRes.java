@@ -26,6 +26,8 @@ public class AdminInfoRes {
 
     private String snsKey;
 
+    private String ethAddress;
+
     public static AdminInfoRes from(Admin admin) {
         return AdminInfoRes.builder()
                 .adminNo(admin.getAdminNo())
@@ -34,6 +36,7 @@ public class AdminInfoRes {
                 .createdAt(admin.getCreatedAt())
                 .provider(admin.getProvider())
                 .snsKey(admin.getKey())
+                .ethAddress(admin.getEthAddress())
                 .build();
     }
 
