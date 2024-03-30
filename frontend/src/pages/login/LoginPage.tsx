@@ -12,6 +12,11 @@ const LoginPage = () => {
     <l.Theme $theme={theme}>
       <l.Container>
         <LoginSection />
+        <l.SubDesc>
+          <l.Dash />
+          SNS 계정으로 간편 가입하기
+          <l.Dash />
+        </l.SubDesc>
         <KakaoLogin />
         <NaverLogin />
       </l.Container>
