@@ -44,18 +44,18 @@ export const Right = styled.div`
 
 export const Detail = styled.div`
   margin-bottom: 12px;
-  font-size: 0.9em;
+  font-size: 1em;
   font-weight: 500;
 `
 
 export const Content = styled.div`
-  font-size: 0.8em;
+  font-size: 0.9em;
   margin-bottom: 6px;
   font-weight: 500;
 `
 
 export const Date = styled.div`
-  font-size: 0.8em;
+  font-size: 0.9em;
   color: ${colors.gray04};
   font-weight: 500;
 `

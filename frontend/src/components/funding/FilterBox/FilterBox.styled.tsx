@@ -4,7 +4,7 @@ import { colors } from '@/styles/theme'
 export const Container = styled.div`
   display: flex;
   margin-inline: auto;
-  padding-block: 45px 10px;
+  padding-block: 70px 10px;
   width: 90%;
   column-gap: 8px;
 `

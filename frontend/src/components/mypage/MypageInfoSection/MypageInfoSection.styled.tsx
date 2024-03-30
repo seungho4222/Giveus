@@ -6,7 +6,7 @@ export const Container = styled.div`
   align-items: center;
   width: 85%;
   margin: 0 auto;
-  padding: 20px 0;
+  padding-bottom: 20px;
 `
 
 export const Profile = styled.img`

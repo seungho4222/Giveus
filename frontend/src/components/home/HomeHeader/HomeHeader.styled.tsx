@@ -8,7 +8,7 @@ export const Container = styled.header<{ $theme: number }>`
   min-width: ${sizes.minWidth};
   max-width: ${sizes.maxWidth};
   top: 0;
-  height: 45px;
+  height: 70px;
   z-index: 100;
   background-color: ${props =>
     props.$theme === 1 ? 'rgba(255, 255, 255, 0.8)' : 'rgba(28,23,25,0.8)'};

@@ -1,7 +1,7 @@
 import Navbar from '@common/Navbar'
-import Layout from '@common/Layout'
 import AlarmHeader from '@components/alarm/AlarmHeader'
 import AlarmList from '@components/alarm/AlarmList'
+import * as a from '@pages/alarm/AlarmPage.styled'
 
 const data = [
   {
@@ -36,10 +36,12 @@ const data = [
 const AlarmPage = () => {
   return (
     <>
-      <Layout>
+      <a.Container>
         <AlarmHeader />
-        <AlarmList data={data} />
-      </Layout>
+        <a.Wrap>
+          <AlarmList data={data} />
+        </a.Wrap>
+      </a.Container>
       <Navbar current="alarm" />
     </>
   )

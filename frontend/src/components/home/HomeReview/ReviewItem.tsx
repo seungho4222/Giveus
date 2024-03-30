@@ -1,16 +1,19 @@
-import { formatAmount } from '@/utils/format'
+import { HomeReviewType } from '@/types/reviewType'
+import { formatAmount } from '@utils/format'
 import * as r from '@components/home/HomeReview/ReviewItem.styled'
 
-const ReviewItem = () => {
+const ReviewItem = (props: { item: HomeReviewType }) => {
+  const { item } = props
+
   return (
     <r.Container>
-      <r.Badge>진료비 내역 공개</r.Badge>
-      <r.Image src="/img/img_review.png" alt="" />
+      {item.existUsageHistory && <r.Badge>진료비 내역 공개</r.Badge>}
+      <r.Image src={item.imageUrl || '/img/img_review.png'} alt="" />
       <r.TitleWrap>
-        <h3>소아암 6세(남) 펀딩</h3>
-        <span>30명 참여</span>
+        <h3>{item.title}</h3>
+        <span>{item.memberFundingCount}명 참여</span>
       </r.TitleWrap>
-      <r.Amount>{formatAmount(5000000)}원</r.Amount>
+      <r.Amount>{formatAmount(item.targetAmount)}원</r.Amount>
     </r.Container>
   )
 }
