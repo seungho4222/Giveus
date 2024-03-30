@@ -32,7 +32,8 @@ export const filterDatesInRange = (
   endDate: string,
 ) => {
   const start = new Date(startDate).getTime()
-  const end = new Date(endDate).getTime()
+  // 9시 기준으로 되어 있어서 그 날의 마지막 시간대로 세팅
+  const end = new Date(endDate).setHours(23, 59, 59, 999)
 
   return dates.filter(item => {
     const check = new Date(item.createdAt.split(' ')[0]).getTime()
@@ -46,7 +47,7 @@ export const donatefilterDatesInRange = (
   endDate: string,
 ) => {
   const start = new Date(startDate).getTime()
-  const end = new Date(endDate).getTime()
+  const end = new Date(endDate).setHours(23, 59, 59, 999)
 
   return dates.filter(item => {
     const check = new Date(item.createdAt.split(' ')[0]).getTime()
