@@ -1,19 +1,25 @@
+import { fetchReview } from '@/apis/review'
 import * as r from '@/components/funding/Review/Review.styled'
+import { fundingDetailState } from '@/stores/funding'
+import { useQuery } from '@tanstack/react-query'
+import { useRecoilValue } from 'recoil'
 
 const Index = () => {
+  const fundingDetail = useRecoilValue(fundingDetailState)
+
+  const { data } = useQuery({
+    queryKey: ['fetchReview'],
+    queryFn: () => fetchReview(fundingDetail.fundingNo),
+  })
+
   return (
     <r.Container>
       <r.Top>
-        <r.Img src="/img/img_review.png" />
+        <r.Img src={data.url || '/img/img_review.png'} />
       </r.Top>
       <r.Wrap>
-        <r.Title>소아암 수술 후원 받았습니다</r.Title>
-        <r.Desc>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis
-          numquam non quod corporis cum, facere vero aliquam natus consequatur
-          omnis! Optio vitae tempore ipsum assumenda, voluptas debitis dolores
-          sunt adipisci?
-        </r.Desc>
+        <r.Title>{data.title}</r.Title>
+        <r.Desc>{data.content}</r.Desc>
       </r.Wrap>
     </r.Container>
   )

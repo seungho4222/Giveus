@@ -13,7 +13,6 @@ import { themeState } from '@stores/theme'
 const DetailMain = () => {
   const theme = useRecoilValue(themeState)
   const fundingDetail = useRecoilValue(fundingDetailState)
-  const review: boolean = true // test
   const [donateOpen, setDonateOpen] = useState<boolean>(false)
   const [reviewOpen, setReviewOpen] = useState<boolean>(false)
 
@@ -26,9 +25,9 @@ const DetailMain = () => {
       />
     ) : (
       <FullButton
-        text={review ? '후기 확인하기' : '작성된 후기가 없습니다'}
+        text={fundingDetail.isRegReview ? '후기 확인하기' : '작성된 후기가 없습니다'}
         onClick={() => setReviewOpen(true)}
-        disabled={!review}
+        disabled={!fundingDetail.isRegReview}
       />
     )
 

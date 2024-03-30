@@ -16,6 +16,7 @@ type FundingCommonType = {
 export type FundingType = {
   content: string
   donationCnt: number
+  isRegReview: boolean
 } & FundingCommonType
 
 export type DonerType = {

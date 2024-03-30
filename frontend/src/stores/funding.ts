@@ -28,6 +28,8 @@ export const fundingDetailState = atom<FundingType>({
     targetAmount: 0,
     createdAt: '',
     content: '',
+    donationCnt: 0,
+    isRegReview: false
   },
   effects_UNSTABLE: [persistAtom],
 })
