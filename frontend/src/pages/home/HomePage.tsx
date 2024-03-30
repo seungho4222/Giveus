@@ -1,6 +1,5 @@
 import Navbar from '@common/Navbar'
 import HomeHeader from '@/components/home/HomeHeader'
-import Layout from '@common/Layout'
 import { handleAllowNotification } from '@/services/notificationPermission'
 import { useEffect } from 'react'
 import { userState } from '@stores/user'
@@ -10,6 +9,7 @@ import HomeContributors from '@components/home/HomeContributors'
 import HomeTotalAmount from '@components/home/HomeTotalAmount'
 import HomeReview from '@components/home/HomeReview'
 import HomeSoonOver from '@components/home/HomeSoonOver'
+import * as h from '@pages/home/HomePage.styled'
 
 const HomePage = () => {
   const userInfo = useRecoilValue(userState)
@@ -21,14 +21,14 @@ const HomePage = () => {
   //
   return (
     <>
-      <Layout>
-        <HomeHeader />
+      <HomeHeader />
+      <h.Wrap>
         <HomeTopSection />
         <HomeContributors />
         <HomeTotalAmount />
         <HomeReview />
         <HomeSoonOver />
-      </Layout>
+      </h.Wrap>
       <Navbar current="home" />
     </>
   )

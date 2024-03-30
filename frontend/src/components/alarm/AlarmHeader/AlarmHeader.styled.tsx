@@ -6,5 +6,5 @@ export const Container = styled.header`
   margin-left: 7.5%;
   align-items: center;
   font-weight: 600;
-  font-size: 1.1em;
+  font-size: 1.2em;
 `

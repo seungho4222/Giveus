@@ -17,26 +17,27 @@ export const InfoWrap = styled.div<{ $flag: boolean }>`
   display: flex;
   flex-direction: column;
   padding: 8px;
-  margin-left: 12px;
+  margin-left: 8px;
   font-weight: 600;
 
   span {
     color: ${props => (props.$flag ? colors.orange01 : colors.blue01)};
-    font-size: 0.8em;
+    font-size: 0.9em;
     font-weight: 600;
   }
 `
 export const Name = styled.div`
   margin-top: 4px;
-  width: 140px;
+  width: 170px;
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
+  font-size: 1.1em;
 `
 
 export const Amount = styled.div<{ $theme: number }>`
   margin-top: auto;
-  font-size: 0.9em;
+  font-size: 1em;
   color: ${props => (props.$theme ? colors.gray05 : colors.gray04)};
 `
 
