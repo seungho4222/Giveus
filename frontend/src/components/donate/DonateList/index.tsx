@@ -1,4 +1,3 @@
-import FundingListCard from '@/components/funding/FundingListCard'
 import { filteredMyDonateListState, myDonateListState } from '@/stores/donate'
 import { UserDonationsType } from '@/types/fundingType'
 import * as d from '@components/donate/DonateList/DonateList.styled'

@@ -1,10 +1,5 @@
 import { atom } from 'recoil'
-import {
-  DonerType,
-  FundingType,
-  MedicalExpenseType,
-  UserDonationsType,
-} from '@/types/fundingType'
+import { DonerType, FundingType, MedicalExpenseType } from '@/types/fundingType'
 import { recoilPersist } from 'recoil-persist'
 
 const { persistAtom } = recoilPersist({
