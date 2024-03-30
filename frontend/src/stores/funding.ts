@@ -3,7 +3,7 @@ import { DonerType, FundingType, MedicalExpenseType } from '@/types/fundingType'
 import { recoilPersist } from 'recoil-persist'
 
 const { persistAtom } = recoilPersist({
-  key: 'prevUrl',
+  key: 'funding',
   storage: localStorage,
 })
 

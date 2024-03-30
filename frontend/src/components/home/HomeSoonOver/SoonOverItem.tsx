@@ -2,16 +2,20 @@ import { FundingType } from '@/types/fundingType'
 import { formatAmount } from '@utils/format'
 import * as s from '@components/home/HomeSoonOver/SoonOverItem.styled'
 import { useNavigate } from 'react-router-dom'
-import { useRecoilValue } from 'recoil'
+import { useRecoilValue, useSetRecoilState } from 'recoil'
 import { themeState } from '@stores/theme'
+import { prevUrlState } from '@/stores/funding'
 
 const SoonOverItem = (props: { item: FundingType }) => {
   const theme = useRecoilValue(themeState)
   const { item } = props
   const navigate = useNavigate()
+  const setPrevUrl = useSetRecoilState(prevUrlState)
 
-  const goFundigDetail = () =>
+  const goFundigDetail = () => {
+    setPrevUrl('/funding')
     navigate(`/funding/${item.fundingNo}/detail-main`)
+  }
 
   const flag: boolean = item.totalAmount === item.targetAmount
 
