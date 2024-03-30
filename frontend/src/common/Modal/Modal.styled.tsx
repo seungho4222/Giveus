@@ -29,6 +29,7 @@ export const Container = styled.div<{ $theme: number }>`
 
 export const Wrap = styled.div`
   display: flex;
+
   flex-direction: column;
   width: 100%;
 `
@@ -36,14 +37,15 @@ export const Wrap = styled.div`
 export const ModalName = styled.div`
   display: flex;
   justify-content: center;
-  padding-block: 1em;
+  align-items: center;
   font-weight: 600;
+  height: 70px;
 `
 
 export const Backdrop = styled.div`
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 10px;
+  right: 1%;
   z-index: 100;
   margin: 1em;
   img {

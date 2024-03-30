@@ -19,6 +19,15 @@ export const GlobalStyle = createGlobalStyle`
         font-weight: 400;
         line-height: 1.1;
         background-color: #f4f4f4;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+        &::-webkit-scrollbar {
+            display: none;
+            width: 0;
+            height: 0;
+            background: transparent;
+            -webkit-appearance: none;
+        }
     }
 
     #root {
