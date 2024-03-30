@@ -23,4 +23,6 @@ public class ReviewListRes {
 
     private boolean existUsageHistory;
 
+    private String imageUrl;
+
 }
