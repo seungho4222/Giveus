@@ -15,10 +15,6 @@ self.addEventListener('activate', function (e) {
   console.log('fcm service worker가 실행되었습니다.')
 })
 
-self.addEventListener('fetch', e => {
-  console.log('[Service Worker] fetched resource ' + e.request.url)
-})
-
 const firebaseConfig = {
   apiKey: 'AIzaSyDYateUNVpKGxzX6cDWZMFNpgvL88F5X4w',
   authDomain: 'give-us-7b772.firebaseapp.com',

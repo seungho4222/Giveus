@@ -14,10 +14,10 @@ export const Wrap = styled.div`
   }
 `
 
-export const Bar = styled.div`
+export const Bar = styled.div<{ $theme: number }>`
   display: flex;
   position: relative;
-  background-color: #f4f4f4;
+  background-color: ${props => (props.$theme ? '#f4f4f4' : colors.black02)};
   height: 4px;
   bottom: 0;
 `

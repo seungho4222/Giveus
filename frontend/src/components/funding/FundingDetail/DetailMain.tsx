@@ -25,7 +25,9 @@ const DetailMain = () => {
       />
     ) : (
       <FullButton
-        text={fundingDetail.isRegReview ? '후기 확인하기' : '작성된 후기가 없습니다'}
+        text={
+          fundingDetail.isRegReview ? '후기 확인하기' : '작성된 후기가 없습니다'
+        }
         onClick={() => setReviewOpen(true)}
         disabled={!fundingDetail.isRegReview}
       />

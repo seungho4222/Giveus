@@ -49,3 +49,10 @@ export const sendFCMToken = async (req: SendFCMTokenType) => {
     .then(res => console.log(res.data.code, 'fcm token 전송'))
     .catch(err => console.log(err))
 }
+
+// 닉네임 중복검사
+export const checkNickname = async (ninkname: string) =>
+  publicRequest
+    .get(`${url}/nickname?nickname=${ninkname}`)
+    .then(res => res.data.data)
+    .catch(err => err)
