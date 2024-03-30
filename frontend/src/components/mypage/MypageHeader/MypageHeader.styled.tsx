@@ -7,4 +7,6 @@ export const Container = styled.header`
   align-items: center;
   font-weight: 700;
   font-size: 1.2em;
+  position: sticky;
+  top: 0;
 `

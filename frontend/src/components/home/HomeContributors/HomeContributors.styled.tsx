@@ -35,7 +35,7 @@ export const Line = styled.div`
 export const Button = styled.button`
   display: flex;
   align-items: center;
-  width: 55%;
+  width: 70%;
   text-align: left;
   color: ${colors.gray04};
   font-weight: 500;

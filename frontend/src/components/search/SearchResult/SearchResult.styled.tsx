@@ -8,7 +8,7 @@ export const Container = styled.div`
 `
 
 export const Title = styled.div`
-  font-size: 0.9em;
+  font-size: 1.1em;
   font-weight: 600;
   margin-block: 10px;
   padding: 0 5%;

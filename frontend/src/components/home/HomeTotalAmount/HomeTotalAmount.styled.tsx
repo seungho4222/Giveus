@@ -17,6 +17,9 @@ export const Container = styled.div<{ $theme: number }>`
     right: 16px;
     width: 39px;
     height: 35px;
+    @media only screen and (max-width: 379px) {
+      bottom: 56px;
+    }
   }
 `
 

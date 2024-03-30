@@ -8,11 +8,11 @@ export const Container = styled.div`
 `
 
 export const Title = styled.div`
-  font-size: 0.9em;
+  font-size: 1.1em;
   font-weight: 600;
 `
 
 export const Button = styled.button`
   color: #676f83;
-  font-size: 0.7em;
+  font-size: 0.9em;
 `

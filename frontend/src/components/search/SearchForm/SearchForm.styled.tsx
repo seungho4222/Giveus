@@ -7,7 +7,8 @@ export const Container = styled.article`
   justify-content: space-between;
   width: 90%;
   margin: 0 auto;
-  height: 69px;
+  height: 70px;
+  position: sticky;
 `
 
 export const Input = styled.input<{ $theme: number }>`
@@ -17,8 +18,8 @@ export const Input = styled.input<{ $theme: number }>`
   border: none;
   padding: 11px 20px;
   border-radius: 20px;
-  height: 36px;
-  font-size: 0.9em;
+  height: 40px;
+  font-size: 1em;
 
   /* 기본 x button 제거 */
   /* IE의 경우 */

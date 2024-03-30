@@ -28,11 +28,11 @@ export const InfoWrap = styled.div<{ $flag: boolean }>`
 `
 export const Name = styled.div`
   margin-top: 4px;
-  width: 170px;
+  width: 160px;
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
-  font-size: 1.1em;
+  font-size: 1em;
 `
 
 export const Amount = styled.div<{ $theme: number }>`

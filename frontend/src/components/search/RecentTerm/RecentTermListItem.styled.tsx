@@ -6,7 +6,7 @@ export const Wrap = styled.div<{ $theme: number }>`
   align-items: center;
   justify-content: center;
   background-color: ${props => (props.$theme ? colors.gray02 : colors.black02)};
-  font-size: 0.9em;
+  font-size: 1em;
   padding: 9px 13px;
   border-radius: 20px;
   margin-right: 12px;
