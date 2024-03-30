@@ -3,6 +3,7 @@ package com.giveus.funding.domain.review.application;
 import com.giveus.funding.domain.review.domain.Review;
 import com.giveus.funding.domain.review.dto.ReviewCreateReq;
 import com.giveus.funding.domain.review.dto.ReviewDetailRes;
+import com.giveus.funding.domain.review.dto.ReviewListRes;
 import com.giveus.funding.global.common.response.CreateSuccessDto;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -10,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface ReviewService {
-    List<ReviewDetailRes> getReviewList(int count);
+    List<ReviewListRes> getReviewList(int count);
 
     ReviewDetailRes getReview(int fundingNo);
 
