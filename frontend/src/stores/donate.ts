@@ -1,4 +1,4 @@
-import { DonatedFundingType } from '@/types/mypageType'
+import { UserDonationsType } from '@/types/fundingType'
 import {
   donatefilterDatesInRange,
   getOneMonthAgoDate,
@@ -17,7 +17,7 @@ export const myDonateListFilterState = atom({
   default: DefaultMyDonateListFilter,
 })
 
-export const myDonateListState = atom<DonatedFundingType[]>({
+export const myDonateListState = atom<UserDonationsType[]>({
   key: 'myDonateListState',
   default: [],
 })
