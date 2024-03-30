@@ -8,6 +8,6 @@ export const Container = styled.section`
   margin: 0 auto;
 `
 export const EmptyText = styled.div`
-  font-size: 0.9em;
+  font-size: 1em;
   color: ${colors.gray04};
 `

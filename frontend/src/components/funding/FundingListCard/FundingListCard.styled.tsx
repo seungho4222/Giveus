@@ -3,10 +3,9 @@ import styled from 'styled-components'
 
 export const Container = styled.div<{ $theme: number }>`
   display: flex;
-  width: 90%;
+  width: 100%;
   margin-inline: auto;
-  margin-block: 15px;
-  padding-bottom: 15px;
+  padding: 15px 0;
   border-bottom: 1px solid
     ${props => (props.$theme ? colors.gray02 : colors.black02)};
   cursor: pointer;

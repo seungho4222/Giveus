@@ -25,7 +25,7 @@ export const GlobalStyle = createGlobalStyle`
         width: 100%;
         min-width: ${sizes.minWidth};
         max-width: ${sizes.maxWidth};
-        height: 100vh;
+        min-height: 100vh;
         margin: 0 auto;
         background: ${({ theme }: { theme: DefaultTheme }) =>
           theme.color.background};
