@@ -6,7 +6,7 @@ import * as r from '@pages/mypage/recharge/RechargePage.styled'
 import RechargeBottom from '@components/recharge/RechargeBottom'
 import { useState } from 'react'
 import { useMutation } from '@tanstack/react-query'
-import { kakaoPayPointReady, tossPayPointReady } from '@/apis/payment'
+import { kakaoPayRechargeReady, tossPayRechargeReady } from '@/apis/payment'
 import { useRecoilValue } from 'recoil'
 import { userState } from '@/stores/user'
 
@@ -17,8 +17,8 @@ const RechargePage = () => {
 
   // 카카오페이 충전
   const { mutate: kakaoMutate } = useMutation({
-    mutationKey: ['kakaoPayReady'],
-    mutationFn: kakaoPayPointReady,
+    mutationKey: ['kakaoPayRechargeReady'],
+    mutationFn: kakaoPayRechargeReady,
     onSuccess(result) {
       console.log('등록 성공', result)
       window.location.href = result.data.next_redirect_pc_url
@@ -34,8 +34,8 @@ const RechargePage = () => {
   const tossPayments = window.TossPayments(clientKey)
 
   const { mutate: tossMutate } = useMutation({
-    mutationKey: ['tossPayReady'],
-    mutationFn: tossPayPointReady,
+    mutationKey: ['tossPayRechargeReady'],
+    mutationFn: tossPayRechargeReady,
     onSuccess(result) {
       console.log('등록 성공', result)
       const paymentData = result.data

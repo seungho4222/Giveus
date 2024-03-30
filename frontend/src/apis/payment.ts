@@ -49,36 +49,36 @@ export const pointDonate = async (params: PointPayType) =>
     .catch(err => console.log(err))
 
 // 카카오페이 포인트 충전
-export const kakaoPayPointReady = async (params: PointChargeType) =>
+export const kakaoPayRechargeReady = async (params: PointChargeType) =>
   authRequest
-    .post(`${url}/kakao/point/ready`, params)
+    .post(`${url}/kakao/recharge/ready`, params)
     .then(res => {
       return res.data
     })
     .catch(err => console.log(err))
 
 // 카카오페이 포인트 충전 성공
-export const kakaoPayPointSuccess = async (params: string) =>
+export const kakaoPayRechargeSuccess = async (params: string) =>
   authRequest
-    .get(`${url}/kakao/point/success${params}`)
+    .get(`${url}/kakao/recharge/success${params}`)
     .then(res => {
       console.log(res.data)
     })
     .catch(err => console.log(err))
 
 // 토스페이 포인트 충전
-export const tossPayPointReady = async (params: PointChargeType) =>
+export const tossPayRechargeReady = async (params: PointChargeType) =>
   authRequest
-    .post(`${url}/toss/point/ready`, params)
+    .post(`${url}/toss/recharge/ready`, params)
     .then(res => {
       return res.data
     })
     .catch(err => console.log(err))
 
 // 토스페이 포인트 충전 성공
-export const tossPayPointSuccess = async (params: string) =>
+export const tossPayRechargeSuccess = async (params: string) =>
   authRequest
-    .get(`${url}/toss/point/success${params}`)
+    .get(`${url}/toss/recharge/success${params}`)
     .then(res => {
       console.log(res.data)
     })
