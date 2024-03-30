@@ -21,6 +21,7 @@ const SearchPage = () => {
       searchFunding(keyword).then(res => {
         setResult(res)
       })
+      setValue(keyword)
     }
   }, [keyword])
 

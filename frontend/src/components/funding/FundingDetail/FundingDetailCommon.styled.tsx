@@ -10,7 +10,8 @@ export const Container = styled.div<{ $img: string }>`
 `
 
 export const BackBtn = styled.img`
-  position: absolute;
+  position: sticky;
+  top: 20px;
   width: 0.7em;
   margin: 5%;
   cursor: pointer;
