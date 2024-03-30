@@ -14,20 +14,24 @@ const DonatePage = () => {
   const user = useRecoilValue(userState)
   const [open, setOpen] = useState(false)
 
-  const { data } = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: ['fetchUserDonations'],
     queryFn: () => fetchUserDonations(user.memberNo),
   })
 
   return (
     <>
-      <d.Container>
-        <MypagePrevHeader title="후원 내역" url="/mypage" />
-        <DonateTotal userDonations={data} />
-        <DonateFilter setOpen={setOpen} />
-        <DonateList userDonations={data} />
-      </d.Container>
-      {open && <DonateFilterModal value={open} setValue={setOpen} />}
+      {!isLoading && (
+        <>
+          <d.Container>
+            <MypagePrevHeader title="후원 내역" url="/mypage" />
+            <DonateTotal userDonations={data} />
+            <DonateFilter setOpen={setOpen} />
+            <DonateList userDonations={data} />
+          </d.Container>
+          {open && <DonateFilterModal value={open} setValue={setOpen} />}
+        </>
+      )}
     </>
   )
 }
