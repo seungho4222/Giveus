@@ -42,9 +42,15 @@ public class Admin {
     @Column(name = "sns_key")
     private String key;
 
+    @Column(name = "eth_address")
+    private String ethAddress;
 
     public void updateName(String name) {
         this.name = name;
+    }
+
+    public void updateEthAddress(String ethAddress) {
+        this.ethAddress = ethAddress;
     }
 
 }
