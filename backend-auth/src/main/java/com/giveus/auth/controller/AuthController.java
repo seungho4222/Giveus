@@ -59,7 +59,7 @@ public class AuthController {
                 .body(new CommonResponseBody<>(OK, authService.createMemberDevice(memberDevicePostReq)));
     }
 
-    @SwaggerApiSuccess(summary = "닉네임 중복검사 (엑세스 토큰 이용)", implementation = NicknameExistRes.class)
+    @SwaggerApiSuccess(summary = "닉네임 중복검사", implementation = NicknameExistRes.class)
     @GetMapping("/nickname")
     public ResponseEntity<CommonResponseBody<NicknameExistRes>> findByNickname(@RequestParam String nickname) {
         return ResponseEntity
