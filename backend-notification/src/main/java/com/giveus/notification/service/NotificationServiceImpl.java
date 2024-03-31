@@ -106,8 +106,8 @@ public class NotificationServiceImpl implements NotificationService{
                     .title("펀딩의 후기가 등록되었습니다")
                     .body(list.get(i).getTitle())
                     .image(list.get(i).getThumbnailUrl())
-                    .key(list.get(i).getFundingNo())
-                    .category("funding_review")
+//                    .key(list.get(i).getFundingNo())
+//                    .category("funding_review")
                     .build();
 
             // 2-1) 펀딩 후기 등록 알림 발송

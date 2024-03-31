@@ -26,8 +26,8 @@ public class FCMSender {
         Message message = Message.builder()
                 .setToken(fcmNotificationRes.getFcmToken())
                 .setNotification(notification)
-                .putData("key", String.valueOf(fcmNotificationRes.getKey()))
-                .putData("category", fcmNotificationRes.getCategory())
+//                .putData("key", String.valueOf(fcmNotificationRes.getKey()))
+//                .putData("category", fcmNotificationRes.getCategory())
                 .build();
 
         try {
