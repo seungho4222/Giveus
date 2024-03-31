@@ -34,12 +34,12 @@ const SignupPage = () => {
   const signup = async () => {
     console.log(name)
 
-    // 지갑 생성 후 계정주소 서버에 저장
-    let privateKey: string = createPrivateKey()
-    const publicKey: string = getPublicKey(privateKey)
-    const address: string = getEthereumAddress(publicKey)
-    setPrivateKey(privateKey)
-    setAddress(address)
+    // // 지갑 생성 후 계정주소 서버에 저장
+    // let privateKey: string = createPrivateKey()
+    // const publicKey: string = getPublicKey(privateKey)
+    // const address: string = getEthereumAddress(publicKey)
+    // setPrivateKey(privateKey)
+    // setAddress(address)
 
     openModal()
 
