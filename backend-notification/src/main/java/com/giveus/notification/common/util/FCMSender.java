@@ -20,11 +20,14 @@ public class FCMSender {
         Notification notification = Notification.builder()
                 .setTitle(fcmNotificationRes.getTitle())
                 .setBody(fcmNotificationRes.getBody())
+                .setImage(fcmNotificationRes.getImage())
                 .build();
 
         Message message = Message.builder()
                 .setToken(fcmNotificationRes.getFcmToken())
                 .setNotification(notification)
+                .putData("key", String.valueOf(fcmNotificationRes.getKey()))
+                .putData("category", fcmNotificationRes.getCategory())
                 .build();
 
         try {

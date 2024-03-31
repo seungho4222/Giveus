@@ -6,6 +6,7 @@ import com.giveus.notification.dto.request.FCMNotificationRes;
 import com.giveus.notification.dto.response.FundingReviewListRes;
 import com.giveus.notification.dto.response.NotificationListRes;
 import com.giveus.notification.entity.Notification;
+import com.giveus.notification.entity.enums.NotificationCategory;
 import com.giveus.notification.exception.NotificationDeleteFailedException;
 import com.giveus.notification.exception.NotificationNotFoundException;
 import com.giveus.notification.exception.NotificationUpdateFailedException;
@@ -93,30 +94,34 @@ public class NotificationServiceImpl implements NotificationService{
     @Transactional
     public void createFundingReviewNotification(int fundingNo) {
 
-        // 1) 해당 펀딩에 참여한 사람들 중 알림 설정이 true인 사람들 얻어옴
+        // 1) 해당 펀딩에 참여한 사람들 얻어옴
         List<FundingReviewListRes> list = notificationRepository.getFundingReviewList(fundingNo);
-//        List<FundingReviewListRes> list = notificationRepository.getFundingReviewList(fundingNo);
 
+        // 2) 해당 사람들 모두에게 알림 발송 + 기록
         for(int i=0; i<list.size(); i++) {
-            log.info("========== " + list.get(i).toString() + " ==========");
-        }
+            if(list.get(i).isFundingReview() == false) continue; // 알림설정 false면 알림 보내지 x
 
-        // 2) 해당 사람들 모두에게 펀딩 후기 등록 알림 발송 (FCM)
-        for(int i=0; i<list.size(); i++) {
             FCMNotificationRes fcmNotificationRes = FCMNotificationRes.builder()
                     .fcmToken(list.get(i).getDeviceToken())
                     .title("펀딩의 후기가 등록되었습니다")
-                    .body(list.get(i).getFundingNo() + "번 펀딩")
+                    .body(list.get(i).getTitle())
+                    .image(list.get(i).getThumbnailUrl())
+                    .key(list.get(i).getFundingNo())
+                    .category("funding_review")
                     .build();
 
-            // 펀딩 후기 등록 알림 발송
+            // 2-1) 펀딩 후기 등록 알림 발송
             sendNotificationByToken(fcmNotificationRes);
 
-            // 해당 내용 알림 테이블에 기록 (Notification 테이블에 기록)
-
+            // 2-2) 알림 테이블에 기록
+            Notification notification = Notification.builder()
+                    .memberNo(list.get(i).getMemberNo())
+                    .category(NotificationCategory.REVIEW)
+                    .content("펀딩 후기가 등록되었습니다")
+                    .detail(list.get(i).getTitle())
+                    .build();
+            notificationRepository.save(notification);
         }
-
-
 
     }
 

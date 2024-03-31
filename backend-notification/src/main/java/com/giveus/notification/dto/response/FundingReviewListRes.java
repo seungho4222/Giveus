@@ -1,14 +1,13 @@
 package com.giveus.notification.dto.response;
 
 import com.giveus.notification.entity.enums.NotificationCategory;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.ToString;
+import lombok.*;
 
 @Getter
+@Setter
 @Builder
 @AllArgsConstructor
+@NoArgsConstructor
 @ToString
 public class FundingReviewListRes {
 
