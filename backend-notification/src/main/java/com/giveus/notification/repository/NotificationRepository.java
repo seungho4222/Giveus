@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface NotificationRepository extends JpaRepository<Notification, Integer> {
+public interface NotificationRepository extends JpaRepository<Notification, Integer>, NotificationRepositoryCustom {
 
     Optional<Notification> findByNotificationNo(int notificationNo);
 
@@ -28,10 +28,10 @@ public interface NotificationRepository extends JpaRepository<Notification, Inte
 
     void deleteAllByMemberNo(int memberNo);
 
-    @Query("SELECT DISTINCT new com.giveus.notification.dto.response.FundingReviewListRes(f.member.memberNo, f.funding.fundingNo, m.fundingReview, d.deviceToken) " +
-            "FROM MemberFunding f " +
-            "LEFT JOIN MemberSetting m ON f.member.memberNo = m.member.memberNo " +
-            "LEFT JOIN MemberDevice d ON f.member.memberNo = d.memberNo " +
-            "WHERE f.funding.fundingNo = :fundingNo AND m.fundingReview = TRUE ")
-    List<FundingReviewListRes> getFundingReviewList(@Param("fundingNo") int fundingNo);
+//    @Query("SELECT DISTINCT new com.giveus.notification.dto.response.FundingReviewListRes(f.member.memberNo, f.funding.fundingNo, m.fundingReview, d.deviceToken) " +
+//            "FROM MemberFunding f " +
+//            "LEFT JOIN MemberSetting m ON f.member.memberNo = m.member.memberNo " +
+//            "LEFT JOIN MemberDevice d ON f.member.memberNo = d.memberNo " +
+//            "WHERE f.funding.fundingNo = :fundingNo AND m.fundingReview = TRUE ")
+//    List<FundingReviewListRes> getFundingReviewList(@Param("fundingNo") int fundingNo);
 }
