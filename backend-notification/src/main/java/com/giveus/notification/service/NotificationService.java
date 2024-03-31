@@ -45,5 +45,16 @@ public interface NotificationService {
      */
     void updateAllNotification(int memberNo);
 
+    /**
+     * 펀딩 번호로 펀딩 후기 등록 알림을 보내는 메서드입니다.
+     * @param fundingNo
+     */
     void createFundingReviewNotification(int fundingNo);
+
+    /**
+     * 펀딩 번호로 진료비 사용 내역 등록 알림을 보내는 메서드입니다.
+     * @param fundingNo
+     */
+    void createUsageHistoryNotification(int fundingNo);
+
 }
