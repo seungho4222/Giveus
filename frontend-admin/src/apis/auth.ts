@@ -30,7 +30,8 @@ export const joinUser = async (req: { name: string, address: string }) => {
 
   return publicRequest
     .put(`${url}/join`, {
-      ...req,
+      name: req.name,
+      ethAddress :req.address,
       email: email || '',
       provider: provider || '',
     })
