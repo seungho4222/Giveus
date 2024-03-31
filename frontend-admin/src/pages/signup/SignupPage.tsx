@@ -11,6 +11,8 @@ import {
 } from '@/utils/walletCreation'
 import Modal from '@common/Modal'
 import PrivKey from '@components/privKey'
+import LoginFooter from '@/components/login/LoginFooter'
+import LoginHeader from '@/components/login/LoginHeader'
 
 const SignupPage = () => {
   const [name, setName] = useState<string>('')
@@ -36,7 +38,6 @@ const SignupPage = () => {
     try {
       const res = await joinUser({ name, address })
       setadminState(res.data.data)
-      setIsModalOpen(true)
     } catch (err) {
       console.error('Error during signup:', err)
     }
@@ -44,9 +45,14 @@ const SignupPage = () => {
 
   return (
     <s.Container>
-      <div>회원가입 페이지</div>
-      <div>병원 이름</div>
-      <input value={name} onChange={e => setName(e.target.value)} />
+      <LoginHeader />
+      <s.BackgroundImg src="/img/img_login_bg.png" alt="bg" />
+      <s.SignupSection>
+        <s.Desc>추가 입력 단계</s.Desc>
+        <s.SubDesc>병원 이름을 입력해 주시기 바립니다</s.SubDesc>
+        <s.Input value={name} onChange={e => setName(e.target.value)} />
+        <s.Button onClick={() => signup()}>회원가입</s.Button>
+      </s.SignupSection>
       {isModalOpen && (
         <Modal
           name={'개인키 관련 주의사항'}
@@ -60,7 +66,7 @@ const SignupPage = () => {
           onClose={() => setIsModalOpen(false)}
         />
       )}
-      <s.Button onClick={() => signup()}>회원가입</s.Button>
+      <LoginFooter />
     </s.Container>
   )
 }

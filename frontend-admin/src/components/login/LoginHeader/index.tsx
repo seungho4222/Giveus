@@ -3,18 +3,16 @@ import * as l from '@components/login/LoginHeader/LoginHeader.styled'
 const index = () => {
   return (
     <l.Container>
-      <l.Logo><img src='/img/img_logo.png'/></l.Logo>
-      <l.Wrap>
-        <l.Button>
-          <l.Icon src="/icon/icon_signup.png" alt="" />
-          SIGN UP
-        </l.Button>
-        <l.Button>
-          <l.Icon src="/icon/icon_login.png" alt="" />
-          LOG IN
-        </l.Button>
-      </l.Wrap>
-      <l.AppButton>GIVEUS</l.AppButton>
+      <l.Logo>
+        <img src="/img/img_logo.png" />
+      </l.Logo>
+      <l.Button>
+        <l.Icon src="/icon/icon_signup.png" alt="" />
+        로그인해 주시기 바랍니다
+      </l.Button>
+      <l.AppButton onClick={() => window.open('https://giveus.site', '_blank')}>
+        GIVEUS APP
+      </l.AppButton>
     </l.Container>
   )
 }

@@ -29,12 +29,6 @@ export const Logo = styled.div`
   cursor: pointer;
 `
 
-export const Wrap = styled.div`
-  display: flex;
-  justify-content: space-between;
-  width: 25%;
-`
-
 export const Button = styled.button`
   display: flex;
   align-items: center;
