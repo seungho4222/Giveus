@@ -31,7 +31,7 @@ const SignupPage = () => {
     setIsModalOpen(false)
   }
 
-  const signup = () => {
+  const signup = async () => {
     console.log(name)
 
     // 지갑 생성 후 계정주소 서버에 저장
@@ -41,17 +41,20 @@ const SignupPage = () => {
     setPrivateKey(privateKey)
     setAddress(address)
 
+    openModal()
 
-    joinUser({ name, address }).then(res => {
+    try {
+      const res = await joinUser({name, address})
       setadminState(res.data.data)
-
-      openModal()
 
       if (!isModalOpen) {
         navigate('/funding')
       }
 
-    })
+    } catch (err) {
+      console.error('Error during signup:', err)
+      closeModal()
+    }
   }
 
   return (
