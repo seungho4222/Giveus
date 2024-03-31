@@ -13,6 +13,6 @@ public class FCMNotificationRes {
     private String title;
     private String body;
     private String image;
-    private int key;
-    private String category;
+//    private int key;
+//    private String category;
 }
