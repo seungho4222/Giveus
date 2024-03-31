@@ -16,8 +16,12 @@ public class FundingReviewListRes {
 
     private int fundingNo;
 
-    private boolean fundingReview;
-
     private String deviceToken;
+
+    private String title;
+
+    private String thumbnailUrl;
+
+    private boolean fundingReview;
 
 }

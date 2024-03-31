@@ -23,8 +23,9 @@ public class MemberDevice {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int memberDeviceNo;
 
-    @Column(name = "member_no")
-    private int memberNo;
+    @ManyToOne
+    @JoinColumn(name = "member_no")
+    private Member member;
 
     @Column(name = "device_token")
     private String deviceToken;
