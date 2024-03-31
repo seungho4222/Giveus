@@ -91,6 +91,14 @@ public class NotificationController {
                 .body(new CommonResponseBody<>(OK, "")); // 원래는 create는 pk 반환해야?ㅠㅠ
     }
 
-    // 진료비 사용 내역 등록 시 알림 발송 (진료비 사용 내역 알림 설정 true인 사람만)
+    // 진료비 사용 내역 등록 시 알림 발송
+    @SwaggerApiSuccess(summary = "펀딩 진료비 사용 내역 등록 시 알림 발송", implementation = String.class)
+    @PostMapping("/usageHistory/{fundingNo}")
+    public ResponseEntity<CommonResponseBody<String>> createUsageHistoryNotification(@PathVariable int fundingNo) {
+        notificationService.createUsageHistoryNotification(fundingNo);
+        return ResponseEntity
+                .status(OK)
+                .body(new CommonResponseBody<>(OK, "")); // 원래는 create는 pk 반환해야?ㅠㅠ
+    }
 
 }

@@ -5,6 +5,7 @@ import com.giveus.notification.common.util.FCMSender;
 import com.giveus.notification.dto.request.FCMNotificationRes;
 import com.giveus.notification.dto.response.FundingReviewListRes;
 import com.giveus.notification.dto.response.NotificationListRes;
+import com.giveus.notification.dto.response.UsageHistoryListRes;
 import com.giveus.notification.entity.Notification;
 import com.giveus.notification.entity.enums.NotificationCategory;
 import com.giveus.notification.exception.NotificationDeleteFailedException;
@@ -124,6 +125,44 @@ public class NotificationServiceImpl implements NotificationService{
         }
 
     }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    @Transactional
+    public void createUsageHistoryNotification(int fundingNo) {
+
+        // 1) 해당 펀딩에 참여한 사람들 얻어옴
+        List<UsageHistoryListRes> list = notificationRepository.getUsageHistoryList(fundingNo);
+
+        // 2) 해당 사람들 모두에게 알림 발송 + 기록
+        for(int i=0; i<list.size(); i++) {
+            if(list.get(i).isUsageHistory() == false) continue; // 알림설정 false면 알림 보내지 x
+
+            FCMNotificationRes fcmNotificationRes = FCMNotificationRes.builder()
+                    .fcmToken(list.get(i).getDeviceToken())
+                    .title("펀딩 진료비 사용 내역이 등록되었습니다")
+                    .body(list.get(i).getTitle())
+//                    .key(list.get(i).getFundingNo())
+//                    .category("funding_review")
+                    .build();
+
+            // 2-1) 펀딩 후기 등록 알림 발송
+            sendNotificationByToken(fcmNotificationRes);
+
+            // 2-2) 알림 테이블에 기록
+            Notification notification = Notification.builder()
+                    .memberNo(list.get(i).getMemberNo())
+                    .category(NotificationCategory.USAGE)
+                    .content("펀딩 진료비 사용 내역이 등록되었습니다")
+                    .detail(list.get(i).getTitle())
+                    .build();
+            notificationRepository.save(notification);
+        }
+
+    }
+
 
     public void sendNotificationByToken(FCMNotificationRes fcmNotificationRes) {
         log.info("============== NotificationServiceImpl - sendNotificationByToken ::: fcmNotificationRes :  {}", fcmNotificationRes);

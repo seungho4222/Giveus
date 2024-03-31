@@ -1,6 +1,7 @@
 package com.giveus.notification.repository;
 
 import com.giveus.notification.dto.response.FundingReviewListRes;
+import com.giveus.notification.dto.response.UsageHistoryListRes;
 import com.giveus.notification.entity.*;
 import com.querydsl.core.types.ExpressionUtils;
 import com.querydsl.core.types.Projections;
@@ -35,6 +36,21 @@ public class NotificationRepositoryImpl extends QuerydslRepositorySupport implem
                         ExpressionUtils.as(from(qMemberSetting)
                                 .where(qMemberSetting.member.eq(qMemberFunding.member))
                                 .select(qMemberSetting.fundingReview), "fundingReview"))).distinct()
+                .fetch();
+    }
+
+    public List<UsageHistoryListRes> getUsageHistoryList(int fundingNo) {
+        return from(qMemberFunding)
+                .rightJoin(qMemberDevice).on(qMemberFunding.member.eq(qMemberDevice.member))
+                .where(qMemberFunding.funding.fundingNo.eq(fundingNo))
+                .select(Projections.fields(UsageHistoryListRes.class,
+                        qMemberFunding.member.memberNo, qMemberFunding.funding.fundingNo, qMemberDevice.deviceToken,
+                        ExpressionUtils.as(from(qFunding)
+                                .where(qFunding.funding.eq(qMemberFunding.funding))
+                                .select(qFunding.title), "title"),
+                        ExpressionUtils.as(from(qMemberSetting)
+                                .where(qMemberSetting.member.eq(qMemberFunding.member))
+                                .select(qMemberSetting.fundingReview), "usageHistory"))).distinct()
                 .fetch();
     }
 }
