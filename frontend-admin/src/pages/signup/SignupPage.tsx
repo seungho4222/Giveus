@@ -42,7 +42,7 @@ const SignupPage = () => {
     setAddress(address)
 
     if (address) {
-      await openModal()
+      openModal()
     }
 
     try {
