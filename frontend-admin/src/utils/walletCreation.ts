@@ -35,4 +35,4 @@ console.log('생성된 개인키:', privateKey);
 console.log('생성된 공개키:', publicKey);
 console.log('생성된 주소:', address);
 
-// 아래 코드는 에러가 발생하지 않도록 수정되었습니다.
+
