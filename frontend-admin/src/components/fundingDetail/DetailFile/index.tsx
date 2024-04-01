@@ -1,5 +1,5 @@
 import * as r from '@/components/fundingReg/RegFile/RegFile.styled'
-import { fundRegRequest } from '@/apis/ocr'
+import { usageRequest } from '@/apis/ocr'
 import { useCallback, useRef, useState } from 'react'
 import { RegFileType } from '@/types/fundingType'
 
@@ -24,7 +24,7 @@ const index = ({ onOCRResult }: RegFileType) => {
     if (previewImage) {
       const base64Data = previewImage.split(',')[1]
       try {
-        const response = await fundRegRequest(base64Data)
+        const response = await usageRequest(base64Data)
         onOCRResult(response)
       } catch (err) {
         console.error('OCR 요청 실패', err)
