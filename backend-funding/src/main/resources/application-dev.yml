@@ -9,3 +9,6 @@ spring:
 
 swagger:
   server: http://localhost:8081
+
+notification:
+  fundingReview-url: http://backend-notification/api/v1/notification/fundingReview/

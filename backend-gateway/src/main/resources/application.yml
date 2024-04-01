@@ -53,7 +53,7 @@ spring:
         - id: backend-funding
           uri: lb://BACKEND-FUNDING
           predicates:
-            - Path=/api/v1/funding/**, /api/v1/review/**, /api/funding/**
+            - Path=/api/v1/funding/**, /api/v2/funding/**, /api/v1/review/**, /api/funding/**
         - id: backend-admin
           uri: lb://BACKEND-ADMIN
           predicates:
