@@ -5,8 +5,15 @@ const index = () => {
     <h.Container>
       <h.Wrap>
         <h.Copyright>
-          @ 2024, Made with ❤️ by <h.Blue>GIVEUS Team</h.Blue> &{' '}
-          <h.Blue href='https://ssafy.com'>SSAFY</h.Blue> for a better web
+          @ 2024, Made with ❤️ by{' '}
+          <h.Blue onClick={() => window.open('https://giveus.site', '_blank')}>
+            GIVEUS Team
+          </h.Blue>{' '}
+          &{' '}
+          <h.Blue onClick={() => window.open('https://ssafy.com', '_blank')}>
+            SSAFY
+          </h.Blue>{' '}
+          for a better web
         </h.Copyright>
         <h.Menu>
           <h.Text>GIVEUS</h.Text>
