@@ -2,33 +2,22 @@ package com.giveus.notification.service;
 
 
 import com.giveus.notification.common.util.FCMSender;
-import com.giveus.notification.common.util.JwtUtil;
 import com.giveus.notification.dto.request.FCMNotificationRes;
 import com.giveus.notification.dto.response.FundingReviewListRes;
-import com.giveus.notification.dto.response.MemberSettingInfoRes;
 import com.giveus.notification.dto.response.NotificationListRes;
 import com.giveus.notification.dto.response.UsageHistoryListRes;
-import com.giveus.notification.entity.Member;
-import com.giveus.notification.entity.MemberSetting;
 import com.giveus.notification.entity.Notification;
 import com.giveus.notification.entity.enums.NotificationCategory;
-import com.giveus.notification.exception.NoMemberExistException;
 import com.giveus.notification.exception.NotificationDeleteFailedException;
 import com.giveus.notification.exception.NotificationNotFoundException;
 import com.giveus.notification.exception.NotificationUpdateFailedException;
-import com.giveus.notification.repository.AuthMemberRepository;
-import com.giveus.notification.repository.MemberSettingRepository;
 import com.giveus.notification.repository.NotificationRepository;
-import com.google.firebase.messaging.FirebaseMessaging;
-import com.google.firebase.messaging.Message;
-import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -37,10 +26,7 @@ import java.util.Optional;
 public class NotificationServiceImpl implements NotificationService{
 
     private final NotificationRepository notificationRepository;
-    private final AuthMemberRepository authMemberRepository;
-    private final MemberSettingRepository memberSettingRepository;
     private final FCMSender fcmSender;
-    private final JwtUtil jwtutil;
 
     /**
      * @inheritDoc
@@ -182,57 +168,6 @@ public class NotificationServiceImpl implements NotificationService{
             fcmSender.sendNotificationByToken(fcmNotificationRes);
         }
 
-    }
-
-    /**
-     * @inheritDoc
-     */
-    @Override
-    public MemberSettingInfoRes getMemberSetting(HttpServletRequest httpServletRequest) {
-        Member member = getMemberByAccessToken(httpServletRequest);
-
-        MemberSetting memberSetting = memberSettingRepository.findMemberSettingByMember(member).get();
-
-        return MemberSettingInfoRes.from(memberSetting);
-    }
-
-    /**
-     * @inheritDoc
-     */
-    @Override
-    @Transactional
-    public MemberSettingInfoRes updateFundingReview(HttpServletRequest httpServletRequest) {
-        Member member = getMemberByAccessToken(httpServletRequest);
-
-        MemberSetting memberSetting = memberSettingRepository.findMemberSettingByMember(member).get();
-        memberSetting.changeFundingReview(); // 펀딩 후기 등록 알림 설정 변경 (true <-> false)
-        memberSettingRepository.save(memberSetting);
-
-        return MemberSettingInfoRes.from(memberSetting);
-    }
-
-    /**
-     * @inheritDoc
-     */
-    @Override
-    @Transactional
-    public MemberSettingInfoRes updateUsageHistory(HttpServletRequest httpServletRequest) {
-        Member member = getMemberByAccessToken(httpServletRequest);
-
-        MemberSetting memberSetting = memberSettingRepository.findMemberSettingByMember(member).get();
-        memberSetting.changeUsageHistory(); // 진료비 세부 내역 등록 알림 설정 변경 (true <-> false)
-        memberSettingRepository.save(memberSetting);
-
-        return MemberSettingInfoRes.from(memberSetting);
-    }
-
-    public Member getMemberByAccessToken(HttpServletRequest httpServletRequest) {
-        String accessToken = httpServletRequest.getHeader("Authorization").replace("Bearer", "");
-
-        String provider = jwtutil.getProvider(accessToken);
-        String snsKey = jwtutil.getSnsKey(accessToken);
-
-        return authMemberRepository.findByProviderAndKey(provider, snsKey).orElseThrow(NoMemberExistException::new);
     }
 
 }
