@@ -17,7 +17,7 @@ public interface FundingService {
      * @param size 조회할 갯수
      * @return 조회한 펀딩 목록
      */
-    List<FundingListRes> getFundingList(String sort, int size);
+    List<FundingListRes> getFundingList(String sort, Integer size);
 
     /**
      * 펀딩 번호로 펀딩 상세 조회하는 메서드입니다.
@@ -25,7 +25,7 @@ public interface FundingService {
      * @param fundingNo 조회할 펀딩 고유 번호
      * @return 조회한 펀딩 상세 정보
      */
-    FundingDetailRes getFunding(int fundingNo);
+    FundingDetailRes getFunding(Integer fundingNo);
 
     /**
      * 펀딩 번호로 펀딩 엔터티를 조회하는 메서드입니다.
