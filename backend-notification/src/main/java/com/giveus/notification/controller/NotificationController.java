@@ -106,17 +106,32 @@ public class NotificationController {
 
     // 알림 설정 허용 정보 가져오기
     @SwaggerApiSuccess(summary = "알림 설정 허용 정보 가져오기 (엑세스 토큰 이용)", implementation = MemberSettingInfoRes.class)
+    @ApiResponse(responseCode = "404", content = @Content(schema = @Schema(implementation = Error.class)))
     @GetMapping("/info")
-    public ResponseEntity<CommonResponseBody<MemberSettingInfoRes>> getMemberSetting (HttpServletRequest httpServletRequest) {
+    public ResponseEntity<CommonResponseBody<MemberSettingInfoRes>> getMemberSetting(HttpServletRequest httpServletRequest) {
         return ResponseEntity
                 .status(OK)
                 .body(new CommonResponseBody<>(OK, notificationService.getMemberSetting(httpServletRequest)));
     }
 
     // 펀딩 후기 등록 알림 설정 변경
+    @SwaggerApiSuccess(summary = "펀딩 후기 등록 알림 설정 변경 (엑세스 토큰 이용)", implementation = MemberSettingInfoRes.class)
+    @ApiResponse(responseCode = "500", content = @Content(schema = @Schema(implementation = Error.class)))
+    @PatchMapping("/change/fundingReview")
+    public ResponseEntity<CommonResponseBody<MemberSettingInfoRes>> updateFundingReview(HttpServletRequest httpServletRequest) {
+        return ResponseEntity
+                .status(OK)
+                .body(new CommonResponseBody<>(OK, notificationService.updateFundingReview(httpServletRequest)));
+    }
 
     // 진료비 세부 내역 등록 알림 설정 변경
-
-    //
+    @SwaggerApiSuccess(summary = "진료비 세부 내역 등록 알림 설정 변경 (엑세스 토큰 이용)", implementation = MemberSettingInfoRes.class)
+    @ApiResponse(responseCode = "500", content = @Content(schema = @Schema(implementation = Error.class)))
+    @PatchMapping("/change/usageHistory")
+    public ResponseEntity<CommonResponseBody<MemberSettingInfoRes>> updateUsageHistory(HttpServletRequest httpServletRequest) {
+        return ResponseEntity
+                .status(OK)
+                .body(new CommonResponseBody<>(OK, notificationService.updateUsageHistory(httpServletRequest)));
+    }
 
 }

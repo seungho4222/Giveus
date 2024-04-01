@@ -8,4 +8,5 @@ import java.util.Optional;
 public interface AuthMemberRepository extends JpaRepository<Member, Integer> {
     Optional<Member> findByProviderAndKey(String provider, String key);
 
+    Optional<Member> findByMemberNo(int memberNo);
 }

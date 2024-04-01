@@ -2,6 +2,7 @@ package com.giveus.notification.common.advisor;
 
 import com.giveus.notification.common.dto.CommonResponseBody;
 import com.giveus.notification.common.dto.ErrorResponseDto;
+import com.giveus.notification.exception.NoMemberExistException;
 import com.giveus.notification.exception.NotificationDeleteFailedException;
 import com.giveus.notification.exception.NotificationNotFoundException;
 import org.springframework.http.ResponseEntity;
@@ -74,7 +75,7 @@ public class RestControllerAdvisor {
      * @param e 실제 발생한 예외객체입니다.
      * @return 에러메세지를 response entity 에 담아서 전송합니다.
      */
-    @ExceptionHandler({NotificationNotFoundException.class})
+    @ExceptionHandler({NotificationNotFoundException.class, NoMemberExistException.class})
     public ResponseEntity<CommonResponseBody<String>> NotFoundException404(RuntimeException e) {
 
         return ResponseEntity

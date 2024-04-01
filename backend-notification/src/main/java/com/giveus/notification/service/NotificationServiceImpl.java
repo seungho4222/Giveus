@@ -189,22 +189,50 @@ public class NotificationServiceImpl implements NotificationService{
      */
     @Override
     public MemberSettingInfoRes getMemberSetting(HttpServletRequest httpServletRequest) {
+        Member member = getMemberByAccessToken(httpServletRequest);
+
+        MemberSetting memberSetting = memberSettingRepository.findMemberSettingByMember(member).get();
+
+        return MemberSettingInfoRes.from(memberSetting);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    @Transactional
+    public MemberSettingInfoRes updateFundingReview(HttpServletRequest httpServletRequest) {
+        Member member = getMemberByAccessToken(httpServletRequest);
+
+        MemberSetting memberSetting = memberSettingRepository.findMemberSettingByMember(member).get();
+        memberSetting.changeFundingReview(); // 펀딩 후기 등록 알림 설정 변경 (true <-> false)
+        memberSettingRepository.save(memberSetting);
+
+        return MemberSettingInfoRes.from(memberSetting);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    @Transactional
+    public MemberSettingInfoRes updateUsageHistory(HttpServletRequest httpServletRequest) {
+        Member member = getMemberByAccessToken(httpServletRequest);
+
+        MemberSetting memberSetting = memberSettingRepository.findMemberSettingByMember(member).get();
+        memberSetting.changeUsageHistory(); // 진료비 세부 내역 등록 알림 설정 변경 (true <-> false)
+        memberSettingRepository.save(memberSetting);
+
+        return MemberSettingInfoRes.from(memberSetting);
+    }
+
+    public Member getMemberByAccessToken(HttpServletRequest httpServletRequest) {
         String accessToken = httpServletRequest.getHeader("Authorization").replace("Bearer", "");
 
         String provider = jwtutil.getProvider(accessToken);
         String snsKey = jwtutil.getSnsKey(accessToken);
 
-        Member member = authMemberRepository.findByProviderAndKey(provider, snsKey).orElseThrow(NoMemberExistException::new);
-
-        MemberSetting memberSetting = memberSettingRepository.findMemberSettingByMember(member).get();
-
-        MemberSettingInfoRes memberSettingInfoRes = MemberSettingInfoRes.builder()
-                .fundingReview(memberSetting.isFundingReview())
-                .usageHistory(memberSetting.isUsageHistory())
-                .build();
-
-        return memberSettingInfoRes;
+        return authMemberRepository.findByProviderAndKey(provider, snsKey).orElseThrow(NoMemberExistException::new);
     }
-
 
 }
