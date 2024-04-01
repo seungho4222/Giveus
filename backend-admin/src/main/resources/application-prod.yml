@@ -43,3 +43,6 @@ coolsms:
   api:
     key: NCSCISQV8JIPIKOV
     secret: PYZG3FBK0ETVDRT4N45O7DHFQ0CVTDGH
+
+notification:
+  usageHistory-url: https://backend-notification/api/v1/notification/usageHistory/

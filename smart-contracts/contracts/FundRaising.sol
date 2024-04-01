@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: GPL-3.0
-pragma solidity ^0.8.0;
+pragma solidity >=0.7.0 <0.9.0;
 
 contract FundRaising {
 
@@ -55,4 +55,13 @@ contract FundRaising {
         Donation[] memory donations = fundingDonations[index];
         return (funding.goalAmount, funding.currentAmount, funding.startTime, funding.endTime, funding.title, funding.hospitalAddr, funding.hospitalName, donations);
     }
+
+    // 펀딩 목록을 조회하는 함수
+    function getAllFundings() public view returns (Funding[] memory) {
+        return fundings;
+    }
+
 }
+
+
+
