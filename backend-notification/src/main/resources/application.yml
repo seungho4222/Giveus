@@ -44,3 +44,6 @@ springdoc:
     path: /docs
   api-docs:
     path: /api/v1/notification/docs
+
+jwt:
+  secret: dyAeHubOOc8KaOfYB6XEQoEj1QzRlVgtjNL8PYs1A1tymZvvqkcEU7L1imkKHeDa

@@ -3,13 +3,16 @@ package com.giveus.notification.controller;
 import com.giveus.notification.common.dto.CommonResponseBody;
 import com.giveus.notification.common.dto.CreateSuccessDto;
 import com.giveus.notification.common.swagger.SwaggerApiSuccess;
+import com.giveus.notification.dto.response.MemberSettingInfoRes;
 import com.giveus.notification.dto.response.NotificationListRes;
 import com.giveus.notification.service.NotificationService;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import lombok.extern.slf4j.Slf4j;
@@ -100,5 +103,20 @@ public class NotificationController {
                 .status(OK)
                 .body(new CommonResponseBody<>(OK, "")); // 원래는 create는 pk 반환해야?ㅠㅠ
     }
+
+    // 알림 설정 허용 정보 가져오기
+    @SwaggerApiSuccess(summary = "알림 설정 허용 정보 가져오기 (엑세스 토큰 이용)", implementation = MemberSettingInfoRes.class)
+    @GetMapping("/info")
+    public ResponseEntity<CommonResponseBody<MemberSettingInfoRes>> getMemberSetting (HttpServletRequest httpServletRequest) {
+        return ResponseEntity
+                .status(OK)
+                .body(new CommonResponseBody<>(OK, notificationService.getMemberSetting(httpServletRequest)));
+    }
+
+    // 펀딩 후기 등록 알림 설정 변경
+
+    // 진료비 세부 내역 등록 알림 설정 변경
+
+    //
 
 }
