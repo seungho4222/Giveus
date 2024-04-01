@@ -6,3 +6,4 @@ backend-funding/build
 backend-funding/gradle
 backend/.idea
 .idea
+.env
