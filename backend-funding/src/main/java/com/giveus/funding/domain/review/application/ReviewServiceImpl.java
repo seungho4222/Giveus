@@ -1,6 +1,7 @@
 package com.giveus.funding.domain.review.application;
 
 import com.giveus.funding.domain.funding.application.FundingService;
+import com.giveus.funding.domain.funding.dao.FundingRepository;
 import com.giveus.funding.domain.funding.domain.Funding;
 import com.giveus.funding.domain.review.dao.ReviewRepository;
 import com.giveus.funding.domain.review.domain.Review;
@@ -14,8 +15,12 @@ import com.giveus.funding.global.common.response.CreateSuccessDto;
 import com.giveus.funding.global.error.exception.InvalidRequestDataException;
 import com.giveus.funding.global.util.FileUtil;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
@@ -30,7 +35,10 @@ public class ReviewServiceImpl implements ReviewService {
     private final ReviewRepository reviewRepository;
     private final FundingService fundingService;
     private final FileUtil fileUtil;
+    private final RestTemplate restTemplate;
 
+    @Value("${notification.fundingReview-url}")
+    private String fundingReviewUrl;
 
     /**
      * @inheritDoc
@@ -98,6 +106,16 @@ public class ReviewServiceImpl implements ReviewService {
             }
             throw new InvalidRequestDataException("등록 요청 데이터 형식이 맞지 않습니다.");
         }
+
+        // 펀딩에 참여한 기부자들에게 알림 전송 (microservice간 통신)
+        String requestUrl = fundingReviewUrl + funding.getFundingNo();
+
+        ResponseEntity<String> response = restTemplate.exchange(
+                requestUrl, // 요청 URL
+                HttpMethod.POST, // 요청 메서드
+                null, // 요청 본문
+                String.class // 응답 타입
+        );
 
         return new CreateSuccessDto(review.getReviewNo());
     }
