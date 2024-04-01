@@ -14,7 +14,7 @@ const index = () => {
   const resetAdminState = useResetRecoilState(adminState)
 
   const HandlerNav = (item: navType) => {
-    setCurrentNav({ name: item.name, url: item.url })
+    setCurrentNav({ name: item.name, url: item.url, label:item.label })
     if (item.name === 'Funding') {
       navigate(`/funding/${selectedFundingNo}`)
     } else if (item.name === 'Log Out') {

@@ -47,24 +47,6 @@ export const BlueButton = styled.button`
   margin-block: 30px;
 `
 
-export const OrangeButton = styled.button`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  background-color: ${colors.orange01};
-  color: #fff;
-  height: 49px;
-  border-radius: 5px;
-  font-size: 1em;
-  margin-block: 30px;
-`
-
-
-
-
-
-
 export const BirthContainer = styled.div`
   display: flex;
   flex-direction: column;
