@@ -6,15 +6,11 @@ export const Container = styled.div`
 `
 
 export const Box = styled.div`
-  width: 400px;
+  width: 200px;
   height: 300px;
   border-radius: 8px;
   border: 1px solid ${colors.gray03};
-`
-
-export const Img = styled.img`
-  width: 100%;
-  height: 100%;
+  background-color: #fff;
 `
 
 export const Wrap = styled.div`
@@ -33,6 +29,8 @@ export const Icon = styled.img`
 
 export const Text = styled.div`
   margin-top: 20px;
+  text-align: center;
+  line-height: 25px;
 `
 
 export const Input = styled.input`

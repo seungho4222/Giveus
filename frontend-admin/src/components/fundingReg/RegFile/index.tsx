@@ -6,7 +6,6 @@ import { RegFileType } from '@/types/fundingType'
 const index = ({ onOCRResult }: RegFileType) => {
   const file = false
   const fileInput = useRef<HTMLInputElement | null>(null)
-  const [isImgLoaded, setIsImgLoaded] = useState<boolean>(false)
   const [previewImage, setPreviewImage] = useState<string | null>(null)
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -37,24 +36,20 @@ const index = ({ onOCRResult }: RegFileType) => {
   return (
     <r.Container>
       <r.Box>
-        {file ? (
-          <r.Img />
-        ) : (
-          <r.Wrap onClick={() => fileInput.current?.click()}>
-            {previewImage ? (
-              <r.PreviewImage
-                src={previewImage}
-                alt="Preview"
-                onLoad={() => setIsImgLoaded(true)}
-              />
-            ) : (
-              <>
-                <r.Icon src="/icon/icon_reg_file.png" />
-                <r.Text>진단서 이미지 파일을 업로드 해주세요</r.Text>
-              </>
-            )}
-          </r.Wrap>
-        )}
+        <r.Wrap onClick={() => fileInput.current?.click()}>
+          {previewImage ? (
+            <r.PreviewImage src={previewImage} alt="Preview" />
+          ) : (
+            <>
+              <r.Icon src="/icon/icon_reg_file.png" />
+              <r.Text>
+                진단서 이미지 파일을
+                <br />
+                업로드 해주세요
+              </r.Text>
+            </>
+          )}
+        </r.Wrap>
       </r.Box>
       <r.Input
         type="file"
