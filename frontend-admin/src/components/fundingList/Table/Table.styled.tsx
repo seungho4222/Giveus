@@ -64,6 +64,11 @@ export const StatusButton = styled.button<{ $status: string }>`
   font-size: 0.8em;
   padding: 4px;
   color: #fff;
+  text-shadow:
+    -1px 0 1px ${colors.gray05},
+    0 1px 1px ${colors.gray05},
+    1px 0 1px ${colors.gray05},
+    0 -1px 1px ${colors.gray05};
 `
 
 export const PageBox = styled.div`

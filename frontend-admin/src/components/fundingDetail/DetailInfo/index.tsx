@@ -5,15 +5,16 @@ import { useRecoilValue } from 'recoil'
 const Value = (name: string, value: any) => {
   return (
     <d.Wrap>
-      <d.Text>{name}</d.Text>
-      <d.Text>{value}</d.Text>
+      <d.Text>◾ {name}</d.Text>
+      <d.Text>
+        {typeof value === 'number' ? value.toLocaleString() + '원' : value}
+      </d.Text>
     </d.Wrap>
   )
 }
 
 const index = () => {
   const fundingDetail = useRecoilValue(fundingDetailState)
-
   return (
     <d.Container>
       <d.Row>
