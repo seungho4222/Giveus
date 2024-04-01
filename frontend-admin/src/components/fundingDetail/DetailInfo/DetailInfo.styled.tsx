@@ -22,4 +22,5 @@ export const Wrap = styled.div`
 
 export const Text = styled.div`
   width: 50%;
+  white-space: nowrap;
 `

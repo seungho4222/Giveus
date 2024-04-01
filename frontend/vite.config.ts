@@ -18,7 +18,7 @@ export default (mode: string) => {
           short_name: 'GIVEUS',
           display: 'standalone',
           orientation: 'portrait',
-          start_url: '',
+          start_url: '/',
           theme_color: '#ffffff',
           icons: [
             {

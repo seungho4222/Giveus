@@ -1,6 +1,8 @@
 package com.giveus.notification.service;
 
+import com.giveus.notification.dto.response.MemberSettingInfoRes;
 import com.giveus.notification.dto.response.NotificationListRes;
+import jakarta.servlet.http.HttpServletRequest;
 
 import java.util.List;
 
@@ -47,13 +49,13 @@ public interface NotificationService {
 
     /**
      * 펀딩 번호로 펀딩 후기 등록 알림을 보내는 메서드입니다.
-     * @param fundingNo
+     * @param fundingNo 펀딩번호
      */
     void createFundingReviewNotification(int fundingNo);
 
     /**
      * 펀딩 번호로 진료비 사용 내역 등록 알림을 보내는 메서드입니다.
-     * @param fundingNo
+     * @param fundingNo 펀딩번호
      */
     void createUsageHistoryNotification(int fundingNo);
 

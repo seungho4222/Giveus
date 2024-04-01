@@ -23,17 +23,14 @@ const SignupPage = () => {
   const [address, setAddress] = useState<string>('')
 
   const signup = async () => {
-    console.log(name)
+    setIsModalOpen(true)
+
     // 지갑 생성 후 계정주소 서버에 저장
     let privateKey: string = createPrivateKey()
     const publicKey: string = getPublicKey(privateKey)
     const address: string = getEthereumAddress(publicKey)
     setPrivateKey(privateKey)
     setAddress(address)
-
-    if (address) {
-      setIsModalOpen(true)
-    }
 
     try {
       const res = await joinUser({ name, address })

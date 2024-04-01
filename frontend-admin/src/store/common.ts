@@ -12,6 +12,7 @@ export const currentNavState = atom<navType>({
   default: {
     name: 'Funding List',
     url: '/admin/funding',
+    label: '펀딩 목록'
   },
   effects_UNSTABLE: [persistAtom],
 })

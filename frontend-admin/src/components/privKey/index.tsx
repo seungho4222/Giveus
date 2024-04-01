@@ -1,6 +1,7 @@
+import { currentNavState } from '@/store/common'
 import * as p from '@components/privKey/PrivKey.styled'
-import { useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useSetRecoilState } from 'recoil'
 
 type PrivKeyProp = {
   privateKey: string
@@ -10,22 +11,20 @@ type PrivKeyProp = {
 
 const index = (props: PrivKeyProp) => {
   const { privateKey, address, onClose } = props
+  const setCurrentNav = useSetRecoilState(currentNavState)
   const navigate = useNavigate()
-  const keyRef = useRef(null)
-  const addressRef = useRef(null)
 
-  const handleCopy = (ref: React.RefObject<HTMLParagraphElement>) => {
-    if (ref.current) {
-      try {
-        navigator.clipboard.writeText(ref.current.textContent || '')
-        alert('클립보드에 복사되었습니다.')
-      } catch (error) {
-        alert('클립보드 복사에 실패하였습니다.')
-      }
+  const handleCopy = (text: string) => {
+    try {
+      navigator.clipboard.writeText(text)
+      alert('클립보드에 복사되었습니다.')
+    } catch (error) {
+      alert('클립보드 복사에 실패하였습니다.')
     }
   }
 
   const handleButtonClick = () => {
+    setCurrentNav({ name: 'Funding List', url: '/funding', label: '펀딩 목록' })
     navigate('/funding')
     onClose()
   }
@@ -38,17 +37,17 @@ const index = (props: PrivKeyProp) => {
         마세요.
       </p.Content>
       <p.Data>
-        * 개인키 :&nbsp;<p.Ref ref={keyRef}>{privateKey}</p.Ref>{' '}
+        * 개인키 :&nbsp;{privateKey}{' '}
         <p.Icon
           src="/icon/icon_copy_blue.png"
-          onClick={() => handleCopy(keyRef)}
+          onClick={() => handleCopy(privateKey)}
         />
       </p.Data>
       <p.Data>
-        * 이더리움 계정 주소 :&nbsp;<p.Ref ref={addressRef}>{address}</p.Ref>{' '}
+        * 이더리움 계정 주소 :&nbsp;{address}{' '}
         <p.Icon
           src="/icon/icon_copy_blue.png"
-          onClick={() => handleCopy(addressRef)}
+          onClick={() => handleCopy(address)}
         />
       </p.Data>
       <p.Button onClick={() => handleButtonClick()}>확인</p.Button>

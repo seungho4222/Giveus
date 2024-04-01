@@ -35,7 +35,7 @@ const index = (props: { columns: any; data: FundingType[] }) => {
   } = useTable({ columns, data }, useGlobalFilter, useSortBy, usePagination)
 
   const HandleTd = (id: number) => {
-    setCurrentNav({ name: 'Funding', url: `/funding/id` })
+    setCurrentNav({ name: 'Funding', url: `/funding/id`, label: '펀딩 상세 정보' })
     setSelectedFundingNo(id)
     navigate(`/funding/${id}`)
   }
@@ -46,13 +46,13 @@ const index = (props: { columns: any; data: FundingType[] }) => {
         return parseInt(cell.row.id) + 1
       case '펀딩상태':
         const original = cell.row.original
-        const status = !original.isRegDetail
-          ? '2차 등록 대기'
+        const status = original.isRegReview
+          ? '후기 등록'
           : original.isRegUsage
             ? '기금 사용 내역 등록'
-            : original.isRegReview
-              ? '후기 등록'
-              : '진행 중'
+            : original.isRegDetail
+              ? '진행 중'
+              : '2차 등록 대기'
         return <t.StatusButton $status={status}>{status}</t.StatusButton>
       case '목표금액':
         return cell.value.toLocaleString() + '원'

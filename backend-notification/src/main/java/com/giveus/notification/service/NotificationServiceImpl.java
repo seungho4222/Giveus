@@ -12,8 +12,6 @@ import com.giveus.notification.exception.NotificationDeleteFailedException;
 import com.giveus.notification.exception.NotificationNotFoundException;
 import com.giveus.notification.exception.NotificationUpdateFailedException;
 import com.giveus.notification.repository.NotificationRepository;
-import com.google.firebase.messaging.FirebaseMessaging;
-import com.google.firebase.messaging.Message;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -162,7 +160,6 @@ public class NotificationServiceImpl implements NotificationService{
         }
 
     }
-
 
     public void sendNotificationByToken(FCMNotificationRes fcmNotificationRes) {
         log.info("============== NotificationServiceImpl - sendNotificationByToken ::: fcmNotificationRes :  {}", fcmNotificationRes);
