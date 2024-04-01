@@ -1,6 +1,6 @@
-package com.giveus.notification.dto.response;
+package com.giveus.auth.dto.response;
 
-import com.giveus.notification.entity.MemberSetting;
+import com.giveus.auth.entity.MemberSetting;
 import lombok.*;
 
 @Getter

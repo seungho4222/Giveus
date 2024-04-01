@@ -51,5 +51,12 @@ public class MemberSetting {
         this.recommendFunding = true;
     }
 
+    public void changeUsageHistory() {
+        this.usageHistory = !this.isUsageHistory();
+    }
+
+    public void changeFundingReview() {
+        this.fundingReview = !this.isFundingReview();
+    }
 
 }

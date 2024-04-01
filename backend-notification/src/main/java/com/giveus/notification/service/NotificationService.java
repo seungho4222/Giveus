@@ -59,10 +59,4 @@ public interface NotificationService {
      */
     void createUsageHistoryNotification(int fundingNo);
 
-    /**
-     * 엑세스 토큰으로 사용자 알림 허용 정보를 가져오는 메서드입니다.
-     * @param httpServletRequest Header 안의 AccessToken
-     * @return
-     */
-    MemberSettingInfoRes getMemberSetting(HttpServletRequest httpServletRequest);
 }

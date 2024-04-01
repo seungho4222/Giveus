@@ -39,7 +39,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
         registry.addMapping("/**")
                 .allowedOrigins("http://localhost:3000", "http://localhost:5173", "http://localhost:8081", "http://localhost:8082",
                                 "https://giveus.site", "http://giveus.site:8081")
-                .allowedMethods("HEAD", "GET", "POST", "PUT", "DELETE", "OPTIONS")
+                .allowedMethods("HEAD", "GET", "PATCH", "POST", "PUT", "DELETE", "OPTIONS")
                 .allowCredentials(true) // 쿠키 인증 요청 허용
                 .maxAge(3000); // 원하는 시간만큼 pre-flight 리퀘스트를 캐싱
     }
