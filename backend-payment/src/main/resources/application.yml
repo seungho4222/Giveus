@@ -20,7 +20,7 @@ spring:
       password: ${MYSQL_PASSWORD}
   data:
     redis:
-      host: ${REDIS_HOST}
+      host: j10c206.p.ssafy.io
       port: 6379
       password: ${REDIS_PASSWORD}
       repositories:
