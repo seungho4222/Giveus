@@ -14,6 +14,7 @@ import com.giveus.funding.global.common.response.CreateSuccessDto;
 import com.giveus.funding.global.error.exception.InvalidRequestDataException;
 import com.giveus.funding.global.util.FileUtil;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -32,17 +33,11 @@ public class ReviewServiceImpl implements ReviewService {
     private final FileUtil fileUtil;
 
 
-    /**
-     * @inheritDoc
-     */
     @Override
     public List<ReviewListRes> getReviewList(int count) {
         return reviewRepository.getReviewList(count);
     }
 
-    /**
-     * @inheritDoc
-     */
     @Override
     public ReviewDetailRes getReview(int fundingNo) {
         Review review = getReviewEntity(fundingNo);
@@ -67,10 +62,8 @@ public class ReviewServiceImpl implements ReviewService {
         return findReviewEntity(fundingNo).isPresent();
     }
 
-    /**
-     * @inheritDoc
-     */
     @Override
+    @Transactional
     public CreateSuccessDto createReview(ReviewCreateReq reviewCreateReq, MultipartFile file) {
         // 펀딩마다 고유하게 갖고있는 regId로 펀딩 가져오기
         Funding funding = fundingService.getFundingEntity(reviewCreateReq.getRegId());
@@ -90,7 +83,7 @@ public class ReviewServiceImpl implements ReviewService {
         }
 
         try { // 등록 시도
-            reviewRepository.save(review);
+            createReviewEntity(review);
         } catch (Exception e) { // 등록 실패 시
             if (Objects.nonNull(file)) { // 업로드 한 파일이 있을 경우
                 // TODO 더 테스트가 필요할듯
@@ -102,6 +95,11 @@ public class ReviewServiceImpl implements ReviewService {
         return new CreateSuccessDto(review.getReviewNo());
     }
 
+    @CacheEvict(value = "fundingList", key = "'fundingNo:'+#result.funding.fundingNo")
+    public Review createReviewEntity(Review review) {
+        return reviewRepository.save(review);
+    }
+
     private static Review dtoToEntity(ReviewCreateReq reviewCreateReq, Funding funding) {
         return Review.builder()
                 .title(reviewCreateReq.getTitle())
@@ -110,9 +108,6 @@ public class ReviewServiceImpl implements ReviewService {
                 .build();
     }
 
-    /**
-     * @inheritDoc
-     */
     @Override
     public Optional<Review> findReviewEntity(int fundingNo) {
         return reviewRepository.findReviewByFunding_FundingNo(fundingNo);
