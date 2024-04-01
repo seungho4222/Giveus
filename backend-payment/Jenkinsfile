@@ -5,10 +5,8 @@ pipeline {
       DOCKERHUB_CREDENTIALS = credentials('dockerhub') // jenkins에 등록해 놓은 docker hub credentials 이름
       dockerImage = ''
       REPO = "s10-blockchain-contract-sub2/S10P22C206"
-      MYSQL_HOST = "${env.MYSQL_HOST}"
       MYSQL_USERNAME = "${env.MYSQL_USERNAME}"
       MYSQL_PASSWORD = "${env.MYSQL_PASSWORD}"
-      REDIS_HOST = "${env.REDIS_HOST}"
       REDIS_PASSWORD = "${env.REDIS_PASSWORD}"
       KAKAOPAY_CID = "${env.KAKAOPAY_CID}"
       KAKAOPAY_SECRET_KEY = "${env.KAKAOPAY_SECRET_KEY}"
@@ -98,10 +96,8 @@ pipeline {
         sh 'docker pull $repository:latest'
         sh 'docker run --name giveus_backend_payment -d -p 8084:8084 $repository \
             -e TZ=Asia/Seoul \
-            -e MYSQL_HOST=${MYSQL_HOST} \
             -e MYSQL_USERNAME = ${MYSQL_USERNAME} \
             -e MYSQL_PASSWORD = ${MYSQL_PASSWORD} \
-            -e REDIS_HOST = ${REDIS_HOST} \
             -e REDIS_PASSWORD = ${REDIS_PASSWORD} \
             -e KAKAOPAY_CID = ${KAKAOPAY_CID} \
             -e KAKAOPAY_SECRET_KEY = ${KAKAOPAY_SECRET_KEY} \
