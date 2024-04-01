@@ -16,13 +16,13 @@ spring:
   datasource:
     hikari:
       connection-test-query: select 1
-      username: ${MYSQL_USERNAME}
-      password: ${MYSQL_PASSWORD}
+      username: giveus
+      password: giveus2024~!
   data:
     redis:
       host: j10c206.p.ssafy.io
       port: 6379
-      password: ${REDIS_PASSWORD}
+      password: giveus2024~!
       repositories:
         enabled: false
 
@@ -56,7 +56,7 @@ springdoc:
 
 pay:
   kakao:
-    cid: ${KAKAOPAY_CID}
-    secret-key: ${KAKAOPAY_SECRET_KEY}
+    cid: TC0ONETIME
+    secret-key: DEV8BED019BC61B73FE2595FB95EC2E08D8A824D
   toss:
-    secret-key: ${TOSSPAYMENTS_SECRET_KEY}
+    secret-key: test_sk_yL0qZ4G1VOdvqNwkoXKoroWb2MQY
