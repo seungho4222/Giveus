@@ -8,7 +8,7 @@ export const fundingState = atom<FundingType[]>({
 
 export const selectedFundingNoState = atom<number>({
   key: 'selectedFundingNoState',
-  default: 1,
+  default: 0,
 })
 
 export const fundingDetailState = atom<FundingDetailType>({
