@@ -3,7 +3,7 @@ import * as d from '@/components/fundingDetail/DetailReg/DetailReg.styled'
 import { fundingDetailState } from '@/store/funding'
 import { useState } from 'react'
 import { useRecoilValue } from 'recoil'
-import UsageReg from '../UsageReg'
+import UsageReg from '@components/fundingDetail/UsageReg'
 
 const index = () => {
   const fundingDetail = useRecoilValue(fundingDetailState)
@@ -63,11 +63,9 @@ const index = () => {
         </d.Wrap>
       </d.Container>
       {open && (
-        <Modal
-          name={'기금 사용 내역 등록'}
-          children={<UsageReg value={open} setValue={setOpen} />}
-          onClose={() => setOpen(false)}
-        />
+        <Modal name="기금 사용 내역 등록" onClose={() => setOpen(false)}>
+          <UsageReg value={open} setValue={setOpen} />
+        </Modal>
       )}
     </>
   )
