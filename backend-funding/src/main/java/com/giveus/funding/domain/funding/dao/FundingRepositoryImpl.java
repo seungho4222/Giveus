@@ -1,6 +1,5 @@
 package com.giveus.funding.domain.funding.dao;
 
-import com.giveus.funding.domain.donation.domain.QMember;
 import com.giveus.funding.domain.donation.domain.QMemberFunding;
 import com.giveus.funding.domain.funding.domain.Funding;
 import com.giveus.funding.domain.funding.domain.QFunding;
@@ -8,6 +7,7 @@ import com.giveus.funding.domain.funding.domain.QFundingDetail;
 import com.giveus.funding.domain.funding.domain.QFundingStatusHistory;
 import com.giveus.funding.domain.funding.dto.FundingDetailRes;
 import com.giveus.funding.domain.funding.dto.FundingListRes;
+import com.giveus.funding.domain.review.domain.QReview;
 import com.querydsl.core.types.ExpressionUtils;
 import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.JPQLQuery;
@@ -26,7 +26,7 @@ public class FundingRepositoryImpl extends QuerydslRepositorySupport implements 
     private static final QFunding qFunding = QFunding.funding;
     private static final QFundingDetail qFundingDetail = QFundingDetail.fundingDetail;
     private static final QFundingStatusHistory qFundingStatusHistory = QFundingStatusHistory.fundingStatusHistory;
-    private static final QMember qMember = QMember.member;
+    private static final QReview qReview = QReview.review;
     private static final QMemberFunding qMemberFunding = QMemberFunding.memberFunding;
 
     public FundingRepositoryImpl() {
@@ -46,6 +46,7 @@ public class FundingRepositoryImpl extends QuerydslRepositorySupport implements 
         QFundingStatusHistory qFundingStatusHistory2 = QFundingStatusHistory.fundingStatusHistory;
         return Optional.ofNullable(from(qFundingDetail)
                 .leftJoin(qFundingDetail.funding, qFunding)
+                .leftJoin(qReview).on(qFunding.eq(qReview.funding))
                 .select(Projections.fields(FundingDetailRes.class,
                         qFundingDetail.thumbnailUrl, qFunding.fundingNo, qFunding.title,
                         ExpressionUtils.as(from(qFundingStatusHistory)
@@ -53,12 +54,17 @@ public class FundingRepositoryImpl extends QuerydslRepositorySupport implements 
                                 .where(qFundingStatusHistory.fundingStatusHistoryNo
                                         .eq(from(qFundingStatusHistory2)
                                                 .select(qFundingStatusHistory2.fundingStatusHistoryNo.max())
-                                                .where(qFundingStatusHistory2.funding.fundingNo.eq(fundingNo)))), "status")
+                                                .where(qFundingStatusHistory2.funding.fundingNo.eq(fundingNo))
+                                        )
+                                ), "status"
+                        )
                         , qFunding.targetAmount, qFunding.startDate, qFunding.endDate,
                         ExpressionUtils.as(from(qMemberFunding)
                                 .select(qMemberFunding.amount.sum())
                                 .where(qMemberFunding.funding.fundingNo.eq(fundingNo)), "totalAmount")
-                        , qFunding.createdAt, qFunding.birth, qFundingDetail.content))
+                        , qFunding.createdAt, qFunding.birth, qFundingDetail.content,
+                        ExpressionUtils.as(ExpressionUtils.isNotNull(qReview.reviewNo), "isRegReview"))
+                )
                 .where(qFundingDetail.funding.fundingNo.eq(fundingNo)).fetchOne());
     }
 

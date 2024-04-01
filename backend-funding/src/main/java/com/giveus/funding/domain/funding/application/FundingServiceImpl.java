@@ -34,9 +34,9 @@ public class FundingServiceImpl implements FundingService {
      * @inheritDoc
      */
     @Override
-    public List<FundingListRes> getFundingList(String sort, int size) {
+    public List<FundingListRes> getFundingList(String sort, Integer size) {
 
-        if (sort == null) {
+        if (sort == null || size==null) {
             return fundingRepository.getFundingList();
         }
         return fundingRepository.getFundingListSortByEndDate(size);
@@ -47,7 +47,7 @@ public class FundingServiceImpl implements FundingService {
      * @inheritDoc
      */
     @Override
-    public FundingDetailRes getFunding(int fundingNo) {
+    public FundingDetailRes getFunding(Integer fundingNo) {
         return fundingRepository.getFunding(fundingNo)
                 .orElseThrow(FundingNotFoundException::new);
     }
