@@ -1,20 +1,26 @@
 import * as h from '@components/home/HomeNav/HomeNav.styled'
 import { navbarList } from '@/assets/data/navbarList'
 import { useNavigate } from 'react-router'
-import { useRecoilState, useRecoilValue } from 'recoil'
+import { useRecoilState, useRecoilValue, useResetRecoilState } from 'recoil'
 import { currentNavState } from '@/store/common'
 import { navType } from '@/types/navType'
 import { selectedFundingNoState } from '@/store/funding'
+import { adminState } from '@/store/user'
 
 const index = () => {
   const navigate = useNavigate()
   const [currentNav, setCurrentNav] = useRecoilState(currentNavState)
   const selectedFundingNo = useRecoilValue(selectedFundingNoState)
+  const resetAdminState = useResetRecoilState(adminState)
 
   const HandlerNav = (item: navType) => {
     setCurrentNav({ name: item.name, url: item.url })
     if (item.name === 'Funding') {
       navigate(`/funding/${selectedFundingNo}`)
+    } else if (item.name === 'Log Out') {
+      resetAdminState()
+      alert('로그아웃 되었습니다.')
+      navigate('/')
     } else {
       navigate(item.url)
     }
@@ -22,7 +28,9 @@ const index = () => {
 
   return (
     <h.Container>
-      <h.Logo><img src='/img/img_logo.png'/></h.Logo>
+      <h.Logo>
+        <img src="/img/img_logo.png" />
+      </h.Logo>
       {navbarList.map((item, idx) => (
         <div key={item.name}>
           {idx === 3 ? <h.Category>ACCOUNT PAGES</h.Category> : ''}

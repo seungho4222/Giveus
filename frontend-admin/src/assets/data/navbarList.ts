@@ -24,7 +24,7 @@ export const navbarList = [
     url: '/mypage',
   },
   {
-    name: 'Sign Out',
+    name: 'Log Out',
     imgSrc: '/icon/icon_signout_blue.png',
     activeImgSrc: '/icon/icon_signout_white.png',
     url: '/',

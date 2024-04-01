@@ -1,5 +1,6 @@
 import { fetchFundingDetail } from '@/apis/funding'
 import DetailInfo from '@/components/fundingDetail/DetailInfo'
+import DetailNoData from '@/components/fundingDetail/DetailNoData'
 import DetailReg from '@/components/fundingDetail/DetailReg'
 import { fundingDetailState, selectedFundingNoState } from '@/store/funding'
 import * as f from '@pages/home/fundingDetail/FundingDetailPage.styled'
@@ -13,7 +14,7 @@ const FundingDetailPage = () => {
 
   const { data, isLoading } = useQuery({
     queryKey: ['FundingDetail'],
-    queryFn: () => fetchFundingDetail(selectedFundingNo),
+    queryFn: () => selectedFundingNo && fetchFundingDetail(selectedFundingNo),
   })
 
   useEffect(() => {
@@ -22,8 +23,14 @@ const FundingDetailPage = () => {
 
   return (
     <f.Container>
-      <DetailReg />
-      <DetailInfo />
+      {!selectedFundingNo ? (
+        <DetailNoData />
+      ) : (
+        <>
+          <DetailReg />
+          <DetailInfo />
+        </>
+      )}
     </f.Container>
   )
 }
