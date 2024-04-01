@@ -35,7 +35,12 @@
 // const privateKeyProvider = new PrivateKeyProvider(privateKeys, "http://20.196.209.2:8545");
 
 const HDWalletProvider = require('@truffle/hdwallet-provider');
-const privateKey = 'ccde9fd1e91c71a46ebca973189dec872dfc408852dd2078244b7e5c61b5990c'
+const privateKey = 'ecd93b5f2a7dacb4347485119f6c9046c063067b40cff68b036c2a40b75b58f4'
+
+const infuraProjectId = '918cea974e6a4356ac777cdde8f2c8a0'
+const rpcEndpoint = `https://sepolia.infura.io/v3/${infuraProjectId}`; // SepoliaETH 네트워크의 RPC 엔드포인트
+
+
 
 module.exports = {
   /**
@@ -72,12 +77,17 @@ module.exports = {
     //  port: 7545,            // Standard Ethereum port (default: none)
     //  network_id: "*",       // Any network (default: none)
     // },
-    //
-    // goerli: {
-    //   provider: () => new HDWalletProvider(mnemonic, `https://goerli.infura.io/v3/${infuraProjectId}`),
-    //   network_id: 5,       // Goerli's id
-    //   chain_id: 5
-    // }
+    
+    // SepoliaETH 네트워크 배포
+    sepolia: {
+      provider: () => new HDWalletProvider(privateKey, rpcEndpoint),
+      network_id: 11155111, // 네트워크 아이디 (원하는 값을 설정해야 함)
+      gas: 3000000,      // 가스 한도 (원하는 값을 설정해야 함)
+      gasPrice: 5000000000, // 가스 가격 (원하는 값을 설정해야 함)
+      confirmations: 2,    // 블록 확정 수
+      timeoutBlocks: 200,  // 블록 생성 제한 시간
+      skipDryRun: true     // 건너뛰기 옵션
+    }
   },
 
   // Set default mocha options here, use special reporters etc.
