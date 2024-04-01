@@ -65,7 +65,7 @@ const DetailMain = () => {
       )}
       {reviewOpen && (
         <Modal name="후기" onClose={() => setReviewOpen(false)}>
-          <Review />
+          <Review fundingNo={fundingDetail.fundingNo}/>
         </Modal>
       )}
     </d.Container>

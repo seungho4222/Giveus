@@ -1,15 +1,13 @@
 import { fetchReview } from '@/apis/review'
 import * as r from '@/components/funding/Review/Review.styled'
-import { fundingDetailState } from '@/stores/funding'
 import { useQuery } from '@tanstack/react-query'
-import { useRecoilValue } from 'recoil'
 
-const Index = () => {
-  const fundingDetail = useRecoilValue(fundingDetailState)
+const Index = (props: { fundingNo: number }) => {
+  const { fundingNo } = props
 
   const { data, isLoading } = useQuery({
     queryKey: ['fetchReview'],
-    queryFn: () => fetchReview(fundingDetail.fundingNo),
+    queryFn: () => fetchReview(fundingNo),
   })
 
   return (
