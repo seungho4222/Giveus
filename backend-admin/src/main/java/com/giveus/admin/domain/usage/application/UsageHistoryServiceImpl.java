@@ -9,8 +9,12 @@ import com.giveus.admin.domain.usage.dao.UsageHistoryRepository;
 import com.giveus.admin.domain.funding.application.FundingService;
 import com.giveus.admin.infra.sms.CoolSmsClient;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 
@@ -21,6 +25,10 @@ public class UsageHistoryServiceImpl implements UsageHistoryService {
     private final UsageHistoryRepository usageHistoryRepository;
     private final FundingService fundingService;
     private final CoolSmsClient coolSmsClient;
+    private final RestTemplate restTemplate;
+
+    @Value("${notification.usageHistory-url}")
+    private String usageHistoryUrl;
 
     @Override
     @Transactional
@@ -36,6 +44,16 @@ public class UsageHistoryServiceImpl implements UsageHistoryService {
         // 펀딩 사용 내역 등록
         UsageHistory usageHistory = UsageHistoryTransfer.dtoToEntity(funding, req);
         UsageHistory savedUsageHistory = usageHistoryRepository.save(usageHistory);
+
+        // 펀딩에 참여한 기부자들에게 알림 전송 (microservice간 통신)
+        String requestUrl = usageHistoryUrl + funding.getFundingNo();
+
+        ResponseEntity<String> response = restTemplate.exchange(
+                requestUrl, // 요청 URL
+                HttpMethod.POST, // 요청 메서드
+                null, // 요청 본문
+                String.class // 응답 타입
+        );
 
         // 최초 등록일 시에 문자 전송
         if (getUsageHistoryList(req.getFundingNo()).isEmpty()) {
