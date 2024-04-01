@@ -103,8 +103,8 @@ pipeline {
             -e MYSQL_PASSWORD = ${MYSQL_PASSWORD} \
             -e REDIS_HOST = ${REDIS_HOST} \
             -e REDIS_PASSWORD = ${REDIS_PASSWORD} \
-            -e KAKAOPAY_CID = ${KAKAOPAY_CID}
-            -e KAKAOPAY_SECRET_KEY = ${KAKAOPAY_SECRET_KEY}
+            -e KAKAOPAY_CID = ${KAKAOPAY_CID} \
+            -e KAKAOPAY_SECRET_KEY = ${KAKAOPAY_SECRET_KEY} \
             -e TOSSPAYMENTS_SECRET_KEY = ${TOSSPAYMENTS_SECRET_KEY}'
       }
     }
