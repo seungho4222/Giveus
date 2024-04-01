@@ -12,7 +12,7 @@ const index = () => {
           <h.Pages>Pages</h.Pages>&nbsp;/&nbsp;
           <h.CurrentPage>{currentNav.name}</h.CurrentPage>
         </h.SubWrap>
-        <h.TitlePage>{currentNav.name}</h.TitlePage>
+        <h.TitlePage>{currentNav.label}</h.TitlePage>
       </h.LeftWrap>
       <h.RightWrap>
         <h.Icon src="/icon/icon_profile_gray.png" />

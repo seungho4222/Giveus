@@ -82,7 +82,11 @@ const FundingRegPage = () => {
     mutationFn: createFirstReg,
     onSuccess(result) {
       console.log('등록 성공', result)
-      setCurrentNav({ name: 'Funding', url: `/admin/funding/id` })
+      setCurrentNav({
+        name: 'Funding',
+        url: `/admin/funding/id`,
+        label: '펀딩 상세 정보',
+      })
       setSelectedFundingNo(result.id)
       navigate(`/admin/funding/${result.id}`)
     },
@@ -96,7 +100,7 @@ const FundingRegPage = () => {
     const age = calculateAge(regData.birth)
     const gender = regData.gender === 'M' ? '남' : '여'
 
-    // 여기서 gender -> 1,3 -> M 수정 
+    // 여기서 gender -> 1,3 -> M 수정
     // 970227 -> 19970227
 
     mutate({
@@ -222,9 +226,6 @@ const FundingRegPage = () => {
         <f.BlueButton onClick={() => handleCreateFirstReg()}>
           1차 등록
         </f.BlueButton>
-        <f.OrangeButton onClick={() => console.log(regData)}>
-          테스트
-        </f.OrangeButton>
       </f.Wrap>
     </f.Container>
   )

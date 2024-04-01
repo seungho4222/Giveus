@@ -24,7 +24,7 @@ const index = (props: PrivKeyProp) => {
   }
 
   const handleButtonClick = () => {
-    setCurrentNav({ name: 'Funding List', url: '/funding' })
+    setCurrentNav({ name: 'Funding List', url: '/funding', label: '펀딩 목록' })
     navigate('/funding')
     onClose()
   }

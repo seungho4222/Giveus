@@ -1,6 +1,5 @@
 import * as o from '@/components/fundingReg/OCRInput/OCRInput.styled'
 import { RegInputType } from '@/types/fundingType'
-import exp from 'constants'
 
 const index = (props: RegInputType) => {
   const { id, label, placeholder, value, setValue } = props
