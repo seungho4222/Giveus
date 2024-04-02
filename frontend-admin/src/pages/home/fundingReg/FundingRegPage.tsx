@@ -43,7 +43,7 @@ const FundingRegPage = () => {
     // 상기 데이터로 자동 입력
     title: '',
   })
-
+  
   const handleOCRResult = (results: OCRResult[]) => {
     if (results) {
       const updatedRegData = { ...regData }
@@ -114,7 +114,7 @@ const FundingRegPage = () => {
       startTime: regData.startDate,
       endTime: regData.endDate,
       title: `${regData.diseaseName} ${age}세(${gender}) 펀딩`,
-      hospitalName: '싸피병원',
+      hospitalName: admin.name,
     })
   }
 
