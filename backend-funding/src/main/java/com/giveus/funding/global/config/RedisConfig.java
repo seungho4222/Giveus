@@ -48,20 +48,9 @@ public class RedisConfig {
         redisTemplate.setEnableTransactionSupport(true);
         redisTemplate.setHashKeySerializer(new StringRedisSerializer());
         redisTemplate.setHashValueSerializer(new GenericJackson2JsonRedisSerializer());
-//        redisTemplate.setHashValueSerializer(new GenericJackson2JsonRedisSerializer(objectMapper()));
 
         return redisTemplate;
     }
 
-//    public ObjectMapper objectMapper() {
-//        PolymorphicTypeValidator typeValidator = BasicPolymorphicTypeValidator
-//                .builder()
-//                .allowIfSubType(Object.class)
-//                .build();
-//        ObjectMapper mapper = new ObjectMapper();
-//        mapper.registerModules(new JavaTimeModule(), new Jdk8Module());
-//        mapper.activateDefaultTyping(typeValidator, ObjectMapper.DefaultTyping.EVERYTHING, JsonTypeInfo.As.PROPERTY);
-//        return mapper;
-//    }
 
 }

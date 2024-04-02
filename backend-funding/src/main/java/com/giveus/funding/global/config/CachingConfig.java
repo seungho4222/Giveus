@@ -1,5 +1,10 @@
 package com.giveus.funding.global.config;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.jsontype.BasicPolymorphicTypeValidator;
+import com.fasterxml.jackson.databind.jsontype.PolymorphicTypeValidator;
+import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import lombok.RequiredArgsConstructor;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.EnableCaching;
@@ -31,7 +36,7 @@ public class CachingConfig {
                         .serializeKeysWith(RedisSerializationContext.SerializationPair.fromSerializer(
                                 new StringRedisSerializer())) // 캐시 데이터의 키를 직렬화 시 문자열로 변환하여 저장
                         .serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(
-                                new GenericJackson2JsonRedisSerializer())); // 캐시 데이터 값 직렬화 시 JSON 메시지로 저장
+                                new GenericJackson2JsonRedisSerializer(objectMapper()))); // 캐시 데이터 값 직렬화 시 JSON 메시지로 저장
 
         Map<String, RedisCacheConfiguration> configurations = new HashMap<>();
         configurations.put("fundingList", defaultConfig.entryTtl(Duration.ofDays(7)));
@@ -43,14 +48,15 @@ public class CachingConfig {
                 .build();
     }
 
-//    public ObjectMapper objectMapper() {
-//        PolymorphicTypeValidator typeValidator = BasicPolymorphicTypeValidator
-//                .builder()
-//                .allowIfSubType(Object.class)
-//                .build();
-//        ObjectMapper mapper = new ObjectMapper();
-//        mapper.registerModules(new JavaTimeModule(), new Jdk8Module());
-//        mapper.activateDefaultTyping(typeValidator, ObjectMapper.DefaultTyping.NON_FINAL);
-//        return mapper;
-//    }
+    public ObjectMapper objectMapper() {
+        PolymorphicTypeValidator typeValidator = BasicPolymorphicTypeValidator
+                .builder()
+                .allowIfSubType(Object.class)
+                .build();
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.registerModules(new JavaTimeModule(), new Jdk8Module());
+        mapper.activateDefaultTyping(typeValidator, ObjectMapper.DefaultTyping.EVERYTHING);
+        return mapper;
+    }
+
 }
