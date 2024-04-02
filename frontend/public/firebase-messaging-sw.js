@@ -15,37 +15,37 @@ self.addEventListener('activate', function (e) {
   console.log('fcm service worker가 실행되었습니다.')
 })
 
-const firebaseConfig = {
-  apiKey: 'AIzaSyDYateUNVpKGxzX6cDWZMFNpgvL88F5X4w',
-  authDomain: 'give-us-7b772.firebaseapp.com',
-  projectId: 'give-us-7b772',
-  storageBucket: 'give-us-7b772.appspot.com',
-  messagingSenderId: '275937553728',
-  appId: '1:275937553728:web:d36e5c4d883d18ffb91ea5',
-  measurementId: 'G-DMS5D5QMFN',
-}
+// const firebaseConfig = {
+//   apiKey: 'AIzaSyDYateUNVpKGxzX6cDWZMFNpgvL88F5X4w',
+//   authDomain: 'give-us-7b772.firebaseapp.com',
+//   projectId: 'give-us-7b772',
+//   storageBucket: 'give-us-7b772.appspot.com',
+//   messagingSenderId: '275937553728',
+//   appId: '1:275937553728:web:d36e5c4d883d18ffb91ea5',
+//   measurementId: 'G-DMS5D5QMFN',
+// }
 
-firebase.initializeApp(firebaseConfig)
+// firebase.initializeApp(firebaseConfig)
 
-const messaging = firebase.messaging()
+// const messaging = firebase.messaging()
 
 // messaging.onBackgroundMessage(payload => {
 //   const notificationTitle = payload.notification.title
 //   const notificationOptions = {
-//     body: payload.body,
-//     icon: payload.icon,
+//     body: payload.notification.body,
+//     icon: payload.notification.icon,
 //   }
 //   self.registration.showNotification(notificationTitle, notificationOptions)
 // })
 
 self.addEventListener('push', function (e) {
-  console.log('push: ', e.data.json())
   const notification = e.data.json().notification
+  if (!notification) return
 
   const notificationTitle = notification.title
   const notificationOptions = {
     body: notification.body,
-    icon: resultData.icon,
+    icon: notification.icon,
     tag: notification.tag,
   }
   self.registration.showNotification(notificationTitle, notificationOptions)
