@@ -29,25 +29,24 @@ firebase.initializeApp(firebaseConfig)
 
 const messaging = firebase.messaging()
 
-messaging.onBackgroundMessage(payload => {
-  const notificationTitle = payload.notification.title
-  const notificationOptions = {
-    body: payload.notificationbody,
-    icon: payload.icon,
-  }
-  self.registration.showNotification(notificationTitle, notificationOptions)
-})
-
-// self.addEventListener('push', function (e) {
-//   console.log('push: ', e.data.json())
-//   const notification = e.data.json().notification
-
-//   const notificationTitle = notification.title
+// messaging.onBackgroundMessage(payload => {
+//   const notificationTitle = payload.notification.title
 //   const notificationOptions = {
-//     body: notification.body,
-//     // icon: resultData.image,
-//     icon: '/icon1.png',
-//     tag: notification.tag,
+//     body: payload.body,
+//     icon: payload.icon,
 //   }
 //   self.registration.showNotification(notificationTitle, notificationOptions)
 // })
+
+self.addEventListener('push', function (e) {
+  console.log('push: ', e.data.json())
+  const notification = e.data.json().notification
+
+  const notificationTitle = notification.title
+  const notificationOptions = {
+    body: notification.body,
+    icon: resultData.icon,
+    tag: notification.tag,
+  }
+  self.registration.showNotification(notificationTitle, notificationOptions)
+})
