@@ -37,7 +37,7 @@ const Index = () => {
     mutationFn: kakaoPayDonateReady,
     onSuccess(result) {
       console.log('등록 성공', result)
-      window.location.href = result.data.next_redirect_pc_url
+      window.location.href = result.data.next_redirect_app_url
     },
     onError(error) {
       console.error('등록 실패:', error)
