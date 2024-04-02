@@ -25,7 +25,7 @@ public interface FileClient {
      * @param fileName   파일명
      * @return url
      */
-    String getFileUrl(Folder folderName, String fileName);
+    String getFileUrl(String folderName, String fileName);
 
     /**
      * 파일을 삭제하는 메서드입니다.
@@ -33,5 +33,5 @@ public interface FileClient {
      * @param objectName 삭제 할 오브젝트명
      * @param folderName 삭제 할 버킷 폴더명
      */
-    void deleteFile(String objectName, Folder folderName);
+    void deleteFile(String objectName, String folderName);
 }
