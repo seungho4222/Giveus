@@ -3,6 +3,7 @@ import { fetchUserInfo, loginSuccess } from '@apis/auth'
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useSetRecoilState } from 'recoil'
+import { handleAllowNotification } from '@/services/notificationPermission'
 
 const LoginRedirectHandler = () => {
   const setUserState = useSetRecoilState(userState)
@@ -34,6 +35,7 @@ const LoginRedirectHandler = () => {
           .then(() =>
             fetchUserInfo().then(res => {
               setUserState(res.data.data)
+              handleAllowNotification(res.data.data.memberNo)
               navigate('/')
             }),
           )
