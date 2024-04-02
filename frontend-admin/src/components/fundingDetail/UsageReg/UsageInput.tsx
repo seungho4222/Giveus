@@ -9,7 +9,9 @@ const index = (props: UsageInputType) => {
     const updatedValue =
       id === 'amount'
         ? Number(e.target.value.split(',').join(''))
-        : e.target.value
+        : id === 'count'
+          ? Number(e.target.value)
+          : e.target.value
     setValue(prevData => {
       const updatedData = [...prevData]
       updatedData[idx] = {

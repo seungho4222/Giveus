@@ -113,3 +113,5 @@ export type UsageRegType = {
   regData: UsageDataType
   setRegData: Dispatch<SetStateAction<UsageDataType[]>>
 }
+
+export type BlockUSageType = Array<[string, string, string, number, number]>

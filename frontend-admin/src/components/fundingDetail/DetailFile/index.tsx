@@ -1,4 +1,4 @@
-import * as r from '@/components/fundingReg/RegFile/RegFile.styled'
+import * as d from '@/components/fundingDetail/DetailFile/DetailFile.styled'
 import { usageRequest } from '@/apis/ocr'
 import { useCallback, useRef, useState } from 'react'
 import { RegFileType } from '@/types/fundingType'
@@ -33,34 +33,34 @@ const index = ({ onOCRResult }: RegFileType) => {
   }, [previewImage, onOCRResult])
 
   return (
-    <r.Container>
-      <r.Box>
-        <r.Wrap onClick={() => fileInput.current?.click()}>
+    <d.Container>
+      <d.Box>
+        <d.Wrap onClick={() => fileInput.current?.click()}>
           {previewImage ? (
-            <r.PreviewImage src={previewImage} alt="Preview" />
+            <d.PreviewImage src={previewImage} alt="Preview" />
           ) : (
             <>
-              <r.Icon src="/icon/icon_reg_file.png" />
-              <r.Text>진단서 이미지 파일을 업로드 해주세요</r.Text>
+              <d.Icon src="/icon/icon_reg_file.png" />
+              <d.Text>진단서 이미지 파일을 업로드 해주세요</d.Text>
             </>
           )}
-        </r.Wrap>
-      </r.Box>
-      <r.Input
+        </d.Wrap>
+      </d.Box>
+      <d.Input
         type="file"
         accept="image/*"
         ref={fileInput}
         onChange={handleFileChange}
       />
-      <r.BtnLayout>
-        <r.BlueButton onClick={() => fileInput.current?.click()}>
+      <d.BtnLayout>
+        <d.BlueButton onClick={() => fileInput.current?.click()}>
           파일 선택
-        </r.BlueButton>
-        <r.OrangeButton onClick={onRequestOCR} disabled={false}>
+        </d.BlueButton>
+        <d.OrangeButton onClick={onRequestOCR} disabled={false}>
           OCR 검사
-        </r.OrangeButton>
-      </r.BtnLayout>
-    </r.Container>
+        </d.OrangeButton>
+      </d.BtnLayout>
+    </d.Container>
   )
 }
 

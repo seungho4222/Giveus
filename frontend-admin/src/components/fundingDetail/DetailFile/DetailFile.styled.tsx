@@ -2,6 +2,7 @@ import { colors } from '@/styles/theme'
 import styled from 'styled-components'
 
 export const Container = styled.div`
+  display: flex;
   margin-block: 30px;
 `
 
@@ -44,26 +45,22 @@ export const BlueButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 45%;
   background-color: #48cef7;
   color: #fff;
-  height: 49px;
   border-radius: 5px;
   font-size: 1em;
-  margin-block: 10px;
+  padding: 10px 20px;
 `
 
 export const OrangeButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 45%;
   background-color: #ffb028;
   color: #fff;
-  height: 49px;
   border-radius: 5px;
   font-size: 1em;
-  margin-block: 10px;
+  padding: 10px 20px;
 `
 
 export const PreviewImage = styled.img`
@@ -76,5 +73,8 @@ export const PreviewImage = styled.img`
 
 export const BtnLayout = styled.div`
   display: flex;
-  gap: 10%;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 30px;
+  gap: 20px;
 `

@@ -1,6 +1,6 @@
 import * as u from '@/components/fundingDetail/UsageReg/UsageReg.styled'
 import { useState } from 'react'
-import { UsageDataType } from '@/types/fundingType'
+import { BlockUSageType, UsageDataType } from '@/types/fundingType'
 import { useRecoilValue } from 'recoil'
 import { selectedFundingNoState } from '@/store/funding'
 import { useMutation } from '@tanstack/react-query'
@@ -24,7 +24,7 @@ const Index = (props: BooleanStateType) => {
       count: 0,
     },
   ])
-  let blockExpense: any = []
+  let blockExpense: BlockUSageType = []
 
   const { mutate } = useMutation({
     mutationKey: ['createFundingUsage'],
@@ -40,7 +40,6 @@ const Index = (props: BooleanStateType) => {
 
   const handleOCRResult = (results: OCRResult[]) => {
     if (results) {
-      console.log('결과 받았어', results)
       let tmpResults: UsageDataType[] = []
       results.map((item, idx) => {
         const tmpItem = item.inferText.split(' ')
@@ -51,24 +50,29 @@ const Index = (props: BooleanStateType) => {
           amount: Number(tmpItem[4].split(',').join('')),
           count: Number(tmpItem[3]),
         }
-        blockExpense.push(tmpItem)
-        // blockExpense[3] = Number(blockExpense[3])
-        // blockExpense[4] = Number(blockExpense[4].split(',').join(''))
+        blockExpense.push([
+          tmpItem[0],
+          tmpItem[1],
+          tmpItem[2],
+          Number(tmpItem[3]),
+          Number(tmpItem[4].split(',').join('')),
+        ])
       })
       setRegData(tmpResults)
-      console.log(blockExpense)
     }
   }
 
   const handleCreateFundingUsage = async () => {
     try {
-      regData.map(item => {
+      regData.forEach(item => {
         if (item.category) mutate(item)
       })
-      alert('기금 사용 내역을 성공적으로 등록하였습니다.')
+      // alert('기금 사용 내역을 성공적으로 등록하였습니다.')
     } catch {
       alert('기금 사용 내역 등록에 실패하였습니다.내용을 다시 확인해주세요.')
+      return
     }
+    // addExpense(blockExpense)
   }
 
   const handlePlusRegData = () => {

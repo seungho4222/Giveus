@@ -1,4 +1,4 @@
-import * as r from '@/components/fundingDetail/DetailFile/DetailFile.styled'
+import * as r from '@/components/fundingReg/RegFile/RegFile.styled'
 import { fundRegRequest } from '@/apis/ocr'
 import { useCallback, useRef, useState } from 'react'
 import { RegFileType } from '@/types/fundingType'

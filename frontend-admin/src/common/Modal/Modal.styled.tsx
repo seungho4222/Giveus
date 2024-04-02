@@ -31,7 +31,7 @@ export const Wrap = styled.div`
   background-color: #fff;
   border-radius: 12px;
   width: 70%;
-  height: 70%;
+  height: 80%;
   overflow-y: scroll;
   &::-webkit-scrollbar {
     display: none; /* 크롬, 사파리, 오페라, 엣지 */
