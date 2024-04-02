@@ -27,10 +27,20 @@ export const OCRSection = styled.div`
   gap: 30px;
 `
 
-export const OCRBox = styled.div`
+export const OCRColWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-block: 30px 0px;
+  gap: 10px;
+`
+
+export const Title = styled.div`
+  font-weight: 600;
+`
+
+export const Box = styled.div`
   display: flex;
   gap: 30px;
-  margin-block: 30px;
   padding: 0 30px 20px 30px;
   background-color: #fff;
   border-radius: 8px;
@@ -62,14 +72,24 @@ export const BirthWrap = styled.div`
 `
 
 export const SelfSection = styled.div`
-  background-color: #fff;
-  border-radius: 8px;
-  border: 1px solid ${colors.gray03};
+  display: flex;
+  width: 100%;
+`
+
+export const SelfColWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding-inline: 2%;
+  margin: 30px auto;
+  gap: 10px;
 `
 
 export const Wrap = styled.div`
-  width: 400px;
-  height: 300px;
+  display: flex;
+  align-items: center;
+  margin: auto;
+  width: 300px;
 `
 
 export const BlueButton = styled.button`
@@ -82,5 +102,4 @@ export const BlueButton = styled.button`
   height: 49px;
   border-radius: 5px;
   font-size: 1em;
-  margin-block: 30px;
 `

@@ -45,7 +45,7 @@ export const BlueButton = styled.button`
   align-items: center;
   justify-content: center;
   width: 45%;
-  background-color: ${colors.blue01};
+  background-color: #48cef7;
   color: #fff;
   height: 49px;
   border-radius: 5px;
@@ -58,7 +58,7 @@ export const OrangeButton = styled.button`
   align-items: center;
   justify-content: center;
   width: 45%;
-  background-color: ${colors.orange01};
+  background-color: #ffb028;
   color: #fff;
   height: 49px;
   border-radius: 5px;
