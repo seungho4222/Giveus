@@ -37,9 +37,9 @@ public class UsageHistoryServiceImpl implements UsageHistoryService {
         Funding funding = fundingService.getFundingEntity(req.getFundingNo());
 
         // 진행중인 펀딩이라면 사용 내역 등록 요청 시 예외 발생 처리
-        if (!fundingService.isDoneFunding(funding)) {
-            throw new InvalidRequestException();
-        }
+//        if (!fundingService.isDoneFunding(funding)) {
+//            throw new InvalidRequestException();
+//        }
 
         // 펀딩 사용 내역 등록
         UsageHistory usageHistory = UsageHistoryTransfer.dtoToEntity(funding, req);
@@ -56,13 +56,13 @@ public class UsageHistoryServiceImpl implements UsageHistoryService {
         );
 
         // 최초 등록일 시에 문자 전송
-        if (getUsageHistoryList(req.getFundingNo()).isEmpty()) {
-            String msg = "[giveus]\n" +
-                    "안녕하세요, 기브어스입니다.\n" +
-                    "아래의 링크에서 후원 후기를 나눠주세요!\n" +
-                    "https://giveus.site/giveus/review/";
-            coolSmsClient.send(funding.getPhone(), msg, funding.getRegId());
-        }
+//        if (getUsageHistoryList(req.getFundingNo()).isEmpty()) {
+//            String msg = "[giveus]\n" +
+//                    "안녕하세요, 기브어스입니다.\n" +
+//                    "아래의 링크에서 후원 후기를 나눠주세요!\n" +
+//                    "https://giveus.site/giveus/review/";
+//            coolSmsClient.send(funding.getPhone(), msg, funding.getRegId());
+//        }
         return new CreateSuccessDto(savedUsageHistory.getUsageHistoryNo());
     }
 
