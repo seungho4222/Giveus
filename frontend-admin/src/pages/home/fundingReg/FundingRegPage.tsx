@@ -83,11 +83,11 @@ const FundingRegPage = () => {
       console.log('등록 성공', result)
       setCurrentNav({
         name: 'Funding',
-        url: `/admin/funding/id`,
+        url: `/funding/id`,
         label: '펀딩 상세 정보',
       })
       setSelectedFundingNo(result.id)
-      navigate(`/admin/funding/${result.id}`)
+      navigate(`/funding/${result.id}`)
     },
     onError(error) {
       console.error('등록 실패:', error)
