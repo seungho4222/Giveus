@@ -45,10 +45,9 @@ self.addEventListener('push', function (e) {
   const notificationOptions = {
     body: notification.body,
     icon: notification.icon,
-    tag: notification.tag,
   }
 
-  if (notification && notificationOptions) {
+  if (notification && notificationTitle && notificationOptions.body) {
     self.registration.showNotification(notificationTitle, notificationOptions)
   }
 })
