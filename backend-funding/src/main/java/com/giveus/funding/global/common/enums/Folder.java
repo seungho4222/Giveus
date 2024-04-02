@@ -4,8 +4,8 @@ import lombok.Getter;
 
 @Getter
 public enum Folder {
-    FUNDING("펀딩"),
-    REVIEW("리뷰");
+    FUNDING("funding"),
+    REVIEW("review");
     private final String name;
 
     Folder(String name) {

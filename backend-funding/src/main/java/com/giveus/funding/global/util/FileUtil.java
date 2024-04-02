@@ -22,7 +22,8 @@ public class FileUtil {
         return fileClient.uploadFile(file, objectName, folderName);
     }
 
-    public void delete(String objectName, Folder folderName) {
+    public void delete(String objectName, Folder folder) {
+        String folderName = folder.getName();
         fileClient.deleteFile(objectName, folderName);
     }
 

@@ -14,6 +14,7 @@ import com.giveus.funding.global.common.response.CreateSuccessDto;
 import com.giveus.funding.global.error.exception.InvalidRequestDataException;
 import com.giveus.funding.global.util.FileUtil;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -47,6 +48,7 @@ public class FundingServiceImpl implements FundingService {
      * @inheritDoc
      */
     @Override
+    @Cacheable(value = "fundingList", key = "'fundingNo:'+#fundingNo")
     public FundingDetailRes getFunding(Integer fundingNo) {
         return fundingRepository.getFunding(fundingNo)
                 .orElseThrow(FundingNotFoundException::new);
