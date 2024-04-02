@@ -25,7 +25,6 @@ spring:
       password: giveus2024~!
       repositories:
         enabled: false
-      database: 4
 
 server:
   port: 8084
