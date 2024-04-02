@@ -8,14 +8,14 @@ export const Container = styled.div`
 `
 
 export const Label = styled.label`
-  margin-bottom: 5px;
+  margin: 10px 0 10px 0;
   font-size: 0.8em;
+  font-weight: 600;
 `
 
 export const TextArea = styled.textarea`
-  width: 400px;
-  height: 300px;
-  padding: 20px;
+  height: 200px;
+  padding: 10px;
   border-radius: 8px;
   border: 1px solid ${colors.gray03};
 `

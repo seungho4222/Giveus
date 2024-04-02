@@ -25,7 +25,4 @@ const index = (props: RegInputType) => {
   )
 }
 
-
 export default index
-
-
