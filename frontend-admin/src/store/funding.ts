@@ -25,6 +25,7 @@ export const fundingDetailState = atom<FundingDetailType>({
     status: '',
     opinion: '',
     targetAmount: 0,
+    startDate: '',
     endDate: '',
     title: '',
     phone: '',

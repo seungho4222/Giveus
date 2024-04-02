@@ -1,10 +1,9 @@
-import * as r from '@/components/fundingReg/RegFile/RegFile.styled'
+import * as r from '@/components/fundingDetail/DetailFile/DetailFile.styled'
 import { fundRegRequest } from '@/apis/ocr'
 import { useCallback, useRef, useState } from 'react'
 import { RegFileType } from '@/types/fundingType'
 
 const index = ({ onOCRResult }: RegFileType) => {
-  const file = false
   const fileInput = useRef<HTMLInputElement | null>(null)
   const [previewImage, setPreviewImage] = useState<string | null>(null)
 

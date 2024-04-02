@@ -30,8 +30,8 @@ export const Wrap = styled.div`
   flex-direction: column;
   background-color: #fff;
   border-radius: 12px;
-  width: 50%;
-  height: 50%;
+  width: 70%;
+  height: 70%;
   overflow-y: scroll;
   &::-webkit-scrollbar {
     display: none; /* 크롬, 사파리, 오페라, 엣지 */
