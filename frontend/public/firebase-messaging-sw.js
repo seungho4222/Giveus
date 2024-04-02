@@ -40,7 +40,6 @@ self.addEventListener('activate', function (e) {
 
 self.addEventListener('push', function (e) {
   const notification = e.data.json().notification
-  if (!notification) return
 
   const notificationTitle = notification.title
   const notificationOptions = {
@@ -48,5 +47,8 @@ self.addEventListener('push', function (e) {
     icon: notification.icon,
     tag: notification.tag,
   }
-  self.registration.showNotification(notificationTitle, notificationOptions)
+
+  if (notification && !notificationOptions.body) {
+    self.registration.showNotification(notificationTitle, notificationOptions)
+  }
 })

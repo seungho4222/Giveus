@@ -14,7 +14,7 @@ onMessage(messaging, payload => {
   if (
     Notification.permission === 'granted' &&
     notificationTitle &&
-    notificationOptions
+    notificationOptions.body
   ) {
     new Notification(notificationTitle, notificationOptions)
   }
