@@ -36,10 +36,10 @@ public class Notification {
     @Column(name = "detail")
     private String detail;
 
-    @Setter
     @Column(name = "created_at")
     private LocalDate createdAt;
 
+    @Setter
     @Column(name = "is_read", columnDefinition = "TINYINT(1)")
     @ColumnDefault("false")
     private boolean isRead;
