@@ -177,21 +177,35 @@ public class NotificationServiceImpl implements NotificationService{
                     .build();
 
             // 2-1) 펀딩 후기 등록 알림 발송
-            sendNotificationByToken(fcmNotificationRes);
+            try {
+                sendNotificationByToken(fcmNotificationRes);
 
-            // 2-2) 알림 테이블에 기록 (해당 사람에게 알림 보낸 적 없다면 보냄)
-            if(!people.contains(list.get(i).getMemberNo())) {
-                Notification notification = Notification.builder()
-                        .memberNo(list.get(i).getMemberNo())
-                        .category(NotificationCategory.USAGE)
-                        .content("펀딩 진료비 사용 내역이 등록되었습니다")
-                        .detail(list.get(i).getTitle())
-                        .fundingNo(fundingNo)
-                        .build();
-                notificationRepository.save(notification);
+                // 2-2) 알림 테이블에 기록 (해당 사람에게 알림 보낸 적 없다면 보냄)
+                if(!people.contains(list.get(i).getMemberNo())) {
+                    Notification notification = Notification.builder()
+                            .memberNo(list.get(i).getMemberNo())
+                            .category(NotificationCategory.USAGE)
+                            .content("펀딩 진료비 사용 내역이 등록되었습니다")
+                            .detail(list.get(i).getTitle())
+                            .fundingNo(fundingNo)
+                            .build();
+                    notificationRepository.save(notification);
 
-                people.add(list.get(i).getMemberNo()); // 해당 사람에게 알림 보냈다고 표시
+                    people.add(list.get(i).getMemberNo()); // 해당 사람에게 알림 보냈다고 표시
+                }
+            } catch (Exception e) {
+                // 해당 fcm 토큰 삭제 (microservice간 통신)
+                String requestUrl = authUrl + "?memberNo=" + list.get(i).getMemberNo() + "&deviceToken=" + list.get(i).getDeviceToken() ;
+
+                log.info("=================requestUrl : " + requestUrl);
+                ResponseEntity<String> response = restTemplate.exchange(
+                        requestUrl, // 요청 URL
+                        HttpMethod.DELETE, // 요청 메서드
+                        null, // 요청 본문
+                        String.class // 응답 타입
+                );
             }
+
         }
 
     }
