@@ -17,6 +17,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -96,6 +97,7 @@ public class NotificationServiceImpl implements NotificationService{
         // 1) 해당 펀딩에 참여한 사람들 얻어옴
         List<FundingReviewListRes> list = notificationRepository.getFundingReviewList(fundingNo);
 
+        ArrayList<Integer> people = new ArrayList<>();
         // 2) 해당 사람들 모두에게 알림 발송 + 기록
         for(int i=0; i<list.size(); i++) {
             if(list.get(i).isFundingReview() == false) continue; // 알림설정 false면 알림 보내지 x
@@ -112,15 +114,19 @@ public class NotificationServiceImpl implements NotificationService{
             // 2-1) 펀딩 후기 등록 알림 발송
             sendNotificationByToken(fcmNotificationRes);
 
-            // 2-2) 알림 테이블에 기록
-            Notification notification = Notification.builder()
-                    .memberNo(list.get(i).getMemberNo())
-                    .category(NotificationCategory.REVIEW)
-                    .content("펀딩 후기가 등록되었습니다")
-                    .detail(list.get(i).getTitle())
-                    .fundingNo(fundingNo)
-                    .build();
-            notificationRepository.save(notification);
+            // 2-2) 알림 테이블에 기록 (해당 사람에게 알림 보낸 적 없다면 보냄)
+            if(!people.contains(list.get(i).getMemberNo())) {
+                Notification notification = Notification.builder()
+                        .memberNo(list.get(i).getMemberNo())
+                        .category(NotificationCategory.REVIEW)
+                        .content("펀딩 후기가 등록되었습니다")
+                        .detail(list.get(i).getTitle())
+                        .fundingNo(fundingNo)
+                        .build();
+                notificationRepository.save(notification);
+
+                people.add(list.get(i).getMemberNo()); // 해당 사람에게 알림 보냈다고 표시
+            }
         }
 
     }
@@ -135,6 +141,7 @@ public class NotificationServiceImpl implements NotificationService{
         // 1) 해당 펀딩에 참여한 사람들 얻어옴
         List<UsageHistoryListRes> list = notificationRepository.getUsageHistoryList(fundingNo);
 
+        ArrayList<Integer> people = new ArrayList<>();
         // 2) 해당 사람들 모두에게 알림 발송 + 기록
         for(int i=0; i<list.size(); i++) {
             if(list.get(i).isUsageHistory() == false) continue; // 알림설정 false면 알림 보내지 x
@@ -150,15 +157,19 @@ public class NotificationServiceImpl implements NotificationService{
             // 2-1) 펀딩 후기 등록 알림 발송
             sendNotificationByToken(fcmNotificationRes);
 
-            // 2-2) 알림 테이블에 기록
-            Notification notification = Notification.builder()
-                    .memberNo(list.get(i).getMemberNo())
-                    .category(NotificationCategory.USAGE)
-                    .content("펀딩 진료비 사용 내역이 등록되었습니다")
-                    .detail(list.get(i).getTitle())
-                    .fundingNo(fundingNo)
-                    .build();
-            notificationRepository.save(notification);
+            // 2-2) 알림 테이블에 기록 (해당 사람에게 알림 보낸 적 없다면 보냄)
+            if(!people.contains(list.get(i).getMemberNo())) {
+                Notification notification = Notification.builder()
+                        .memberNo(list.get(i).getMemberNo())
+                        .category(NotificationCategory.USAGE)
+                        .content("펀딩 진료비 사용 내역이 등록되었습니다")
+                        .detail(list.get(i).getTitle())
+                        .fundingNo(fundingNo)
+                        .build();
+                notificationRepository.save(notification);
+
+                people.add(list.get(i).getMemberNo()); // 해당 사람에게 알림 보냈다고 표시
+            }
         }
 
     }
