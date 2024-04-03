@@ -4,7 +4,6 @@ import { useCallback, useRef, useState } from 'react'
 import { RegFileType } from '@/types/fundingType'
 
 const index = ({ onOCRResult }: RegFileType) => {
-  const file = false
   const fileInput = useRef<HTMLInputElement | null>(null)
   const [previewImage, setPreviewImage] = useState<string | null>(null)
 

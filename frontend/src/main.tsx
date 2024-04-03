@@ -2,6 +2,7 @@ import ReactDOM from 'react-dom/client'
 import App from './App.tsx'
 import { RecoilRoot } from 'recoil'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { HelmetProvider } from 'react-helmet-async'
 
 // production mode에서 주석 제거
 // if (process.env.NODE_ENV === 'production') {
@@ -12,11 +13,15 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 // }
 
 const queryClient = new QueryClient()
+const helmetContext = {}
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-  <RecoilRoot>
-    <QueryClientProvider client={queryClient}>
-      <App />
-    </QueryClientProvider>
-  </RecoilRoot>,
+  <HelmetProvider context={helmetContext}>
+    <RecoilRoot>
+      <QueryClientProvider client={queryClient}>
+        <App />
+      </QueryClientProvider>
+    </RecoilRoot>
+    ,
+  </HelmetProvider>,
 )

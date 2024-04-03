@@ -38,11 +38,11 @@ public class FundingServiceImpl implements FundingService {
         Funding savedFunding = fundingRepository.save(funding);
 
         // 문자 전송
-        String msg = "[giveus]\n" +
-                "안녕하세요, 기브어스입니다.\n" +
-                "아래의 링크에서 펀딩 추가정보를 입력해주세요!\n" +
-                "https://giveus.site/giveus/";
-        coolSmsClient.send(funding.getPhone(), msg, regId);
+//        String msg = "[giveus]\n" +
+//                "안녕하세요, 기브어스입니다.\n" +
+//                "아래의 링크에서 펀딩 추가정보를 입력해주세요!\n" +
+//                "https://giveus.site/giveus/";
+//        coolSmsClient.send(funding.getPhone(), msg, regId);
 
         return new CreateSuccessDto(savedFunding.getFundingNo());
     }

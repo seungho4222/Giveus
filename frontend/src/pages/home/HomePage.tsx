@@ -1,26 +1,20 @@
 import Navbar from '@common/Navbar'
 import HomeHeader from '@/components/home/HomeHeader'
-import { handleAllowNotification } from '@/services/notificationPermission'
-import { useEffect } from 'react'
-import { userState } from '@stores/user'
-import { useRecoilValue } from 'recoil'
 import HomeTopSection from '@components/home/HomeTopSection'
 import HomeContributors from '@components/home/HomeContributors'
 import HomeTotalAmount from '@components/home/HomeTotalAmount'
 import HomeReview from '@components/home/HomeReview'
 import HomeSoonOver from '@components/home/HomeSoonOver'
 import * as h from '@pages/home/HomePage.styled'
+import Seo from '@/common/Seo'
 
 const HomePage = () => {
-  const userInfo = useRecoilValue(userState)
-
-  useEffect(() => {
-    handleAllowNotification(userInfo.memberNo)
-  }, [])
-
-  //
   return (
     <>
+      <Seo
+        title="GIVEUS"
+        description="여러분의 따뜻한 기부를 기다립니다"
+      />
       <HomeHeader />
       <h.Wrap>
         <HomeTopSection />

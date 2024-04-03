@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom'
 import { joinUser } from '@apis/auth'
 import { useSetRecoilState } from 'recoil'
 import { userState } from '@stores/user'
+import { handleAllowNotification } from '@/services/notificationPermission'
 
 const SignupPage = () => {
   const [stage, setStage] = useState(0)
@@ -25,6 +26,7 @@ const SignupPage = () => {
   const singup = () => {
     joinUser({ name, nickname }).then(res => {
       setUserState(res.data.data)
+      handleAllowNotification(res.data.data.memberNo)
       navigate('/')
     })
   }
