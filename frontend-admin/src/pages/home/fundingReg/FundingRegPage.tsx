@@ -243,7 +243,7 @@ const FundingRegPage = () => {
       </f.SelfSection>
       <f.Wrap>
         <f.BlueButton onClick={() => handleCreateFirstReg()}>
-          1차 등록
+          등록하기
         </f.BlueButton>
       </f.Wrap>
     </f.Container>

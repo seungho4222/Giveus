@@ -9,7 +9,7 @@ const index = () => {
     <h.Container>
       <h.LeftWrap>
         <h.SubWrap>
-          <h.Pages>Pages</h.Pages>&nbsp;/&nbsp;
+          <h.Pages>홈</h.Pages>&nbsp;/&nbsp;
           <h.CurrentPage>{currentNav.name}</h.CurrentPage>
         </h.SubWrap>
         <h.TitlePage>{currentNav.label}</h.TitlePage>
