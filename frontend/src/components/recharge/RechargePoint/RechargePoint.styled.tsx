@@ -45,7 +45,7 @@ export const Input = styled.input<{ $theme: number }>`
   border: ${props => (props.$theme ? '1px solid #cacfd9' : 'none')};
   text-align: end;
   padding: 10px 15px;
-  font-size: 0.9em;
+  font-size: 1em;
   background-color: ${props => (props.$theme ? '#fff' : colors.black02)};
 
   &::-webkit-outer-spin-button,
