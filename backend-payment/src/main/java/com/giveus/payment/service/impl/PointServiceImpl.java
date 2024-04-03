@@ -9,6 +9,7 @@ import com.giveus.payment.repository.PointUsageRepository;
 import com.giveus.payment.service.PointService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -57,6 +58,7 @@ public class PointServiceImpl implements PointService {
      */
     @Override
     @Transactional
+    @CacheEvict(value = "fundingList", key = "'fundingNo:'+#request.fundingNo")
     public int usePoint(PointUsageReq request, LocalDateTime now) {
         PointUsage pointUsage = PointUsage.builder()
                 .memberNo(request.getMemberNo())
