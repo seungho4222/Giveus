@@ -85,7 +85,6 @@ const Index = () => {
         amount: point,
         opened: isPublic,
       }
-
       pointMutate(pointData)
       return
     }
@@ -105,6 +104,7 @@ const Index = () => {
       } else {
         tossMutate(donateData)
       }
+      // point && pointDonate(pointData)
     }
   }
 

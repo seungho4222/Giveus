@@ -1,81 +1,119 @@
 import * as u from '@/components/fundingDetail/UsageReg/UsageReg.styled'
 import { useState } from 'react'
-import { UsageDataType } from '@/types/fundingType'
+import { BlockUSageType, UsageDataType } from '@/types/fundingType'
 import { useRecoilValue } from 'recoil'
 import { selectedFundingNoState } from '@/store/funding'
-import UsageInput from './UsageInput'
 import { useMutation } from '@tanstack/react-query'
 import { createFundingUsage } from '@/apis/funding'
 import { BooleanStateType } from '@/types/commonType'
 import DetailFile from '@components/fundingDetail/DetailFile'
-import { OCRResult, RegDataType } from '@/types/fundingType'
+import { OCRResult } from '@/types/fundingType'
+import UsageRow from './UsageRow'
+import { usageTitle } from '@/assets/data/usageTitle'
+import { addExpense } from '@/utils/blocStoreMethod'
 
 const Index = (props: BooleanStateType) => {
-  const { value, setValue } = props
+  const { setValue } = props
   const selectedFundingNo = useRecoilValue(selectedFundingNoState)
-  const [regData, setRegData] = useState<UsageDataType>({
-    fundingNo: selectedFundingNo,
-    category: '',
-    content: '',
-    amount: 0,
-    count: 0,
-  })
+  const [regData, setRegData] = useState<UsageDataType[]>([
+    {
+      fundingNo: selectedFundingNo,
+      category: '',
+      content: '',
+      amount: 0,
+      count: 0,
+    },
+  ])
+  const [blockExpense, setBlockExpense] = useState<BlockUSageType>([])
 
   const { mutate } = useMutation({
     mutationKey: ['createFundingUsage'],
     mutationFn: createFundingUsage,
     onSuccess(result) {
       console.log('등록 성공', result)
-      alert('기금 사용 내역을 성공적으로 등록하였습니다.')
       setValue(false)
     },
     onError(error) {
       console.error('등록 실패:', error)
-      alert('기금 사용 내역 등록에 실패하였습니다.내용을 다시 확인해주세요.')
     },
   })
 
   const handleOCRResult = (results: OCRResult[]) => {
     if (results) {
-      console.log('결과 받았어', results)
+      let tmpResults: UsageDataType[] = []
+      let tmpBlockExpense: BlockUSageType = []
+      results.map((item, idx) => {
+        const tmpItem = item.inferText.split(' ')
+        tmpResults[idx] = {
+          fundingNo: selectedFundingNo,
+          category: tmpItem[0],
+          content: tmpItem[2],
+          amount: Number(tmpItem[4].replace(/,/g, '')),
+          count: Number(tmpItem[3]),
+        }
+        tmpBlockExpense[idx] = [
+          tmpItem[0],
+          tmpItem[1],
+          tmpItem[2],
+          Number(tmpItem[3]),
+          Number(tmpItem[4].replace(/,/g, '')),
+        ]
+      })
+      setBlockExpense(tmpBlockExpense)
+      setRegData(tmpResults)
     }
   }
 
   const handleCreateFundingUsage = async () => {
-    mutate(regData)
+    try {
+      regData.forEach(item => {
+        if (item.category) mutate(item)
+      })
+      alert('기금 사용 내역을 성공적으로 등록하였습니다.')
+    } catch {
+      alert('기금 사용 내역 등록에 실패하였습니다.내용을 다시 확인해주세요.')
+      return
+    }
+
+    // 블록저장
+    addExpense(blockExpense)
   }
+
+  // const handlePlusRegData = () => {
+  //   const newRegData = [
+  //     ...regData,
+  //     {
+  //       fundingNo: selectedFundingNo,
+  //       category: '',
+  //       content: '',
+  //       amount: 0,
+  //       count: 0,
+  //     },
+  //   ]
+  //   setRegData(newRegData)
+  // }
 
   return (
     <u.Container>
       <DetailFile onOCRResult={handleOCRResult} />
-      <UsageInput
-        id="category"
-        label="검사 종목"
-        placeholder="검사 종목을 입력해주세요"
-        value={regData.category}
-        setValue={setRegData}
-      />
-      <UsageInput
-        id="content"
-        label="검사 내용"
-        placeholder="검사 내용을 입력해주세요"
-        value={regData.content}
-        setValue={setRegData}
-      />
-      <UsageInput
-        id="count"
-        label="검사 횟수"
-        placeholder="검사 횟수을 입력해주세요"
-        value={regData.count}
-        setValue={setRegData}
-      />
-      <UsageInput
-        id="amount"
-        label="검사 비용"
-        placeholder="검사 비용을 입력해주세요"
-        value={regData.amount}
-        setValue={setRegData}
-      />
+      <u.RowBox>
+        <u.RowTitleBox>
+          {usageTitle.map(item => (
+            <u.RowTitle key={item}>{item}</u.RowTitle>
+          ))}
+        </u.RowTitleBox>
+        {regData.map((data, idx) => (
+          <UsageRow
+            key={idx}
+            idx={idx}
+            regData={data}
+            setRegData={setRegData}
+          />
+        ))}
+      </u.RowBox>
+      {/* <u.PlusButton onClick={() => handlePlusRegData()}>
+        <u.Icon src="/icon/icon_plus_blue.png" />
+      </u.PlusButton> */}
       <u.Wrap>
         <u.Button onClick={() => handleCreateFundingUsage()}>
           기금 사용 내역 등록

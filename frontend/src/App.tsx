@@ -8,6 +8,7 @@ import HomeRouter from '@routers/HomeRouter'
 import { useRecoilValue } from 'recoil'
 import { userState } from '@stores/user'
 import '@/services/foregroundMessage'
+import ScrollToTop from './utils/scrollToTop'
 
 const App = () => {
   const themeProps = useTheme()
@@ -17,6 +18,7 @@ const App = () => {
     <ThemeProvider theme={themeProps.theme ? lightTheme : darkTheme}>
       <BrowserRouter>
         <GlobalStyle />
+        <ScrollToTop />
         {user.memberNo !== -1 ? (
           <AuthRouter />
         ) : (
