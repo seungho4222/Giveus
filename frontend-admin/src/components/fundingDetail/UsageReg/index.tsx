@@ -79,19 +79,19 @@ const Index = (props: BooleanStateType) => {
     addExpense(blockExpense)
   }
 
-  const handlePlusRegData = () => {
-    const newRegData = [
-      ...regData,
-      {
-        fundingNo: selectedFundingNo,
-        category: '',
-        content: '',
-        amount: 0,
-        count: 0,
-      },
-    ]
-    setRegData(newRegData)
-  }
+  // const handlePlusRegData = () => {
+  //   const newRegData = [
+  //     ...regData,
+  //     {
+  //       fundingNo: selectedFundingNo,
+  //       category: '',
+  //       content: '',
+  //       amount: 0,
+  //       count: 0,
+  //     },
+  //   ]
+  //   setRegData(newRegData)
+  // }
 
   return (
     <u.Container>
@@ -111,9 +111,9 @@ const Index = (props: BooleanStateType) => {
           />
         ))}
       </u.RowBox>
-      <u.PlusButton onClick={() => handlePlusRegData()}>
+      {/* <u.PlusButton onClick={() => handlePlusRegData()}>
         <u.Icon src="/icon/icon_plus_blue.png" />
-      </u.PlusButton>
+      </u.PlusButton> */}
       <u.Wrap>
         <u.Button onClick={() => handleCreateFundingUsage()}>
           기금 사용 내역 등록
