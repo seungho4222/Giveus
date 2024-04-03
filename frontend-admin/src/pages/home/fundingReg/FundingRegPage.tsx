@@ -25,11 +25,12 @@ const FundingRegPage = () => {
   const [birthValue, setBirthValue] = useState<string>('')
   const [genderValue, setGenderValue] = useState<string>('')
   const [regData, setRegData] = useState<RegDataType>({
+    // 직접입력
     phone: '',
     targetAmount: 0,
     startDate: '',
     endDate: '',
-
+    // OCR 입력
     issueNumber: '',
     registrationNumber: '',
     patientName: '',
@@ -39,13 +40,12 @@ const FundingRegPage = () => {
     diseaseCode: '',
     diagnosisDate: '',
     opinion: '',
-
+    // 상기 데이터로 자동 입력
     title: '',
   })
-
+  
   const handleOCRResult = (results: OCRResult[]) => {
     if (results) {
-      console.log('결과 받았어', results)
       const updatedRegData = { ...regData }
 
       results.forEach(result => {
@@ -72,7 +72,6 @@ const FundingRegPage = () => {
           updatedRegData[name] = inferText
         }
       })
-      console.log(updatedRegData)
       setRegData(updatedRegData)
     }
   }
@@ -84,11 +83,11 @@ const FundingRegPage = () => {
       console.log('등록 성공', result)
       setCurrentNav({
         name: 'Funding',
-        url: `/admin/funding/id`,
+        url: `/funding/id`,
         label: '펀딩 상세 정보',
       })
       setSelectedFundingNo(result.id)
-      navigate(`/admin/funding/${result.id}`)
+      navigate(`/funding/${result.id}`)
     },
     onError(error) {
       console.error('등록 실패:', error)
@@ -115,113 +114,133 @@ const FundingRegPage = () => {
       startTime: regData.startDate,
       endTime: regData.endDate,
       title: `${regData.diseaseName} ${age}세(${gender}) 펀딩`,
-      hospitalName: '싸피병원',
+      hospitalName: admin.name,
     })
   }
 
   return (
     <f.Container>
-      <f.Title>펀딩 등록</f.Title>
-      <RegInput
-        id="phone"
-        label="보호자 휴대폰 번호"
-        placeholder="휴대폰 번호 11자리 입력 ( 0000000000 )"
-        value={regData.phone}
-        setValue={setRegData}
-      />
-      <RegInput
-        id="targetAmount"
-        label="펀딩 목표 금액"
-        placeholder="펀딩 금액 입력"
-        value={''}
-        setValue={setRegData}
-      />
-      <RegInput
-        id="startDate"
-        label="펀딩 시작일"
-        placeholder="펀딩 시작일 입력 ( YYYY-MM-DD )"
-        value={regData.startDate}
-        setValue={setRegData}
-      />
-      <RegInput
-        id="endDate"
-        label="펀딩 종료일"
-        placeholder="펀딩 종료일 입력 ( YYYY-MM-DD )"
-        value={regData.endDate}
-        setValue={setRegData}
-      />
-      {/* 진단서 파일 등록 */}
-      <RegFile onOCRResult={handleOCRResult} />
-
-      <OCRInput
-        id="issueNumber"
-        label="발행번호"
-        placeholder="발행번호 입력"
-        value={regData.issueNumber}
-        setValue={setRegData}
-      />
-      <OCRInput
-        id="registrationNumber"
-        label="환자번호"
-        placeholder="환자번호 입력"
-        value={regData.registrationNumber}
-        setValue={setRegData}
-      />
-      <OCRInput
-        id="patientName"
-        label="환자 성명"
-        placeholder="환자 성명 입력"
-        value={regData.patientName}
-        setValue={setRegData}
-      />
-
-      <f.BirthContainer>
-        <f.BirthWrap>
-          <RegNumber
-            id="regNumber"
-            label="환자 주민등록번호"
-            placeholder="생년월일 6자리"
-            value={birthValue}
-            setValue={setBirthValue}
-          />
-          <RegGender
-            id={'regGender'}
-            label={''}
-            placeholder={''}
-            value={genderValue}
-            setValue={setGenderValue}
-          />
-        </f.BirthWrap>
-      </f.BirthContainer>
-
-      <OCRInput
-        id="diseaseName"
-        label="질병명"
-        placeholder="질병명 입력"
-        value={regData.diseaseName}
-        setValue={setRegData}
-      />
-      <OCRInput
-        id="diseaseCode"
-        label="병명 코드"
-        placeholder="병명 코드 입력"
-        value={regData.diseaseCode}
-        setValue={setRegData}
-      />
-      <OCRInput
-        id="diagnosisDate"
-        label="진단일"
-        placeholder="진단일 입력 ( YYYY-MM-DD )"
-        value={regData.diagnosisDate}
-        setValue={setRegData}
-      />
-      <OCRTextArea
-        id="opinion"
-        label="치료 내용 / 향후 치료에 대한 소견"
-        placeholder="치료 내용 입력"
-        value={regData.opinion}
-        setValue={setRegData}
-      />
+      {/* OCR 자동 입력 */}
+      <f.OCRSection>
+        <RegFile onOCRResult={handleOCRResult} />
+        <f.OCRColWrap>
+          <f.Title>상세 정보</f.Title>
+          <f.Box>
+            <f.Col>
+              <OCRInput
+                id="issueNumber"
+                label="발행번호"
+                placeholder="발행번호 입력"
+                value={regData.issueNumber}
+                setValue={setRegData}
+              />
+              <OCRInput
+                id="patientName"
+                label="환자 성명"
+                placeholder="환자 성명 입력"
+                value={regData.patientName}
+                setValue={setRegData}
+              />
+              <f.BirthContainer>
+                <f.BirthLabel>생년월일</f.BirthLabel>
+                <f.BirthWrap>
+                  <RegNumber
+                    id="regNumber"
+                    label="환자 주민등록번호"
+                    placeholder="생년월일 6자리"
+                    value={birthValue}
+                    setValue={setBirthValue}
+                  />
+                  <RegGender
+                    id={'regGender'}
+                    label={''}
+                    placeholder={''}
+                    value={genderValue}
+                    setValue={setGenderValue}
+                  />
+                </f.BirthWrap>
+              </f.BirthContainer>
+              <OCRInput
+                id="diseaseName"
+                label="질병명"
+                placeholder="질병명 입력"
+                value={regData.diseaseName}
+                setValue={setRegData}
+              />
+              <OCRInput
+                id="diseaseCode"
+                label="병명 코드"
+                placeholder="병명 코드 입력"
+                value={regData.diseaseCode}
+                setValue={setRegData}
+              />
+            </f.Col>
+            <f.Col>
+              <OCRInput
+                id="registrationNumber"
+                label="환자번호"
+                placeholder="환자번호 입력"
+                value={regData.registrationNumber}
+                setValue={setRegData}
+              />
+              <OCRInput
+                id="diagnosisDate"
+                label="진단일"
+                placeholder="진단일 입력 ( YYYY-MM-DD )"
+                value={regData.diagnosisDate}
+                setValue={setRegData}
+              />
+              <OCRTextArea
+                id="opinion"
+                label="치료 내용 / 향후 치료에 대한 소견"
+                placeholder="치료 내용 입력"
+                value={regData.opinion}
+                setValue={setRegData}
+              />
+            </f.Col>
+          </f.Box>
+        </f.OCRColWrap>
+      </f.OCRSection>
+      {/* 직접 입력 */}
+      <f.SelfSection>
+        <f.SelfColWrap>
+          <f.Title>기본 정보</f.Title>
+          <f.Box>
+            <f.Col>
+              <RegInput
+                id="phone"
+                label="보호자 휴대폰 번호"
+                placeholder="휴대폰 번호 11자리 입력 ( 0000000000 )"
+                value={regData.phone}
+                setValue={setRegData}
+              />
+              <RegInput
+                id="targetAmount"
+                label="펀딩 목표 금액"
+                placeholder="펀딩 금액 입력"
+                value={''}
+                setValue={setRegData}
+              />
+            </f.Col>
+            <f.Col>
+              <RegInput
+                id="startDate"
+                label="펀딩 시작일"
+                placeholder="펀딩 시작일 입력 ( YYYY-MM-DD )"
+                value={regData.startDate}
+                setValue={setRegData}
+              />
+              <RegInput
+                id="endDate"
+                label="펀딩 종료일"
+                placeholder="펀딩 종료일 입력 ( YYYY-MM-DD )"
+                value={regData.endDate}
+                setValue={setRegData}
+              />
+            </f.Col>
+          </f.Box>
+        </f.SelfColWrap>
+      </f.SelfSection>
       <f.Wrap>
         <f.BlueButton onClick={() => handleCreateFirstReg()}>
           1차 등록

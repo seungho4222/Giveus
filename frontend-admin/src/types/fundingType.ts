@@ -25,6 +25,7 @@ export type FundingDetailType = {
   status: string
   opinion: string
   targetAmount: number
+  startDate: string
   endDate: string
   title: string
   phone: string
@@ -93,10 +94,10 @@ export type UsageDataType = {
 
 export type UsageInputType = {
   id: string
-  label: string
   placeholder: string
   value: string | number
-  setValue: Dispatch<SetStateAction<UsageDataType>>
+  setValue: Dispatch<SetStateAction<UsageDataType[]>>
+  idx: number
 }
 
 export type BlocStoreType = {
@@ -106,3 +107,11 @@ export type BlocStoreType = {
   title: string
   hospitalName: string
 }
+
+export type UsageRegType = {
+  idx: number
+  regData: UsageDataType
+  setRegData: Dispatch<SetStateAction<UsageDataType[]>>
+}
+
+export type BlockUSageType = Array<[string, string, string, number, number]>

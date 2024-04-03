@@ -31,8 +31,9 @@ public class AwsS3Client implements FileClient {
 
 
     @Override
-    public String uploadFile(MultipartFile file, String objectName, Folder folderName) {
+    public String uploadFile(MultipartFile file, String objectName, Folder folder) {
         try {
+            String folderName = folder.getName();
             String extension = StringUtils.getFilenameExtension(file.getOriginalFilename());
             String fileName = objectName + DOT + extension;
             String fileUrl = getFileUrl(folderName, fileName);
@@ -52,14 +53,14 @@ public class AwsS3Client implements FileClient {
 
 
     @Override
-    public String getFileUrl(Folder folderName, String fileName) {
-        return HTTPS + bucket + S3 + region + AMAZON_AWS + SLASH + folderName.getName() + SLASH + fileName;
+    public String getFileUrl(String folderName, String fileName) {
+        return HTTPS + bucket + S3 + region + AMAZON_AWS + SLASH + folderName + SLASH + fileName;
     }
 
 
     @Override
-    public void deleteFile(String objectName, Folder folderName) {
-        String bucketName = bucket + SLASH + folderName.getName();
+    public void deleteFile(String objectName, String folderName) {
+        String bucketName = bucket + SLASH + folderName;
         amazonS3Client.deleteObject(bucketName, objectName);
     }
 }

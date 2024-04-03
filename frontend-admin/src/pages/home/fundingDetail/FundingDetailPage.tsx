@@ -1,7 +1,8 @@
 import { fetchFundingDetail } from '@/apis/funding'
-import DetailInfo from '@/components/fundingDetail/DetailInfo'
 import DetailNoData from '@/components/fundingDetail/DetailNoData'
+import DetailOCRInfo from '@/components/fundingDetail/DetailOCRInfo'
 import DetailReg from '@/components/fundingDetail/DetailReg'
+import DetailSelfInfo from '@/components/fundingDetail/DetailSelfInfo'
 import { fundingDetailState, selectedFundingNoState } from '@/store/funding'
 import * as f from '@pages/home/fundingDetail/FundingDetailPage.styled'
 import { useQuery } from '@tanstack/react-query'
@@ -26,10 +27,14 @@ const FundingDetailPage = () => {
       {!selectedFundingNo ? (
         <DetailNoData />
       ) : (
-        <>
+        <f.Wrap>
+          <f.Line />
           <DetailReg />
-          <DetailInfo />
-        </>
+          <f.InfoBox>
+            <DetailOCRInfo />
+            <DetailSelfInfo />
+          </f.InfoBox>
+        </f.Wrap>
       )}
     </f.Container>
   )

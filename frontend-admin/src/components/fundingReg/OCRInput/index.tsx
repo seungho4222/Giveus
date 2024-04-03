@@ -11,7 +11,6 @@ const index = (props: RegInputType) => {
       [id]: e.target.value,
     }))
   }
-
   return (
     <o.Container>
       <o.Label htmlFor={id}>{label}</o.Label>
@@ -26,4 +25,3 @@ const index = (props: RegInputType) => {
 }
 
 export default index
-

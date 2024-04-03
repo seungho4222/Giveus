@@ -80,12 +80,16 @@ public class FundingRepositoryImpl extends QuerydslRepositorySupport implements 
 
         if (size <= 0) {
             return getFundingListResJPQLQuery()
+                    .leftJoin(qFundingStatusHistory).on(qFunding.eq(qFundingStatusHistory.funding))
                     .where(qFunding.endDate.goe(LocalDate.now())) // 종료일이 오늘이거나 오늘 이전인 것 중에
+                    .where(qFundingStatusHistory.status.ne("진행완료"))
                     .orderBy(qFunding.endDate.asc())
                     .fetch();
         }
         return getFundingListResJPQLQuery()
+                .leftJoin(qFundingStatusHistory).on(qFunding.eq(qFundingStatusHistory.funding))
                 .where(qFunding.endDate.goe(LocalDate.now())) // 종료일이 오늘이거나 오늘 이전인 것 중에
+                .where(qFundingStatusHistory.status.ne("진행완료"))
                 .orderBy(qFunding.endDate.asc())
                 .limit(size)
                 .fetch();

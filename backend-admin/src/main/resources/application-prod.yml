@@ -41,8 +41,8 @@ coolsms:
   env:
     phone: '01071408821'
   api:
-    key: NCSCISQV8JIPIKOV
-    secret: PYZG3FBK0ETVDRT4N45O7DHFQ0CVTDGH
+    key: NCS254GMBXDWOFL1
+    secret: Z0RJINWZRITQ0IETWBOBUUQPQ1ECKQEV
 
 notification:
   usageHistory-url: https://backend-notification/api/v1/notification/usageHistory/

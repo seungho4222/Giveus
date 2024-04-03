@@ -7,7 +7,6 @@ export const Container = styled.div`
   align-items: center;
   margin: 1% 3%;
   padding: 1% 2%;
-  background-color: #fff;
   border-radius: 15px;
   height: 80%;
   overflow-y: scroll;
@@ -23,15 +22,74 @@ export const Container = styled.div`
   }
 `
 
+export const OCRSection = styled.div`
+  display: flex;
+  gap: 30px;
+`
+
+export const OCRColWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-block: 30px 0px;
+  gap: 10px;
+`
+
 export const Title = styled.div`
-  font-size: 1.2em;
   font-weight: 600;
-  margin-block: 20px;
+`
+
+export const Box = styled.div`
+  display: flex;
+  gap: 30px;
+  padding: 0 30px 20px 30px;
+  background-color: #fff;
+  border-radius: 8px;
+  border: 1px solid ${colors.gray03};
+`
+
+export const Col = styled.div`
+  display: flex;
+  flex-direction: column;
+`
+
+export const BirthContainer = styled.div`
+  display: flex;
+  align-items: center;
+  margin-block: 20px 0px;
+`
+
+export const BirthLabel = styled.label`
+  margin: 0 10px 5px 0;
+  width: 60px;
+  font-size: 0.8em;
+  font-weight: 600;
+`
+
+export const BirthWrap = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 300px;
+`
+
+export const SelfSection = styled.div`
+  display: flex;
+  width: 100%;
+`
+
+export const SelfColWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding-inline: 2%;
+  margin: 30px auto;
+  gap: 10px;
 `
 
 export const Wrap = styled.div`
-  width: 400px;
-  height: 300px;
+  display: flex;
+  align-items: center;
+  margin: auto;
+  width: 300px;
 `
 
 export const BlueButton = styled.button`
@@ -44,50 +102,4 @@ export const BlueButton = styled.button`
   height: 49px;
   border-radius: 5px;
   font-size: 1em;
-  margin-block: 30px;
-`
-
-export const BirthContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin-block: 20px 0px;
-`
-
-export const BirthWrap = styled.div`
-  display: flex;
-  justify-content: space-between;
-  width: 400px;
-`
-
-export const BirthLabel = styled.label`
-  margin-bottom: 5px;
-  font-size: 0.8em;
-`
-
-export const BirthInput = styled.input`
-  width: 190px;
-  padding: 20px;
-  border-radius: 8px;
-  border: 1px solid ${colors.gray03};
-`
-
-export const BirthMinus = styled.div`
-  margin: auto;
-`
-
-export const BirthSubWrap = styled.div`
-  display: flex;
-`
-
-export const BirthGenderInput = styled.input`
-  width: 40px;
-  text-align: center;
-  border-radius: 8px;
-  border: 1px solid ${colors.gray03};
-`
-
-export const BirthStar = styled.div`
-  margin: 8px 0 0 5px;
-  font-size: 3em;
-  color: ${colors.gray04};
 `

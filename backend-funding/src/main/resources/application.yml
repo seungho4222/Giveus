@@ -18,11 +18,19 @@ spring:
       connection-test-query: select 1
       username: giveus
       password: giveus2024~!
+  data:
+    redis:
+      host: j10c206.p.ssafy.io
+      port: 6379
+      password: giveus2024~!
+      repositories:
+        enabled: false
+
 
 server:
   port: 8083
   servlet:
-#    context-path: /api/v1/funding
+    #    context-path: /api/v1/funding
     encoding:
       charset: utf-8
       enabled: true
