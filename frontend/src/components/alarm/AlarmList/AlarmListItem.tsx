@@ -3,13 +3,22 @@ import { AlarmType } from '@/types/alarmType'
 import * as a from '@components/alarm/AlarmList/AlarmListItem.styled'
 import { useRecoilValue } from 'recoil'
 import { readNotification } from '@apis/notification'
+import { useNavigate } from 'react-router-dom'
 
 const AlarmListItem = (props: { item: AlarmType }) => {
+  const navigate = useNavigate()
   const theme = useRecoilValue(themeState)
   const { item } = props
 
   // 알림 읽음 처리
   const changeReadState = () => readNotification(item.notificationNo)
+
+  // 상세 페이지 이동
+  const onClick = () => {
+    changeReadState().then(() =>
+      navigate(`/funding/${item.fundingNo}/detail-main/`),
+    )
+  }
 
   const setImage = (category: string) => {
     switch (category) {
@@ -35,9 +44,9 @@ const AlarmListItem = (props: { item: AlarmType }) => {
   }
 
   return (
-    <a.Container $isRead={item.isRead} $theme={theme} onClick={changeReadState}>
+    <a.Container $isRead={item.read} $theme={theme} onClick={onClick}>
       <a.Wrap>
-        <a.ImgWrap $isRead={item.isRead} $theme={theme}>
+        <a.ImgWrap $isRead={item.read} $theme={theme}>
           <img
             src={setImage(item.category)?.src}
             alt=""
