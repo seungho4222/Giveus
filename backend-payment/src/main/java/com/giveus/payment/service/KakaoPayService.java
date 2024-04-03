@@ -28,6 +28,8 @@ public class KakaoPayService {
 
     private final TidRepository tidRepository;
 
+    private final PointService pointService;
+
     @Value("${pay.kakao.cid}")
     private String cid;
 
