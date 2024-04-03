@@ -17,6 +17,7 @@ import { useQuery } from '@tanstack/react-query'
 import { fetchFundingList } from '@/apis/funding'
 import FundingListBox from '@/components/funding/FundingListCard/FundingListBox'
 import * as f from '@pages/funding/FundingPage.styled'
+import Seo from '@/common/Seo'
 
 const FundingPage = () => {
   const setFunding = useSetRecoilState(fundingState)
@@ -35,6 +36,11 @@ const FundingPage = () => {
 
   return (
     <>
+      <Seo
+        title="GIVEUS | FundingPage"
+        description="여러분의 따뜻한 기부를 기다립니다"
+        type="webapp"
+      />
       <Layout>
         <HomeHeader />
         <FundingListBox>

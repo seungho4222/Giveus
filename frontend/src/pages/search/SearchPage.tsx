@@ -9,6 +9,7 @@ import { FundingType } from '@/types/fundingType'
 import { useRecoilState } from 'recoil'
 import { keywordState } from '@stores/search'
 import { searchFunding } from '@/apis/funding'
+import Seo from '@/common/Seo'
 
 const SearchPage = () => {
   const [value, setValue] = useState('')
@@ -56,6 +57,11 @@ const SearchPage = () => {
 
   return (
     <>
+      <Seo
+        title="GIVEUS | SearchPage"
+        description="여러분의 따뜻한 기부를 기다립니다"
+        type="webapp"
+      />
       <Layout>
         <SearchForm
           value={value}

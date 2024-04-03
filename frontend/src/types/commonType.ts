@@ -43,3 +43,9 @@ export type CustomToggleType = {
   selected: boolean
   onClick: () => void
 }
+
+export type SeoType = {
+  title: string
+  description: string
+  type: string
+}

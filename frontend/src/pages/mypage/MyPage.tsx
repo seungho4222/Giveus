@@ -7,12 +7,18 @@ import MypagePoint from '@components/mypage/MypagePoint'
 import MypageActivity from '@components/mypage/MypageActivity'
 import MypageSetting from '@components/mypage/MypageSetting'
 import * as m from '@pages/mypage/MyPage.styled'
+import Seo from '@/common/Seo'
 
 const MyPage = () => {
   const userInfo = useRecoilValue(userState)
 
   return (
     <>
+      <Seo
+        title="GIVEUS | MyPage"
+        description="여러분의 따뜻한 기부를 기다립니다"
+        type="webapp"
+      />
       <m.Container>
         <MypageHeader />
         <m.Wrap>
