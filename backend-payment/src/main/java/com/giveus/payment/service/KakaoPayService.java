@@ -28,8 +28,6 @@ public class KakaoPayService {
 
     private final TidRepository tidRepository;
 
-    private final PointService pointService;
-
     @Value("${pay.kakao.cid}")
     private String cid;
 
@@ -107,9 +105,6 @@ public class KakaoPayService {
         /** Tid Redis에 10분간 저장 */
         tidRepository.save(orderId, payReadyResDto.getTid(), 10L);
 
-        /** 포인트를 사용해서 결제했다면 */
-        PointUsageReq pointUsageReq = new PointUsageReq(donateReq.getMemberNo(), donateReq.getFundingNo(), donateReq.getPoint(), true);
-        pointService.usePoint(pointUsageReq, LocalDateTime.now());
 
         return payReadyResDto;
     }
