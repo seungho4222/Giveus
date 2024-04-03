@@ -85,7 +85,6 @@ const Index = () => {
         amount: point,
         opened: isPublic,
       }
-
       pointMutate(pointData)
       return
     }

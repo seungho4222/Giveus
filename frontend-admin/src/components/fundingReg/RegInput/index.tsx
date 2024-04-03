@@ -25,6 +25,8 @@ const index = (props: RegInputType) => {
         placeholder={placeholder}
         value={newValue}
         onChange={handleChange}
+        readOnly={id === 'startDate'}
+        $isStartDate={id === 'startDate'}
       />
     </r.Container>
   )

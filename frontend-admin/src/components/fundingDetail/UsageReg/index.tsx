@@ -66,9 +66,7 @@ const Index = (props: BooleanStateType) => {
 
   const handleCreateFundingUsage = async () => {
     try {
-      regData.forEach(item => {
-        if (item.category) mutate(item)
-      })
+      mutate(regData)
       alert('기금 사용 내역을 성공적으로 등록하였습니다.')
     } catch {
       alert('기금 사용 내역 등록에 실패하였습니다.내용을 다시 확인해주세요.')
@@ -79,19 +77,19 @@ const Index = (props: BooleanStateType) => {
     addExpense(blockExpense)
   }
 
-  const handlePlusRegData = () => {
-    const newRegData = [
-      ...regData,
-      {
-        fundingNo: selectedFundingNo,
-        category: '',
-        content: '',
-        amount: 0,
-        count: 0,
-      },
-    ]
-    setRegData(newRegData)
-  }
+  // const handlePlusRegData = () => {
+  //   const newRegData = [
+  //     ...regData,
+  //     {
+  //       fundingNo: selectedFundingNo,
+  //       category: '',
+  //       content: '',
+  //       amount: 0,
+  //       count: 0,
+  //     },
+  //   ]
+  //   setRegData(newRegData)
+  // }
 
   return (
     <u.Container>
@@ -111,9 +109,9 @@ const Index = (props: BooleanStateType) => {
           />
         ))}
       </u.RowBox>
-      <u.PlusButton onClick={() => handlePlusRegData()}>
+      {/* <u.PlusButton onClick={() => handlePlusRegData()}>
         <u.Icon src="/icon/icon_plus_blue.png" />
-      </u.PlusButton>
+      </u.PlusButton> */}
       <u.Wrap>
         <u.Button onClick={() => handleCreateFundingUsage()}>
           기금 사용 내역 등록

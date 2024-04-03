@@ -5,7 +5,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 1% 3%;
+  margin: 1%;
   padding: 1% 2%;
   border-radius: 15px;
   height: 80%;
@@ -30,7 +30,7 @@ export const OCRSection = styled.div`
 export const OCRColWrap = styled.div`
   display: flex;
   flex-direction: column;
-  margin-block: 30px 0px;
+  margin-block: 10px 0px;
   gap: 10px;
 `
 
@@ -73,14 +73,13 @@ export const BirthWrap = styled.div`
 
 export const SelfSection = styled.div`
   display: flex;
-  width: 100%;
+  width: 95%;
 `
 
 export const SelfColWrap = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  padding-inline: 2%;
   margin: 30px auto;
   gap: 10px;
 `

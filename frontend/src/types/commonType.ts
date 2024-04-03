@@ -47,5 +47,4 @@ export type CustomToggleType = {
 export type SeoType = {
   title: string
   description: string
-  type: string
 }

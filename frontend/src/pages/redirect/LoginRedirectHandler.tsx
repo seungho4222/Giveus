@@ -44,7 +44,7 @@ const LoginRedirectHandler = () => {
   }
 
   return (
-    <div>
+    <div style={{ height: '100vh' }}>
       <div>login redirect page</div>
     </div>
   )

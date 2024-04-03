@@ -15,6 +15,7 @@ export const BackBtn = styled.img`
   width: 0.7em;
   margin: 5%;
   cursor: pointer;
+  filter: drop-shadow(0 0 0.1rem #000000);
 `
 
 export const Wrap = styled.div`
