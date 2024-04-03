@@ -32,6 +32,7 @@ const Index = (props: BooleanStateType) => {
     onSuccess(result) {
       console.log('등록 성공', result)
       setValue(false)
+      alert('기금 사용 내역을 성공적으로 등록하였습니다.')
     },
     onError(error) {
       console.error('등록 실패:', error)
@@ -67,7 +68,6 @@ const Index = (props: BooleanStateType) => {
   const handleCreateFundingUsage = async () => {
     try {
       mutate(regData)
-      alert('기금 사용 내역을 성공적으로 등록하였습니다.')
     } catch {
       alert('기금 사용 내역 등록에 실패하였습니다.내용을 다시 확인해주세요.')
       return

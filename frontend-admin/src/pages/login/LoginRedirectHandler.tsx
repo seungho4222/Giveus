@@ -36,7 +36,7 @@ const LoginRedirectHandler = () => {
               console.log('로그인 성공');
               console.log(res.data);
               setadminState(res.data.data)
-              navigate('/')
+              navigate('/funding')
             }),
           )
           .catch(err => console.log('로그인 실패', err))
