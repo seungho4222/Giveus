@@ -30,7 +30,7 @@ export const Button = styled.button<{ $checked: boolean }>`
 export const AgeWrap = styled.div`
   display: flex;
   justify-content: space-between;
-  margin-block: 5%;
+  margin-block: 7%;
 `
 
 export const StartAge = styled.div<{ $age: number }>`

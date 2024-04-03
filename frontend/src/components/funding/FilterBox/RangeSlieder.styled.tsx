@@ -75,6 +75,7 @@ export const Handle = styled.button<{ $left: number; $active: boolean }>`
 
 export const Tag = styled.div`
   position: absolute;
-  margin-top: 50px;
-  color: ${colors.blue02};
+  font-size: 1.2em;
+  margin-bottom: 50px;
+  color: ${colors.blue01};
 `
