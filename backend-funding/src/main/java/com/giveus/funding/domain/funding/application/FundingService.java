@@ -36,6 +36,14 @@ public interface FundingService {
     Funding getFundingEntity(int fundingNo);
 
     /**
+     * 펀딩 추가정보에 필요한 고유 ID로 해당되는 펀딩을 조회하는 메서드입니다.
+     *
+     * @param regId 펀딩 추가정보 등록 고유 ID
+     * @return 해당되는 펀딩 엔터티
+     */
+    Funding getFundingEntity(String regId);
+
+    /**
      * 펀딩 2차 등록을 하는 메서드입니다.
      *
      * @param fundingCreateReq 등록할 펀딩 정보
