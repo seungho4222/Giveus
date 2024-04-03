@@ -62,7 +62,7 @@ export const GlobalStyle = createGlobalStyle`
         }
     }
     input {
-        font-size: 1em;
+        font-size: 16px;
         outline: none;
         color: ${({ theme }: { theme: DefaultTheme }) => theme.color.text};
         &:focus {
