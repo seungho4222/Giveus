@@ -43,6 +43,9 @@ public class Notification {
     @ColumnDefault("false")
     private boolean isRead;
 
+    @Column(name = "funding_no")
+    private int fundingNo;
+
     public void updateIsRead() {
         this.isRead = true;
     }
