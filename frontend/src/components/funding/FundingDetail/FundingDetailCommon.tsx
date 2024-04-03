@@ -13,6 +13,7 @@ const FundingDetailCommon = (props: { data: FundingType }) => {
     <c.Container $img={data.thumbnailUrl}>
       <c.BackBtn
         src="/icon/icon_backBtn.png"
+        alt=''
         onClick={() => navigate(prevUrl)}
       />
       <c.Wrap>
