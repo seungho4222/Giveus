@@ -9,7 +9,8 @@ const FundingInfo = (props: { data: FundingType }) => {
       <i.Wrap>
         <i.Title>{data.title}</i.Title>
         <i.Period>
-          {data.startDate} ~ {data.endDate}
+          {/* {data.startDate} ~ {data.endDate} */}
+          {data.donationCnt}명 참여
         </i.Period>
       </i.Wrap>
       <i.Status $status={data.status === '진행중'}>{data.status}</i.Status>

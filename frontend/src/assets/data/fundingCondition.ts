@@ -20,7 +20,7 @@ export const fundingCondition = [
 export const sortCondition = [
   '기간순',
   '참여자순',
-  '최신순',
-  '높은 모금액순',
-  '낮은 모금액순',
+  '최신 등록순',
+  '높은 목표금액순',
+  '낮은 목표금액순',
 ]
