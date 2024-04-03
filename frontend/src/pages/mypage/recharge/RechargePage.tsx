@@ -21,7 +21,7 @@ const RechargePage = () => {
     mutationFn: kakaoPayRechargeReady,
     onSuccess(result) {
       console.log('등록 성공', result)
-      window.location.href = result.next_redirect_app_url
+      window.location.href = result.data.next_redirect_app_url
     },
     onError(error) {
       console.error('등록 실패:', error)
