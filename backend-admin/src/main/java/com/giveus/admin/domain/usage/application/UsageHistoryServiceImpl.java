@@ -54,6 +54,14 @@ public class UsageHistoryServiceImpl implements UsageHistoryService {
         // 최초 등록일 시에 알림, 문자 전송
         if (getUsageHistoryList(funding).size() == reqList.size()) {
 
+            // 펀딩 수혜자에게 후기 등록할 링크 문자 전송
+            String msg =
+//                    "[giveus]\n" +
+//                    "안녕하세요, 기브어스입니다.\n" +
+//                    "아래의 링크에서 후원 후기를 나눠주세요!\n" +
+                    "admin.giveus.site/giveus/review/";
+            coolSmsClient.send(funding.getPhone(), msg, funding.getRegId());
+
             // 펀딩에 참여한 기부자들에게 알림 전송 (microservice간 통신)
             String requestUrl = usageHistoryUrl + funding.getFundingNo();
             restTemplate.exchange(
@@ -63,13 +71,7 @@ public class UsageHistoryServiceImpl implements UsageHistoryService {
                     String.class // 응답 타입
             );
 
-            // 펀딩 수혜자에게 후기 등록할 링크 문자 전송
-            String msg =
-//                    "[giveus]\n" +
-//                    "안녕하세요, 기브어스입니다.\n" +
-//                    "아래의 링크에서 후원 후기를 나눠주세요!\n" +
-                    "admin.giveus.site/giveus/review/";
-            coolSmsClient.send(funding.getPhone(), msg, funding.getRegId());
+
         }
 
         return new CreateSuccessDto(funding.getFundingNo());
