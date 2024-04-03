@@ -3,6 +3,7 @@ import { fetchUserInfo, loginSuccess } from '@apis/auth'
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useSetRecoilState } from 'recoil'
+import * as l from '@pages/redirect/LoginRedirectHandler.styled'
 import { handleAllowNotification } from '@/services/notificationPermission'
 
 const LoginRedirectHandler = () => {
@@ -43,11 +44,7 @@ const LoginRedirectHandler = () => {
     }
   }
 
-  return (
-    <div style={{ height: '100vh' }}>
-      <div>login redirect page</div>
-    </div>
-  )
+  return <l.Container />
 }
 
 export default LoginRedirectHandler
