@@ -1,12 +1,10 @@
 import * as r from '@pages/reviewReg/ReviewRegOkPage.styled'
-import Lottie from 'react-lottie';
+import Lottie from 'react-lottie'
 import clap from '@assets/lottie/clap.json'
-import { useNavigate } from 'react-router-dom';
 import FullButton from '@/common/Fullbutton'
 
 const ReviewRegOkPage = () => {
-  const navigate = useNavigate()
-  const goMainPage = () => navigate('/', { replace: true })
+  const goMainPage = () => window.open('https://giveus.site', '_blank')
 
   const defaultOptions = {
     loop: true,
@@ -36,4 +34,4 @@ const ReviewRegOkPage = () => {
   )
 }
 
-export default ReviewRegOkPage;
+export default ReviewRegOkPage
