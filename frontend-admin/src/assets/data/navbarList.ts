@@ -20,13 +20,13 @@ export const navbarList = [
     label: '펀딩 등록',
     url: '/fundingReg',
   },
-  {
-    name: 'MyPage',
-    imgSrc: '/icon/icon_profile_blue.png',
-    activeImgSrc: '/icon/icon_profile_white.png',
-    label: '병원 정보',
-    url: '/mypage',
-  },
+  // {
+  //   name: 'MyPage',
+  //   imgSrc: '/icon/icon_profile_blue.png',
+  //   activeImgSrc: '/icon/icon_profile_white.png',
+  //   label: '병원 정보',
+  //   url: '/mypage',
+  // },
   {
     name: 'Log Out',
     imgSrc: '/icon/icon_signout_blue.png',

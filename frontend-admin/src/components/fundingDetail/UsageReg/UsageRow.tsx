@@ -10,28 +10,28 @@ const UsageRow = (props: UsageRegType) => {
       <u.Idx>{idx + 1}번</u.Idx>
       <UsageInput
         id="category"
-        placeholder="검사 종목을 입력해주세요"
+        placeholder="자동 입력됩니다"
         value={regData.category}
         setValue={setRegData}
         idx={idx}
       />
       <UsageInput
         id="content"
-        placeholder="검사 내용을 입력해주세요"
+        placeholder="자동 입력됩니다"
         value={regData.content}
         setValue={setRegData}
         idx={idx}
       />
       <UsageInput
         id="count"
-        placeholder="검사 횟수을 입력해주세요"
+        placeholder="자동 입력됩니다"
         value={regData.count}
         setValue={setRegData}
         idx={idx}
       />
       <UsageInput
         id="amount"
-        placeholder="검사 비용을 입력해주세요"
+        placeholder="자동 입력됩니다"
         value={regData.amount}
         setValue={setRegData}
         idx={idx}
