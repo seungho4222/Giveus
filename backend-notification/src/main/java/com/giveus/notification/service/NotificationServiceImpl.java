@@ -70,7 +70,7 @@ public class NotificationServiceImpl implements NotificationService{
     @Transactional
     public void updateNotification(int notificationNo) {
         Notification notification = notificationRepository.findByNotificationNo(notificationNo).orElseThrow(NotificationNotFoundException::new);
-        notification.updateIsRead();
+        notification.setRead(true);
         notificationRepository.save(notification);
     }
 
