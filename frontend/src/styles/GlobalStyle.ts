@@ -35,7 +35,18 @@ export const GlobalStyle = createGlobalStyle`
         min-width: ${sizes.minWidth};
         max-width: ${sizes.maxWidth};
         min-height: 100vh;
+        max-height: 100vh;
         margin: 0 auto;
+        overflow-y: scroll;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+        &::-webkit-scrollbar {
+            display: none;
+            width: 0;
+            height: 0;
+            background: transparent;
+            -webkit-appearance: none;
+        }
         background: ${({ theme }: { theme: DefaultTheme }) =>
           theme.color.background};
         color: ${({ theme }: { theme: DefaultTheme }) => theme.color.text};
