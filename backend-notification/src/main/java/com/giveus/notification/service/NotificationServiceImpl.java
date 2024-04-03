@@ -33,7 +33,7 @@ public class NotificationServiceImpl implements NotificationService{
      */
     @Override
     public List<NotificationListRes> getNotificationList(int memberNo) {
-        return notificationRepository.getNotificationByMemberNo(memberNo);
+        return notificationRepository.findByMemberNoOrderByCreatedAtDesc(memberNo);
     }
 
     /**

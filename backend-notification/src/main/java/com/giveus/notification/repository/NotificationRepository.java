@@ -22,7 +22,7 @@ public interface NotificationRepository extends JpaRepository<Notification, Inte
     @Query("update Notification n set n.isRead = true where n.memberNo = :memberNo")
     void updateAllByMemberNo(@Param("memberNo") int memberNo);
 
-    List<NotificationListRes> getNotificationByMemberNo(int memberNo);
+    List<NotificationListRes> findByMemberNoOrderByCreatedAtDesc(int memberNo);
 
     void deleteByNotificationNo(int notificationNo);
 
