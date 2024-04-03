@@ -40,13 +40,7 @@ public class UsageHistoryServiceImpl implements UsageHistoryService {
 //        if (!fundingService.isDoneFunding(funding)) {
 //            throw new InvalidRequestException();
 //        }
-
-        // 펀딩 사용 내역 등록
-        UsageHistory usageHistory = UsageHistoryTransfer.dtoToEntity(funding, req);
-        UsageHistory savedUsageHistory = usageHistoryRepository.save(usageHistory);
-
-
-
+        
         // 최초 등록일 시에 문자 전송
         if (getUsageHistoryList(req.getFundingNo()).isEmpty()) {
 
@@ -66,6 +60,11 @@ public class UsageHistoryServiceImpl implements UsageHistoryService {
                     "https://giveus.site/giveus/review/";
             coolSmsClient.send(funding.getPhone(), msg, funding.getRegId());
         }
+
+        // 펀딩 사용 내역 등록
+        UsageHistory usageHistory = UsageHistoryTransfer.dtoToEntity(funding, req);
+        UsageHistory savedUsageHistory = usageHistoryRepository.save(usageHistory);
+
         return new CreateSuccessDto(savedUsageHistory.getUsageHistoryNo());
     }
 
