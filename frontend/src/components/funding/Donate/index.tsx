@@ -78,13 +78,13 @@ const Index = () => {
   })
 
   const HandleDonate = () => {
-    let pointData = {
-      memberNo: user.memberNo,
-      fundingNo: fundingDetail.fundingNo,
-      amount: point,
-      opened: isPublic,
-    }
     if (!amount && point > 0) {
+      let pointData = {
+        memberNo: user.memberNo,
+        fundingNo: fundingDetail.fundingNo,
+        amount: point,
+        opened: isPublic,
+      }
       pointMutate(pointData)
       return
     }
@@ -94,7 +94,7 @@ const Index = () => {
         memberNo: user.memberNo,
         fundingNo: fundingDetail.fundingNo,
         amount: amount,
-        point: 0,
+        point: point,
         title: fundingDetail.title,
         opened: isPublic,
       }
@@ -104,7 +104,6 @@ const Index = () => {
       } else {
         tossMutate(donateData)
       }
-      point && pointDonate(pointData)
     }
   }
 

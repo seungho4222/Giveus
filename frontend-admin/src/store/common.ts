@@ -10,7 +10,7 @@ const { persistAtom } = recoilPersist({
 export const currentNavState = atom<navType>({
   key: 'currentNavState',
   default: {
-    name: 'Funding List',
+    name: '등록한 펀딩 조회',
     url: '/admin/funding',
     label: '펀딩 목록'
   },

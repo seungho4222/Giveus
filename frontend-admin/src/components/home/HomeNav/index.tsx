@@ -33,7 +33,8 @@ const index = () => {
       </h.Logo>
       {navbarList.map((item, idx) => (
         <div key={item.name}>
-          {idx === 3 ? <h.Category>ACCOUNT PAGES</h.Category> : ''}
+          {idx === 0 ? <h.Category>펀딩 관리</h.Category> : ''}
+          {idx === 2 ? <h.Category>계정 관리</h.Category> : ''}
           <h.Button
             onClick={() => HandlerNav(item)}
             $active={currentNav.url === item.url}
