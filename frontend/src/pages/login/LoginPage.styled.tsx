@@ -15,7 +15,7 @@ export const Container = styled.section`
   width: 90%;
   margin: 0 auto;
   padding: 68px 0;
-  height: 100vh;
+  height: 100dvh;
 `
 
 export const SubDesc = styled.div`
