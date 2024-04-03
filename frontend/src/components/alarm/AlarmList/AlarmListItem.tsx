@@ -8,6 +8,8 @@ const AlarmListItem = (props: { item: AlarmType }) => {
   const theme = useRecoilValue(themeState)
   const { item } = props
 
+  console.log(item)
+
   // 알림 읽음 처리
   const changeReadState = () => readNotification(item.notificationNo)
 
@@ -35,9 +37,9 @@ const AlarmListItem = (props: { item: AlarmType }) => {
   }
 
   return (
-    <a.Container $isRead={item.isRead} $theme={theme} onClick={changeReadState}>
+    <a.Container $isRead={item.read} $theme={theme} onClick={changeReadState}>
       <a.Wrap>
-        <a.ImgWrap $isRead={item.isRead} $theme={theme}>
+        <a.ImgWrap $isRead={item.read} $theme={theme}>
           <img
             src={setImage(item.category)?.src}
             alt=""
