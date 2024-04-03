@@ -6,4 +6,5 @@ export type AlarmType = {
   detail: string
   createdAt: string
   read: boolean
+  fundingNo: number
 }
