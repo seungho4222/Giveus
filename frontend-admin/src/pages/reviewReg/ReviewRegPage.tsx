@@ -23,7 +23,7 @@ const ReviewRegPage = () => {
     },
     onError(error) {
       console.error('등록 실패:', error)
-      alert('펀딩 등록에 실패하였습니다.내용을 다시 확인해주세요.')
+      alert('후기 등록에 실패하였습니다.내용을 다시 확인해주세요.')
     },
   })
 
