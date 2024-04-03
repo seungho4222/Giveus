@@ -19,7 +19,7 @@ const DonorList = () => {
           {donorList.map(item => (
             <d.Card key={item.memberFundingNo} $theme={theme}>
               <d.Wrap>
-                <d.Date $theme={theme}>{item.createdAt}</d.Date>
+                <d.Date $theme={theme}>{item.createdAt.replace('T', ' ')}</d.Date>
                 <d.Desc>기부금 기부</d.Desc>
               </d.Wrap>
               <d.Wrap>
