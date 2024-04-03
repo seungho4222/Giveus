@@ -10,7 +10,7 @@ export const Top = styled.div`
   display: flex;
   align-items: center;
   width: 100%;
-  height: 40vh;
+  height: 40dvh;
   border-bottom: 2px solid ${colors.gray02};
 `
 

@@ -9,6 +9,7 @@ import com.giveus.admin.domain.funding.application.FundingService;
 import com.giveus.admin.global.error.exception.InvalidRequestException;
 import com.giveus.admin.infra.sms.CoolSmsClient;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +22,7 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
+@Slf4j
 public class UsageHistoryServiceImpl implements UsageHistoryService {
     private final UsageHistoryRepository usageHistoryRepository;
     private final FundingService fundingService;
@@ -53,23 +55,28 @@ public class UsageHistoryServiceImpl implements UsageHistoryService {
 
         // 최초 등록일 시에 알림, 문자 전송
         if (getUsageHistoryList(funding).size() == reqList.size()) {
-
-            // 펀딩에 참여한 기부자들에게 알림 전송 (microservice간 통신)
-            String requestUrl = usageHistoryUrl + funding.getFundingNo();
-            restTemplate.exchange(
-                    requestUrl, // 요청 URL
-                    HttpMethod.POST, // 요청 메서드
-                    null, // 요청 본문
-                    String.class // 응답 타입
-            );
-
-            // 펀딩 수혜자에게 후기 등록할 링크 문자 전송
-            String msg =
+            try {
+                // 펀딩 수혜자에게 후기 등록할 링크 문자 전송
+                String msg =
 //                    "[giveus]\n" +
 //                    "안녕하세요, 기브어스입니다.\n" +
 //                    "아래의 링크에서 후원 후기를 나눠주세요!\n" +
-                    "admin.giveus.site/giveus/review/";
-            coolSmsClient.send(funding.getPhone(), msg, funding.getRegId());
+                        "admin.giveus.site/giveus/review/";
+                coolSmsClient.send(funding.getPhone(), msg, funding.getRegId());
+
+                // 펀딩에 참여한 기부자들에게 알림 전송 (microservice간 통신)
+                String requestUrl = usageHistoryUrl + funding.getFundingNo();
+                restTemplate.exchange(
+                        requestUrl, // 요청 URL
+                        HttpMethod.POST, // 요청 메서드
+                        null, // 요청 본문
+                        String.class // 응답 타입
+                );
+            } catch (Exception e) {
+                log.error(e.getMessage());
+            }
+
+
         }
 
         return new CreateSuccessDto(funding.getFundingNo());

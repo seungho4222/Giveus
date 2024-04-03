@@ -45,7 +45,17 @@ const RangeSlieder = (props: {
                 onTouchStart={onTouchStart}
                 $left={rangerInstance.getPercentageForValue(value)}
                 $active={isActive}
-              />
+              >
+                {isActive && (
+                  <r.Tag
+                    onKeyDown={onKeyDownHandler}
+                    onMouseDown={onMouseDownHandler}
+                    onTouchStart={onTouchStart}
+                  >
+                    {value}
+                  </r.Tag>
+                )}
+              </r.Handle>
             ),
           )}
       </r.Track>

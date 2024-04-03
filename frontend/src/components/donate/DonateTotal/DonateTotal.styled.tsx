@@ -9,7 +9,7 @@ export const Container = styled.div`
   row-gap: 8px;
   background-color: ${colors.blue01};
   color: #fff;
-  height: 14vh;
+  height: 14dvh;
 `
 
 export const Desc = styled.div`

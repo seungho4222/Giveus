@@ -4,7 +4,7 @@ import styled from 'styled-components'
 export const Container = styled.div<{ $img: string }>`
   position: relative;
   width: 100%;
-  height: 40vh;
+  height: 40dvh;
   background-image: url(${props => props.$img});
   background-size: cover;
 `
