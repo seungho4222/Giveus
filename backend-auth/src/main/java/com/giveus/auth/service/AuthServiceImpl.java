@@ -100,6 +100,14 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
+    public String deleteMemberDevice(int memberNo, String deviceToken) {
+        // 유효하지 않은 FCM 토큰 삭제
+        authMemberDeviceRepository.deleteByMemberNoAndDeviceToken(memberNo, deviceToken);
+
+        return "";
+    }
+
+    @Override
     public NicknameExistRes findByNickname(String nickname) {
         log.info("=== AuthServiceImpl - findByNickname === \n nickname : {}", nickname);
         Optional<Member> member = authMemberRepository.findByNickname(nickname);

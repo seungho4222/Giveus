@@ -22,5 +22,8 @@ public interface AuthService {
 
     CreateSuccessDto createMemberDevice(MemberDevicePostReq memberDevicePostReq);
 
+    String deleteMemberDevice(int memberNo, String deviceToken);
+
     NicknameExistRes findByNickname(String nickname);
+
 }
