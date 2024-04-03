@@ -58,9 +58,8 @@ const SearchPage = () => {
   return (
     <>
       <Seo
-        title="GIVEUS | SearchPage"
+        title="GIVEUS"
         description="여러분의 따뜻한 기부를 기다립니다"
-        type="webapp"
       />
       <Layout>
         <SearchForm
