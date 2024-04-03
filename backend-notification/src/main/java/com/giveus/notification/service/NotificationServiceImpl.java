@@ -33,7 +33,7 @@ public class NotificationServiceImpl implements NotificationService{
      */
     @Override
     public List<NotificationListRes> getNotificationList(int memberNo) {
-        return notificationRepository.getNotificationByMemberNo(memberNo);
+        return notificationRepository.findByMemberNoOrderByCreatedAtDesc(memberNo);
     }
 
     /**
@@ -118,6 +118,7 @@ public class NotificationServiceImpl implements NotificationService{
                     .category(NotificationCategory.REVIEW)
                     .content("펀딩 후기가 등록되었습니다")
                     .detail(list.get(i).getTitle())
+                    .fundingNo(fundingNo)
                     .build();
             notificationRepository.save(notification);
         }
@@ -155,6 +156,7 @@ public class NotificationServiceImpl implements NotificationService{
                     .category(NotificationCategory.USAGE)
                     .content("펀딩 진료비 사용 내역이 등록되었습니다")
                     .detail(list.get(i).getTitle())
+                    .fundingNo(fundingNo)
                     .build();
             notificationRepository.save(notification);
         }

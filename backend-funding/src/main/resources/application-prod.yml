@@ -15,4 +15,4 @@ swagger:
   server: https://giveus.site
 
 notification:
-  fundingReview-url: https://backend-notification/api/v1/notification/fundingReview
+  fundingReview-url: https://backend-notification/api/v1/notification/fundingReview/

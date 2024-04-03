@@ -28,4 +28,6 @@ public class NotificationListRes {
     private LocalDate createdAt;
 
     private boolean isRead;
+
+    private int fundingNo;
 }

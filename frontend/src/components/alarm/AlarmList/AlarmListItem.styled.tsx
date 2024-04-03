@@ -8,7 +8,13 @@ export const Container = styled.div<{ $isRead: boolean; $theme: number }>`
   border-top: 1px solid
     ${props => (props.$theme ? colors.gray02 : colors.gray05)};
   background-color: ${props =>
-    props.$isRead && (props.$theme ? '#EFF3FA' : colors.black02)};
+    !props.$isRead
+      ? props.$theme
+        ? '#EFF3FA'
+        : colors.black02
+      : props.$theme
+      ? '#fff'
+      : colors.black01};
   cursor: pointer;
 `
 
