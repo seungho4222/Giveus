@@ -9,7 +9,7 @@ export const BlackBox = styled.div`
   width: 100%;
   min-width: ${sizes.minWidth};
   max-width: ${sizes.maxWidth};
-  height: 100vh;
+  height: 100dvh;
   background-color: #000;
   opacity: 0.3;
   @media only screen and (min-width: 430px) {

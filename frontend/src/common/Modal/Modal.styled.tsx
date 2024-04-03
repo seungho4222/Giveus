@@ -9,7 +9,7 @@ export const Container = styled.div<{ $theme: number }>`
   width: 100%;
   min-width: ${sizes.minWidth};
   max-width: ${sizes.maxWidth};
-  height: 100vh;
+  height: 100dvh;
   background-color: ${props => (props.$theme ? '#fff' : colors.black01)};
   overflow-y: scroll;
   &::-webkit-scrollbar {
