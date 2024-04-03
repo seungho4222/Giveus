@@ -6,10 +6,16 @@ import HomeTotalAmount from '@components/home/HomeTotalAmount'
 import HomeReview from '@components/home/HomeReview'
 import HomeSoonOver from '@components/home/HomeSoonOver'
 import * as h from '@pages/home/HomePage.styled'
+import Seo from '@/common/Seo'
 
 const HomePage = () => {
   return (
     <>
+      <Seo
+        title="GIVEUS | HomePage"
+        description="여러분의 따뜻한 기부를 기다립니다"
+        type="webapp"
+      />
       <HomeHeader />
       <h.Wrap>
         <HomeTopSection />
