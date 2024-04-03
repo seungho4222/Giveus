@@ -104,7 +104,6 @@ const Index = () => {
       } else {
         tossMutate(donateData)
       }
-      // point && pointDonate(pointData)
     }
   }
 
