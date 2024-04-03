@@ -50,7 +50,7 @@ public class PointController {
     @PostMapping
     public ResponseEntity<CommonResponseBody<String>> payPoint(@RequestBody PointUsageReq request) {
         try {
-            LocalDateTime now = LocalDateTime.now().minusHours(9);
+            LocalDateTime now = LocalDateTime.now().plusHours(9);
             int pointNo = pointService.usePoint(request, now);
             memberFundingService.save(request, pointNo, now);
             return ResponseEntity.status(OK)
