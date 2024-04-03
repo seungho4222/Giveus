@@ -140,6 +140,7 @@ public class NotificationServiceImpl implements NotificationService{
                 // 해당 fcm 토큰 삭제 (microservice간 통신)
                 String requestUrl = authUrl + "?memberNo=" + list.get(i).getMemberNo() + "&deviceToken=" + list.get(i).getDeviceToken() ;
 
+                log.info("=================requestUrl : " + requestUrl);
                 ResponseEntity<String> response = restTemplate.exchange(
                         requestUrl, // 요청 URL
                         HttpMethod.DELETE, // 요청 메서드
