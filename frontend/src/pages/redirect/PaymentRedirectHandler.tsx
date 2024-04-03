@@ -40,7 +40,7 @@ const PaymentRedirectHandler = () => {
   }, [urlPathname, navigate, urlParams])
 
   return (
-    <div>
+    <div style={{ height: '100vh' }}>
       <div>payment redirect page</div>
     </div>
   )

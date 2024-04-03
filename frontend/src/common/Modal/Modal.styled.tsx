@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 export const Container = styled.div<{ $theme: number }>`
   display: flex;
-  position: fixed;
+  position: absolute;
   top: 0;
   z-index: 100;
   width: 100%;
@@ -28,10 +28,8 @@ export const Container = styled.div<{ $theme: number }>`
 `
 
 export const Wrap = styled.div`
-  display: flex;
-
-  flex-direction: column;
   width: 100%;
+
 `
 
 export const ModalName = styled.div`
