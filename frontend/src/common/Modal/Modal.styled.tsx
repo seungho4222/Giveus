@@ -3,9 +3,9 @@ import styled from 'styled-components'
 
 export const Container = styled.div<{ $theme: number }>`
   display: flex;
-  position: absolute;
+  position: fixed;
   top: 0;
-  z-index: 100;
+  z-index: 200;
   width: 100%;
   min-width: ${sizes.minWidth};
   max-width: ${sizes.maxWidth};
