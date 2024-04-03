@@ -6,6 +6,7 @@ import {
 } from '@/apis/payment'
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import * as p from '@pages/redirect/PaymentRedirectHandler.styled'
 
 const PaymentRedirectHandler = () => {
   const urlPathname = window.location.pathname
@@ -39,11 +40,7 @@ const PaymentRedirectHandler = () => {
     fetchData()
   }, [urlPathname, navigate, urlParams])
 
-  return (
-    <div style={{ height: '100vh' }}>
-      <div>payment redirect page</div>
-    </div>
-  )
+  return <p.Container />
 }
 
 export default PaymentRedirectHandler
