@@ -64,10 +64,11 @@ public class UsageHistoryServiceImpl implements UsageHistoryService {
             );
 
             // 펀딩 수혜자에게 후기 등록할 링크 문자 전송
-            String msg = "[giveus]\n" +
-                    "안녕하세요, 기브어스입니다.\n" +
-                    "아래의 링크에서 후원 후기를 나눠주세요!\n" +
-                    "https://giveus.site/giveus/review/";
+            String msg =
+//                    "[giveus]\n" +
+//                    "안녕하세요, 기브어스입니다.\n" +
+//                    "아래의 링크에서 후원 후기를 나눠주세요!\n" +
+                    "admin.giveus.site/giveus/review/";
             coolSmsClient.send(funding.getPhone(), msg, funding.getRegId());
         }
 
