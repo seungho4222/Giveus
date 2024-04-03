@@ -28,7 +28,7 @@ export const createFundingUsage = async (params: UsageDataType[]) => {
 // 펀딩 후기 등록
 export const createReview = async (data: FormData) => {
   return reviewRequest
-    .post(`${url}`, data, {
+    .post(`/api/v1/review`, data, {
       headers: { 'Content-Type': 'multipart/form-data' },
     })
     .then(res => res.data)
