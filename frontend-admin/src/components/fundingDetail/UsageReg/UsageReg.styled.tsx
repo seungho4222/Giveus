@@ -45,6 +45,7 @@ export const Icon = styled.img`
 
 export const Wrap = styled.div`
   width: 400px;
+  margin-top: 20px;
 `
 
 export const Button = styled.button`
