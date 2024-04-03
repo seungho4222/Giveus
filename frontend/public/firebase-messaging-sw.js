@@ -51,3 +51,8 @@ self.addEventListener('push', function (e) {
     self.registration.showNotification(notificationTitle, notificationOptions)
   }
 })
+
+self.addEventListener('notificationclick', function (e) {
+  e.notification.close()
+  e.waitUntil(clients.openWindow('/alarm'))
+})
