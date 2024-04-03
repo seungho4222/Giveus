@@ -120,7 +120,7 @@ const Index = () => {
       <FinalAmountSection amount={amount} point={point} />
       <d.Button>
         <FullButton
-          text="결제하기"
+          text="후원하기"
           disabled={amount + point <= 0}
           onClick={() => HandleDonate()}
         />
