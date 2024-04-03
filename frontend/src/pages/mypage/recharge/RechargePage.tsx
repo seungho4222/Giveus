@@ -52,9 +52,14 @@ const RechargePage = () => {
       memberNo: user.memberNo,
       amount: Number(amount),
     }
-    if (payment === 'kakao') {
-      kakaoMutate(pointData)
-    } else tossMutate(pointData)
+
+    if (pointData.amount <= 10000000) {
+      if (payment === 'kakao') {
+        kakaoMutate(pointData)
+      } else tossMutate(pointData)
+    } else {
+      alert('10,000,000원 이상은 충전할 수 없습니다.')
+    }
   }
 
   return (

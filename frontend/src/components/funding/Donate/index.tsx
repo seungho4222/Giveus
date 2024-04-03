@@ -89,7 +89,7 @@ const Index = () => {
       return
     }
 
-    if (amount) {
+    if (amount && amount <= 10000000) {
       let donateData = {
         memberNo: user.memberNo,
         fundingNo: fundingDetail.fundingNo,
@@ -104,6 +104,8 @@ const Index = () => {
       } else {
         tossMutate(donateData)
       }
+    } else {
+      alert('10,000,000원 이상은 결제할 수 없습니다.')
     }
   }
 
