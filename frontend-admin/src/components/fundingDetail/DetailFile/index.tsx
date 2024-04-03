@@ -41,7 +41,10 @@ const index = ({ onOCRResult }: RegFileType) => {
           ) : (
             <>
               <d.Icon src="/icon/icon_reg_file.png" />
-              <d.Text>진단서 이미지 파일을 업로드 해주세요</d.Text>
+              <d.Text>
+                진단서 이미지 파일을 <br />
+                업로드 해주세요
+              </d.Text>
             </>
           )}
         </d.Wrap>

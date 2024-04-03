@@ -2,7 +2,7 @@ import { colors } from '@/styles/theme'
 import styled from 'styled-components'
 
 export const Container = styled.div`
-  margin-block: 30px;
+  margin-block: 10px 30px;
 `
 
 export const Box = styled.div`

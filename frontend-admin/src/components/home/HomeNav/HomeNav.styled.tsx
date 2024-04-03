@@ -73,7 +73,7 @@ export const Text = styled.div<{ $active: boolean }>`
 export const Category = styled.div`
   font-size: 1.2em;
   font-weight: 600;
-  margin-block: 5% 10%;
+  margin-block: 10% 10%;
 `
 
 export const HelpBox = styled.div`

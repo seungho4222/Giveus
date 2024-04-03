@@ -21,7 +21,7 @@ export const createFirstReg = async (params: RegDataMutateType) => {
 }
 
 // 펀딩 상세 - 기금 사용 내역 등록
-export const createFundingUsage = async (params: UsageDataType) => {
+export const createFundingUsage = async (params: UsageDataType[]) => {
   return authRequest.post(`${url}/usage`, params).then(res => res.data.data)
 }
 
