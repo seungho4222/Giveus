@@ -8,4 +8,6 @@ import java.util.Optional;
 
 public interface AuthMemberDeviceRepository extends JpaRepository<MemberDevice, Integer> {
     Optional<MemberDevice> findByDeviceToken(String deviceToken);
+
+    void deleteByMemberNoAndDeviceToken(int memberNo, String deviceToken);
 }

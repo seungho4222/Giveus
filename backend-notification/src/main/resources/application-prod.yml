@@ -11,3 +11,6 @@ spring:
 
 swagger:
   server: https://giveus.site
+
+notification:
+  auth-url: https://backend-auth/api/v1/auth/device

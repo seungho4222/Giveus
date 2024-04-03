@@ -14,8 +14,12 @@ import com.giveus.notification.exception.NotificationUpdateFailedException;
 import com.giveus.notification.repository.NotificationRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +32,10 @@ public class NotificationServiceImpl implements NotificationService{
 
     private final NotificationRepository notificationRepository;
     private final FCMSender fcmSender;
+    private final RestTemplate restTemplate;
+
+    @Value("${notification.auth-url}")
+    private String authUrl;
 
     /**
      * @inheritDoc
@@ -112,21 +120,34 @@ public class NotificationServiceImpl implements NotificationService{
                     .build();
 
             // 2-1) 펀딩 후기 등록 알림 발송
-            sendNotificationByToken(fcmNotificationRes);
+            try {
+                sendNotificationByToken(fcmNotificationRes);
 
-            // 2-2) 알림 테이블에 기록 (해당 사람에게 알림 보낸 적 없다면 보냄)
-            if(!people.contains(list.get(i).getMemberNo())) {
-                Notification notification = Notification.builder()
-                        .memberNo(list.get(i).getMemberNo())
-                        .category(NotificationCategory.REVIEW)
-                        .content("펀딩 후기가 등록되었습니다")
-                        .detail(list.get(i).getTitle())
-                        .fundingNo(fundingNo)
-                        .build();
-                notificationRepository.save(notification);
+                // 2-2) 알림 테이블에 기록 (해당 사람에게 알림 보낸 적 없다면 보냄)
+                if(!people.contains(list.get(i).getMemberNo())) {
+                    Notification notification = Notification.builder()
+                            .memberNo(list.get(i).getMemberNo())
+                            .category(NotificationCategory.REVIEW)
+                            .content("펀딩 후기가 등록되었습니다")
+                            .detail(list.get(i).getTitle())
+                            .fundingNo(fundingNo)
+                            .build();
+                    notificationRepository.save(notification);
 
-                people.add(list.get(i).getMemberNo()); // 해당 사람에게 알림 보냈다고 표시
+                    people.add(list.get(i).getMemberNo()); // 해당 사람에게 알림 보냈다고 표시
+                }
+            } catch (Exception e) {
+                // 해당 fcm 토큰 삭제 (microservice간 통신)
+                String requestUrl = authUrl + "?memberNo=" + list.get(i).getMemberNo() + "&deviceToken=" + list.get(i).getDeviceToken() ;
+
+                ResponseEntity<String> response = restTemplate.exchange(
+                        requestUrl, // 요청 URL
+                        HttpMethod.DELETE, // 요청 메서드
+                        null, // 요청 본문
+                        String.class // 응답 타입
+                );
             }
+
         }
 
     }
