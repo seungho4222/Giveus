@@ -5,10 +5,7 @@ import com.giveus.payment.dto.response.PointListRes;
 import com.giveus.payment.entity.Funding;
 import com.giveus.payment.entity.PointRecharge;
 import com.giveus.payment.entity.PointUsage;
-import com.giveus.payment.repository.FundingRepository;
-import com.giveus.payment.repository.FundingStatusHistoryRepository;
-import com.giveus.payment.repository.PointRechargeRepository;
-import com.giveus.payment.repository.PointUsageRepository;
+import com.giveus.payment.repository.*;
 import com.giveus.payment.service.PointService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -23,7 +20,7 @@ import java.time.format.DateTimeFormatter;
 @RequiredArgsConstructor
 @Slf4j
 public class PointServiceImpl implements PointService {
-
+    private final MemberFundingRepository memberFundingRepository;
     private final PointUsageRepository pointUsageRepository;
     private final PointRechargeRepository pointRechargeRepository;
     private final FundingStatusHistoryRepository fundingStatusHistoryRepository;
@@ -73,7 +70,9 @@ public class PointServiceImpl implements PointService {
         Funding funding = fundingRepository.findById(request.getFundingNo())
                 .orElseThrow(() -> new IllegalArgumentException("펀딩이 존재하지 않습니다."));
 
-        if (request.getAmount() >= funding.getTargetAmount()) {
+        Integer totalAmount = memberFundingRepository.getTotalAmount(funding.getFundingNo());
+
+        if (totalAmount >= funding.getTargetAmount()) {
             fundingStatusHistoryRepository.updateFundingStatusToFinish(funding.getFundingNo());
         }
 
