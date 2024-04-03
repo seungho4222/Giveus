@@ -31,6 +31,7 @@ public class PointController {
 
     private final PointService pointService;
     private final MemberFundingService memberFundingService;
+
     @Operation(summary = "회원 포인트 충전 및 사용 내역 조회", description = "회원의 포인트 충전 내역 및 사용 내역을 조회하는 API 메서드 입니다.")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "성공", useReturnTypeSchema = true)
@@ -49,9 +50,9 @@ public class PointController {
     @PostMapping
     public ResponseEntity<CommonResponseBody<String>> payPoint(@RequestBody PointUsageReq request) {
         try {
-            LocalDateTime now = LocalDateTime.now();
+            LocalDateTime now = LocalDateTime.now().minusHours(9);
             int pointNo = pointService.usePoint(request, now);
-            int memberFundingNo = memberFundingService.save(request, pointNo, now);
+            memberFundingService.save(request, pointNo, now);
             return ResponseEntity.status(OK)
                     .body(new CommonResponseBody<>(OK, "포인트 펀딩 후원에 성공했습니다."));
         } catch (Exception e) {
