@@ -39,7 +39,7 @@ export const Icon = styled.img`
 
 export const SubTitle = styled.div`
   font-weight: 500;
-  font-size: 0.9em;
+  font-size: 1em;
   margin-top: 20px;
 `
 
@@ -55,7 +55,7 @@ export const Desc = styled.div`
   flex-direction: column;
   margin-bottom: 47px;
   span {
-    font-size: 0.8em;
+    font-size: 0.9em;
     line-height: 1.4;
     color: ${colors.gray04};
   }
