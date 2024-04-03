@@ -67,11 +67,20 @@ public class FundingServiceImpl implements FundingService {
      * @inheritDoc
      */
     @Override
+    public Funding getFundingEntity(String reqId) {
+        return fundingRepository.findFundingByRegId(reqId)
+                .orElseThrow(FundingNotFoundException::new);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
     @Transactional
     public CreateSuccessDto createFunding(FundingCreateReq fundingCreateReq, MultipartFile file) {
 
         // 펀딩마다 고유하게 갖고있는 regId로 펀딩 가져오기
-        Funding funding = getFunding(fundingCreateReq.getRegId());
+        Funding funding = getFundingEntity(fundingCreateReq.getRegId());
 
         // 해당 펀딩에 대해 이미 등록되어있는 펀딩인지 확인
         if (isExistFundingDetail(funding)) { // 이미 등록되어있는 펀딩이라면 409 예외 발생
@@ -132,14 +141,4 @@ public class FundingServiceImpl implements FundingService {
         return fundingDetail.isPresent();
     }
 
-    /**
-     * 펀딩 추가정보에 필요한 고유 ID로 해당되는 펀딩을 조회하는 메서드입니다.
-     *
-     * @param regId 펀딩 추가정보 등록 고유 ID
-     * @return 해당되는 펀딩 엔터티
-     */
-    private Funding getFunding(String regId) {
-        return fundingRepository.findFundingByRegId(regId)
-                .orElseThrow(FundingNotFoundException::new);
-    }
 }

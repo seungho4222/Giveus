@@ -13,7 +13,7 @@ import lombok.Setter;
 public class ReviewCreateReq {
 
     @NotNull
-    private int regId;
+    private String regId;
     private String title;
     private String content;
 
