@@ -72,10 +72,6 @@ public class PointServiceImpl implements PointService {
 
         Integer totalAmount = memberFundingRepository.getTotalAmount(funding.getFundingNo());
 
-        if (totalAmount >= funding.getTargetAmount()) {
-            fundingStatusHistoryRepository.updateFundingStatusToFinish(funding.getFundingNo());
-        }
-
         return pointUsageRepository.save(pointUsage).getPointNo();
     }
 
