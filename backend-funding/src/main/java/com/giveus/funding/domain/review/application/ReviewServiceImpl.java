@@ -80,6 +80,7 @@ public class ReviewServiceImpl implements ReviewService {
      */
     @Override
     @Transactional
+    @CacheEvict(value = "fundingList", key = "'fundingNo:'+#result.id")
     public CreateSuccessDto createReview(ReviewCreateReq reviewCreateReq, MultipartFile file) {
         // 펀딩마다 고유하게 갖고있는 regId로 펀딩 가져오기
         Funding funding = fundingService.getFundingEntity(reviewCreateReq.getRegId());
@@ -118,7 +119,7 @@ public class ReviewServiceImpl implements ReviewService {
                 String.class // 응답 타입
         );
 
-        return new CreateSuccessDto(review.getReviewNo());
+        return new CreateSuccessDto(review.getFunding().getFundingNo());
     }
     @CacheEvict(value = "fundingList", key = "'fundingNo:'+#result.funding.fundingNo")
     public Review createReviewEntity(Review review) {

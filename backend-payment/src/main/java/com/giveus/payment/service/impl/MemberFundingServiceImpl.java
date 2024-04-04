@@ -69,7 +69,7 @@ public class MemberFundingServiceImpl implements MemberFundingService {
 
         Integer totalAmount = memberFundingRepository.getTotalAmount(fundingNo);
 
-        if (totalAmount >= funding.getTargetAmount()) {
+        if (totalAmount + amount + point >= funding.getTargetAmount()) {
             fundingStatusHistoryRepository.updateFundingStatusToFinish(fundingNo);
         }
 
