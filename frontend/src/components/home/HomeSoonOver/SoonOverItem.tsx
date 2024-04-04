@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
 import { themeState } from '@stores/theme'
 import { prevUrlState } from '@/stores/funding'
+import { percent } from '@/utils/fundingInfoAdd'
 
 const SoonOverItem = (props: { item: FundingType }) => {
   const theme = useRecoilValue(themeState)
@@ -31,7 +32,7 @@ const SoonOverItem = (props: { item: FundingType }) => {
         </s.Amount>
       </s.InfoWrap>
       <s.Percent $flag={flag}>
-        {Math.ceil((item.totalAmount / item.targetAmount) * 100)}%
+        {percent(item)}
       </s.Percent>
     </s.Container>
   )
