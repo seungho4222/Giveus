@@ -39,10 +39,10 @@ swagger:
 
 coolsms:
   env:
-    phone: '01077124919'
+    phone: '01080348812'
   api:
-    key: NCSYSZCQO6D1CTLP
-    secret: 9X3M3G3EEEEDSTZJRZKHQWTCUTILFKV8
+    key: NCSYRZ5FU1JLZ2XU
+    secret: DA22QHY4GV2XDTFIDS5D1GJMSFEEUDN1
 
 notification:
   usageHistory-url: https://backend-notification/api/v1/notification/usageHistory/
