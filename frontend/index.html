@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="/icon/android-chrome-192x192.png" type="image/png" />
+    <link
+      rel="alternate icon"
+      href="/icon/favicon.ico"
+      type="ico"
+      sizes="16x16"
+    />
+    <link
+      rel="apple-touch-icon"
+      href="/icon/apple-touch-icon.png"
+      sizes="180x180"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta content="#ffffff" name="theme-color" />
+    <!-- 토스 페이 모듈 -->
+    <script src="https://js.tosspayments.com/v1/payment"></script>
+    <title>GIVEUS</title>
+    <!-- 구글 서치 콘솔 등록 -->
+    <meta
+      name="google-site-verification"
+      content="0gJScixhUl8_Ewtvt1Z9ea4mXPlQkJgiR8p0cvwvwJ0"
+    />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function () {
+          navigator.serviceWorker
+            .register('/firebase-messaging-sw.js')
+            .then(function (registration) {
+              console.log(
+                'Service Worker가 scope에 등록되었습니다.:',
+                registration.scope,
+              )
+            })
+            .catch(function (err) {
+              console.log('Service Worker 등록 실패:', err)
+            })
+        })
+      }
+    </script>
+  </body>
+</html>
