@@ -12,7 +12,7 @@ const FundingStatus = (props: { data: FundingType }) => {
   return (
     <s.Container>
       <s.Wrap>
-        <s.Text>모금액 {formatAmount(data.totalAmount)}원</s.Text>
+        <s.Text>{formatAmount(data.totalAmount)}원 달성</s.Text>
         <s.Text>
           <s.Percent>{percent(data)}</s.Percent> {dDay(data.endDate)}
         </s.Text>

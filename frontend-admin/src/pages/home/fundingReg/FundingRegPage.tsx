@@ -12,7 +12,7 @@ import { useMutation } from '@tanstack/react-query'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
 import { createFirstReg } from '@/apis/funding'
 import { useNavigate } from 'react-router-dom'
-import { calculateAge, divideBirth } from '@/utils/calcMethods'
+import { TodayDate, calculateAge, divideBirth } from '@/utils/calcMethods'
 import { currentNavState } from '@/store/common'
 import { selectedFundingNoState } from '@/store/funding'
 import { createFunding } from '@/utils/blocStoreMethod'
@@ -28,7 +28,7 @@ const FundingRegPage = () => {
     // 직접입력
     phone: '',
     targetAmount: 0,
-    startDate: '',
+    startDate: TodayDate(),
     endDate: '',
     // OCR 입력
     issueNumber: '',
@@ -82,12 +82,12 @@ const FundingRegPage = () => {
     onSuccess(result) {
       console.log('등록 성공', result)
       setCurrentNav({
-        name: 'Funding',
-        url: `/admin/funding/id`,
-        label: '펀딩 상세 정보',
+        name: '등록한 펀딩 조회',
+        url: `/funding`,
+        label: '펀딩 목록',
       })
       setSelectedFundingNo(result.id)
-      navigate(`/admin/funding/${result.id}`)
+      navigate(`/funding/${result.id}`)
     },
     onError(error) {
       console.error('등록 실패:', error)
@@ -96,6 +96,11 @@ const FundingRegPage = () => {
   })
 
   const handleCreateFirstReg = async () => {
+    if (new Date(regData.startDate) >= new Date(regData.endDate)) {
+      alert('펀딩 종료일을 다시 설정해 주세요.')
+      return
+    }
+
     const age = calculateAge(regData.birth)
     const gender = regData.gender === 'M' ? '남' : '여'
 
@@ -114,7 +119,7 @@ const FundingRegPage = () => {
       startTime: regData.startDate,
       endTime: regData.endDate,
       title: `${regData.diseaseName} ${age}세(${gender}) 펀딩`,
-      hospitalName: '싸피병원',
+      hospitalName: admin.name,
     })
   }
 
@@ -243,7 +248,7 @@ const FundingRegPage = () => {
       </f.SelfSection>
       <f.Wrap>
         <f.BlueButton onClick={() => handleCreateFirstReg()}>
-          1차 등록
+          등록하기
         </f.BlueButton>
       </f.Wrap>
     </f.Container>

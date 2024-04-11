@@ -1,23 +1,19 @@
 import * as h from '@components/home/HomeNav/HomeNav.styled'
 import { navbarList } from '@/assets/data/navbarList'
 import { useNavigate } from 'react-router'
-import { useRecoilState, useRecoilValue, useResetRecoilState } from 'recoil'
+import { useRecoilState, useResetRecoilState } from 'recoil'
 import { currentNavState } from '@/store/common'
 import { navType } from '@/types/navType'
-import { selectedFundingNoState } from '@/store/funding'
 import { adminState } from '@/store/user'
 
 const index = () => {
   const navigate = useNavigate()
   const [currentNav, setCurrentNav] = useRecoilState(currentNavState)
-  const selectedFundingNo = useRecoilValue(selectedFundingNoState)
   const resetAdminState = useResetRecoilState(adminState)
 
   const HandlerNav = (item: navType) => {
-    setCurrentNav({ name: item.name, url: item.url, label:item.label })
-    if (item.name === 'Funding') {
-      navigate(`/funding/${selectedFundingNo}`)
-    } else if (item.name === 'Log Out') {
+    setCurrentNav({ name: item.name, url: item.url, label: item.label })
+    if (item.name === '로그아웃') {
       resetAdminState()
       alert('로그아웃 되었습니다.')
       navigate('/')
@@ -33,7 +29,8 @@ const index = () => {
       </h.Logo>
       {navbarList.map((item, idx) => (
         <div key={item.name}>
-          {idx === 3 ? <h.Category>ACCOUNT PAGES</h.Category> : ''}
+          {idx === 0 ? <h.Category>펀딩 관리</h.Category> : ''}
+          {idx === 2 ? <h.Category>계정 관리</h.Category> : ''}
           <h.Button
             onClick={() => HandlerNav(item)}
             $active={currentNav.url === item.url}

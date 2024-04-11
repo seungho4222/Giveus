@@ -10,7 +10,7 @@ export const Container = styled.div`
 export const RowBox = styled.div`
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 90%;
 `
 
 export const RowTitleBox = styled.div`
@@ -45,6 +45,7 @@ export const Icon = styled.img`
 
 export const Wrap = styled.div`
   width: 400px;
+  margin-top: 20px;
 `
 
 export const Button = styled.button`

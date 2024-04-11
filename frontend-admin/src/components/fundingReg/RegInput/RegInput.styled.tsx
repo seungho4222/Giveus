@@ -14,9 +14,10 @@ export const Label = styled.label`
   font-weight: 600;
 `
 
-export const Input = styled.input`
+export const Input = styled.input<{ $isStartDate: boolean }>`
   width: 360px;
   padding: 10px;
   border-radius: 8px;
   border: 1px solid ${colors.gray03};
+  background-color: ${props => props.$isStartDate && colors.gray02};
 `

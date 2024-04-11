@@ -72,3 +72,10 @@ export const Handle = styled.button<{ $left: number; $active: boolean }>`
       ? 'translate(-50%, -50%) scale(1.3)'
       : 'translate(-50%, -40%) scale(0.9)'};
 `
+
+export const Tag = styled.div`
+  position: absolute;
+  font-size: 1.2em;
+  margin-bottom: 50px;
+  color: ${colors.blue01};
+`

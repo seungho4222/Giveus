@@ -1,3 +1,4 @@
+import { currentNavState } from '@/store/common'
 import { adminState } from '@/store/user'
 import { fetchUserInfo, loginSuccess } from '@apis/auth'
 import { useEffect } from 'react'
@@ -6,6 +7,7 @@ import { useSetRecoilState } from 'recoil'
 
 const LoginRedirectHandler = () => {
   const setadminState = useSetRecoilState(adminState)
+  const setCurrentNav = useSetRecoilState(currentNavState)
   const url = new URL(window.location.href).searchParams
 
   const navigate = useNavigate()
@@ -33,10 +35,15 @@ const LoginRedirectHandler = () => {
         loginSuccess({ accessToken })
           .then(() =>
             fetchUserInfo().then(res => {
-              console.log('로그인 성공');
-              console.log(res.data);
+              console.log('로그인 성공')
+              console.log(res.data)
               setadminState(res.data.data)
-              navigate('/')
+              setCurrentNav({
+                name: '등록한 펀딩 조회',
+                url: '/funding',
+                label: '펀딩 목록',
+              })
+              navigate('/funding')
             }),
           )
           .catch(err => console.log('로그인 실패', err))

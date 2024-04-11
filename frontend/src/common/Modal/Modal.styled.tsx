@@ -5,11 +5,11 @@ export const Container = styled.div<{ $theme: number }>`
   display: flex;
   position: fixed;
   top: 0;
-  z-index: 100;
+  z-index: 200;
   width: 100%;
   min-width: ${sizes.minWidth};
   max-width: ${sizes.maxWidth};
-  height: 100vh;
+  height: 100dvh;
   background-color: ${props => (props.$theme ? '#fff' : colors.black01)};
   overflow-y: scroll;
   &::-webkit-scrollbar {
@@ -28,10 +28,8 @@ export const Container = styled.div<{ $theme: number }>`
 `
 
 export const Wrap = styled.div`
-  display: flex;
-
-  flex-direction: column;
   width: 100%;
+
 `
 
 export const ModalName = styled.div`

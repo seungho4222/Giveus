@@ -190,6 +190,7 @@ CREATE TABLE `notification` (
   `detail` varchar(30) NOT NULL,
   `created_at` datetime NOT NULL DEFAULT (curdate()),
   `is_read` tinyint(1) NOT NULL DEFAULT FALSE,
+  `funding_no` int NOT NULL,
   PRIMARY KEY (`notification_no`),
   KEY `FK_member_TO_notification_1` (`member_no`),
   CONSTRAINT `FK_member_TO_notification_1` FOREIGN KEY (`member_no`) REFERENCES `member` (`member_no`)

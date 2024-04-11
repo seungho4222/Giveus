@@ -18,6 +18,8 @@ import RechargePage from '@pages/mypage/recharge/RechargePage'
 import RechargeDonePage from '@pages/mypage/recharge/RechargeDonePage'
 import PaymentRedirectHandler from '@/pages/redirect/PaymentRedirectHandler'
 import DonateDonePage from '@/pages/funding/DonateDonePage'
+import SecondRegPage from '@/pages/secondReg/SecondRegPage'
+import RegOkPage from '@/pages/secondReg/RegOkPage'
 
 const AuthRouter = () => {
   return (
@@ -43,6 +45,8 @@ const AuthRouter = () => {
       </Route>
       <Route path="/payment/:payment/donate/success" element={<PaymentRedirectHandler />} />
       <Route path="/payment/:payment/recharge/success" element={<PaymentRedirectHandler />} />
+      <Route path="/giveus/:id" element={<SecondRegPage />} />
+      <Route path="/giveus/ok" element={<RegOkPage />} />
       <Route path="*" element={<HomePage />} />
     </Routes>
   )

@@ -59,6 +59,14 @@ public class AuthController {
                 .body(new CommonResponseBody<>(OK, authService.createMemberDevice(memberDevicePostReq)));
     }
 
+    @SwaggerApiSuccess(summary = "FCM 기기 토큰 삭제", implementation = String.class)
+    @DeleteMapping("/device")
+    public ResponseEntity<CommonResponseBody<String>> deleteMemberDevice(@RequestParam int memberNo, @RequestParam String deviceToken) {
+        return ResponseEntity
+                .status(OK)
+                .body(new CommonResponseBody<>(OK, authService.deleteMemberDevice(memberNo, deviceToken)));
+    }
+
     @SwaggerApiSuccess(summary = "닉네임 중복검사", implementation = NicknameExistRes.class)
     @GetMapping("/nickname")
     public ResponseEntity<CommonResponseBody<NicknameExistRes>> findByNickname(@RequestParam String nickname) {

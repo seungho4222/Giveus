@@ -2,13 +2,14 @@ package com.giveus.payment.service.impl;
 
 import com.giveus.payment.dto.request.PointUsageReq;
 import com.giveus.payment.dto.response.PointListRes;
+import com.giveus.payment.entity.Funding;
 import com.giveus.payment.entity.PointRecharge;
 import com.giveus.payment.entity.PointUsage;
-import com.giveus.payment.repository.PointRechargeRepository;
-import com.giveus.payment.repository.PointUsageRepository;
+import com.giveus.payment.repository.*;
 import com.giveus.payment.service.PointService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,9 +20,11 @@ import java.time.format.DateTimeFormatter;
 @RequiredArgsConstructor
 @Slf4j
 public class PointServiceImpl implements PointService {
-
+    private final MemberFundingRepository memberFundingRepository;
     private final PointUsageRepository pointUsageRepository;
     private final PointRechargeRepository pointRechargeRepository;
+    private final FundingStatusHistoryRepository fundingStatusHistoryRepository;
+    private final FundingRepository fundingRepository;
 
     /**
      * @inheritDoc
@@ -57,12 +60,17 @@ public class PointServiceImpl implements PointService {
      */
     @Override
     @Transactional
+    @CacheEvict(value = "fundingList", key = "'fundingNo:'+#request.fundingNo")
     public int usePoint(PointUsageReq request, LocalDateTime now) {
         PointUsage pointUsage = PointUsage.builder()
                 .memberNo(request.getMemberNo())
                 .amount(request.getAmount())
                 .createdAt(now)
                 .build();
+        Funding funding = fundingRepository.findById(request.getFundingNo())
+                .orElseThrow(() -> new IllegalArgumentException("펀딩이 존재하지 않습니다."));
+
+        Integer totalAmount = memberFundingRepository.getTotalAmount(funding.getFundingNo());
 
         return pointUsageRepository.save(pointUsage).getPointNo();
     }

@@ -7,11 +7,13 @@ const index = (props: RegInputType) => {
   const [newValue, setNewValue] = useState(value)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const updatedValue =
+      id === 'targetAmount' ? Number(e.target.value) : e.target.value
     e.preventDefault()
     setNewValue(e.target.value)
     setValue(prevData => ({
       ...prevData,
-      [id]: e.target.value,
+      [id]: updatedValue,
     }))
   }
 
@@ -23,6 +25,8 @@ const index = (props: RegInputType) => {
         placeholder={placeholder}
         value={newValue}
         onChange={handleChange}
+        readOnly={id === 'startDate'}
+        $isStartDate={id === 'startDate'}
       />
     </r.Container>
   )

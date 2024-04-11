@@ -19,6 +19,7 @@ const Index = (props: MypageMenuItemType) => {
         <m.ImageWrap>
           <img
             src={theme ? imgSrc : imgSrc_dark}
+            alt=''
             width={width}
             height={height}
           />

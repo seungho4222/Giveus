@@ -3,6 +3,7 @@ package com.giveus.payment.service;
 import com.giveus.payment.common.repository.TidRepository;
 import com.giveus.payment.dto.request.KakaoPayDonateReq;
 import com.giveus.payment.dto.request.KakaoPayRechargeReq;
+import com.giveus.payment.dto.request.PointUsageReq;
 import com.giveus.payment.dto.response.KakaoPayApproveRes;
 import com.giveus.payment.dto.response.KakaoPayReadyRes;
 import lombok.RequiredArgsConstructor;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -25,6 +27,8 @@ import java.util.Map;
 public class KakaoPayService {
 
     private final TidRepository tidRepository;
+
+    private final PointService pointService;
 
     @Value("${pay.kakao.cid}")
     private String cid;
@@ -53,6 +57,7 @@ public class KakaoPayService {
     /**
      * 카카오페이 결제를 시작하기 위해 상세 정보를 카카오페이 서버에 전달하고 결제 고유 번호(TID)를 받는 단계입니다.
      * 어드민 키를 헤더에 담아 파라미터 값들과 함께 POST로 요청합니다.
+     *
      * @param donateReq 카카오페이 결제 요청 바디
      * @return 카카오페이 결제 준비 응답 바디
      */
@@ -102,6 +107,7 @@ public class KakaoPayService {
         /** Tid Redis에 10분간 저장 */
         tidRepository.save(orderId, payReadyResDto.getTid(), 10L);
 
+
         return payReadyResDto;
     }
 
@@ -109,8 +115,9 @@ public class KakaoPayService {
      * 사용자가 결제 수단을 선택하고 비밀번호를 입력해 결제 인증을 완료한 뒤, 최종적으로 결제 완료 처리를 하는 단계입니다.
      * 인증완료시 응답받은 pg_token과 tid로 최종 승인요청합니다.
      * 결제 승인 API를 호출하면 결제 준비 단계에서 시작된 결제건이 승인으로 완료 처리됩니다.
+     *
      * @param pgToken
-     * @param memberNo 회원 PK
+     * @param memberNo  회원 PK
      * @param fundingNo 펀딩 PK
      * @return 카카오페이 결제 승인 응답 바디
      * @throws Exception TID가 존재하지 않는 경우, 결제
@@ -155,7 +162,6 @@ public class KakaoPayService {
     }
 
     /**
-     *
      * @param rechargeReq
      * @return
      */
@@ -206,7 +212,6 @@ public class KakaoPayService {
     }
 
     /**
-     *
      * @param pgToken
      * @param memberNo
      * @return

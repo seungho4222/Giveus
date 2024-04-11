@@ -85,12 +85,11 @@ const Index = () => {
         amount: point,
         opened: isPublic,
       }
-
       pointMutate(pointData)
       return
     }
 
-    if (amount) {
+    if (amount && amount <= 10000000) {
       let donateData = {
         memberNo: user.memberNo,
         fundingNo: fundingDetail.fundingNo,
@@ -105,6 +104,8 @@ const Index = () => {
       } else {
         tossMutate(donateData)
       }
+    } else {
+      alert('10,000,000원 이상은 결제할 수 없습니다.')
     }
   }
 
@@ -121,7 +122,7 @@ const Index = () => {
       <FinalAmountSection amount={amount} point={point} />
       <d.Button>
         <FullButton
-          text="결제하기"
+          text="후원하기"
           disabled={amount + point <= 0}
           onClick={() => HandleDonate()}
         />

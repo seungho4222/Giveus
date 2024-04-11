@@ -3,6 +3,8 @@ import { UsageInputType } from '@/types/fundingType'
 
 const index = (props: UsageInputType) => {
   const { id, placeholder, value, setValue, idx } = props
+  const checkedValue =
+    value && id === 'amount' ? value.toLocaleString() + ' 원' : value || ''
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault()
@@ -25,8 +27,9 @@ const index = (props: UsageInputType) => {
   return (
     <r.Input
       placeholder={placeholder}
-      value={value || ''}
+      value={checkedValue}
       onChange={handleChange}
+      readOnly
     />
   )
 }

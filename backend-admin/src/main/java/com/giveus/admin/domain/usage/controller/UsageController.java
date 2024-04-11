@@ -12,6 +12,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 import static org.springframework.http.HttpStatus.CREATED;
 
 @Tag(name = "기부금 사용 API", description = "Funding Usage")
@@ -26,7 +28,7 @@ public class UsageController {
     @SwaggerApiSuccess(summary = "펀딩 사용 내역 등록", implementation = FundingDetailsRes.class)
     @PostMapping("/usage")
     public ResponseEntity<CommonResponseBody<CreateSuccessDto>> createFundingUsage(
-            @RequestBody FundingUsageCreateReq req) {
+            @RequestBody List<FundingUsageCreateReq> req) {
         return ResponseEntity
                 .status(CREATED)
                 .body(new CommonResponseBody<>(CREATED, usageService.createFundingUsage(req)));

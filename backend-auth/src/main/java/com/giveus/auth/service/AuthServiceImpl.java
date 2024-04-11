@@ -15,6 +15,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
@@ -97,6 +98,16 @@ public class AuthServiceImpl implements AuthService {
 
         return new CreateSuccessDto(memberDevicePostReq.getMemberNo());
 
+    }
+
+    @Transactional
+    @Override
+    public String deleteMemberDevice(int memberNo, String deviceToken) {
+        log.info("===========" + memberNo + ", " + deviceToken);
+        // 유효하지 않은 FCM 토큰 삭제
+        authMemberDeviceRepository.deleteByMemberNoAndDeviceToken(memberNo, deviceToken);
+
+        return "";
     }
 
     @Override

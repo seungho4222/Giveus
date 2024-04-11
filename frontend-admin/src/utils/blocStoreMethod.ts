@@ -5,16 +5,16 @@ import FundUsageContract from '../assets/data/FundUsage.json'
 
 const ETHEREUM_RPC_URL = 'https://rpc.ssafy-blockchain.com'
 
-const privateKey = import.meta.env.VITE_ADMIN_PRIVKEY
-// const privateKey = 'ccde9fd1e91c71a46ebca973189dec872dfc408852dd2078244b7e5c61b5990c'
+// const privateKey = import.meta.env.VITE_ADMIN_PRIVKEY
+const privateKey = 'ccde9fd1e91c71a46ebca973189dec872dfc408852dd2078244b7e5c61b5990c'
 
-const hospitalAddress = import.meta.env.VITE_ADMIN_ADDRESS
-// const hospitalAddress = '0x395950AD0039Df7232a37EE11FA92ec93F58F1fa'
+// const hospitalAddress = import.meta.env.VITE_ADMIN_ADDRESS
+const hospitalAddress = '0x395950AD0039Df7232a37EE11FA92ec93F58F1fa'
 
-const FUND_REG_CA = import.meta.env.FUND_REG_CA
-const FUND_USG_CA = import.meta.env.VITE_FUND_USG_CA
-// const FUND_REG_CA = '0xeABe49609d969398Ef7D8e98C69A2ea964C762dc'
-// const FUND_USG_CA = '0xc32C0835B97E21429161295cB74aAa949Ea3BBea'
+// const FUND_REG_CA = import.meta.env.FUND_REG_CA
+// const FUND_USG_CA = import.meta.env.VITE_FUND_USG_CA
+const FUND_REG_CA = '0xeABe49609d969398Ef7D8e98C69A2ea964C762dc'
+const FUND_USG_CA = '0xc32C0835B97E21429161295cB74aAa949Ea3BBea'
 
 const web3 = new Web3(Web3.givenProvider || ETHEREUM_RPC_URL)
 

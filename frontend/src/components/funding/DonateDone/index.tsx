@@ -5,10 +5,13 @@ import { useNavigate } from 'react-router-dom'
 import { useRecoilValue } from 'recoil'
 import clap from '@assets/lottie/clap.json'
 import Lottie from 'react-lottie'
+import { userState } from '@stores/user'
+
 
 const index = () => {
   const navigate = useNavigate()
   const fundingDetail = useRecoilValue(fundingDetailState)
+  const userInfo = useRecoilValue(userState)
 
   const goFundingDetailPage = () =>
     navigate(`/funding/${fundingDetail.fundingNo}/detail-main`)
@@ -25,15 +28,14 @@ const index = () => {
   return (
     <d.Container>
       <d.Top>
-        <d.Title>결제 완료</d.Title>
+        <d.Title>후원 완료</d.Title>
         <Lottie options={defaultOptions} width={328} height={239} />
-        <d.SubTitle>결제가 정상적으로 처리되었습니다.</d.SubTitle>
+        <d.SubTitle>{userInfo.name}님의 따뜻한 마음이 전달되었습니다.</d.SubTitle>
       </d.Top>
       <d.Bottom>
         <d.Line />
         <d.Desc>
-          <span>* 결제 취소는 가맹점에서 취소 요청을 해야합니다.</span>
-          <span>* 결제 내역은 마이페이지에서 확인 가능합니다.</span>
+          <span> * 후원 내역은 마이페이지에서 확인 가능합니다.</span>
         </d.Desc>
         <FullButton
           text="확인"

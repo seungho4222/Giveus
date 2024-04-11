@@ -3,11 +3,11 @@ import styled from 'styled-components'
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: 100dvh;
 `
 
 export const Wrap = styled.div`
-  height: calc(100vh - 70px);
+  height: calc(100dvh - 70px);
   padding-bottom: 60px;
   overflow-y: scroll;
   -ms-overflow-style: none;

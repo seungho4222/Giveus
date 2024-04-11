@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 
 import java.time.LocalDate;
 
@@ -16,6 +17,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Builder
 @DynamicInsert
+@DynamicUpdate
 public class Notification {
 
     @Id
@@ -39,9 +41,13 @@ public class Notification {
     @Column(name = "created_at")
     private LocalDate createdAt;
 
+    @Setter
     @Column(name = "is_read", columnDefinition = "TINYINT(1)")
     @ColumnDefault("false")
     private boolean isRead;
+
+    @Column(name = "funding_no")
+    private int fundingNo;
 
     public void updateIsRead() {
         this.isRead = true;

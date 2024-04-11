@@ -4,7 +4,7 @@ import styled from 'styled-components'
 export const Container = styled.div<{ $img: string }>`
   position: relative;
   width: 100%;
-  height: 40vh;
+  height: 40dvh;
   background-image: url(${props => props.$img});
   background-size: cover;
 `
@@ -15,6 +15,7 @@ export const BackBtn = styled.img`
   width: 0.7em;
   margin: 5%;
   cursor: pointer;
+  filter: drop-shadow(0 0 0.1rem #000000);
 `
 
 export const Wrap = styled.div`

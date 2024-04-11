@@ -20,10 +20,10 @@ export const SectionTitle = styled.div`
 export const Input = styled.input<{ $theme: number }>`
   margin-block: 1em;
   border: none;
-  padding: 11px;
+  padding: 8px;
   border-bottom: ${props =>
     props.$theme ? '1px solid #cbcbcb' : '2px solid' + colors.gray05};
-  font-size: 0.8em;
+  font-size: 1em;
   font-weight: 500;
   width: 100%;
   background-color: ${props => (props.$theme ? '#fff' : colors.black01)};

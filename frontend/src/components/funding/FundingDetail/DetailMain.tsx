@@ -54,7 +54,7 @@ const DetailMain = () => {
             {formatAmount(fundingDetail.targetAmount)}원
           </d.TargetAmount>
         </d.Wrap>
-        <d.Note>* 모금 종료시 전액 일시 전달됩니다</d.Note>
+        <d.Note>* 모금 종료 시 전액 일시 전달됩니다</d.Note>
       </d.DetailInfo>
       <d.DetailDesc>{fundingDetail.content}</d.DetailDesc>
       <d.Button>{statusButton()}</d.Button>

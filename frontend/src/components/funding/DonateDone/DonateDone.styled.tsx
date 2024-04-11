@@ -4,7 +4,7 @@ import styled from 'styled-components'
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: 100dvh;
   width: 90%;
   margin: 0 auto;
   padding-bottom: 18px;
@@ -30,7 +30,7 @@ export const Icon = styled.img`
 
 export const SubTitle = styled.div`
   font-weight: 500;
-  font-size: 0.9em;
+  font-size: 1em;
   margin-top: 20px;
 `
 
@@ -46,7 +46,7 @@ export const Desc = styled.div`
   flex-direction: column;
   margin-bottom: 47px;
   span {
-    font-size: 0.8em;
+    font-size: 0.9em;
     line-height: 1.4;
     color: ${colors.gray04};
   }
