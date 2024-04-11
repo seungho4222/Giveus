@@ -1,7 +1,7 @@
 import ResetButton from '@common/ResetButton'
 import ResponsiveModal from '@common/ResponsiveModal'
 import LargeButton from '@common/LargeButton'
-import * as p from '@components/points/PointsFilter/PointsFilterModal.styled'
+import * as p from '@components/donate/DonateFilter/DonateFilterModal.styled'
 import { useState } from 'react'
 import { BooleanStateType } from '@/types/commonType'
 import { useRecoilState } from 'recoil'
