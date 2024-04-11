@@ -12,5 +12,5 @@ export const dDay = (endDate: string): string => {
 
   const result = Math.ceil(gap / (1000 * 60 * 60 * 24))
 
-  return result ? `D-${result}` : '완료됨'
+  return result > 0 ? `D-${result}` : '완료됨'
 }
